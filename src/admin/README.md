@@ -1,6 +1,6 @@
 # Admin Operations Portal (`/src/admin`)
 
-This directory contains the private administrative interface used by the Operon team to manage products, monitor the sales pipeline, review customer requirements, track workflow orders, and configure webhook integrations.
+This directory contains the private administrative interface used by the Offlo team to manage products, monitor the sales pipeline, review customer requirements, track workflow orders, and configure webhook integrations.
 
 ---
 
@@ -8,7 +8,7 @@ This directory contains the private administrative interface used by the Operon 
 
 | File | Purpose | Key Functionality |
 | :--- | :--- | :--- |
-| `AdminAuthModal.tsx` | Access gate dialog | Enforces passkey authentication (`operon2026`) and provides a 1-click **Quick Reviewer Access** button for instant evaluation. Persists session state in `sessionStorage`. |
+| `AdminAuthModal.tsx` | Access gate dialog | Enforces passkey authentication (`offlo2026`) and provides a 1-click **Quick Reviewer Access** button for instant evaluation. Persists session state in `sessionStorage`. |
 | `AdminLayout.tsx` | Master shell layout | Fixed top bar with wordmark, system health pill, return-to-site link, and responsive tab navigation with live badge counts for new leads and pending requests. |
 | `AdminDashboard.tsx` | Executive overview | Top-level KPI cards (Total Leads, Custom Requests, Workflow Orders, Realized Revenue in ₹), pipeline stage distribution, and recent activity feeds. |
 | `AdminWorkflows.tsx` | Catalog management (CRUD) | Add new workflows, edit metadata (price, tech stack, descriptions), toggle visibility (`published` vs `draft`), feature flag management, and deletion controls. |
@@ -22,6 +22,6 @@ This directory contains the private administrative interface used by the Operon 
 ## 🔐 Security & Access Control
 
 Admin views are protected by `AdminAuthModal.tsx`:
-- Default PIN: `operon2026` or `admin`.
-- Session token `operon_admin_authenticated` is stored in browser `sessionStorage` (isolated to current tab session).
-- Sensitive API keys are never stored in client code; requests are dispatched via signed webhook payloads (`X-Operon-Signature`) to external n8n instances.
+- Default PIN: `offlo2026` or `admin`.
+- Session token `offlo_admin_authenticated` is stored in browser `sessionStorage` (isolated to current tab session).
+- Sensitive API keys are never stored in client code; requests are dispatched via signed webhook payloads (`X-Offlo-Signature`) to external n8n instances.

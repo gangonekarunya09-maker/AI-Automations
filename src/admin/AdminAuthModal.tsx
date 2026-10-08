@@ -21,7 +21,8 @@ export const AdminAuthModal: React.FC<AdminAuthModalProps> = ({
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // Default passkeys
-    if (passphrase === 'operon2026' || passphrase === 'admin' || passphrase.length >= 4) {
+    if (passphrase === 'offlo2026' || passphrase === 'operon2026' || passphrase === 'admin' || passphrase.length >= 4) {
+      sessionStorage.setItem('offlo_admin_authenticated', 'true');
       sessionStorage.setItem('operon_admin_authenticated', 'true');
       onSuccess();
     } else {
@@ -30,6 +31,7 @@ export const AdminAuthModal: React.FC<AdminAuthModalProps> = ({
   };
 
   const handleQuickDemoAccess = () => {
+    sessionStorage.setItem('offlo_admin_authenticated', 'true');
     sessionStorage.setItem('operon_admin_authenticated', 'true');
     onSuccess();
   };
@@ -58,7 +60,7 @@ export const AdminAuthModal: React.FC<AdminAuthModalProps> = ({
         <form onSubmit={handleSubmit} className="space-y-4">
           {error && (
             <div className="p-2.5 bg-red-950/40 border border-red-800 text-red-300 text-xs text-center font-mono">
-              Incorrect key. (Default: operon2026)
+              Incorrect key. (Default: offlo2026)
             </div>
           )}
 
@@ -73,7 +75,7 @@ export const AdminAuthModal: React.FC<AdminAuthModalProps> = ({
                 setPassphrase(e.target.value);
                 setError(false);
               }}
-              placeholder="e.g. operon2026"
+              placeholder="e.g. offlo2026"
               className="w-full px-3.5 py-2.5 bg-white/[0.03] border border-white/10 text-white font-mono text-sm focus:border-white focus:outline-none transition-colors"
               autoFocus
             />

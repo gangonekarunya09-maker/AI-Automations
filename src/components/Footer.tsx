@@ -17,7 +17,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onRequestCustom }) =
               onClick={() => onNavigate('/')}
               className="font-display font-bold text-lg tracking-tight text-white hover:text-emerald-400 transition-colors block text-left cursor-pointer"
             >
-              Operon Automations
+              Offlo Automations
             </button>
             <p className="text-neutral-400 text-xs sm:text-sm leading-relaxed max-w-sm">
               We design, build, and deploy production-grade AI workflows, n8n automations, and custom integrations that eliminate repetitive manual drag with high-reliability engineering.
@@ -108,7 +108,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onRequestCustom }) =
             <ul className="space-y-2.5">
               <li>
                 <button onClick={() => onNavigate('/about')} className="hover:text-white transition-colors cursor-pointer text-left">
-                  About Operon
+                  About Offlo
                 </button>
               </li>
               <li>
@@ -134,7 +134,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onRequestCustom }) =
         {/* Bottom divider and quiet credits */}
         <div className="mt-16 pt-8 border-t border-white/[0.06] flex flex-col sm:flex-row items-center justify-between gap-4 text-neutral-500 text-[11px]">
           <div>
-            © {new Date().getFullYear()} Operon Automations. Deterministic workflow engineering powered by n8n and AI models.
+            © {new Date().getFullYear()} Offlo Automations. Deterministic workflow engineering powered by n8n and AI models.
           </div>
           <div className="flex items-center gap-6 font-mono text-neutral-500">
             <span>n8n · Gemini 1.5 · Webhooks · Self-Hostable</span>

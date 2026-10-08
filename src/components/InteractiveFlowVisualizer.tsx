@@ -130,7 +130,7 @@ export const InteractiveFlowVisualizer: React.FC = () => {
             <span>Interactive Architecture Visualizer</span>
           </div>
           <h3 className="text-xl sm:text-2xl font-display font-bold text-white tracking-tight">
-            How An Operon Automation Executes
+            How An Offlo Automation Executes
           </h3>
         </div>
 

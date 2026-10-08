@@ -1,6 +1,6 @@
 # Library & Services Directory (`/src/lib`)
 
-This directory contains the central data persistence engine and external integration bridges for Operon Automations.
+This directory contains the central data persistence engine and external integration bridges for Offlo Automations.
 
 ---
 
@@ -29,5 +29,5 @@ This directory contains the central data persistence engine and external integra
   - `custom_request_created`: Triggered when a bespoke automation requirement is filed.
   - `order_inquiry`: Triggered when a workflow purchase inquiry is initiated.
   - `test_ping`: Triggered from the Admin Settings diagnostic console.
-- **Security**: Embeds the configured signing secret in the `X-Operon-Signature` header and identifies the event via `X-Operon-Event`.
+- **Security**: Embeds the configured signing secret in the `X-Offlo-Signature` (and `X-Operon-Signature`) header and identifies the event via `X-Offlo-Event`.
 - **Diagnostic Tool**: Includes `generateCurlExample(url, secret)` which produces ready-to-run shell cURL commands for manual testing or importing into n8n Webhook Nodes.

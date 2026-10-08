@@ -1,4 +1,4 @@
-# Operon Automations — Production Web Application
+# Offlo Automations — Production Web Application
 
 > **Intelligent Business Process Automation & Workflow Marketplace**  
 > Built with React 19, TypeScript, Vite, Tailwind CSS v4, Motion, and Lucide Icons.
@@ -7,7 +7,7 @@
 
 ## 📌 Overview
 
-Operon Automations is a high-performance, conversion-engineered digital platform for an AI and business automation technology company. It acts simultaneously as:
+Offlo Automations is a high-performance, conversion-engineered digital platform for an AI and business automation technology company. It acts simultaneously as:
 1. **A professional corporate storefront** communicating high-impact business outcomes (*"Automate Your Business Without Hiring Another Person"*).
 2. **A workflow & digital product catalog** with battle-tested n8n templates, transparent dual-currency pricing (₹ INR & $ USD), and three flexible delivery models (Source JSON, Hybrid Setup, Managed Ops).
 3. **An inbound lead generation & scoping engine** with multi-attribute questionnaires, instant feedback, and webhook forwarding.
@@ -46,8 +46,8 @@ Operon Automations is a high-performance, conversion-engineered digital platform
 - **Anti-AI Slop & Editorial Design Constitution**: Strict adherence to domain-native typography (`Syne` display + `Plus Jakarta Sans` body), zero-pill unboxed metadata, tabular numerals for monetary values, and single-line controls.
 - **Interactive Flow Visualizer**: Live architecture animator showcasing deterministic *Trigger → Ingestion → AI Logic → Action → Business Outcome* pipelines with simulated real-time payload inspection.
 - **Resilient Persistence**: Client-side storage engine pre-seeded with 8 production-grade automation workflows, sample inbound leads, customer orders, and custom requirements.
-- **n8n Webhook Bridge**: Automatic dispatch of signed POST payloads (`X-Operon-Signature`) to external n8n webhook endpoints with full event logging and test-ping diagnostics.
-- **Protected Operations Admin**: Secure administrative console with passkey authentication (`operon2026`) and one-click evaluator sign-in.
+- **n8n Webhook Bridge**: Automatic dispatch of signed POST payloads (`X-Offlo-Signature`) to external n8n webhook endpoints with full event logging and test-ping diagnostics.
+- **Protected Operations Admin**: Secure administrative console with passkey authentication (`offlo2026`) and one-click evaluator sign-in.
 
 ---
 

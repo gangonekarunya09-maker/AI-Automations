@@ -18,7 +18,7 @@ export const About: React.FC<AboutProps> = ({ onNavigate, onRequestCustom }) => 
           We Replace Manual Friction With High-Reliability Automation.
         </h1>
         <p className="text-base sm:text-lg text-neutral-300 leading-relaxed max-w-3xl">
-          Operon Automations was founded on a simple realization: modern businesses do not suffer from a lack of software—they suffer from having human teams act as the manual glue between disconnected applications.
+          Offlo Automations was founded on a simple realization: modern businesses do not suffer from a lack of software—they suffer from having human teams act as the manual glue between disconnected applications.
         </p>
       </div>
 
@@ -107,7 +107,7 @@ export const About: React.FC<AboutProps> = ({ onNavigate, onRequestCustom }) => 
             <strong className="text-white block mb-1">1. We prioritize outcomes over technology:</strong> If a simple webhook and a Google Sheet formula solves your issue without an LLM, we will tell you. We never over-engineer for the sake of complexity.
           </div>
           <div className="p-4 bg-white/[0.01] border border-white/[0.04] leading-relaxed">
-            <strong className="text-white block mb-1">2. Transparent deliverables:</strong> You own the assets. When you purchase an Operon workflow, you receive clean, annotated JSON blueprints, environment variable checklists, and credential guides.
+            <strong className="text-white block mb-1">2. Transparent deliverables:</strong> You own the assets. When you purchase an Offlo workflow, you receive clean, annotated JSON blueprints, environment variable checklists, and credential guides.
           </div>
           <div className="p-4 bg-white/[0.01] border border-white/[0.04] leading-relaxed">
             <strong className="text-white block mb-1">3. Human-in-the-loop safeguards:</strong> Any process that writes to production financial ledgers or emails external VIP clients includes configurable approval gates.

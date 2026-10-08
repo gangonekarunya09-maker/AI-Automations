@@ -205,7 +205,7 @@ export const Home: React.FC<HomeProps> = ({
             <div className="relative aspect-[16/9] w-full overflow-hidden bg-neutral-950">
               <img
                 src="/src/assets/images/hero_automation_studio_1791448255075.jpg"
-                alt="Operon intelligent automation control facility"
+                alt="Offlo intelligent automation control facility"
                 className="w-full h-full object-cover opacity-85 transition-transform duration-700 group-hover:scale-[1.02]"
                 referrerPolicy="no-referrer"
               />
@@ -349,7 +349,7 @@ export const Home: React.FC<HomeProps> = ({
             Execution Roadmap
           </div>
           <h2 className="text-2xl sm:text-4xl lg:text-5xl font-display font-bold text-white tracking-tight leading-tight">
-            How An Operon Automation Goes Live
+            How An Offlo Automation Goes Live
           </h2>
           <p className="text-neutral-400 text-sm mt-3 leading-relaxed">
             From initial identification to production reliability in five clear stages.

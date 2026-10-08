@@ -1,6 +1,6 @@
 # Assets Directory (`/src/assets`)
 
-This directory houses static visual media, graphic assets, and generated imagery referenced across the Operon Automations application.
+This directory houses static visual media, graphic assets, and generated imagery referenced across the Offlo Automations application.
 
 ---
 

@@ -371,7 +371,7 @@ export const Contact: React.FC<ContactProps> = ({ onSuccess }) => {
             <h4 className="font-semibold text-white">Direct Engineering Contact</h4>
             <div className="flex items-center gap-2 text-neutral-300">
               <Mail className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
-              <span>ops@operon.ai</span>
+              <span>ops@offlo.ai</span>
             </div>
             <div className="flex items-center gap-2 text-neutral-300">
               <Phone className="w-3.5 h-3.5 text-emerald-400 shrink-0" />

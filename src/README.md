@@ -1,6 +1,6 @@
 # Source Directory (`/src`)
 
-This folder houses the entire client-side application code for **Operon Automations**.
+This folder houses the entire client-side application code for **Offlo Automations**.
 
 ---
 

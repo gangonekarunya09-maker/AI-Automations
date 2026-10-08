@@ -32,7 +32,7 @@ export const AdminSettings: React.FC<AdminSettingsProps> = ({ onRefresh }) => {
     const res = await dispatchWebhook('test_ping', {
       source_test: 'admin_dashboard_diagnostic',
       admin_time: new Date().toISOString(),
-      system: 'Operon Automations V1 Engine'
+      system: 'Offlo Automations V1 Engine'
     });
 
     setIsPinging(false);
@@ -95,7 +95,7 @@ export const AdminSettings: React.FC<AdminSettingsProps> = ({ onRefresh }) => {
 
             <div>
               <label className="block text-[11px] font-mono uppercase tracking-wider text-neutral-300 mb-1">
-                Webhook Signing Secret (Header: X-Operon-Signature)
+                Webhook Signing Secret (Header: X-Offlo-Signature)
               </label>
               <input
                 type="text"

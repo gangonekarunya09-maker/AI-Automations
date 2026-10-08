@@ -1,6 +1,6 @@
 # Pages Directory (`/src/pages`)
 
-This directory contains the primary route-level view components of the public-facing Operon Automations platform.
+This directory contains the primary route-level view components of the public-facing Offlo Automations platform.
 
 ---
 

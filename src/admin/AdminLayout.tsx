@@ -43,7 +43,7 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({
           <div className="flex items-center gap-2">
             <Shield className="w-4 h-4 text-emerald-400" />
             <span className="font-display font-bold text-sm text-white">
-              Operon Operations Portal
+              Offlo Operations Portal
             </span>
             <span className="text-[10px] font-mono px-2 py-0.5 bg-emerald-950/60 border border-emerald-800/60 text-emerald-300">
               Admin V1

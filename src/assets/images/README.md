@@ -1,6 +1,6 @@
 # Images Directory (`/src/assets/images`)
 
-This folder contains high-resolution marketing and technical visualization images created using deterministic prompt recipes tailored for Operon Automations.
+This folder contains high-resolution marketing and technical visualization images created using deterministic prompt recipes tailored for Offlo Automations.
 
 ---
 

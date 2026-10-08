@@ -47,7 +47,7 @@ export default function App() {
   const [isRequestCustomOpen, setIsRequestCustomOpen] = useState(false);
   const [isAdminAuthOpen, setIsAdminAuthOpen] = useState(false);
   const [isAdminAuthenticated, setIsAdminAuthenticated] = useState<boolean>(() => {
-    return sessionStorage.getItem('operon_admin_authenticated') === 'true';
+    return sessionStorage.getItem('offlo_admin_authenticated') === 'true' || sessionStorage.getItem('operon_admin_authenticated') === 'true';
   });
 
   // Admin tab state
@@ -128,6 +128,7 @@ export default function App() {
   };
 
   const handleExitAdmin = () => {
+    sessionStorage.removeItem('offlo_admin_authenticated');
     sessionStorage.removeItem('operon_admin_authenticated');
     setIsAdminAuthenticated(false);
     navigateTo('/');

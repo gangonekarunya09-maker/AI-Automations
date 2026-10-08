@@ -1,6 +1,6 @@
 # Types Directory (`/src/types`)
 
-This directory contains strict TypeScript interface definitions and domain models used across the entire Operon Automations codebase.
+This directory contains strict TypeScript interface definitions and domain models used across the entire Offlo Automations codebase.
 
 ---
 

@@ -35,7 +35,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate, onReque
             onClick={() => handleLinkClick('/')}
             className="text-left font-display font-bold text-lg sm:text-xl tracking-tight text-white hover:text-emerald-400 transition-colors whitespace-nowrap cursor-pointer flex items-center gap-2 group"
           >
-            <span>Operon Automations</span>
+            <span>Offlo Automations</span>
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 opacity-80 group-hover:opacity-100 group-hover:scale-125 transition-all"></span>
           </button>
         </div>

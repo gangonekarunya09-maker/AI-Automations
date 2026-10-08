@@ -17,7 +17,7 @@ export async function dispatchWebhook(
   const payload = {
     event,
     timestamp: new Date().toISOString(),
-    source: 'operon_automation_web',
+    source: 'offlo_automation_web',
     data,
     meta: {
       client_agent: typeof navigator !== 'undefined' ? navigator.userAgent : 'node',
@@ -52,7 +52,9 @@ export async function dispatchWebhook(
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        'X-Offlo-Signature': settings.webhook_secret || 'default-secret',
         'X-Operon-Signature': settings.webhook_secret || 'default-secret',
+        'X-Offlo-Event': event,
         'X-Operon-Event': event
       },
       body: JSON.stringify(payload),
@@ -110,12 +112,12 @@ export async function dispatchWebhook(
 export function generateCurlExample(url: string, secret: string): string {
   return `curl -X POST "${url}" \\
   -H "Content-Type: application/json" \\
-  -H "X-Operon-Signature: ${secret}" \\
-  -H "X-Operon-Event: test_ping" \\
+  -H "X-Offlo-Signature: ${secret}" \\
+  -H "X-Offlo-Event: test_ping" \\
   -d '{
     "event": "lead_created",
     "timestamp": "${new Date().toISOString()}",
-    "source": "operon_automation_web",
+    "source": "offlo_automation_web",
     "data": {
       "name": "Jane Doe",
       "company": "Acme Corp",

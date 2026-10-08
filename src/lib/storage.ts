@@ -395,27 +395,27 @@ export const INITIAL_ORDERS: Order[] = [
 ];
 
 export const INITIAL_SETTINGS: AppSettings = {
-  n8n_webhook_url: 'https://automation.operon.ai/webhook/v1/inbound-lead',
-  webhook_secret: 'whsec_operon_prod_99f381c0',
-  admin_notification_email: 'ops@operon.ai',
+  n8n_webhook_url: 'https://automation.offlo.ai/webhook/v1/inbound-lead',
+  webhook_secret: 'whsec_offlo_prod_99f381c0',
+  admin_notification_email: 'ops@offlo.ai',
   company_phone: '+91 98200 12345',
   enable_webhook_dispatch: true
 };
 
 // Storage keys
 const STORAGE_KEYS = {
-  WORKFLOWS: 'operon_workflows_v1',
-  LEADS: 'operon_leads_v1',
-  CUSTOM_REQUESTS: 'operon_custom_requests_v1',
-  ORDERS: 'operon_orders_v1',
-  SETTINGS: 'operon_settings_v1',
-  WEBHOOK_LOGS: 'operon_webhook_logs_v1'
+  WORKFLOWS: 'offlo_workflows_v1',
+  LEADS: 'offlo_leads_v1',
+  CUSTOM_REQUESTS: 'offlo_custom_requests_v1',
+  ORDERS: 'offlo_orders_v1',
+  SETTINGS: 'offlo_settings_v1',
+  WEBHOOK_LOGS: 'offlo_webhook_logs_v1'
 };
 
 export const Storage = {
   getWorkflows(): Workflow[] {
     try {
-      const data = localStorage.getItem(STORAGE_KEYS.WORKFLOWS);
+      const data = localStorage.getItem(STORAGE_KEYS.WORKFLOWS) || localStorage.getItem('operon_workflows_v1');
       if (!data) {
         localStorage.setItem(STORAGE_KEYS.WORKFLOWS, JSON.stringify(INITIAL_WORKFLOWS));
         return INITIAL_WORKFLOWS;
@@ -436,7 +436,7 @@ export const Storage = {
 
   getLeads(): Lead[] {
     try {
-      const data = localStorage.getItem(STORAGE_KEYS.LEADS);
+      const data = localStorage.getItem(STORAGE_KEYS.LEADS) || localStorage.getItem('operon_leads_v1');
       if (!data) {
         localStorage.setItem(STORAGE_KEYS.LEADS, JSON.stringify(INITIAL_LEADS));
         return INITIAL_LEADS;
@@ -480,7 +480,7 @@ export const Storage = {
 
   getCustomRequests(): CustomRequest[] {
     try {
-      const data = localStorage.getItem(STORAGE_KEYS.CUSTOM_REQUESTS);
+      const data = localStorage.getItem(STORAGE_KEYS.CUSTOM_REQUESTS) || localStorage.getItem('operon_custom_requests_v1');
       if (!data) {
         localStorage.setItem(STORAGE_KEYS.CUSTOM_REQUESTS, JSON.stringify(INITIAL_CUSTOM_REQUESTS));
         return INITIAL_CUSTOM_REQUESTS;
@@ -510,7 +510,7 @@ export const Storage = {
 
   getOrders(): Order[] {
     try {
-      const data = localStorage.getItem(STORAGE_KEYS.ORDERS);
+      const data = localStorage.getItem(STORAGE_KEYS.ORDERS) || localStorage.getItem('operon_orders_v1');
       if (!data) {
         localStorage.setItem(STORAGE_KEYS.ORDERS, JSON.stringify(INITIAL_ORDERS));
         return INITIAL_ORDERS;
@@ -549,7 +549,7 @@ export const Storage = {
 
   getSettings(): AppSettings {
     try {
-      const data = localStorage.getItem(STORAGE_KEYS.SETTINGS);
+      const data = localStorage.getItem(STORAGE_KEYS.SETTINGS) || localStorage.getItem('operon_settings_v1');
       if (!data) {
         localStorage.setItem(STORAGE_KEYS.SETTINGS, JSON.stringify(INITIAL_SETTINGS));
         return INITIAL_SETTINGS;
@@ -566,7 +566,7 @@ export const Storage = {
 
   getWebhookLogs(): WebhookLog[] {
     try {
-      const data = localStorage.getItem(STORAGE_KEYS.WEBHOOK_LOGS);
+      const data = localStorage.getItem(STORAGE_KEYS.WEBHOOK_LOGS) || localStorage.getItem('operon_webhook_logs_v1');
       return data ? JSON.parse(data) : [];
     } catch {
       return [];
