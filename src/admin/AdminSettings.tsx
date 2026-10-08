@@ -3,7 +3,7 @@ import { Storage } from '../lib/storage';
 import { dispatchWebhook, generateCurlExample } from '../lib/webhook';
 import { getSupabaseConfig, testSupabaseConnection, SUPABASE_SQL_SCHEMA } from '../lib/supabase';
 import { AppSettings, WebhookLog } from '../types';
-import { Webhook, Play, Check, Copy, Database, Shield, Terminal, Server, RefreshCw, Key, ExternalLink, AlertCircle, Sparkles } from 'lucide-react';
+import { Webhook, Play, Check, Copy, Database, Shield, Terminal, Server, RefreshCw, Key, ExternalLink, AlertCircle, X } from 'lucide-react';
 
 interface AdminSettingsProps {
   onRefresh: () => void;
@@ -91,34 +91,39 @@ export const AdminSettings: React.FC<AdminSettingsProps> = ({ onRefresh }) => {
 
   return (
     <div className="space-y-8">
-      <div className="pb-5 border-b border-white/[0.08]">
-        <h1 className="text-xl sm:text-2xl font-display font-bold text-white tracking-tight">
-          System Configuration & Webhook Endpoints
+      {/* Page Header */}
+      <div className="pb-6 border-b border-[#CFCFCC]">
+        <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-[#6B6B6B] block mb-1">
+          INFRASTRUCTURE // RUNTIMES & CLUSTER CONFIG
+        </span>
+        <h1 className="text-2xl sm:text-4xl font-extrabold uppercase tracking-tight text-[#0E0E0E]">
+          SYSTEM CONFIGURATION & CONNECTORS
         </h1>
-        <p className="text-xs text-neutral-400 mt-0.5">
-          Configure the n8n webhook bridge, security signatures, and database connectivity.
+        <p className="text-xs text-[#6B6B6B] mt-1 max-w-xl">
+          Configure the n8n automation webhook bridge, security signatures, and Supabase cloud database credentials.
         </p>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        {/* Settings Form */}
-        <div className="lg:col-span-2 space-y-6">
-          <form onSubmit={handleSave} className="p-6 sm:p-7 border border-white/[0.08] bg-[#0A0B0F] space-y-5 text-xs">
-            <div className="flex items-center justify-between pb-3.5 border-b border-white/[0.08]">
+        {/* Settings Form & Config Cards */}
+        <div className="lg:col-span-2 space-y-8">
+          {/* 1. n8n Automation Webhook Bridge Form */}
+          <form onSubmit={handleSave} className="p-6 sm:p-8 border border-[#CFCFCC] bg-white space-y-6 text-xs">
+            <div className="flex items-center justify-between pb-4 border-b border-[#CFCFCC]">
               <div className="flex items-center gap-2">
-                <Webhook className="w-4 h-4 text-emerald-400" />
-                <h3 className="text-sm font-bold uppercase tracking-wider font-mono text-white">n8n Automation Webhook Bridge</h3>
+                <Webhook className="w-4 h-4 text-[#0E0E0E]" strokeWidth={1.5} />
+                <h3 className="text-sm font-bold uppercase tracking-wider text-[#0E0E0E]">n8n Automation Webhook Bridge</h3>
               </div>
               {savedSuccess && (
-                <span className="text-emerald-400 font-mono text-[11px] flex items-center gap-1">
+                <span className="text-[#0E0E0E] text-[11px] font-bold uppercase tracking-wider flex items-center gap-1 bg-[#F6F5F3] px-2.5 py-1 border border-[#CFCFCC]">
                   <Check className="w-3.5 h-3.5" /> Saved
                 </span>
               )}
             </div>
 
             <div>
-              <label className="block text-[11px] font-mono uppercase tracking-wider text-neutral-300 mb-1">
-                n8n Webhook URL (Production / Test) *
+              <label className="block text-[10px] uppercase tracking-[0.18em] font-bold text-[#0E0E0E] mb-1.5">
+                n8n Webhook URL (Production / Staging) *
               </label>
               <input
                 type="url"
@@ -126,102 +131,102 @@ export const AdminSettings: React.FC<AdminSettingsProps> = ({ onRefresh }) => {
                 value={settings.n8n_webhook_url}
                 onChange={e => setSettings({ ...settings, n8n_webhook_url: e.target.value })}
                 placeholder="https://your-n8n.instance/webhook/v1/lead"
-                className="w-full px-3.5 py-2.5 bg-white/[0.03] border border-white/10 text-white font-mono text-xs focus:outline-none focus:border-white transition-colors"
+                className="w-full px-3.5 py-2.5 bg-white border border-[#CFCFCC] text-[#0E0E0E] text-xs focus:outline-none focus:border-[#0E0E0E] transition-colors"
               />
-              <p className="text-[11px] text-neutral-500 mt-1 font-mono">
-                Receives automated POST payloads whenever a lead submits a requirement or orders a workflow.
+              <p className="text-[11px] text-[#6B6B6B] mt-1">
+                Receives automated POST payloads whenever a lead submits a requirement or acquires a blueprint.
               </p>
             </div>
 
             <div>
-              <label className="block text-[11px] font-mono uppercase tracking-wider text-neutral-300 mb-1">
+              <label className="block text-[10px] uppercase tracking-[0.18em] font-bold text-[#0E0E0E] mb-1.5">
                 Webhook Signing Secret (Header: X-Offlo-Signature)
               </label>
               <input
                 type="text"
                 value={settings.webhook_secret}
                 onChange={e => setSettings({ ...settings, webhook_secret: e.target.value })}
-                className="w-full px-3.5 py-2.5 bg-white/[0.03] border border-white/10 text-white font-mono text-xs focus:outline-none focus:border-white transition-colors"
+                className="w-full px-3.5 py-2.5 bg-white border border-[#CFCFCC] text-[#0E0E0E] text-xs focus:outline-none focus:border-[#0E0E0E] transition-colors"
               />
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <label className="block text-[11px] font-mono uppercase tracking-wider text-neutral-300 mb-1">
+                <label className="block text-[10px] uppercase tracking-[0.18em] font-bold text-[#0E0E0E] mb-1.5">
                   Admin Notification Email
                 </label>
                 <input
                   type="email"
                   value={settings.admin_notification_email}
                   onChange={e => setSettings({ ...settings, admin_notification_email: e.target.value })}
-                  className="w-full px-3.5 py-2.5 bg-white/[0.03] border border-white/10 text-white text-xs focus:outline-none focus:border-white transition-colors"
+                  className="w-full px-3.5 py-2.5 bg-white border border-[#CFCFCC] text-[#0E0E0E] text-xs focus:outline-none focus:border-[#0E0E0E] transition-colors"
                 />
               </div>
 
               <div>
-                <label className="block text-[11px] font-mono uppercase tracking-wider text-neutral-300 mb-1">
+                <label className="block text-[10px] uppercase tracking-[0.18em] font-bold text-[#0E0E0E] mb-1.5">
                   Operations Phone / WhatsApp
                 </label>
                 <input
                   type="tel"
                   value={settings.company_phone}
                   onChange={e => setSettings({ ...settings, company_phone: e.target.value })}
-                  className="w-full px-3.5 py-2.5 bg-white/[0.03] border border-white/10 text-white text-xs focus:outline-none focus:border-white transition-colors"
+                  className="w-full px-3.5 py-2.5 bg-white border border-[#CFCFCC] text-[#0E0E0E] text-xs focus:outline-none focus:border-[#0E0E0E] transition-colors"
                 />
               </div>
             </div>
 
-            <div className="pt-2 flex items-center justify-between border-t border-white/[0.08]">
-              <label className="flex items-center gap-2 cursor-pointer font-mono text-xs">
+            <div className="pt-3 flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-t border-[#CFCFCC]">
+              <label className="flex items-center gap-2 cursor-pointer text-xs font-semibold uppercase tracking-wider text-[#0E0E0E]">
                 <input
                   type="checkbox"
                   checked={settings.enable_webhook_dispatch}
                   onChange={e => setSettings({ ...settings, enable_webhook_dispatch: e.target.checked })}
-                  className="accent-white"
+                  className="w-4 h-4 accent-[#0E0E0E]"
                 />
-                <span className="text-neutral-300">Enable real-time Webhook dispatching</span>
+                <span>Enable real-time Webhook dispatching</span>
               </label>
 
               <button
                 type="submit"
-                className="px-5 py-2 font-mono uppercase text-xs text-black bg-white hover:bg-neutral-200 font-semibold cursor-pointer active:scale-[0.98]"
+                className="btn-primary h-11 text-xs"
               >
                 Save Settings
               </button>
             </div>
           </form>
 
-          {/* Supabase Cloud API & Database Configuration */}
-          <div className="p-6 sm:p-7 border border-white/[0.08] bg-[#0A0B0F] space-y-5 text-xs">
-            <div className="flex items-center justify-between pb-3.5 border-b border-white/[0.08]">
+          {/* 2. Supabase Cloud API & Database Configuration */}
+          <div className="p-6 sm:p-8 border border-[#CFCFCC] bg-white space-y-6 text-xs">
+            <div className="flex items-center justify-between pb-4 border-b border-[#CFCFCC]">
               <div className="flex items-center gap-2">
-                <Database className="w-4 h-4 text-emerald-400" />
-                <h3 className="text-sm font-bold uppercase tracking-wider font-mono text-white">
+                <Database className="w-4 h-4 text-[#0E0E0E]" strokeWidth={1.5} />
+                <h3 className="text-sm font-bold uppercase tracking-wider text-[#0E0E0E]">
                   Supabase Cloud API & Database Engine
                 </h3>
               </div>
               <div className="flex items-center gap-2">
                 {supabaseConfig.isConfigured ? (
-                  <span className="px-2 py-0.5 text-[10px] font-mono bg-emerald-950 text-emerald-300 border border-emerald-800 flex items-center gap-1.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                  <span className="px-2.5 py-1 text-[10px] uppercase tracking-wider font-bold bg-[#0E0E0E] text-white flex items-center gap-1.5">
+                    <span className="w-1.5 h-1.5 bg-white" />
                     Connected ({supabaseConfig.source === 'env' ? '.env' : 'Live Settings'})
                   </span>
                 ) : (
-                  <span className="px-2 py-0.5 text-[10px] font-mono bg-amber-950 text-amber-300 border border-amber-800 flex items-center gap-1.5">
-                    <AlertCircle className="w-3 h-3" />
+                  <span className="px-2.5 py-1 text-[10px] uppercase tracking-wider font-bold bg-[#F6F5F3] text-[#0E0E0E] border border-[#CFCFCC] flex items-center gap-1.5">
+                    <AlertCircle className="w-3.5 h-3.5" />
                     Pending API Keys
                   </span>
                 )}
               </div>
             </div>
 
-            <p className="text-neutral-400 text-xs leading-relaxed">
+            <p className="text-[#6B6B6B] text-xs leading-relaxed">
               Connect your Supabase project to automatically sync inbound leads, custom architecture inquiries, orders, and webhook audit logs in real time.
             </p>
 
             <div className="space-y-4">
               <div>
-                <label className="block text-[11px] font-mono uppercase tracking-wider text-neutral-300 mb-1">
+                <label className="block text-[10px] uppercase tracking-[0.18em] font-bold text-[#0E0E0E] mb-1.5">
                   Supabase Project URL (VITE_SUPABASE_URL) *
                 </label>
                 <input
@@ -229,15 +234,15 @@ export const AdminSettings: React.FC<AdminSettingsProps> = ({ onRefresh }) => {
                   value={settings.supabase_url || ''}
                   onChange={e => setSettings({ ...settings, supabase_url: e.target.value })}
                   placeholder="https://your-project-id.supabase.co"
-                  className="w-full px-3.5 py-2.5 bg-white/[0.03] border border-white/10 text-white font-mono text-xs focus:outline-none focus:border-white transition-colors"
+                  className="w-full px-3.5 py-2.5 bg-white border border-[#CFCFCC] text-[#0E0E0E] text-xs focus:outline-none focus:border-[#0E0E0E] transition-colors"
                 />
-                <p className="text-[11px] text-neutral-500 mt-1 font-mono">
+                <p className="text-[11px] text-[#6B6B6B] mt-1">
                   From Supabase Dashboard → Project Settings → API → Project URL
                 </p>
               </div>
 
               <div>
-                <label className="block text-[11px] font-mono uppercase tracking-wider text-neutral-300 mb-1">
+                <label className="block text-[10px] uppercase tracking-[0.18em] font-bold text-[#0E0E0E] mb-1.5">
                   Supabase Anon Public Key (VITE_SUPABASE_ANON_KEY) *
                 </label>
                 <input
@@ -245,9 +250,9 @@ export const AdminSettings: React.FC<AdminSettingsProps> = ({ onRefresh }) => {
                   value={settings.supabase_anon_key || ''}
                   onChange={e => setSettings({ ...settings, supabase_anon_key: e.target.value })}
                   placeholder="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
-                  className="w-full px-3.5 py-2.5 bg-white/[0.03] border border-white/10 text-white font-mono text-xs focus:outline-none focus:border-white transition-colors"
+                  className="w-full px-3.5 py-2.5 bg-white border border-[#CFCFCC] text-[#0E0E0E] text-xs focus:outline-none focus:border-[#0E0E0E] transition-colors"
                 />
-                <p className="text-[11px] text-neutral-500 mt-1 font-mono">
+                <p className="text-[11px] text-[#6B6B6B] mt-1">
                   From Supabase Dashboard → Project Settings → API → Project API Keys → anon (public)
                 </p>
               </div>
@@ -256,16 +261,16 @@ export const AdminSettings: React.FC<AdminSettingsProps> = ({ onRefresh }) => {
             {/* Test result message */}
             {supabaseTestResult && (
               <div
-                className={`p-3 border text-xs font-mono flex items-start gap-2 ${
+                className={`p-3.5 border text-xs flex items-start gap-2.5 font-medium ${
                   supabaseTestResult.success
-                    ? 'bg-emerald-950/40 border-emerald-800 text-emerald-300'
-                    : 'bg-red-950/40 border-red-800 text-red-300'
+                    ? 'bg-[#F6F5F3] border-[#0E0E0E] text-[#0E0E0E]'
+                    : 'bg-[#F6F5F3] border-red-500 text-red-700'
                 }`}
               >
                 {supabaseTestResult.success ? (
-                  <Check className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                  <Check className="w-4 h-4 text-[#0E0E0E] shrink-0 mt-0.5" />
                 ) : (
-                  <AlertCircle className="w-4 h-4 text-red-400 shrink-0 mt-0.5" />
+                  <AlertCircle className="w-4 h-4 text-red-600 shrink-0 mt-0.5" />
                 )}
                 <span>{supabaseTestResult.message}</span>
               </div>
@@ -273,29 +278,29 @@ export const AdminSettings: React.FC<AdminSettingsProps> = ({ onRefresh }) => {
 
             {/* Sync result message */}
             {supabaseSyncResult && (
-              <div className="p-3 bg-[#07080B] border border-white/10 text-xs font-mono text-blue-300 flex items-start gap-2">
-                <Check className="w-4 h-4 text-blue-400 shrink-0 mt-0.5" />
+              <div className="p-3.5 bg-[#F6F5F3] border border-[#0E0E0E] text-xs text-[#0E0E0E] flex items-start gap-2.5 font-medium">
+                <Check className="w-4 h-4 text-[#0E0E0E] shrink-0 mt-0.5" />
                 <span>{supabaseSyncResult}</span>
               </div>
             )}
 
             {/* Supabase Action Buttons */}
-            <div className="pt-2 flex flex-wrap items-center gap-2 border-t border-white/[0.08]">
+            <div className="pt-3 flex flex-wrap items-center gap-3 border-t border-[#CFCFCC]">
               <button
                 type="button"
                 onClick={handleTestSupabase}
                 disabled={isTestingSupabase}
-                className="px-3.5 py-2 bg-emerald-600 hover:bg-emerald-500 text-white font-mono uppercase text-[11px] transition-colors flex items-center gap-1.5 cursor-pointer disabled:opacity-50 active:scale-[0.98]"
+                className="btn-primary h-10 px-5 text-xs disabled:opacity-50"
               >
-                <Server className="w-3.5 h-3.5" />
-                <span>{isTestingSupabase ? 'Testing Connection...' : 'Test Supabase Connection'}</span>
+                <Server className="w-3.5 h-3.5 mr-2" />
+                <span>{isTestingSupabase ? 'Testing...' : 'Test Supabase Connection'}</span>
               </button>
 
               <button
                 type="button"
                 onClick={handleSyncToSupabase}
                 disabled={isSyncingSupabase || (!settings.supabase_url && !supabaseConfig.url)}
-                className="px-3.5 py-2 bg-white/[0.08] hover:bg-white/[0.14] text-white font-mono uppercase text-[11px] transition-colors flex items-center gap-1.5 cursor-pointer disabled:opacity-40 active:scale-[0.98]"
+                className="h-10 px-4 text-xs uppercase tracking-[0.16em] font-semibold text-[#0E0E0E] bg-[#F6F5F3] hover:bg-[#E4E3E0] border border-[#CFCFCC] transition-colors flex items-center gap-2 cursor-pointer disabled:opacity-40"
               >
                 <RefreshCw className={`w-3.5 h-3.5 ${isSyncingSupabase ? 'animate-spin' : ''}`} />
                 <span>{isSyncingSupabase ? 'Syncing...' : 'Sync Local Data to Supabase'}</span>
@@ -304,16 +309,16 @@ export const AdminSettings: React.FC<AdminSettingsProps> = ({ onRefresh }) => {
               <button
                 type="button"
                 onClick={handleCopySql}
-                className="px-3.5 py-2 bg-white/[0.05] hover:bg-white/10 text-neutral-300 hover:text-white font-mono uppercase text-[11px] transition-colors flex items-center gap-1.5 cursor-pointer active:scale-[0.98]"
+                className="h-10 px-4 text-xs uppercase tracking-[0.16em] font-semibold text-[#0E0E0E] bg-white hover:bg-[#F6F5F3] border border-[#CFCFCC] transition-colors flex items-center gap-2 cursor-pointer"
               >
                 <Copy className="w-3.5 h-3.5" />
-                <span>{copiedSql ? 'SQL Copied!' : 'Copy Supabase SQL Schema'}</span>
+                <span>{copiedSql ? 'SQL Copied!' : 'Copy SQL Schema'}</span>
               </button>
 
               <button
                 type="button"
                 onClick={() => setShowSqlModal(true)}
-                className="px-3.5 py-2 bg-white/[0.05] hover:bg-white/10 text-neutral-300 hover:text-white font-mono uppercase text-[11px] transition-colors flex items-center gap-1.5 cursor-pointer"
+                className="h-10 px-4 text-xs uppercase tracking-[0.16em] font-semibold text-[#0E0E0E] bg-white hover:bg-[#F6F5F3] border border-[#CFCFCC] transition-colors flex items-center gap-2 cursor-pointer"
               >
                 <ExternalLink className="w-3.5 h-3.5" />
                 <span>View Schema</span>
@@ -321,12 +326,12 @@ export const AdminSettings: React.FC<AdminSettingsProps> = ({ onRefresh }) => {
             </div>
           </div>
 
-          {/* Live Diagnostic Ping Box */}
-          <div className="p-6 border border-white/[0.08] bg-[#0A0B0F] space-y-4">
-            <div className="flex items-center justify-between">
+          {/* 3. Live Diagnostic Ping Box */}
+          <div className="p-6 sm:p-8 border border-[#CFCFCC] bg-white space-y-4">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
               <div>
-                <h4 className="text-sm font-bold uppercase font-mono tracking-wider text-white">Live n8n Webhook Test Dispatch</h4>
-                <p className="text-xs text-neutral-400 mt-0.5">
+                <h4 className="text-sm font-bold uppercase tracking-wider text-[#0E0E0E]">Live n8n Webhook Test Dispatch</h4>
+                <p className="text-xs text-[#6B6B6B] mt-1">
                   Emit a synthetic test payload to verify endpoint availability and inspect the response.
                 </p>
               </div>
@@ -334,37 +339,37 @@ export const AdminSettings: React.FC<AdminSettingsProps> = ({ onRefresh }) => {
               <button
                 onClick={handleTestPing}
                 disabled={isPinging}
-                className="px-4 py-2 bg-emerald-600 hover:bg-emerald-500 text-white font-mono uppercase text-xs transition-colors flex items-center gap-2 cursor-pointer disabled:opacity-50 active:scale-[0.98]"
+                className="btn-primary h-10 px-5 text-xs whitespace-nowrap self-start sm:self-auto disabled:opacity-50"
               >
-                <Play className="w-3.5 h-3.5 fill-current" />
+                <Play className="w-3.5 h-3.5 mr-2 fill-current" />
                 <span>{isPinging ? 'Pinging...' : 'Trigger Ping'}</span>
               </button>
             </div>
 
             {pingResult && (
-              <div className="p-3 bg-[#07080B] border border-white/10 text-xs font-mono text-emerald-300 flex items-start gap-2">
-                <Check className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+              <div className="p-3.5 bg-[#F6F5F3] border border-[#0E0E0E] text-xs text-[#0E0E0E] flex items-start gap-2.5 font-medium">
+                <Check className="w-4 h-4 text-[#0E0E0E] shrink-0 mt-0.5" />
                 <span>{pingResult}</span>
               </div>
             )}
           </div>
 
-          {/* cURL Command Generator */}
-          <div className="p-6 border border-white/[0.08] bg-[#0A0B0F] space-y-3 font-mono text-xs">
-            <div className="flex items-center justify-between text-neutral-400">
+          {/* 4. cURL Command Generator */}
+          <div className="p-6 sm:p-8 border border-[#CFCFCC] bg-white space-y-3 text-xs">
+            <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
-                <Terminal className="w-4 h-4 text-neutral-400" />
-                <span className="text-white font-bold uppercase tracking-wider text-[11px]">n8n Importable cURL Command</span>
+                <Terminal className="w-4 h-4 text-[#0E0E0E]" strokeWidth={1.5} />
+                <span className="text-[#0E0E0E] font-bold uppercase tracking-wider text-xs">n8n Importable cURL Command</span>
               </div>
               <button
                 onClick={handleCopyCurl}
-                className="flex items-center gap-1.5 text-[11px] font-mono uppercase text-neutral-300 hover:text-white px-2.5 py-1 bg-white/[0.05] border border-white/10 cursor-pointer"
+                className="flex items-center gap-1.5 text-[11px] uppercase tracking-wider font-semibold text-[#0E0E0E] px-3 py-1.5 bg-[#F6F5F3] hover:bg-[#E4E3E0] border border-[#CFCFCC] cursor-pointer transition-colors"
               >
-                <Copy className="w-3 h-3" />
+                <Copy className="w-3.5 h-3.5" />
                 <span>{copiedCurl ? 'Copied' : 'Copy cURL'}</span>
               </button>
             </div>
-            <pre className="p-3 bg-[#07080B] border border-white/[0.06] text-neutral-300 overflow-x-auto text-[11px] leading-relaxed">
+            <pre className="p-4 bg-[#F6F5F3] border border-[#CFCFCC] text-[#0E0E0E] overflow-x-auto text-[11px] leading-relaxed">
               {curlCommand}
             </pre>
           </div>
@@ -372,97 +377,102 @@ export const AdminSettings: React.FC<AdminSettingsProps> = ({ onRefresh }) => {
 
         {/* Database & Architecture Info Sidebar */}
         <div className="space-y-6 text-xs">
-          <div className="p-6 border border-white/[0.08] bg-[#0A0B0F] space-y-3">
-            <div className="flex items-center gap-2 text-white font-bold uppercase font-mono tracking-wider">
-              <Database className="w-4 h-4 text-emerald-400" />
+          <div className="p-6 sm:p-7 border border-[#CFCFCC] bg-white space-y-4">
+            <div className="flex items-center gap-2 text-[#0E0E0E] font-bold uppercase tracking-wider">
+              <Database className="w-4 h-4 text-[#0E0E0E]" strokeWidth={1.5} />
               <span>Database Architecture</span>
             </div>
-            <p className="text-neutral-400 leading-relaxed">
-              Dual-layer persistence engine: writes instantly to resilient client storage while auto-syncing to Supabase PostgreSQL and emitting n8n webhook webhooks.
+            <p className="text-[#6B6B6B] leading-relaxed">
+              Dual-layer persistence engine: writes instantly to resilient client storage while auto-syncing to Supabase PostgreSQL and emitting n8n webhook signals.
             </p>
-            <div className="p-3.5 bg-black/40 border border-white/[0.06] space-y-2 text-[11px] font-mono text-neutral-300">
-              <div className="text-emerald-400">✓ Resilient Storage Active</div>
+            <div className="p-4 bg-[#F6F5F3] border border-[#CFCFCC] space-y-2 text-[11px] font-semibold text-[#0E0E0E]">
+              <div>✓ Resilient Storage Active</div>
               {supabaseConfig.isConfigured ? (
-                <div className="text-emerald-400 flex items-center gap-1.5">
+                <div className="flex items-center gap-1.5">
                   <span>✓ Supabase: Connected</span>
                 </div>
               ) : (
-                <div className="text-amber-400 flex items-center gap-1.5">
+                <div className="text-[#6B6B6B] flex items-center gap-1.5">
                   <span>○ Supabase: Awaiting API Key</span>
                 </div>
               )}
-              <div className="text-neutral-400">✓ n8n Webhook Pipe Ready</div>
+              <div className="text-[#6B6B6B]">✓ n8n Webhook Pipe Ready</div>
             </div>
-            <div className="pt-1">
+            <div className="pt-2">
               <button
                 onClick={() => setShowSqlModal(true)}
-                className="w-full py-2 px-3 border border-white/10 hover:border-white/20 bg-white/[0.03] text-neutral-300 hover:text-white font-mono text-[11px] uppercase tracking-wider flex items-center justify-center gap-1.5 cursor-pointer"
+                className="w-full py-2.5 px-3 border border-[#CFCFCC] hover:border-[#0E0E0E] bg-[#F6F5F3] hover:bg-[#E4E3E0] text-[#0E0E0E] text-[11px] uppercase tracking-wider font-bold flex items-center justify-center gap-2 cursor-pointer transition-colors"
               >
-                <Database className="w-3.5 h-3.5 text-emerald-400" />
+                <Database className="w-3.5 h-3.5 text-[#0E0E0E]" strokeWidth={1.5} />
                 <span>Supabase SQL Migration</span>
               </button>
             </div>
           </div>
 
-          <div className="p-6 border border-white/[0.08] bg-[#0A0B0F] space-y-3">
-            <div className="flex items-center gap-2 text-white font-bold uppercase font-mono tracking-wider">
-              <Shield className="w-4 h-4 text-emerald-400" />
+          <div className="p-6 sm:p-7 border border-[#CFCFCC] bg-white space-y-4">
+            <div className="flex items-center gap-2 text-[#0E0E0E] font-bold uppercase tracking-wider">
+              <Shield className="w-4 h-4 text-[#0E0E0E]" strokeWidth={1.5} />
               <span>Security Protocols</span>
             </div>
-            <p className="text-neutral-400 leading-relaxed">
-              Client secrets, LLM tokens, and credentials are never exposed in frontend bundles. The browser sends webhook payloads to n8n, which securely authenticates to downstream systems.
+            <p className="text-[#6B6B6B] leading-relaxed">
+              Client secrets, LLM tokens, and credentials are never exposed in frontend bundles. The browser sends signed webhook payloads to n8n, which securely authenticates to downstream systems.
             </p>
           </div>
         </div>
       </div>
 
       {/* Webhook Logs History Table */}
-      <div className="space-y-4 pt-4 border-t border-white/[0.08]">
+      <div className="space-y-4 pt-4 border-t border-[#CFCFCC]">
         <div className="flex items-center justify-between">
-          <h3 className="text-base font-bold text-white tracking-tight">Recent Webhook Execution Logs</h3>
-          <span className="text-xs text-neutral-500 font-mono">{logs.length} logged events</span>
+          <div>
+            <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-[#6B6B6B] block">
+              DIAGNOSTICS & AUDIT TRAIL
+            </span>
+            <h3 className="text-xl font-extrabold uppercase tracking-tight text-[#0E0E0E]">Recent Webhook Execution Logs</h3>
+          </div>
+          <span className="text-xs text-[#6B6B6B] font-semibold uppercase tracking-wider">{logs.length} logged events</span>
         </div>
 
-        <div className="border border-white/[0.08] bg-[#0A0B0F] overflow-hidden">
+        <div className="border border-[#CFCFCC] bg-white overflow-hidden">
           {logs.length === 0 ? (
-            <div className="p-8 text-center text-neutral-500 text-xs">
+            <div className="p-12 text-center text-[#6B6B6B] text-xs">
               No webhook events logged yet. Trigger a test ping or submit a contact inquiry to see live event logs.
             </div>
           ) : (
             <div className="overflow-x-auto">
               <table className="w-full text-left text-xs">
-                <thead className="bg-[#07080B] border-b border-white/[0.08] text-neutral-400 uppercase font-mono text-[10px]">
+                <thead className="bg-[#F6F5F3] border-b border-[#CFCFCC] text-[#6B6B6B] uppercase text-[10px] tracking-[0.16em] font-semibold">
                   <tr>
-                    <th className="py-2.5 px-4">Event Type</th>
-                    <th className="py-2.5 px-4">Status / Code</th>
-                    <th className="py-2.5 px-4">Destination URL</th>
-                    <th className="py-2.5 px-4">Timestamp</th>
-                    <th className="py-2.5 px-4 text-right">Details</th>
+                    <th className="py-3 px-4">Event Type</th>
+                    <th className="py-3 px-4">Status / Code</th>
+                    <th className="py-3 px-4">Destination URL</th>
+                    <th className="py-3 px-4">Timestamp</th>
+                    <th className="py-3 px-4 text-right">Details</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-white/[0.06] font-mono text-[11px]">
+                <tbody className="divide-y divide-[#CFCFCC] text-[11px]">
                   {logs.slice(0, 10).map(log => (
-                    <tr key={log.id} className="hover:bg-white/[0.02]">
-                      <td className="py-3 px-4 text-white font-medium">{log.event}</td>
-                      <td className="py-3 px-4">
-                        <span className={`px-2 py-0.5 text-[10px] ${
+                    <tr key={log.id} className="hover:bg-[#F6F5F3] transition-colors">
+                      <td className="py-3.5 px-4 text-[#0E0E0E] font-bold uppercase">{log.event}</td>
+                      <td className="py-3.5 px-4">
+                        <span className={`px-2 py-0.5 text-[10px] uppercase tracking-wider font-bold border ${
                           log.status === 'success'
-                            ? 'bg-emerald-950 text-emerald-300 border border-emerald-800'
-                            : 'bg-red-950 text-red-300 border border-red-800'
+                            ? 'bg-[#0E0E0E] text-white border-[#0E0E0E]'
+                            : 'bg-white text-red-600 border-red-300'
                         }`}>
                           HTTP {log.response_code || 200}
                         </span>
                       </td>
-                      <td className="py-3 px-4 text-neutral-400 truncate max-w-xs">{log.url}</td>
-                      <td className="py-3 px-4 text-neutral-500 whitespace-nowrap">
+                      <td className="py-3.5 px-4 text-[#6B6B6B] truncate max-w-xs">{log.url}</td>
+                      <td className="py-3.5 px-4 text-[#6B6B6B] whitespace-nowrap">
                         {new Date(log.timestamp).toLocaleTimeString()}
                       </td>
-                      <td className="py-3 px-4 text-right">
+                      <td className="py-3.5 px-4 text-right">
                         <button
                           onClick={() => setSelectedLog(log)}
-                          className="text-neutral-400 hover:text-white underline cursor-pointer"
+                          className="text-xs uppercase tracking-wider font-bold text-[#0E0E0E] editorial-link cursor-pointer"
                         >
-                          View Payload
+                          View Payload →
                         </button>
                       </td>
                     </tr>
@@ -476,54 +486,65 @@ export const AdminSettings: React.FC<AdminSettingsProps> = ({ onRefresh }) => {
 
       {/* Payload Modal */}
       {selectedLog && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-sm">
-          <div className="bg-[#090A0E] border border-white/[0.12] p-6 max-w-xl w-full space-y-4">
-            <div className="flex items-center justify-between pb-3 border-b border-white/[0.08]">
-              <h4 className="text-sm font-bold text-white font-mono uppercase tracking-wider">Payload: {selectedLog.event}</h4>
-              <button onClick={() => setSelectedLog(null)} className="text-neutral-400 hover:text-white cursor-pointer">✕</button>
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-none">
+          <div className="bg-white border border-[#0E0E0E] p-8 max-w-xl w-full space-y-4">
+            <div className="flex items-center justify-between pb-3 border-b border-[#CFCFCC]">
+              <h4 className="text-sm font-bold text-[#0E0E0E] uppercase tracking-wider">Payload: {selectedLog.event}</h4>
+              <button onClick={() => setSelectedLog(null)} className="text-[#0E0E0E] hover:opacity-70 cursor-pointer">
+                <X className="w-5 h-5" />
+              </button>
             </div>
-            <pre className="p-3 bg-[#050608] border border-white/[0.06] text-emerald-300 font-mono text-[11px] overflow-x-auto max-h-96">
+            <pre className="p-4 bg-[#F6F5F3] border border-[#CFCFCC] text-[#0E0E0E] text-[11px] overflow-x-auto max-h-96 leading-relaxed">
               {JSON.stringify(selectedLog.payload, null, 2)}
             </pre>
+            <div className="pt-2 flex justify-end">
+              <button
+                onClick={() => setSelectedLog(null)}
+                className="btn-primary h-10 px-5 text-xs"
+              >
+                Close
+              </button>
+            </div>
           </div>
         </div>
       )}
+
       {/* Supabase SQL Migration Modal */}
       {showSqlModal && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-sm">
-          <div className="bg-[#090A0E] border border-white/[0.12] p-6 max-w-3xl w-full space-y-4 max-h-[90vh] flex flex-col">
-            <div className="flex items-center justify-between pb-3 border-b border-white/[0.08]">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-none">
+          <div className="bg-white border border-[#0E0E0E] p-6 sm:p-8 max-w-3xl w-full space-y-4 max-h-[90vh] flex flex-col">
+            <div className="flex items-center justify-between pb-4 border-b border-[#CFCFCC]">
               <div className="flex items-center gap-2">
-                <Database className="w-4 h-4 text-emerald-400" />
-                <h4 className="text-sm font-bold text-white font-mono uppercase tracking-wider">
+                <Database className="w-5 h-5 text-[#0E0E0E]" strokeWidth={1.5} />
+                <h4 className="text-base font-bold text-[#0E0E0E] uppercase tracking-wider">
                   Supabase Production SQL Schema
                 </h4>
               </div>
               <button
                 onClick={() => setShowSqlModal(false)}
-                className="text-neutral-400 hover:text-white cursor-pointer"
+                className="text-[#0E0E0E] hover:opacity-70 cursor-pointer p-1"
               >
-                ✕
+                <X className="w-5 h-5" />
               </button>
             </div>
 
-            <p className="text-xs text-neutral-400">
-              Run this SQL script in your Supabase Dashboard (<span className="text-white font-mono">SQL Editor → New Query</span>) to create all production tables and Row Level Security (RLS) policies.
+            <p className="text-xs text-[#6B6B6B] leading-relaxed">
+              Run this SQL script in your Supabase Dashboard (<span className="text-[#0E0E0E] font-semibold">SQL Editor → New Query</span>) to create all production tables and Row Level Security (RLS) policies.
             </p>
 
-            <pre className="p-4 bg-[#050608] border border-white/[0.06] text-neutral-300 font-mono text-[11px] overflow-x-auto overflow-y-auto flex-1 leading-relaxed">
+            <pre className="p-4 bg-[#F6F5F3] border border-[#CFCFCC] text-[#0E0E0E] text-[11px] overflow-x-auto overflow-y-auto flex-1 leading-relaxed">
               {SUPABASE_SQL_SCHEMA}
             </pre>
 
-            <div className="pt-2 flex items-center justify-between border-t border-white/[0.08]">
-              <span className="text-[11px] font-mono text-neutral-500">
+            <div className="pt-3 flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-t border-[#CFCFCC]">
+              <span className="text-[11px] text-[#6B6B6B] font-semibold">
                 Tables: leads, custom_requests, orders, webhook_logs
               </span>
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-3">
                 <button
                   type="button"
                   onClick={handleCopySql}
-                  className="px-4 py-2 bg-emerald-600 hover:bg-emerald-500 text-white font-mono uppercase text-xs flex items-center gap-1.5 cursor-pointer"
+                  className="btn-primary h-10 px-5 text-xs flex items-center gap-2"
                 >
                   <Copy className="w-3.5 h-3.5" />
                   <span>{copiedSql ? 'Copied to Clipboard!' : 'Copy SQL Script'}</span>
@@ -531,7 +552,7 @@ export const AdminSettings: React.FC<AdminSettingsProps> = ({ onRefresh }) => {
                 <button
                   type="button"
                   onClick={() => setShowSqlModal(false)}
-                  className="px-4 py-2 bg-white/10 hover:bg-white/15 text-white font-mono uppercase text-xs cursor-pointer"
+                  className="h-10 px-4 text-xs uppercase tracking-wider font-semibold text-[#0E0E0E] bg-[#F6F5F3] hover:bg-[#E4E3E0] border border-[#CFCFCC] cursor-pointer"
                 >
                   Close
                 </button>

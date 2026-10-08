@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Lead, LeadStatus } from '../types';
 import { Storage } from '../lib/storage';
-import { Mail, Phone, Trash2 } from 'lucide-react';
+import { Mail, Phone, Trash2, ArrowUpRight } from 'lucide-react';
 
 interface AdminLeadsProps {
   leads: Lead[];
@@ -47,38 +47,42 @@ export const AdminLeads: React.FC<AdminLeadsProps> = ({ leads, onRefresh }) => {
   const getStatusBadge = (status: LeadStatus) => {
     switch (status) {
       case 'New':
-        return 'bg-emerald-950 text-emerald-300 border-emerald-800';
+        return 'bg-[#0E0E0E] text-white border-[#0E0E0E]';
       case 'Contacted':
-        return 'bg-blue-950 text-blue-300 border-blue-800';
+        return 'bg-[#F6F5F3] text-[#0E0E0E] border-[#CFCFCC]';
       case 'Qualified':
-        return 'bg-purple-950 text-purple-300 border-purple-800';
+        return 'bg-[#BEBEBE] text-[#0E0E0E] border-[#BEBEBE]';
       case 'Proposal':
-        return 'bg-amber-950 text-amber-300 border-amber-800';
+        return 'bg-[#A9A9A9] text-[#0E0E0E] border-[#A9A9A9]';
       case 'Won':
-        return 'bg-emerald-900 text-white border-emerald-600';
+        return 'bg-[#0E0E0E] text-white font-bold border-[#0E0E0E]';
       case 'Lost':
-        return 'bg-white/[0.05] text-neutral-400 border-white/10';
+        return 'bg-white text-[#6B6B6B] border-[#CFCFCC]';
     }
   };
 
   return (
-    <div className="space-y-6">
-      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-5 border-b border-white/[0.08]">
+    <div className="space-y-8">
+      {/* Page Header */}
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-6 border-b border-[#CFCFCC]">
         <div>
-          <h1 className="text-xl sm:text-2xl font-display font-bold text-white tracking-tight">
-            Inbound Leads & Sales Pipeline
+          <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-[#6B6B6B] block mb-1">
+            SALES PIPELINE // INBOUND QUALIFICATION
+          </span>
+          <h1 className="text-2xl sm:text-4xl font-extrabold uppercase tracking-tight text-[#0E0E0E]">
+            INBOUND LEADS
           </h1>
-          <p className="text-xs text-neutral-400 mt-0.5">
-            Track inquiries, update qualification stages, and capture customer requirements.
+          <p className="text-xs text-[#6B6B6B] mt-1 max-w-xl">
+            Track inquiries, update qualification stages, and capture customer requirements in real time.
           </p>
         </div>
 
         {/* Status Filter */}
-        <div className="flex items-center gap-1 p-1 bg-black/60 border border-white/[0.08] text-xs overflow-x-auto">
+        <div className="flex items-center gap-1.5 p-1 bg-white border border-[#CFCFCC] text-xs overflow-x-auto">
           <button
             onClick={() => setFilterStatus('All')}
-            className={`px-3 py-1 font-mono uppercase tracking-wider text-[11px] transition-colors cursor-pointer ${
-              filterStatus === 'All' ? 'bg-white text-black font-semibold' : 'text-neutral-400 hover:text-white'
+            className={`px-3 py-1.5 uppercase tracking-[0.14em] text-[11px] font-semibold transition-colors cursor-pointer ${
+              filterStatus === 'All' ? 'bg-[#0E0E0E] text-white' : 'text-[#6B6B6B] hover:text-[#0E0E0E]'
             }`}
           >
             All ({leads.length})
@@ -89,8 +93,8 @@ export const AdminLeads: React.FC<AdminLeadsProps> = ({ leads, onRefresh }) => {
               <button
                 key={st}
                 onClick={() => setFilterStatus(st)}
-                className={`px-3 py-1 font-mono uppercase tracking-wider text-[11px] transition-colors cursor-pointer whitespace-nowrap ${
-                  filterStatus === st ? 'bg-white text-black font-semibold' : 'text-neutral-400 hover:text-white'
+                className={`px-3 py-1.5 uppercase tracking-[0.14em] text-[11px] font-semibold transition-colors cursor-pointer whitespace-nowrap ${
+                  filterStatus === st ? 'bg-[#0E0E0E] text-white' : 'text-[#6B6B6B] hover:text-[#0E0E0E]'
                 }`}
               >
                 {st} {count > 0 ? `(${count})` : ''}
@@ -100,79 +104,90 @@ export const AdminLeads: React.FC<AdminLeadsProps> = ({ leads, onRefresh }) => {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* Leads Table */}
-        <div className="lg:col-span-2 border border-white/[0.08] bg-[#0A0B0F] overflow-hidden">
+        <div className="lg:col-span-2 border border-[#CFCFCC] bg-white overflow-hidden">
           <div className="overflow-x-auto">
             <table className="w-full text-left text-xs">
-              <thead className="bg-[#07080B] border-b border-white/[0.08] text-neutral-400 uppercase font-mono text-[10px]">
+              <thead className="bg-[#F6F5F3] border-b border-[#CFCFCC] text-[#6B6B6B] uppercase text-[10px] tracking-[0.16em] font-semibold">
                 <tr>
-                  <th className="py-3 px-4">Lead Name / Company</th>
-                  <th className="py-3 px-4">Requested Automation</th>
-                  <th className="py-3 px-4">Budget</th>
-                  <th className="py-3 px-4">Status</th>
-                  <th className="py-3 px-4">Received</th>
+                  <th className="py-3.5 px-4">Lead & Company</th>
+                  <th className="py-3.5 px-4">Automation Request</th>
+                  <th className="py-3.5 px-4">Budget</th>
+                  <th className="py-3.5 px-4">Status</th>
+                  <th className="py-3.5 px-4">Received</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-white/[0.06]">
-                {filteredLeads.map(lead => {
-                  const isSelected = selectedLead?.id === lead.id;
-                  return (
-                    <tr
-                      key={lead.id}
-                      onClick={() => {
-                        setSelectedLead(lead);
-                        setNoteDraft(lead.notes || '');
-                      }}
-                      className={`hover:bg-white/[0.02] cursor-pointer transition-colors ${
-                        isSelected ? 'bg-white/[0.04]' : ''
-                      }`}
-                    >
-                      <td className="py-3.5 px-4">
-                        <div className="font-semibold text-white">{lead.name}</div>
-                        <div className="text-[11px] text-neutral-400">{lead.company || 'Direct individual'}</div>
-                        <div className="text-[10px] text-neutral-500 font-mono mt-0.5">{lead.email}</div>
-                      </td>
+              <tbody className="divide-y divide-[#CFCFCC]">
+                {filteredLeads.length === 0 ? (
+                  <tr>
+                    <td colSpan={5} className="py-12 text-center text-[#6B6B6B]">
+                      No leads match the selected filter.
+                    </td>
+                  </tr>
+                ) : (
+                  filteredLeads.map(lead => {
+                    const isSelected = selectedLead?.id === lead.id;
+                    return (
+                      <tr
+                        key={lead.id}
+                        onClick={() => {
+                          setSelectedLead(lead);
+                          setNoteDraft(lead.notes || '');
+                        }}
+                        className={`hover:bg-[#F6F5F3] cursor-pointer transition-colors ${
+                          isSelected ? 'bg-[#F6F5F3]' : ''
+                        }`}
+                      >
+                        <td className="py-4 px-4">
+                          <div className="font-bold text-[#0E0E0E] uppercase text-xs">{lead.name}</div>
+                          <div className="text-[11px] text-[#6B6B6B]">{lead.company || 'Direct individual'}</div>
+                          <div className="text-[10px] text-[#6B6B6B] mt-0.5">{lead.email}</div>
+                        </td>
 
-                      <td className="py-3.5 px-4">
-                        <div className="text-neutral-200 font-medium">{lead.automation_type}</div>
-                        <div className="text-neutral-500 text-[10px] truncate max-w-xs">{lead.message}</div>
-                      </td>
+                        <td className="py-4 px-4">
+                          <div className="text-[#0E0E0E] font-medium">{lead.automation_type}</div>
+                          <div className="text-[#6B6B6B] text-[11px] truncate max-w-xs">{lead.message}</div>
+                        </td>
 
-                      <td className="py-3.5 px-4 font-mono text-neutral-300">
-                        {lead.budget || 'Custom'}
-                      </td>
+                        <td className="py-4 px-4 font-semibold text-[#0E0E0E]">
+                          {lead.budget || 'Custom'}
+                        </td>
 
-                      <td className="py-3.5 px-4">
-                        <span className={`px-2 py-0.5 text-[10px] font-mono uppercase tracking-wider border ${getStatusBadge(lead.status)}`}>
-                          {lead.status}
-                        </span>
-                      </td>
+                        <td className="py-4 px-4">
+                          <span className={`px-2 py-0.5 text-[10px] uppercase tracking-wider border font-bold ${getStatusBadge(lead.status)}`}>
+                            {lead.status}
+                          </span>
+                        </td>
 
-                      <td className="py-3.5 px-4 text-neutral-500 text-[11px] font-mono whitespace-nowrap">
-                        {new Date(lead.created_at).toLocaleDateString()}
-                      </td>
-                    </tr>
-                  );
-                })}
+                        <td className="py-4 px-4 text-[#6B6B6B] text-[11px] whitespace-nowrap">
+                          {new Date(lead.created_at).toLocaleDateString()}
+                        </td>
+                      </tr>
+                    );
+                  })
+                )}
               </tbody>
             </table>
           </div>
         </div>
 
         {/* Selected Lead Inspector Panel */}
-        <div className="p-6 border border-white/[0.08] bg-[#0A0B0F] space-y-6">
+        <div className="p-6 sm:p-7 border border-[#CFCFCC] bg-white space-y-6">
           {selectedLead ? (
-            <div className="space-y-5 text-xs">
-              <div className="flex items-center justify-between pb-3.5 border-b border-white/[0.08]">
+            <div className="space-y-6 text-xs">
+              <div className="flex items-start justify-between pb-4 border-b border-[#CFCFCC]">
                 <div>
-                  <h3 className="text-base font-bold text-white tracking-tight">{selectedLead.name}</h3>
-                  <div className="text-neutral-400 text-xs">{selectedLead.company}</div>
+                  <span className="text-[9px] uppercase tracking-[0.2em] font-bold text-[#6B6B6B] block mb-0.5">
+                    LEAD INSPECTOR #{selectedLead.id}
+                  </span>
+                  <h3 className="text-lg font-extrabold uppercase text-[#0E0E0E] tracking-tight">{selectedLead.name}</h3>
+                  <div className="text-xs text-[#6B6B6B]">{selectedLead.company}</div>
                 </div>
                 <button
                   onClick={() => handleDeleteLead(selectedLead.id)}
-                  className="p-1.5 text-neutral-500 hover:text-red-400 transition-colors cursor-pointer"
-                  title="Delete Lead"
+                  className="p-2 text-[#6B6B6B] hover:text-[#0E0E0E] hover:bg-[#F6F5F3] transition-colors cursor-pointer"
+                  title="Delete Lead Record"
                 >
                   <Trash2 className="w-4 h-4" />
                 </button>
@@ -180,18 +195,18 @@ export const AdminLeads: React.FC<AdminLeadsProps> = ({ leads, onRefresh }) => {
 
               {/* Status Selector */}
               <div>
-                <label className="block text-neutral-400 font-mono text-[10px] uppercase tracking-wider mb-2">
-                  Update Pipeline Status:
+                <label className="block text-[#0E0E0E] text-[10px] uppercase tracking-[0.18em] font-bold mb-2">
+                  Update Stage:
                 </label>
-                <div className="grid grid-cols-3 gap-1">
+                <div className="grid grid-cols-3 gap-1.5">
                   {STATUS_OPTIONS.map(st => (
                     <button
                       key={st}
                       onClick={() => handleUpdateStatus(selectedLead.id, st)}
-                      className={`py-1.5 px-2 text-[10px] font-mono uppercase tracking-wider transition-colors cursor-pointer ${
+                      className={`py-2 px-2 text-[10px] uppercase tracking-wider font-semibold transition-colors cursor-pointer ${
                         selectedLead.status === st
-                          ? 'bg-white text-black font-semibold'
-                          : 'bg-white/[0.02] text-neutral-400 hover:text-white border border-white/10'
+                          ? 'bg-[#0E0E0E] text-white'
+                          : 'bg-[#F6F5F3] text-[#6B6B6B] hover:text-[#0E0E0E] border border-[#CFCFCC]'
                       }`}
                     >
                       {st}
@@ -201,39 +216,39 @@ export const AdminLeads: React.FC<AdminLeadsProps> = ({ leads, onRefresh }) => {
               </div>
 
               {/* Contact details */}
-              <div className="space-y-2 p-3.5 bg-black/40 border border-white/[0.06]">
-                <div className="flex items-center gap-2 text-neutral-300">
-                  <Mail className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
-                  <a href={`mailto:${selectedLead.email}`} className="hover:underline font-mono text-[11px]">
+              <div className="space-y-2.5 p-4 bg-[#F6F5F3] border border-[#CFCFCC]">
+                <div className="flex items-center gap-2.5 text-[#0E0E0E]">
+                  <Mail className="w-4 h-4 text-[#0E0E0E] shrink-0" strokeWidth={1.5} />
+                  <a href={`mailto:${selectedLead.email}`} className="editorial-link font-medium text-xs">
                     {selectedLead.email}
                   </a>
                 </div>
                 {selectedLead.phone && (
-                  <div className="flex items-center gap-2 text-neutral-300">
-                    <Phone className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
-                    <a href={`tel:${selectedLead.phone}`} className="hover:underline font-mono text-[11px]">
+                  <div className="flex items-center gap-2.5 text-[#0E0E0E]">
+                    <Phone className="w-4 h-4 text-[#0E0E0E] shrink-0" strokeWidth={1.5} />
+                    <a href={`tel:${selectedLead.phone}`} className="editorial-link font-medium text-xs">
                       {selectedLead.phone}
                     </a>
                   </div>
                 )}
-                <div className="text-[10px] text-neutral-500 font-mono pt-1">
-                  Budget: {selectedLead.budget} · Source: {selectedLead.source}
+                <div className="text-[10px] uppercase tracking-wider text-[#6B6B6B] pt-2 border-t border-[#CFCFCC]/60">
+                  Budget: <span className="font-bold text-[#0E0E0E]">{selectedLead.budget}</span> · Source: <span className="font-bold text-[#0E0E0E]">{selectedLead.source}</span>
                 </div>
               </div>
 
               {/* Message from customer */}
               <div>
-                <div className="text-neutral-400 font-mono text-[10px] uppercase tracking-wider mb-1.5">
-                  Customer Inquiry Message:
+                <div className="text-[#0E0E0E] text-[10px] uppercase tracking-[0.18em] font-bold mb-1.5">
+                  Inquiry Brief:
                 </div>
-                <div className="p-3.5 bg-[#07080B] border border-white/[0.06] text-neutral-300 leading-relaxed text-xs">
+                <div className="p-4 bg-[#F6F5F3] border border-[#CFCFCC] text-[#0E0E0E] leading-relaxed text-xs">
                   {selectedLead.message}
                 </div>
               </div>
 
               {/* Internal Notes */}
               <div>
-                <div className="text-neutral-400 font-mono text-[10px] uppercase tracking-wider mb-1.5">
+                <div className="text-[#0E0E0E] text-[10px] uppercase tracking-[0.18em] font-bold mb-1.5">
                   Internal Ops & Architecture Notes:
                 </div>
                 <textarea
@@ -241,19 +256,20 @@ export const AdminLeads: React.FC<AdminLeadsProps> = ({ leads, onRefresh }) => {
                   value={noteDraft}
                   onChange={e => setNoteDraft(e.target.value)}
                   placeholder="Record customer constraints, proposal links, or technical notes..."
-                  className="w-full p-3 bg-white/[0.03] border border-white/10 text-white focus:outline-none focus:border-white resize-none transition-colors"
+                  className="w-full p-3 bg-white border border-[#CFCFCC] text-[#0E0E0E] text-xs focus:outline-none focus:border-[#0E0E0E] resize-none transition-colors"
                 />
                 <button
                   onClick={() => handleSaveNotes(selectedLead.id)}
-                  className="mt-2.5 px-4 py-2 font-mono uppercase text-[11px] bg-white text-black hover:bg-neutral-200 font-semibold cursor-pointer transition-colors active:scale-[0.98]"
+                  className="mt-2.5 w-full btn-primary h-10 text-[11px]"
                 >
                   Save Internal Notes
                 </button>
               </div>
             </div>
           ) : (
-            <div className="text-center py-16 text-neutral-500 text-xs">
-              Select a lead from the list to review contact details, change stage, or save internal scoping notes.
+            <div className="text-center py-20 text-[#6B6B6B] text-xs space-y-2">
+              <div className="text-[10px] uppercase tracking-[0.16em] font-bold text-[#0E0E0E]">No Lead Selected</div>
+              <p>Click any row in the pipeline table to view complete contact details, advance qualification stage, or attach notes.</p>
             </div>
           )}
         </div>

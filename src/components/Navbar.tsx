@@ -83,7 +83,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate, onReque
         <div className="hidden sm:flex items-center gap-4">
           <button
             onClick={onRequestCustom}
-            className="h-10 px-5 text-[11px] font-semibold uppercase tracking-[0.18em] text-white bg-[#0E0E0E] hover:bg-[#222222] transition-colors flex items-center gap-2 cursor-pointer active:scale-[0.99]"
+            className="h-10 px-5 rounded-xl text-[11px] font-semibold uppercase tracking-[0.18em] text-white bg-[#0E0E0E] hover:bg-[#222222] transition-colors flex items-center gap-2 cursor-pointer active:scale-[0.99]"
           >
             <span>Request Build</span>
             <ArrowUpRight className="w-3.5 h-3.5" />
@@ -94,7 +94,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate, onReque
         <div className="flex lg:hidden items-center gap-2">
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="p-2 text-[#0E0E0E] focus:outline-none cursor-pointer"
+            className="p-2 text-[#0E0E0E] focus:outline-none cursor-pointer rounded-lg hover:bg-black/5"
             aria-label="Toggle navigation menu"
           >
             {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -132,7 +132,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate, onReque
                   onRequestCustom();
                   setMobileMenuOpen(false);
                 }}
-                className="w-full h-12 text-center text-xs font-semibold uppercase tracking-[0.18em] text-white bg-[#0E0E0E] hover:bg-[#222222] transition-colors cursor-pointer flex items-center justify-center gap-2"
+                className="w-full h-12 rounded-xl text-center text-xs font-semibold uppercase tracking-[0.18em] text-white bg-[#0E0E0E] hover:bg-[#222222] transition-colors cursor-pointer flex items-center justify-center gap-2"
               >
                 <span>Request Custom Automation</span>
                 <ArrowUpRight className="w-4 h-4" />

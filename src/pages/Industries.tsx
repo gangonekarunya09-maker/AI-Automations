@@ -99,11 +99,11 @@ export const Industries: React.FC<IndustriesProps> = ({ onNavigate, onRequestCus
             return (
               <div
                 key={ind.id}
-                className="p-8 sm:p-10 bg-white border border-[#CFCFCC] space-y-6 flex flex-col justify-between"
+                className="p-8 sm:p-10 bg-white border border-[#CFCFCC] rounded-2xl space-y-6 flex flex-col justify-between"
               >
                 <div className="space-y-5">
                   <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 bg-[#0E0E0E] text-white flex items-center justify-center shrink-0">
+                    <div className="w-12 h-12 bg-[#0E0E0E] text-white rounded-xl flex items-center justify-center shrink-0">
                       <Icon className="w-6 h-6" strokeWidth={1.5} />
                     </div>
                     <div>
@@ -119,13 +119,13 @@ export const Industries: React.FC<IndustriesProps> = ({ onNavigate, onRequestCus
 
                   {/* Contrast comparison */}
                   <div className="grid grid-cols-1 gap-3 pt-2 text-xs">
-                    <div className="p-4 bg-[#F6F5F3] border-l-2 border-[#6B6B6B] border-y border-r border-[#CFCFCC] text-[#6B6B6B]">
+                    <div className="p-4 bg-[#F6F5F3] border-l-2 border-[#6B6B6B] border-y border-r border-[#CFCFCC] rounded-xl text-[#6B6B6B]">
                       <span className="uppercase tracking-[0.16em] text-[10px] font-bold text-[#0E0E0E] block mb-1">
                         Manual Drag:
                       </span>
                       {ind.before}
                     </div>
-                    <div className="p-4 bg-[#F6F5F3] border-l-2 border-[#0E0E0E] border-y border-r border-[#CFCFCC] text-[#0E0E0E]">
+                    <div className="p-4 bg-[#F6F5F3] border-l-2 border-[#0E0E0E] border-y border-r border-[#CFCFCC] rounded-xl text-[#0E0E0E]">
                       <span className="uppercase tracking-[0.16em] text-[10px] font-bold text-[#0E0E0E] block mb-1">
                         Automated Resolution:
                       </span>
@@ -140,7 +140,7 @@ export const Industries: React.FC<IndustriesProps> = ({ onNavigate, onRequestCus
                     </span>
                     <div className="flex flex-wrap gap-2 text-xs">
                       {ind.workflowsRecommended.map((wf, idx) => (
-                        <span key={idx} className="px-3 py-1 bg-[#F6F5F3] border border-[#CFCFCC] text-[11px] font-medium text-[#0E0E0E]">
+                        <span key={idx} className="px-3 py-1 bg-[#F6F5F3] border border-[#CFCFCC] rounded-lg text-[11px] font-medium text-[#0E0E0E]">
                           {wf}
                         </span>
                       ))}
@@ -157,7 +157,7 @@ export const Industries: React.FC<IndustriesProps> = ({ onNavigate, onRequestCus
                   </button>
                   <button
                     onClick={onRequestCustom}
-                    className="h-10 px-5 text-xs uppercase tracking-[0.16em] font-semibold text-white bg-[#0E0E0E] hover:bg-[#222222] transition-colors cursor-pointer"
+                    className="h-10 px-5 rounded-xl text-xs uppercase tracking-[0.16em] font-semibold text-white bg-[#0E0E0E] hover:bg-[#222222] transition-colors cursor-pointer"
                   >
                     Request Setup
                   </button>

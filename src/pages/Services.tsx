@@ -83,7 +83,7 @@ export const Services: React.FC<ServicesProps> = ({ onNavigate, onRequestCustom 
           {servicesList.map((srv, idx) => (
             <div
               key={srv.id}
-              className="p-8 sm:p-12 bg-white border border-[#CFCFCC] space-y-8"
+              className="p-8 sm:p-12 bg-white border border-[#CFCFCC] rounded-2xl space-y-8"
             >
               <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 border-b border-[#CFCFCC]">
                 <div>
@@ -94,7 +94,7 @@ export const Services: React.FC<ServicesProps> = ({ onNavigate, onRequestCustom 
                     {srv.title}
                   </h2>
                 </div>
-                <div className="text-[10px] uppercase tracking-[0.18em] font-bold text-[#0E0E0E] bg-[#F6F5F3] px-3.5 py-1.5 border border-[#CFCFCC] self-start md:self-auto">
+                <div className="text-[10px] uppercase tracking-[0.18em] font-bold text-[#0E0E0E] bg-[#F6F5F3] px-3.5 py-1.5 border border-[#CFCFCC] rounded-full self-start md:self-auto">
                   {srv.headline}
                 </div>
               </div>
@@ -111,7 +111,7 @@ export const Services: React.FC<ServicesProps> = ({ onNavigate, onRequestCustom 
                 <div className="flex flex-wrap items-center gap-2">
                   {srv.flow.map((step, sIdx) => (
                     <React.Fragment key={sIdx}>
-                      <div className="px-3.5 py-1.5 bg-[#F6F5F3] border border-[#CFCFCC] text-xs font-semibold text-[#0E0E0E] uppercase tracking-wider">
+                      <div className="px-3.5 py-1.5 bg-[#F6F5F3] border border-[#CFCFCC] rounded-lg text-xs font-semibold text-[#0E0E0E] uppercase tracking-wider">
                         {step}
                       </div>
                       {sIdx < srv.flow.length - 1 && (
@@ -129,7 +129,7 @@ export const Services: React.FC<ServicesProps> = ({ onNavigate, onRequestCustom 
                 </span>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
                   {srv.deliverables.map((del, dIdx) => (
-                    <div key={dIdx} className="p-3.5 bg-[#F6F5F3] border border-[#CFCFCC] text-xs text-[#0E0E0E] flex items-center gap-2.5">
+                    <div key={dIdx} className="p-3.5 bg-[#F6F5F3] border border-[#CFCFCC] rounded-xl text-xs text-[#0E0E0E] flex items-center gap-2.5">
                       <Check className="w-3.5 h-3.5 text-[#0E0E0E] shrink-0" />
                       <span className="font-medium">{del}</span>
                     </div>
@@ -164,7 +164,7 @@ export const Services: React.FC<ServicesProps> = ({ onNavigate, onRequestCustom 
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="p-8 bg-white/5 border border-white/15 flex flex-col justify-between">
+            <div className="p-8 bg-white/5 border border-white/15 rounded-2xl flex flex-col justify-between">
               <div>
                 <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-neutral-400 block mb-2">
                   TIER 01
@@ -179,7 +179,7 @@ export const Services: React.FC<ServicesProps> = ({ onNavigate, onRequestCustom 
               </div>
             </div>
 
-            <div className="p-8 bg-white text-[#0E0E0E] border border-white flex flex-col justify-between">
+            <div className="p-8 bg-white text-[#0E0E0E] border border-white rounded-2xl flex flex-col justify-between">
               <div>
                 <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-[#6B6B6B] block mb-2">
                   TIER 02 // MOST POPULAR
@@ -194,7 +194,7 @@ export const Services: React.FC<ServicesProps> = ({ onNavigate, onRequestCustom 
               </div>
             </div>
 
-            <div className="p-8 bg-white/5 border border-white/15 flex flex-col justify-between">
+            <div className="p-8 bg-white/5 border border-white/15 rounded-2xl flex flex-col justify-between">
               <div>
                 <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-neutral-400 block mb-2">
                   TIER 03
@@ -213,7 +213,7 @@ export const Services: React.FC<ServicesProps> = ({ onNavigate, onRequestCustom 
           <div className="pt-8 text-center">
             <button
               onClick={onRequestCustom}
-              className="h-12 px-8 text-xs font-semibold uppercase tracking-[0.18em] text-[#0E0E0E] bg-white hover:bg-neutral-200 transition-colors cursor-pointer"
+              className="h-12 px-8 rounded-xl text-xs font-semibold uppercase tracking-[0.18em] text-[#0E0E0E] bg-white hover:bg-neutral-200 transition-colors cursor-pointer"
             >
               SCHEDULE A SCOPING CALL
             </button>

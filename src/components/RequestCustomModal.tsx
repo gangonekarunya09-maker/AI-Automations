@@ -118,17 +118,17 @@ export const RequestCustomModal: React.FC<RequestCustomModalProps> = ({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-none">
-      <div className="relative w-full max-w-2xl bg-white border border-[#0E0E0E] p-6 sm:p-10 max-h-[90vh] overflow-y-auto">
+      <div className="relative w-full max-w-2xl bg-white border border-[#0E0E0E] rounded-2xl p-6 sm:p-10 max-h-[90vh] overflow-y-auto">
         <button
           onClick={resetAndClose}
-          className="absolute top-6 right-6 p-1 text-[#0E0E0E] hover:opacity-70 transition-opacity cursor-pointer"
+          className="absolute top-6 right-6 p-2 rounded-full hover:bg-neutral-100 text-[#0E0E0E] transition-colors cursor-pointer"
         >
           <X className="w-5 h-5" />
         </button>
 
         {submitted ? (
           <div className="py-8 text-center space-y-5">
-            <div className="w-14 h-14 bg-[#0E0E0E] text-white flex items-center justify-center mx-auto mb-2">
+            <div className="w-14 h-14 bg-[#0E0E0E] text-white rounded-2xl flex items-center justify-center mx-auto mb-2">
               <Check className="w-7 h-7 stroke-[2.5]" />
             </div>
             <h3 className="text-2xl font-extrabold uppercase tracking-tight text-[#0E0E0E]">
@@ -162,7 +162,7 @@ export const RequestCustomModal: React.FC<RequestCustomModalProps> = ({
 
             <form onSubmit={handleSubmit} className="space-y-5">
               {errorMessage && (
-                <div className="p-3 bg-[#F6F5F3] border-l-4 border-[#0E0E0E] text-[#0E0E0E] text-xs font-bold">
+                <div className="p-3 bg-[#F6F5F3] border-l-4 border-[#0E0E0E] rounded-xl text-[#0E0E0E] text-xs font-bold">
                   {errorMessage}
                 </div>
               )}
@@ -178,7 +178,7 @@ export const RequestCustomModal: React.FC<RequestCustomModalProps> = ({
                     value={formData.name}
                     onChange={e => setFormData({ ...formData, name: e.target.value })}
                     placeholder="e.g. Elena Rostova"
-                    className="w-full px-3.5 py-2.5 bg-white border border-[#CFCFCC] text-[#0E0E0E] text-xs focus:border-[#0E0E0E] focus:outline-none transition-colors"
+                    className="w-full px-3.5 py-2.5 bg-white border border-[#CFCFCC] rounded-lg text-[#0E0E0E] text-xs focus:border-[#0E0E0E] focus:outline-none transition-colors"
                   />
                 </div>
 
@@ -191,7 +191,7 @@ export const RequestCustomModal: React.FC<RequestCustomModalProps> = ({
                     value={formData.company}
                     onChange={e => setFormData({ ...formData, company: e.target.value })}
                     placeholder="e.g. Vanguard Agency"
-                    className="w-full px-3.5 py-2.5 bg-white border border-[#CFCFCC] text-[#0E0E0E] text-xs focus:border-[#0E0E0E] focus:outline-none transition-colors"
+                    className="w-full px-3.5 py-2.5 bg-white border border-[#CFCFCC] rounded-lg text-[#0E0E0E] text-xs focus:border-[#0E0E0E] focus:outline-none transition-colors"
                   />
                 </div>
               </div>
@@ -207,7 +207,7 @@ export const RequestCustomModal: React.FC<RequestCustomModalProps> = ({
                     value={formData.email}
                     onChange={e => setFormData({ ...formData, email: e.target.value })}
                     placeholder="elena@vanguard.co"
-                    className="w-full px-3.5 py-2.5 bg-white border border-[#CFCFCC] text-[#0E0E0E] text-xs focus:border-[#0E0E0E] focus:outline-none transition-colors"
+                    className="w-full px-3.5 py-2.5 bg-white border border-[#CFCFCC] rounded-lg text-[#0E0E0E] text-xs focus:border-[#0E0E0E] focus:outline-none transition-colors"
                   />
                 </div>
 
@@ -220,7 +220,7 @@ export const RequestCustomModal: React.FC<RequestCustomModalProps> = ({
                     value={formData.phone}
                     onChange={e => setFormData({ ...formData, phone: e.target.value })}
                     placeholder="+1 415 892 3341"
-                    className="w-full px-3.5 py-2.5 bg-white border border-[#CFCFCC] text-[#0E0E0E] text-xs focus:border-[#0E0E0E] focus:outline-none transition-colors"
+                    className="w-full px-3.5 py-2.5 bg-white border border-[#CFCFCC] rounded-lg text-[#0E0E0E] text-xs focus:border-[#0E0E0E] focus:outline-none transition-colors"
                   />
                 </div>
               </div>
@@ -235,7 +235,7 @@ export const RequestCustomModal: React.FC<RequestCustomModalProps> = ({
                   value={formData.process_description}
                   onChange={e => setFormData({ ...formData, process_description: e.target.value })}
                   placeholder="Where does data originate? What tools do you open? What repetitive actions do humans take?"
-                  className="w-full px-3.5 py-2.5 bg-white border border-[#CFCFCC] text-[#0E0E0E] text-xs focus:border-[#0E0E0E] focus:outline-none transition-colors resize-none"
+                  className="w-full px-3.5 py-2.5 bg-white border border-[#CFCFCC] rounded-lg text-[#0E0E0E] text-xs focus:border-[#0E0E0E] focus:outline-none transition-colors resize-none"
                 />
               </div>
 
@@ -252,7 +252,7 @@ export const RequestCustomModal: React.FC<RequestCustomModalProps> = ({
                         type="button"
                         key={tool}
                         onClick={() => toggleTool(tool)}
-                        className={`px-3 py-1.5 text-xs font-semibold uppercase tracking-wider transition-colors cursor-pointer ${
+                        className={`px-3 py-1.5 rounded-lg text-xs font-semibold uppercase tracking-wider transition-colors cursor-pointer ${
                           isSelected
                             ? 'bg-[#0E0E0E] text-white'
                             : 'bg-[#F6F5F3] text-[#6B6B6B] hover:text-[#0E0E0E] border border-[#CFCFCC]'
@@ -273,7 +273,7 @@ export const RequestCustomModal: React.FC<RequestCustomModalProps> = ({
                   <select
                     value={formData.frequency}
                     onChange={e => setFormData({ ...formData, frequency: e.target.value })}
-                    className="w-full px-3.5 py-2.5 bg-white border border-[#CFCFCC] text-[#0E0E0E] text-xs focus:border-[#0E0E0E] focus:outline-none cursor-pointer"
+                    className="w-full px-3.5 py-2.5 bg-white border border-[#CFCFCC] rounded-lg text-[#0E0E0E] text-xs focus:border-[#0E0E0E] focus:outline-none cursor-pointer"
                   >
                     <option value="Daily">Daily</option>
                     <option value="Multiple times per day">Multiple times per day</option>
@@ -289,7 +289,7 @@ export const RequestCustomModal: React.FC<RequestCustomModalProps> = ({
                   <select
                     value={formData.budget}
                     onChange={e => setFormData({ ...formData, budget: e.target.value })}
-                    className="w-full px-3.5 py-2.5 bg-white border border-[#CFCFCC] text-[#0E0E0E] text-xs focus:border-[#0E0E0E] focus:outline-none cursor-pointer"
+                    className="w-full px-3.5 py-2.5 bg-white border border-[#CFCFCC] rounded-lg text-[#0E0E0E] text-xs focus:border-[#0E0E0E] focus:outline-none cursor-pointer"
                   >
                     <option value="₹15,000–₹50,000">₹15,000–₹50,000</option>
                     <option value="Below ₹15,000">Below ₹15,000</option>
@@ -302,7 +302,7 @@ export const RequestCustomModal: React.FC<RequestCustomModalProps> = ({
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full btn-primary h-12"
+                  className="w-full btn-primary h-12 rounded-xl"
                 >
                   <span>{isSubmitting ? 'TRANSMITTING SCOPE...' : 'SUBMIT AUTOMATION REQUEST'}</span>
                   <ArrowRight className="w-4 h-4 ml-2" />

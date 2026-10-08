@@ -18,10 +18,25 @@
   --hairline: #CFCFCC;
 }
 
-/* Strict Zero Corner Radius & Zero Shadow Rule */
+/* Round Corner Design System Tokens */
+:root {
+  --radius-xs: 6px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-2xl: 24px;
+  --radius-full: 9999px;
+}
+
+/* Subtle modern box shadows and round corner rules */
 *, ::before, ::after {
-  border-radius: 0 !important;
-  box-shadow: none !important;
+  box-shadow: none;
+}
+
+/* Base button and input roundness */
+button, input, textarea, select {
+  border-radius: 8px;
 }
 
 body {
@@ -94,8 +109,26 @@ body {
   padding-left: 32px;
   padding-right: 32px;
   border: none;
+  border-radius: 12px;
   cursor: pointer;
   transition: background-color 180ms ease, transform 120ms ease;
+}
+
+/* Rounded Box & Card Utilities */
+.box-rounded {
+  border-radius: 16px;
+}
+
+.box-rounded-sm {
+  border-radius: 10px;
+}
+
+.box-rounded-lg {
+  border-radius: 20px;
+}
+
+.box-rounded-xl {
+  border-radius: 24px;
 }
 
 .btn-primary:hover {

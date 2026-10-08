@@ -75,7 +75,7 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({
               <button
                 key={tab.id}
                 onClick={() => onSelectTab(tab.id)}
-                className={`flex items-center gap-2 px-4 py-2 text-xs uppercase tracking-[0.16em] font-bold transition-colors cursor-pointer whitespace-nowrap ${
+                className={`flex items-center gap-2 px-4 py-2 rounded-full text-xs uppercase tracking-[0.16em] font-bold transition-colors cursor-pointer whitespace-nowrap ${
                   isActive
                     ? 'bg-[#0E0E0E] text-white'
                     : 'text-[#6B6B6B] hover:text-[#0E0E0E] bg-white border border-[#CFCFCC]'
@@ -84,7 +84,7 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({
                 <Icon className="w-3.5 h-3.5" />
                 <span>{tab.label}</span>
                 {tab.badge !== undefined && (
-                  <span className={`px-1.5 py-0.2 text-[10px] font-bold ${
+                  <span className={`px-2 py-0.5 rounded-full text-[10px] font-bold ${
                     isActive ? 'bg-white text-[#0E0E0E]' : 'bg-[#0E0E0E] text-white'
                   }`}>
                     {tab.badge}

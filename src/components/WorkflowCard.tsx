@@ -19,7 +19,7 @@ export const WorkflowCard: React.FC<WorkflowCardProps> = ({
   const outputTool = workflow.architecture_steps[workflow.architecture_steps.length - 1]?.tool || 'Dispatch';
 
   return (
-    <div className="group bg-[#FFFFFF] border border-[#CFCFCC] flex flex-col justify-between transition-colors duration-200">
+    <div className="group bg-[#FFFFFF] border border-[#CFCFCC] rounded-2xl overflow-hidden flex flex-col justify-between transition-all duration-200 hover:border-[#0E0E0E]">
       <div>
         {/* Schematic Architecture Header with Favorite Heart Icon */}
         <div className="relative p-5 bg-[#F6F5F3] border-b border-[#CFCFCC] overflow-hidden select-none">
@@ -34,7 +34,7 @@ export const WorkflowCard: React.FC<WorkflowCardProps> = ({
                 e.stopPropagation();
                 setIsFavorite(!isFavorite);
               }}
-              className="p-1 text-[#6B6B6B] hover:text-[#0E0E0E] transition-colors cursor-pointer"
+              className="p-1.5 rounded-full hover:bg-black/5 text-[#6B6B6B] hover:text-[#0E0E0E] transition-colors cursor-pointer"
               title={isFavorite ? 'Remove from favorites' : 'Save to favorites'}
               aria-label="Toggle favorite"
             >
@@ -53,21 +53,21 @@ export const WorkflowCard: React.FC<WorkflowCardProps> = ({
             className="py-3 cursor-pointer"
           >
             <div className="flex items-center justify-between gap-1 text-[10px]">
-              <div className="flex-1 bg-[#FFFFFF] border border-[#CFCFCC] p-2 text-center truncate">
+              <div className="flex-1 bg-[#FFFFFF] border border-[#CFCFCC] rounded-lg p-2 text-center truncate">
                 <div className="text-[8px] text-[#6B6B6B] uppercase tracking-[0.2em] mb-0.5">01 Trigger</div>
                 <div className="text-[#0E0E0E] font-semibold truncate text-[10px]">{triggerTool}</div>
               </div>
 
               <div className="px-1 text-[#6B6B6B] shrink-0 font-mono text-xs">→</div>
 
-              <div className="flex-1 bg-[#FFFFFF] border border-[#CFCFCC] p-2 text-center truncate">
+              <div className="flex-1 bg-[#FFFFFF] border border-[#CFCFCC] rounded-lg p-2 text-center truncate">
                 <div className="text-[8px] text-[#6B6B6B] uppercase tracking-[0.2em] mb-0.5">02 Logic</div>
                 <div className="text-[#0E0E0E] font-semibold truncate text-[10px]">{engineTool}</div>
               </div>
 
               <div className="px-1 text-[#6B6B6B] shrink-0 font-mono text-xs">→</div>
 
-              <div className="flex-1 bg-[#FFFFFF] border border-[#CFCFCC] p-2 text-center truncate">
+              <div className="flex-1 bg-[#FFFFFF] border border-[#CFCFCC] rounded-lg p-2 text-center truncate">
                 <div className="text-[8px] text-[#6B6B6B] uppercase tracking-[0.2em] mb-0.5">03 Target</div>
                 <div className="text-[#0E0E0E] font-semibold truncate text-[10px]">{outputTool}</div>
               </div>
@@ -97,7 +97,7 @@ export const WorkflowCard: React.FC<WorkflowCardProps> = ({
             {workflow.short_description}
           </p>
 
-          <div className="border-l-2 border-[#0E0E0E] pl-3 py-1 text-xs text-[#0E0E0E] bg-[#F6F5F3] font-medium leading-snug">
+          <div className="border-l-2 border-[#0E0E0E] rounded-r-lg pl-3 py-1 text-xs text-[#0E0E0E] bg-[#F6F5F3] font-medium leading-snug">
             {workflow.benefit}
           </div>
         </div>
@@ -126,7 +126,7 @@ export const WorkflowCard: React.FC<WorkflowCardProps> = ({
           </button>
           <button
             onClick={() => onRequestWorkflow(workflow)}
-            className="h-9 px-4 text-[11px] uppercase tracking-[0.16em] font-semibold text-white bg-[#0E0E0E] hover:bg-[#222222] transition-colors flex items-center gap-1.5 cursor-pointer active:scale-[0.99]"
+            className="h-9 px-4 rounded-lg text-[11px] uppercase tracking-[0.16em] font-semibold text-white bg-[#0E0E0E] hover:bg-[#222222] transition-colors flex items-center gap-1.5 cursor-pointer active:scale-[0.99]"
           >
             <span>Get</span>
             <ArrowRight className="w-3 h-3" />

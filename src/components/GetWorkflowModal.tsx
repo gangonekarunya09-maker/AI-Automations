@@ -102,17 +102,17 @@ export const GetWorkflowModal: React.FC<GetWorkflowModalProps> = ({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-none">
-      <div className="relative w-full max-w-2xl bg-white border border-[#0E0E0E] p-6 sm:p-10 max-h-[90vh] overflow-y-auto">
+      <div className="relative w-full max-w-2xl bg-white border border-[#0E0E0E] rounded-2xl p-6 sm:p-10 max-h-[90vh] overflow-y-auto">
         <button
           onClick={resetAndClose}
-          className="absolute top-6 right-6 p-1 text-[#0E0E0E] hover:opacity-70 transition-opacity cursor-pointer"
+          className="absolute top-6 right-6 p-2 rounded-full hover:bg-neutral-100 text-[#0E0E0E] transition-colors cursor-pointer"
         >
           <X className="w-5 h-5" />
         </button>
 
         {submitted ? (
           <div className="py-8 text-center space-y-5">
-            <div className="w-14 h-14 bg-[#0E0E0E] text-white flex items-center justify-center mx-auto mb-2">
+            <div className="w-14 h-14 bg-[#0E0E0E] text-white rounded-2xl flex items-center justify-center mx-auto mb-2">
               <Check className="w-7 h-7 stroke-[2.5]" />
             </div>
             <h3 className="text-2xl font-extrabold uppercase tracking-tight text-[#0E0E0E]">
@@ -121,7 +121,7 @@ export const GetWorkflowModal: React.FC<GetWorkflowModalProps> = ({
             <p className="text-xs sm:text-sm text-[#6B6B6B] max-w-md mx-auto leading-relaxed">
               Thank you, <span className="font-bold text-[#0E0E0E]">{formData.name}</span>. We have generated order record <span className="font-bold text-[#0E0E0E]">#{workflow.id.toUpperCase()}</span> and notified our operations team.
             </p>
-            <div className="p-4 bg-[#F6F5F3] border border-[#CFCFCC] text-left text-xs text-[#0E0E0E] space-y-2 max-w-md mx-auto">
+            <div className="p-4 bg-[#F6F5F3] border border-[#CFCFCC] rounded-xl text-left text-xs text-[#0E0E0E] space-y-2 max-w-md mx-auto">
               <div className="font-bold uppercase tracking-[0.16em] text-[10px]">What Happens Next:</div>
               <div className="text-[#6B6B6B]">1. You receive the complete deployment manifest and pre-flight checklist.</div>
               <div className="text-[#6B6B6B]">2. We issue an invoice with instant payment link and coordinate installation.</div>
@@ -159,7 +159,7 @@ export const GetWorkflowModal: React.FC<GetWorkflowModalProps> = ({
                 {/* Model A */}
                 <div
                   onClick={() => setDeliveryModel('workflow_json')}
-                  className={`p-4 border cursor-pointer transition-colors ${
+                  className={`p-4 border rounded-xl cursor-pointer transition-colors ${
                     deliveryModel === 'workflow_json'
                       ? 'bg-[#0E0E0E] text-white border-[#0E0E0E]'
                       : 'bg-[#F6F5F3] text-[#0E0E0E] border-[#CFCFCC] hover:border-[#0E0E0E]'
@@ -180,7 +180,7 @@ export const GetWorkflowModal: React.FC<GetWorkflowModalProps> = ({
                 {/* Model C: Hybrid */}
                 <div
                   onClick={() => setDeliveryModel('hybrid')}
-                  className={`p-4 border cursor-pointer transition-colors ${
+                  className={`p-4 border rounded-xl cursor-pointer transition-colors ${
                     deliveryModel === 'hybrid'
                       ? 'bg-[#0E0E0E] text-white border-[#0E0E0E]'
                       : 'bg-[#F6F5F3] text-[#0E0E0E] border-[#CFCFCC] hover:border-[#0E0E0E]'
@@ -201,7 +201,7 @@ export const GetWorkflowModal: React.FC<GetWorkflowModalProps> = ({
                 {/* Model B: Managed */}
                 <div
                   onClick={() => setDeliveryModel('managed')}
-                  className={`p-4 border cursor-pointer transition-colors ${
+                  className={`p-4 border rounded-xl cursor-pointer transition-colors ${
                     deliveryModel === 'managed'
                       ? 'bg-[#0E0E0E] text-white border-[#0E0E0E]'
                       : 'bg-[#F6F5F3] text-[#0E0E0E] border-[#CFCFCC] hover:border-[#0E0E0E]'
@@ -224,7 +224,7 @@ export const GetWorkflowModal: React.FC<GetWorkflowModalProps> = ({
             {/* Form */}
             <form onSubmit={handleSubmit} className="space-y-4 pt-2">
               {errorMessage && (
-                <div className="p-3 bg-[#F6F5F3] border-l-4 border-[#0E0E0E] text-[#0E0E0E] text-xs font-bold">
+                <div className="p-3 bg-[#F6F5F3] border-l-4 border-[#0E0E0E] rounded-xl text-[#0E0E0E] text-xs font-bold">
                   {errorMessage}
                 </div>
               )}
@@ -240,7 +240,7 @@ export const GetWorkflowModal: React.FC<GetWorkflowModalProps> = ({
                     value={formData.name}
                     onChange={e => setFormData({ ...formData, name: e.target.value })}
                     placeholder="e.g. Priya Sharma"
-                    className="w-full px-3.5 py-2.5 bg-white border border-[#CFCFCC] text-[#0E0E0E] text-xs focus:border-[#0E0E0E] focus:outline-none transition-colors"
+                    className="w-full px-3.5 py-2.5 bg-white border border-[#CFCFCC] rounded-lg text-[#0E0E0E] text-xs focus:border-[#0E0E0E] focus:outline-none transition-colors"
                   />
                 </div>
 
@@ -254,7 +254,7 @@ export const GetWorkflowModal: React.FC<GetWorkflowModalProps> = ({
                     value={formData.company}
                     onChange={e => setFormData({ ...formData, company: e.target.value })}
                     placeholder="e.g. Apex Logistics"
-                    className="w-full px-3.5 py-2.5 bg-white border border-[#CFCFCC] text-[#0E0E0E] text-xs focus:border-[#0E0E0E] focus:outline-none transition-colors"
+                    className="w-full px-3.5 py-2.5 bg-white border border-[#CFCFCC] rounded-lg text-[#0E0E0E] text-xs focus:border-[#0E0E0E] focus:outline-none transition-colors"
                   />
                 </div>
               </div>
@@ -270,7 +270,7 @@ export const GetWorkflowModal: React.FC<GetWorkflowModalProps> = ({
                     value={formData.email}
                     onChange={e => setFormData({ ...formData, email: e.target.value })}
                     placeholder="priya@apexlogistics.in"
-                    className="w-full px-3.5 py-2.5 bg-white border border-[#CFCFCC] text-[#0E0E0E] text-xs focus:border-[#0E0E0E] focus:outline-none transition-colors"
+                    className="w-full px-3.5 py-2.5 bg-white border border-[#CFCFCC] rounded-lg text-[#0E0E0E] text-xs focus:border-[#0E0E0E] focus:outline-none transition-colors"
                   />
                 </div>
 
@@ -283,7 +283,7 @@ export const GetWorkflowModal: React.FC<GetWorkflowModalProps> = ({
                     value={formData.phone}
                     onChange={e => setFormData({ ...formData, phone: e.target.value })}
                     placeholder="+91 98201 44521"
-                    className="w-full px-3.5 py-2.5 bg-white border border-[#CFCFCC] text-[#0E0E0E] text-xs focus:border-[#0E0E0E] focus:outline-none transition-colors"
+                    className="w-full px-3.5 py-2.5 bg-white border border-[#CFCFCC] rounded-lg text-[#0E0E0E] text-xs focus:border-[#0E0E0E] focus:outline-none transition-colors"
                   />
                 </div>
               </div>
@@ -297,7 +297,7 @@ export const GetWorkflowModal: React.FC<GetWorkflowModalProps> = ({
                   value={formData.notes}
                   onChange={e => setFormData({ ...formData, notes: e.target.value })}
                   placeholder="e.g. We use self-hosted PostgreSQL and custom webhook endpoints."
-                  className="w-full px-3.5 py-2.5 bg-white border border-[#CFCFCC] text-[#0E0E0E] text-xs focus:border-[#0E0E0E] focus:outline-none transition-colors resize-none"
+                  className="w-full px-3.5 py-2.5 bg-white border border-[#CFCFCC] rounded-lg text-[#0E0E0E] text-xs focus:border-[#0E0E0E] focus:outline-none transition-colors resize-none"
                 />
               </div>
 
@@ -305,7 +305,7 @@ export const GetWorkflowModal: React.FC<GetWorkflowModalProps> = ({
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full btn-primary h-12"
+                  className="w-full btn-primary h-12 rounded-xl"
                 >
                   <span>{isSubmitting ? 'RECORDING INQUIRY...' : 'SUBMIT WORKFLOW ACQUISITION INQUIRY'}</span>
                   <ArrowRight className="w-4 h-4 ml-2" />

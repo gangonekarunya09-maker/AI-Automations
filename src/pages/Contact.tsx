@@ -120,10 +120,10 @@ export const Contact: React.FC<ContactProps> = ({ onSuccess }) => {
       <section className="w-full px-4 sm:px-8 py-16 sm:py-24 bg-[#E4E3E0]">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
           {/* Main Form */}
-          <div className="lg:col-span-8 p-8 sm:p-12 bg-white border border-[#CFCFCC]">
+          <div className="lg:col-span-8 p-8 sm:p-12 bg-white border border-[#CFCFCC] rounded-2xl">
             {submitted ? (
               <div className="py-12 text-center space-y-6">
-                <div className="w-16 h-16 bg-[#0E0E0E] text-white flex items-center justify-center mx-auto mb-2">
+                <div className="w-16 h-16 bg-[#0E0E0E] text-white rounded-2xl flex items-center justify-center mx-auto mb-2">
                   <Check className="w-8 h-8 stroke-[2.5]" />
                 </div>
                 <h2 className="text-2xl sm:text-3xl font-extrabold uppercase tracking-tight text-[#0E0E0E]">
@@ -132,7 +132,7 @@ export const Contact: React.FC<ContactProps> = ({ onSuccess }) => {
                 <p className="text-xs sm:text-sm text-[#6B6B6B] max-w-md mx-auto leading-relaxed">
                   Thank you, <span className="text-[#0E0E0E] font-bold">{formData.name}</span>. Your operational requirements have been securely recorded and dispatched to our architecture pipeline.
                 </p>
-                <div className="p-5 bg-[#F6F5F3] border border-[#CFCFCC] text-left text-xs text-[#0E0E0E] space-y-2.5 max-w-md mx-auto">
+                <div className="p-5 bg-[#F6F5F3] border border-[#CFCFCC] rounded-xl text-left text-xs text-[#0E0E0E] space-y-2.5 max-w-md mx-auto">
                   <div className="uppercase tracking-[0.16em] text-[10px] font-bold text-[#0E0E0E]">Next Steps:</div>
                   <div className="flex items-center gap-2 text-[#6B6B6B]">
                     <span className="w-1.5 h-1.5 bg-[#0E0E0E] shrink-0"></span>
@@ -352,7 +352,7 @@ export const Contact: React.FC<ContactProps> = ({ onSuccess }) => {
 
           {/* Sidebar */}
           <div className="lg:col-span-4 space-y-8">
-            <div className="p-8 bg-white border border-[#CFCFCC] space-y-4">
+            <div className="p-8 bg-white border border-[#CFCFCC] rounded-2xl space-y-4">
               <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-[#6B6B6B] block">
                 WHAT TO EXPECT
               </span>
@@ -375,7 +375,7 @@ export const Contact: React.FC<ContactProps> = ({ onSuccess }) => {
               </ul>
             </div>
 
-            <div className="p-8 bg-[#0E0E0E] text-white border border-[#0E0E0E] space-y-4 text-xs">
+            <div className="p-8 bg-[#0E0E0E] text-white border border-[#0E0E0E] rounded-2xl space-y-4 text-xs">
               <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-neutral-400 block">
                 DIRECT INTAKE
               </span>

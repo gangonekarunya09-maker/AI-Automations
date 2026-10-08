@@ -115,7 +115,7 @@ export const Workflows: React.FC<WorkflowsProps> = ({
                 value={searchQuery}
                 onChange={e => setSearchQuery(e.target.value)}
                 placeholder="Search workflows, tools, or integrations..."
-                className="w-full pl-10 pr-4 py-2.5 bg-white border border-[#CFCFCC] text-xs text-[#0E0E0E] placeholder-[#6B6B6B] focus:border-[#0E0E0E] focus:outline-none transition-colors"
+                className="w-full pl-10 pr-4 py-2.5 bg-white border border-[#CFCFCC] rounded-xl text-xs text-[#0E0E0E] placeholder-[#6B6B6B] focus:border-[#0E0E0E] focus:outline-none transition-colors"
               />
               {searchQuery && (
                 <button
@@ -134,7 +134,7 @@ export const Workflows: React.FC<WorkflowsProps> = ({
                 <select
                   value={selectedTech}
                   onChange={e => setSelectedTech(e.target.value)}
-                  className="px-3 py-2 bg-white border border-[#CFCFCC] text-[#0E0E0E] text-xs focus:border-[#0E0E0E] focus:outline-none cursor-pointer"
+                  className="px-3 py-2 bg-white border border-[#CFCFCC] rounded-lg text-[#0E0E0E] text-xs focus:border-[#0E0E0E] focus:outline-none cursor-pointer"
                 >
                   {allTechs.slice(0, 12).map(t => (
                     <option key={t} value={t}>{t}</option>
@@ -147,7 +147,7 @@ export const Workflows: React.FC<WorkflowsProps> = ({
                 <select
                   value={sortBy}
                   onChange={e => setSortBy(e.target.value as any)}
-                  className="px-3 py-2 bg-white border border-[#CFCFCC] text-[#0E0E0E] text-xs focus:border-[#0E0E0E] focus:outline-none cursor-pointer"
+                  className="px-3 py-2 bg-white border border-[#CFCFCC] rounded-lg text-[#0E0E0E] text-xs focus:border-[#0E0E0E] focus:outline-none cursor-pointer"
                 >
                   <option value="featured">Featured</option>
                   <option value="popular">Popularity</option>
@@ -166,7 +166,7 @@ export const Workflows: React.FC<WorkflowsProps> = ({
                 <button
                   key={cat}
                   onClick={() => setSelectedCategory(cat)}
-                  className={`px-4 py-2 text-xs uppercase tracking-[0.16em] font-semibold transition-colors cursor-pointer whitespace-nowrap ${
+                  className={`px-4 py-2 text-xs uppercase tracking-[0.16em] font-semibold transition-colors cursor-pointer whitespace-nowrap rounded-full ${
                     isActive
                       ? 'bg-[#0E0E0E] text-white'
                       : 'bg-white text-[#6B6B6B] hover:text-[#0E0E0E] border border-[#CFCFCC]'
@@ -184,7 +184,7 @@ export const Workflows: React.FC<WorkflowsProps> = ({
       <section className="w-full px-4 sm:px-8 py-16 sm:py-24 bg-[#E4E3E0]">
         <div className="max-w-7xl mx-auto">
           {filteredWorkflows.length === 0 ? (
-            <div className="py-24 text-center bg-white border border-[#CFCFCC] p-8 space-y-4 max-w-xl mx-auto">
+            <div className="py-24 text-center bg-white border border-[#CFCFCC] rounded-2xl p-8 space-y-4 max-w-xl mx-auto">
               <Layers className="w-10 h-10 text-[#6B6B6B] mx-auto" strokeWidth={1.5} />
               <h3 className="text-base font-bold uppercase tracking-tight text-[#0E0E0E]">
                 No blueprints match your criteria
@@ -199,7 +199,7 @@ export const Workflows: React.FC<WorkflowsProps> = ({
                     setSelectedCategory('All');
                     setSelectedTech('All');
                   }}
-                  className="px-4 py-2 text-xs uppercase tracking-[0.14em] font-semibold text-[#0E0E0E] border border-[#0E0E0E] cursor-pointer"
+                  className="px-4 py-2 rounded-lg text-xs uppercase tracking-[0.14em] font-semibold text-[#0E0E0E] border border-[#0E0E0E] cursor-pointer"
                 >
                   Reset Filters
                 </button>
@@ -225,7 +225,7 @@ export const Workflows: React.FC<WorkflowsProps> = ({
           )}
 
           {/* Bottom Banner */}
-          <div className="mt-16 bg-[#0E0E0E] text-white p-8 sm:p-12 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+          <div className="mt-16 bg-[#0E0E0E] text-white p-8 sm:p-12 rounded-2xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
             <div>
               <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-neutral-400 block mb-1">
                 ENTERPRISE BESPOKE ARCHITECTURE
@@ -240,7 +240,7 @@ export const Workflows: React.FC<WorkflowsProps> = ({
 
             <button
               onClick={onRequestCustom}
-              className="h-11 px-6 text-xs font-semibold uppercase tracking-[0.18em] text-[#0E0E0E] bg-white hover:bg-neutral-200 transition-colors whitespace-nowrap cursor-pointer shrink-0"
+              className="h-11 px-6 rounded-xl text-xs font-semibold uppercase tracking-[0.18em] text-[#0E0E0E] bg-white hover:bg-neutral-200 transition-colors whitespace-nowrap cursor-pointer shrink-0"
             >
               Request Custom Build
             </button>

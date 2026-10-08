@@ -38,8 +38,8 @@ export const About: React.FC<AboutProps> = ({ onNavigate, onRequestCustom }) => 
       <section className="w-full px-4 sm:px-8 py-16 sm:py-24 bg-[#E4E3E0]">
         <div className="max-w-7xl mx-auto space-y-16">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="p-8 bg-white border border-[#CFCFCC] space-y-4">
-              <div className="w-12 h-12 bg-[#0E0E0E] text-white flex items-center justify-center shrink-0">
+            <div className="p-8 bg-white border border-[#CFCFCC] rounded-2xl space-y-4">
+              <div className="w-12 h-12 bg-[#0E0E0E] text-white rounded-xl flex items-center justify-center shrink-0">
                 <Lock className="w-6 h-6" strokeWidth={1.5} />
               </div>
               <h3 className="text-lg font-bold uppercase tracking-tight text-[#0E0E0E]">
@@ -50,8 +50,8 @@ export const About: React.FC<AboutProps> = ({ onNavigate, onRequestCustom }) => 
               </p>
             </div>
 
-            <div className="p-8 bg-white border border-[#CFCFCC] space-y-4">
-              <div className="w-12 h-12 bg-[#0E0E0E] text-white flex items-center justify-center shrink-0">
+            <div className="p-8 bg-white border border-[#CFCFCC] rounded-2xl space-y-4">
+              <div className="w-12 h-12 bg-[#0E0E0E] text-white rounded-xl flex items-center justify-center shrink-0">
                 <Cpu className="w-6 h-6" strokeWidth={1.5} />
               </div>
               <h3 className="text-lg font-bold uppercase tracking-tight text-[#0E0E0E]">
@@ -62,8 +62,8 @@ export const About: React.FC<AboutProps> = ({ onNavigate, onRequestCustom }) => 
               </p>
             </div>
 
-            <div className="p-8 bg-white border border-[#CFCFCC] space-y-4">
-              <div className="w-12 h-12 bg-[#0E0E0E] text-white flex items-center justify-center shrink-0">
+            <div className="p-8 bg-white border border-[#CFCFCC] rounded-2xl space-y-4">
+              <div className="w-12 h-12 bg-[#0E0E0E] text-white rounded-xl flex items-center justify-center shrink-0">
                 <ShieldCheck className="w-6 h-6" strokeWidth={1.5} />
               </div>
               <h3 className="text-lg font-bold uppercase tracking-tight text-[#0E0E0E]">
@@ -76,7 +76,7 @@ export const About: React.FC<AboutProps> = ({ onNavigate, onRequestCustom }) => 
           </div>
 
           {/* Deep Dive Architecture Block */}
-          <div className="p-8 sm:p-12 bg-[#0E0E0E] text-white border border-[#0E0E0E] space-y-8">
+          <div className="p-8 sm:p-12 bg-[#0E0E0E] text-white border border-[#0E0E0E] rounded-2xl space-y-8">
             <div className="border-b border-white/15 pb-6">
               <span className="text-[10px] uppercase tracking-[0.24em] font-semibold text-neutral-400 block mb-1">
                 STACK SELECTION
@@ -87,7 +87,7 @@ export const About: React.FC<AboutProps> = ({ onNavigate, onRequestCustom }) => 
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 text-xs text-neutral-300">
-              <div className="p-5 bg-white/5 border border-white/10 space-y-2">
+              <div className="p-5 bg-white/5 border border-white/10 rounded-xl space-y-2">
                 <span className="text-xs uppercase tracking-wider font-bold text-white block">
                   01 // SELF-HOSTED ON PREMISE
                 </span>
@@ -96,7 +96,7 @@ export const About: React.FC<AboutProps> = ({ onNavigate, onRequestCustom }) => 
                 </p>
               </div>
 
-              <div className="p-5 bg-white/5 border border-white/10 space-y-2">
+              <div className="p-5 bg-white/5 border border-white/10 rounded-xl space-y-2">
                 <span className="text-xs uppercase tracking-wider font-bold text-white block">
                   02 // PRIVACY COMPLIANCE
                 </span>
@@ -105,7 +105,7 @@ export const About: React.FC<AboutProps> = ({ onNavigate, onRequestCustom }) => 
                 </p>
               </div>
 
-              <div className="p-5 bg-white/5 border border-white/10 space-y-2">
+              <div className="p-5 bg-white/5 border border-white/10 rounded-xl space-y-2">
                 <span className="text-xs uppercase tracking-wider font-bold text-white block">
                   03 // JAVASCRIPT & PYTHON NODES
                 </span>
@@ -114,7 +114,7 @@ export const About: React.FC<AboutProps> = ({ onNavigate, onRequestCustom }) => 
                 </p>
               </div>
 
-              <div className="p-5 bg-white/5 border border-white/10 space-y-2">
+              <div className="p-5 bg-white/5 border border-white/10 rounded-xl space-y-2">
                 <span className="text-xs uppercase tracking-wider font-bold text-white block">
                   04 // GIT VERSION CONTROL
                 </span>
@@ -126,7 +126,7 @@ export const About: React.FC<AboutProps> = ({ onNavigate, onRequestCustom }) => 
           </div>
 
           {/* Bottom Callout */}
-          <div className="p-8 sm:p-12 bg-white border border-[#CFCFCC] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+          <div className="p-8 sm:p-12 bg-white border border-[#CFCFCC] rounded-2xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
             <div>
               <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-[#6B6B6B] block mb-1">
                 PROCESS FEASIBILITY AUDIT

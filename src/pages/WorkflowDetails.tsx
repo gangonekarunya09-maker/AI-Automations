@@ -50,7 +50,7 @@ export const WorkflowDetails: React.FC<WorkflowDetailsProps> = ({
           </p>
 
           {/* Quantified Impact Banner */}
-          <div className="p-5 bg-[#F6F5F3] border-l-4 border-[#0E0E0E] border-y border-r border-[#CFCFCC] flex items-start gap-4 max-w-2xl">
+          <div className="p-5 bg-[#F6F5F3] border-l-4 border-[#0E0E0E] border-y border-r border-[#CFCFCC] rounded-xl flex items-start gap-4 max-w-2xl">
             <Check className="w-5 h-5 text-[#0E0E0E] shrink-0 mt-0.5" />
             <div>
               <span className="text-xs uppercase tracking-[0.14em] font-bold text-[#0E0E0E] block mb-0.5">
@@ -63,7 +63,7 @@ export const WorkflowDetails: React.FC<WorkflowDetailsProps> = ({
           </div>
 
           {/* Acquisition Strip */}
-          <div className="pt-4 p-8 bg-[#0E0E0E] text-white flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 border border-[#0E0E0E]">
+          <div className="pt-4 p-8 bg-[#0E0E0E] text-white rounded-2xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 border border-[#0E0E0E]">
             <div>
               <div className="text-[10px] uppercase tracking-[0.2em] font-semibold text-neutral-400">
                 COMMERCIAL LICENSE
@@ -89,7 +89,7 @@ export const WorkflowDetails: React.FC<WorkflowDetailsProps> = ({
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 w-full sm:w-auto">
               <button
                 onClick={() => onRequestWorkflow(workflow)}
-                className="h-12 px-8 text-xs font-semibold uppercase tracking-[0.18em] text-[#0E0E0E] bg-white hover:bg-neutral-200 transition-colors flex items-center justify-center gap-2 cursor-pointer whitespace-nowrap"
+                className="h-12 px-8 rounded-xl text-xs font-semibold uppercase tracking-[0.18em] text-[#0E0E0E] bg-white hover:bg-neutral-200 transition-colors flex items-center justify-center gap-2 cursor-pointer whitespace-nowrap"
               >
                 <span>GET WORKFLOW</span>
                 <ArrowRight className="w-4 h-4" />
@@ -97,7 +97,7 @@ export const WorkflowDetails: React.FC<WorkflowDetailsProps> = ({
 
               <button
                 onClick={onRequestCustom}
-                className="h-12 px-6 text-xs font-semibold uppercase tracking-[0.18em] text-white border border-white/30 hover:border-white transition-colors flex items-center justify-center gap-2 cursor-pointer whitespace-nowrap"
+                className="h-12 px-6 rounded-xl text-xs font-semibold uppercase tracking-[0.18em] text-white border border-white/30 hover:border-white transition-colors flex items-center justify-center gap-2 cursor-pointer whitespace-nowrap"
               >
                 <span>CUSTOM SCOPE</span>
                 <ArrowUpRight className="w-3.5 h-3.5 text-neutral-400" />
@@ -121,10 +121,10 @@ export const WorkflowDetails: React.FC<WorkflowDetailsProps> = ({
             {workflow.architecture_steps.map((st) => (
               <div
                 key={st.step}
-                className="p-6 bg-white border border-[#CFCFCC] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6"
+                className="p-6 bg-white border border-[#CFCFCC] rounded-2xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6"
               >
                 <div className="flex items-start gap-5">
-                  <div className="w-10 h-10 bg-[#0E0E0E] text-white font-bold text-sm flex items-center justify-center shrink-0">
+                  <div className="w-10 h-10 bg-[#0E0E0E] text-white font-bold text-sm rounded-xl flex items-center justify-center shrink-0">
                     0{st.step}
                   </div>
                   <div>
@@ -157,7 +157,7 @@ export const WorkflowDetails: React.FC<WorkflowDetailsProps> = ({
             {workflow.technologies.map(tech => (
               <div
                 key={tech}
-                className="px-4 py-2 bg-white border border-[#CFCFCC] text-xs font-semibold text-[#0E0E0E] uppercase tracking-wider"
+                className="px-4 py-2 bg-white border border-[#CFCFCC] rounded-full text-xs font-semibold text-[#0E0E0E] uppercase tracking-wider"
               >
                 {tech}
               </div>
@@ -180,7 +180,7 @@ export const WorkflowDetails: React.FC<WorkflowDetailsProps> = ({
             {workflow.features.map((feat, idx) => (
               <div
                 key={idx}
-                className="p-5 bg-white border border-[#CFCFCC] flex items-start gap-3 text-xs text-[#0E0E0E]"
+                className="p-5 bg-white border border-[#CFCFCC] rounded-xl flex items-start gap-3 text-xs text-[#0E0E0E]"
               >
                 <Check className="w-4 h-4 text-[#0E0E0E] shrink-0 mt-0.5" />
                 <span className="leading-relaxed font-medium">{feat}</span>
@@ -201,7 +201,7 @@ export const WorkflowDetails: React.FC<WorkflowDetailsProps> = ({
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="p-6 bg-white border border-[#CFCFCC] flex flex-col justify-between">
+            <div className="p-6 bg-white border border-[#CFCFCC] rounded-2xl flex flex-col justify-between">
               <div>
                 <span className="text-xs uppercase tracking-[0.16em] font-bold text-[#0E0E0E] block mb-2">
                   MODEL A // WORKFLOW JSON
@@ -215,7 +215,7 @@ export const WorkflowDetails: React.FC<WorkflowDetailsProps> = ({
               </div>
             </div>
 
-            <div className="p-6 bg-[#0E0E0E] text-white border border-[#0E0E0E] flex flex-col justify-between">
+            <div className="p-6 bg-[#0E0E0E] text-white border border-[#0E0E0E] rounded-2xl flex flex-col justify-between">
               <div>
                 <span className="text-xs uppercase tracking-[0.16em] font-bold text-white block mb-2">
                   MODEL C // HYBRID SETUP
@@ -229,7 +229,7 @@ export const WorkflowDetails: React.FC<WorkflowDetailsProps> = ({
               </div>
             </div>
 
-            <div className="p-6 bg-white border border-[#CFCFCC] flex flex-col justify-between">
+            <div className="p-6 bg-white border border-[#CFCFCC] rounded-2xl flex flex-col justify-between">
               <div>
                 <span className="text-xs uppercase tracking-[0.16em] font-bold text-[#0E0E0E] block mb-2">
                   MODEL B // MANAGED OPS
@@ -246,7 +246,7 @@ export const WorkflowDetails: React.FC<WorkflowDetailsProps> = ({
         </div>
 
         {/* Bottom CTA */}
-        <div className="p-8 sm:p-12 bg-[#0E0E0E] text-white flex flex-col sm:flex-row items-center justify-between gap-6">
+        <div className="p-8 sm:p-12 bg-[#0E0E0E] text-white rounded-2xl flex flex-col sm:flex-row items-center justify-between gap-6">
           <div>
             <h3 className="text-xl sm:text-2xl font-bold uppercase tracking-tight text-white mb-1">
               READY TO DEPLOY THIS BLUEPRINT?
@@ -258,7 +258,7 @@ export const WorkflowDetails: React.FC<WorkflowDetailsProps> = ({
 
           <button
             onClick={() => onRequestWorkflow(workflow)}
-            className="h-12 px-8 text-xs font-semibold uppercase tracking-[0.18em] text-[#0E0E0E] bg-white hover:bg-neutral-200 transition-colors cursor-pointer whitespace-nowrap"
+            className="h-12 px-8 rounded-xl text-xs font-semibold uppercase tracking-[0.18em] text-[#0E0E0E] bg-white hover:bg-neutral-200 transition-colors cursor-pointer whitespace-nowrap"
           >
             REQUEST WORKFLOW NOW
           </button>

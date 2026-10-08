@@ -148,22 +148,22 @@ export const Home: React.FC<HomeProps> = ({
               OFFLO
             </h1>
 
-            {/* Sharp Architectural Schematic Cutout sitting over the wordmark */}
-            <div className="mt-4 sm:-mt-8 lg:-mt-12 bg-[#0E0E0E] text-white p-5 sm:p-7 max-w-2xl border border-[#0E0E0E]">
+            {/* Architectural Schematic Cutout sitting over the wordmark */}
+            <div className="mt-4 sm:-mt-8 lg:-mt-12 bg-[#0E0E0E] text-white p-5 sm:p-7 max-w-2xl border border-[#0E0E0E] rounded-2xl">
               <div className="flex items-center justify-between text-[10px] uppercase tracking-[0.2em] font-semibold text-neutral-400 mb-3 pb-2 border-b border-white/15">
                 <span>RUNTIME SCHEMA // PIPELINE V1.4</span>
                 <span className="text-white">● ACTIVE CLUSTER</span>
               </div>
               <div className="grid grid-cols-3 gap-2 text-center text-xs">
-                <div className="bg-white/10 p-2.5">
+                <div className="bg-white/10 p-2.5 rounded-xl">
                   <span className="text-[9px] uppercase tracking-[0.16em] text-neutral-400 block mb-0.5">INPUT</span>
                   <span className="font-bold text-white text-[11px]">WEBHOOK / OCR</span>
                 </div>
-                <div className="bg-white/10 p-2.5">
+                <div className="bg-white/10 p-2.5 rounded-xl">
                   <span className="text-[9px] uppercase tracking-[0.16em] text-neutral-400 block mb-0.5">LOGIC</span>
                   <span className="font-bold text-white text-[11px]">LLM + N8N ENGINE</span>
                 </div>
-                <div className="bg-white/10 p-2.5">
+                <div className="bg-white/10 p-2.5 rounded-xl">
                   <span className="text-[9px] uppercase tracking-[0.16em] text-neutral-400 block mb-0.5">TARGET</span>
                   <span className="font-bold text-white text-[11px]">CRM / ERP SYNC</span>
                 </div>
@@ -215,13 +215,13 @@ export const Home: React.FC<HomeProps> = ({
             01 // CORE AUTOMATION CAPABILITIES
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-12 divide-y md:divide-y-0 md:divide-x divide-white/15">
-            {categories.map((cat, idx) => {
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+            {categories.map((cat) => {
               const Icon = cat.icon;
               return (
-                <div key={cat.id} className={`${idx !== 0 ? 'pt-8 md:pt-0 md:pl-10' : ''} flex gap-5 items-start`}>
-                  {/* Small square thumbnail on the left */}
-                  <div className="w-14 h-14 bg-white/10 flex items-center justify-center shrink-0 border border-white/15">
+                <div key={cat.id} className="p-6 rounded-2xl bg-white/[0.04] border border-white/10 hover:border-white/25 transition-all flex gap-5 items-start">
+                  {/* Small rounded thumbnail on the left */}
+                  <div className="w-14 h-14 bg-white/10 rounded-xl flex items-center justify-center shrink-0 border border-white/15">
                     <Icon className="w-6 h-6 text-white" strokeWidth={1.5} />
                   </div>
 
@@ -292,26 +292,26 @@ export const Home: React.FC<HomeProps> = ({
           </div>
 
           {/* Right: Technical process diagram / high-contrast blueprint */}
-          <div className="lg:col-span-5 bg-[#0E0E0E] text-white p-7 sm:p-9 border border-[#0E0E0E] space-y-5">
+          <div className="lg:col-span-5 bg-[#0E0E0E] text-white p-7 sm:p-9 border border-[#0E0E0E] rounded-2xl space-y-5">
             <div className="flex items-center justify-between text-[10px] uppercase tracking-[0.2em] font-bold text-neutral-400 pb-3 border-b border-white/15">
               <span>ARCHITECTURE SPEC</span>
               <span>GUARANTEED 99.9% UPTIME</span>
             </div>
 
             <div className="space-y-3 text-xs">
-              <div className="flex items-center justify-between p-3 bg-white/5 border border-white/10">
+              <div className="flex items-center justify-between p-3 bg-white/5 border border-white/10 rounded-xl">
                 <span className="text-neutral-400 uppercase tracking-wider text-[10px]">INGESTION LATENCY</span>
                 <span className="font-bold text-white">&lt; 350ms</span>
               </div>
-              <div className="flex items-center justify-between p-3 bg-white/5 border border-white/10">
+              <div className="flex items-center justify-between p-3 bg-white/5 border border-white/10 rounded-xl">
                 <span className="text-neutral-400 uppercase tracking-wider text-[10px]">DATA STORAGE</span>
                 <span className="font-bold text-white">SUPABASE POSTGRESQL</span>
               </div>
-              <div className="flex items-center justify-between p-3 bg-white/5 border border-white/10">
+              <div className="flex items-center justify-between p-3 bg-white/5 border border-white/10 rounded-xl">
                 <span className="text-neutral-400 uppercase tracking-wider text-[10px]">AUTH & SIGNATURE</span>
                 <span className="font-bold text-white">HMAC SHA-256</span>
               </div>
-              <div className="flex items-center justify-between p-3 bg-white/5 border border-white/10">
+              <div className="flex items-center justify-between p-3 bg-white/5 border border-white/10 rounded-xl">
                 <span className="text-neutral-400 uppercase tracking-wider text-[10px]">CODE HANDOVER</span>
                 <span className="font-bold text-white">100% UNRESTRICTED JSON</span>
               </div>
@@ -326,15 +326,15 @@ export const Home: React.FC<HomeProps> = ({
       </section>
 
       {/* ========================================================================= */}
-      {/* 4. TRUST / BENEFITS STRIP: Soft gray background, 4 equal items in a row */}
+      {/* 4. TRUST / BENEFITS STRIP: Soft gray background, 4 rounded item boxes */}
       {/* ========================================================================= */}
       <section className="w-full bg-[#E4E3E0] py-14 px-4 sm:px-8 border-b border-[#CFCFCC]">
-        <div className="w-full max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10">
+        <div className="w-full max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {benefits.map((b, idx) => {
             const Icon = b.icon;
             return (
-              <div key={idx} className="flex items-start gap-4">
-                <div className="p-2.5 bg-[#0E0E0E] text-white shrink-0">
+              <div key={idx} className="p-5 rounded-2xl bg-white border border-[#CFCFCC] flex items-start gap-4">
+                <div className="p-2.5 bg-[#0E0E0E] text-white shrink-0 rounded-xl">
                   <Icon className="w-5 h-5" strokeWidth={1.5} />
                 </div>
                 <div>
@@ -416,7 +416,7 @@ export const Home: React.FC<HomeProps> = ({
             </p>
           </div>
 
-          <div className="bg-[#FFFFFF] border border-[#CFCFCC] p-4 sm:p-8">
+          <div className="bg-[#FFFFFF] border border-[#CFCFCC] p-4 sm:p-8 rounded-2xl">
             <InteractiveFlowVisualizer />
           </div>
         </div>
@@ -440,13 +440,13 @@ export const Home: React.FC<HomeProps> = ({
             {bottlenecks.map((item, idx) => {
               const Icon = item.icon;
               return (
-                <div key={idx} className="bg-[#FFFFFF] p-6 border border-[#CFCFCC] flex flex-col justify-between">
+                <div key={idx} className="bg-[#FFFFFF] p-6 border border-[#CFCFCC] rounded-2xl flex flex-col justify-between hover:border-[#0E0E0E] transition-all">
                   <div>
                     <div className="flex items-center justify-between mb-4">
-                      <div className="p-2 bg-[#F6F5F3] text-[#0E0E0E]">
+                      <div className="p-2 bg-[#F6F5F3] text-[#0E0E0E] rounded-xl">
                         <Icon className="w-5 h-5" strokeWidth={1.5} />
                       </div>
-                      <span className="text-[10px] uppercase tracking-[0.16em] font-bold text-[#0E0E0E] bg-[#E4E3E0] px-2 py-0.5">
+                      <span className="text-[10px] uppercase tracking-[0.16em] font-bold text-[#0E0E0E] bg-[#E4E3E0] px-2.5 py-1 rounded-full">
                         {item.loss}
                       </span>
                     </div>
@@ -475,7 +475,7 @@ export const Home: React.FC<HomeProps> = ({
       </section>
 
       {/* ========================================================================= */}
-      {/* 8. 5-STEP METHODOLOGY: Sharp horizontal cards with hairlines */}
+      {/* 8. 5-STEP METHODOLOGY: Rounded horizontal cards */}
       {/* ========================================================================= */}
       <section className="w-full bg-[#E4E3E0] py-20 sm:py-28 px-4 sm:px-8 border-b border-[#CFCFCC]">
         <div className="w-full max-w-7xl mx-auto">
@@ -497,7 +497,7 @@ export const Home: React.FC<HomeProps> = ({
             {steps.map((st) => (
               <div
                 key={st.number}
-                className="bg-[#FFFFFF] border border-[#CFCFCC] p-6 sm:p-8 flex flex-col sm:flex-row sm:items-center justify-between gap-6"
+                className="bg-[#FFFFFF] border border-[#CFCFCC] p-6 sm:p-8 rounded-2xl flex flex-col sm:flex-row sm:items-center justify-between gap-6 hover:border-[#0E0E0E] transition-all"
               >
                 <div className="flex items-start sm:items-center gap-6">
                   <span className="text-2xl sm:text-4xl font-black text-[#0E0E0E] tracking-tight shrink-0 font-mono">
@@ -514,7 +514,7 @@ export const Home: React.FC<HomeProps> = ({
                 </div>
 
                 <div className="sm:shrink-0">
-                  <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-[#0E0E0E] px-3 py-1 bg-[#F6F5F3] border border-[#CFCFCC]">
+                  <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-[#0E0E0E] px-3 py-1 bg-[#F6F5F3] border border-[#CFCFCC] rounded-full">
                     CERTIFIED
                   </span>
                 </div>
@@ -523,7 +523,7 @@ export const Home: React.FC<HomeProps> = ({
           </div>
 
           {/* Bottom Callout in Home */}
-          <div className="mt-16 bg-[#0E0E0E] text-white p-8 sm:p-14 flex flex-col lg:flex-row items-center justify-between gap-8 text-center lg:text-left">
+          <div className="mt-16 bg-[#0E0E0E] text-white p-8 sm:p-14 rounded-3xl flex flex-col lg:flex-row items-center justify-between gap-8 text-center lg:text-left">
             <div>
               <span className="text-[10px] uppercase tracking-[0.24em] font-bold text-neutral-400 block mb-2">
                 READY TO SCALE YOUR CAPACITY?
@@ -539,13 +539,13 @@ export const Home: React.FC<HomeProps> = ({
             <div className="flex flex-wrap gap-4 justify-center">
               <button
                 onClick={onRequestCustom}
-                className="h-12 px-8 text-xs font-semibold uppercase tracking-[0.18em] text-[#0E0E0E] bg-white hover:bg-neutral-200 transition-colors cursor-pointer"
+                className="h-12 px-8 rounded-xl text-xs font-semibold uppercase tracking-[0.18em] text-[#0E0E0E] bg-white hover:bg-neutral-200 transition-colors cursor-pointer"
               >
                 <span>REQUEST CUSTOM SCOPE</span>
               </button>
               <button
                 onClick={() => onNavigate('/workflows')}
-                className="h-12 px-6 text-xs font-semibold uppercase tracking-[0.18em] text-white border border-white/30 hover:border-white transition-colors cursor-pointer"
+                className="h-12 px-6 rounded-xl text-xs font-semibold uppercase tracking-[0.18em] text-white border border-white/30 hover:border-white transition-colors cursor-pointer"
               >
                 <span>BROWSE WORKFLOWS</span>
               </button>
