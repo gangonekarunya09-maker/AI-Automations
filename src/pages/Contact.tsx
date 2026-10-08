@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Check, Send, Phone, Mail } from 'lucide-react';
+import { Check, Send, Phone, Mail, ArrowRight } from 'lucide-react';
 import { Storage } from '../lib/storage';
 import { dispatchWebhook } from '../lib/webhook';
 
@@ -100,289 +100,301 @@ export const Contact: React.FC<ContactProps> = ({ onSuccess }) => {
   };
 
   return (
-    <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-14 lg:py-20 space-y-14">
-      <div className="max-w-2xl space-y-3">
-        <div className="text-[11px] font-mono text-[#2e4ff4] uppercase tracking-[0.2em] font-semibold">
-          Direct Lead Scoping
+    <div className="w-full bg-[#E4E3E0] min-h-screen">
+      {/* Header Banner */}
+      <section className="w-full px-4 sm:px-8 py-16 sm:py-24 border-b border-[#CFCFCC]">
+        <div className="max-w-7xl mx-auto">
+          <span className="text-[10px] uppercase tracking-[0.24em] font-bold text-[#6B6B6B] block mb-2">
+            CONSULTATION & SCOPING // 24-HOUR TURNAROUND
+          </span>
+          <h1 className="text-4xl sm:text-6xl md:text-7xl font-extrabold uppercase tracking-tight text-[#0E0E0E] leading-none">
+            SUBMIT BOTTLENECK
+          </h1>
+          <p className="text-xs sm:text-sm text-[#6B6B6B] mt-4 max-w-xl leading-relaxed">
+            Outline the repetitive tasks your team performs manually. Our automation architects will evaluate your stack and deliver a proposed data contract with feasibility metrics.
+          </p>
         </div>
-        <h1 className="text-4xl sm:text-6xl lg:text-7xl font-serif font-semibold text-[#1a1a1a] tracking-tight leading-[0.95]">
-          Request An Automation
-        </h1>
-        <p className="text-neutral-600 text-sm sm:text-base leading-relaxed">
-          Tell us what you or your team are doing manually. Our automation engineers will review your software stack and propose an n8n architecture within 24 hours.
-        </p>
-      </div>
+      </section>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        {/* Main Lead Form */}
-        <div className="lg:col-span-2 p-6 sm:p-8 border border-[#e4e4df] bg-white shadow-sm">
-          {submitted ? (
-            <div className="py-12 text-center space-y-4">
-              <div className="w-12 h-12 bg-[#1a1a1a] text-white flex items-center justify-center mx-auto mb-2">
-                <Check className="w-6 h-6 stroke-[2.5]" />
-              </div>
-              <h2 className="text-3xl font-serif font-semibold text-[#1a1a1a]">
-                Automation Requirement Logged
-              </h2>
-              <p className="text-neutral-600 text-xs sm:text-sm max-w-md mx-auto leading-relaxed">
-                Thank you, <span className="text-[#1a1a1a] font-semibold">{formData.name}</span>. Your requirement has been captured in our operations database and sent to our n8n automation pipeline.
-              </p>
-              <div className="p-4 bg-[#f4f4f0] border border-[#e4e4df] text-left text-xs text-neutral-700 space-y-2 max-w-md mx-auto">
-                <div className="font-mono uppercase tracking-wider text-[11px] text-[#1a1a1a] font-semibold">What Happens Next:</div>
-                <div className="flex items-center gap-2 text-neutral-600">
-                  <span className="w-1.5 h-1.5 bg-[#2e4ff4] shrink-0"></span>
-                  <span>We map your data contract and verify tool API accessibility.</span>
+      {/* Form & Sidebar Area */}
+      <section className="w-full px-4 sm:px-8 py-16 sm:py-24 bg-[#E4E3E0]">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
+          {/* Main Form */}
+          <div className="lg:col-span-8 p-8 sm:p-12 bg-white border border-[#CFCFCC]">
+            {submitted ? (
+              <div className="py-12 text-center space-y-6">
+                <div className="w-16 h-16 bg-[#0E0E0E] text-white flex items-center justify-center mx-auto mb-2">
+                  <Check className="w-8 h-8 stroke-[2.5]" />
                 </div>
-                <div className="flex items-center gap-2 text-neutral-600">
-                  <span className="w-1.5 h-1.5 bg-[#2e4ff4] shrink-0"></span>
-                  <span>We reply with a structured scope, fixed quote, and feasibility timeline.</span>
-                </div>
-              </div>
-              <div className="pt-4">
-                <button
-                  onClick={() => {
-                    setSubmitted(false);
-                    setFormData({
-                      name: '',
-                      company: '',
-                      email: '',
-                      phone: '',
-                      automation_title: '',
-                      process_description: '',
-                      frequency: 'Daily',
-                      budget: '₹15,000–₹50,000',
-                      additional_notes: ''
-                    });
-                  }}
-                  className="px-6 py-2.5 text-xs font-mono font-semibold uppercase tracking-wider text-white bg-[#1a1a1a] hover:bg-[#2e4ff4] transition-colors cursor-pointer shadow-sm"
-                >
-                  Submit Another Requirement
-                </button>
-              </div>
-            </div>
-          ) : (
-            <form onSubmit={handleSubmit} className="space-y-5">
-              {errorMessage && (
-                <div className="p-3 bg-red-50 border border-red-200 text-red-600 text-xs font-mono">
-                  {errorMessage}
-                </div>
-              )}
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-[11px] font-mono uppercase tracking-wider text-[#1a1a1a] font-semibold mb-1">
-                    Your Name *
-                  </label>
-                  <input
-                    type="text"
-                    required
-                    value={formData.name}
-                    onChange={e => setFormData({ ...formData, name: e.target.value })}
-                    placeholder="e.g. Rahul Verma"
-                    className="w-full px-3.5 py-2.5 bg-white border border-[#e4e4df] text-[#1a1a1a] text-xs sm:text-sm focus:border-[#1a1a1a] focus:outline-none transition-colors"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-[11px] font-mono uppercase tracking-wider text-[#1a1a1a] font-semibold mb-1">
-                    Company / Organization
-                  </label>
-                  <input
-                    type="text"
-                    value={formData.company}
-                    onChange={e => setFormData({ ...formData, company: e.target.value })}
-                    placeholder="e.g. Zenith Media Ltd"
-                    className="w-full px-3.5 py-2.5 bg-white border border-[#e4e4df] text-[#1a1a1a] text-xs sm:text-sm focus:border-[#1a1a1a] focus:outline-none transition-colors"
-                  />
-                </div>
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-[11px] font-mono uppercase tracking-wider text-[#1a1a1a] font-semibold mb-1">
-                    Work Email *
-                  </label>
-                  <input
-                    type="email"
-                    required
-                    value={formData.email}
-                    onChange={e => setFormData({ ...formData, email: e.target.value })}
-                    placeholder="rahul@zenithmedia.com"
-                    className="w-full px-3.5 py-2.5 bg-white border border-[#e4e4df] text-[#1a1a1a] text-xs sm:text-sm focus:border-[#1a1a1a] focus:outline-none transition-colors"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-[11px] font-mono uppercase tracking-wider text-[#1a1a1a] font-semibold mb-1">
-                    Phone / WhatsApp Number
-                  </label>
-                  <input
-                    type="tel"
-                    value={formData.phone}
-                    onChange={e => setFormData({ ...formData, phone: e.target.value })}
-                    placeholder="+91 98200 12345"
-                    className="w-full px-3.5 py-2.5 bg-white border border-[#e4e4df] text-[#1a1a1a] text-xs sm:text-sm focus:border-[#1a1a1a] focus:outline-none transition-colors"
-                  />
-                </div>
-              </div>
-
-              <div>
-                <label className="block text-[11px] font-mono uppercase tracking-wider text-[#1a1a1a] font-semibold mb-1">
-                  What do you want to automate? (Short title)
-                </label>
-                <input
-                  type="text"
-                  value={formData.automation_title}
-                  onChange={e => setFormData({ ...formData, automation_title: e.target.value })}
-                  placeholder="e.g. Sync WhatsApp lead messages directly to HubSpot CRM and send welcome email"
-                  className="w-full px-3.5 py-2.5 bg-white border border-[#e4e4df] text-[#1a1a1a] text-xs sm:text-sm focus:border-[#1a1a1a] focus:outline-none transition-colors"
-                />
-              </div>
-
-              <div>
-                <label className="block text-[11px] font-mono uppercase tracking-wider text-[#1a1a1a] font-semibold mb-1">
-                  Current Process Description *
-                </label>
-                <textarea
-                  required
-                  rows={4}
-                  value={formData.process_description}
-                  onChange={e => setFormData({ ...formData, process_description: e.target.value })}
-                  placeholder="Describe what a human does right now step-by-step: Where does data originate? What tools do you open? What do you type or copy? Where does it end up?"
-                  className="w-full px-3.5 py-2.5 bg-white border border-[#e4e4df] text-[#1a1a1a] text-xs sm:text-sm focus:border-[#1a1a1a] focus:outline-none transition-colors resize-none"
-                />
-              </div>
-
-              {/* Tools multi-select */}
-              <div>
-                <label className="block text-[11px] font-mono uppercase tracking-wider text-[#1a1a1a] font-semibold mb-2">
-                  Tools & Platforms Currently In Use:
-                </label>
-                <div className="flex flex-wrap gap-1.5">
-                  {COMMON_TOOLS.map(tool => {
-                    const isSelected = selectedTools.includes(tool);
-                    return (
-                      <button
-                        type="button"
-                        key={tool}
-                        onClick={() => toggleTool(tool)}
-                        className={`px-3 py-1.5 text-xs font-mono transition-all cursor-pointer ${
-                          isSelected
-                            ? 'bg-[#1a1a1a] text-white font-semibold shadow-sm'
-                            : 'bg-white text-neutral-600 hover:text-black border border-[#e4e4df] hover:border-black'
-                        }`}
-                      >
-                        {tool}
-                      </button>
-                    );
-                  })}
-                </div>
-              </div>
-
-              {/* Frequency and Budget */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-[11px] font-mono uppercase tracking-wider text-[#1a1a1a] font-semibold mb-1">
-                    Frequency of Execution
-                  </label>
-                  <select
-                    value={formData.frequency}
-                    onChange={e => setFormData({ ...formData, frequency: e.target.value })}
-                    className="w-full px-3.5 py-2.5 bg-white border border-[#e4e4df] text-[#1a1a1a] text-xs sm:text-sm focus:border-[#1a1a1a] focus:outline-none cursor-pointer font-mono"
-                  >
-                    <option value="Multiple times per day">Multiple times per day</option>
-                    <option value="Daily">Daily</option>
-                    <option value="Weekly">Weekly</option>
-                    <option value="Monthly">Monthly</option>
-                    <option value="Other">Other</option>
-                  </select>
-                </div>
-
-                <div>
-                  <label className="block text-[11px] font-mono uppercase tracking-wider text-[#1a1a1a] font-semibold mb-1">
-                    Estimated Budget Allocation
-                  </label>
-                  <select
-                    value={formData.budget}
-                    onChange={e => setFormData({ ...formData, budget: e.target.value })}
-                    className="w-full px-3.5 py-2.5 bg-white border border-[#e4e4df] text-[#1a1a1a] text-xs sm:text-sm focus:border-[#1a1a1a] focus:outline-none cursor-pointer font-mono"
-                  >
-                    <option value="Below ₹5,000">Below ₹5,000</option>
-                    <option value="₹5,000–₹15,000">₹5,000–₹15,000</option>
-                    <option value="₹15,000–₹50,000">₹15,000–₹50,000</option>
-                    <option value="₹50,000+">₹50,000+</option>
-                  </select>
-                </div>
-              </div>
-
-              <div>
-                <label className="block text-[11px] font-mono uppercase tracking-wider text-[#1a1a1a] font-semibold mb-1">
-                  Additional Information (Optional)
-                </label>
-                <textarea
-                  rows={2}
-                  value={formData.additional_notes}
-                  onChange={e => setFormData({ ...formData, additional_notes: e.target.value })}
-                  placeholder="Any specific API constraints, hosting preferences (self-hosted vs managed), or expected deadline."
-                  className="w-full px-3.5 py-2.5 bg-white border border-[#e4e4df] text-[#1a1a1a] text-xs sm:text-sm focus:border-[#1a1a1a] focus:outline-none transition-colors resize-none"
-                />
-              </div>
-
-              <div className="pt-2">
-                <button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="w-full py-3.5 px-4 text-xs sm:text-sm font-mono font-semibold uppercase tracking-wider text-white bg-[#1a1a1a] hover:bg-[#2e4ff4] transition-all flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50 active:scale-[0.98] shadow-sm"
-                >
-                  <Send className="w-4 h-4" />
-                  <span>{isSubmitting ? 'Transmitting to Automation Pipeline...' : 'Submit Automation Request'}</span>
-                </button>
-                <p className="text-[11px] text-neutral-500 text-center mt-2 font-mono">
-                  Guaranteed confidential review · Non-disclosure compliance · 24h turnaround
+                <h2 className="text-2xl sm:text-3xl font-extrabold uppercase tracking-tight text-[#0E0E0E]">
+                  REQUIREMENT LOGGED
+                </h2>
+                <p className="text-xs sm:text-sm text-[#6B6B6B] max-w-md mx-auto leading-relaxed">
+                  Thank you, <span className="text-[#0E0E0E] font-bold">{formData.name}</span>. Your operational requirements have been securely recorded and dispatched to our architecture pipeline.
                 </p>
+                <div className="p-5 bg-[#F6F5F3] border border-[#CFCFCC] text-left text-xs text-[#0E0E0E] space-y-2.5 max-w-md mx-auto">
+                  <div className="uppercase tracking-[0.16em] text-[10px] font-bold text-[#0E0E0E]">Next Steps:</div>
+                  <div className="flex items-center gap-2 text-[#6B6B6B]">
+                    <span className="w-1.5 h-1.5 bg-[#0E0E0E] shrink-0"></span>
+                    <span>Systems team maps data contracts & tool API endpoints.</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-[#6B6B6B]">
+                    <span className="w-1.5 h-1.5 bg-[#0E0E0E] shrink-0"></span>
+                    <span>You receive fixed scope, architecture diagram, and timeline.</span>
+                  </div>
+                </div>
+                <div className="pt-4">
+                  <button
+                    onClick={() => {
+                      setSubmitted(false);
+                      setFormData({
+                        name: '',
+                        company: '',
+                        email: '',
+                        phone: '',
+                        automation_title: '',
+                        process_description: '',
+                        frequency: 'Daily',
+                        budget: '₹15,000–₹50,000',
+                        additional_notes: ''
+                      });
+                    }}
+                    className="btn-primary"
+                  >
+                    Submit Another Requirement
+                  </button>
+                </div>
               </div>
-            </form>
-          )}
-        </div>
+            ) : (
+              <form onSubmit={handleSubmit} className="space-y-6">
+                {errorMessage && (
+                  <div className="p-4 bg-[#F6F5F3] border-l-4 border-[#0E0E0E] text-[#0E0E0E] text-xs font-semibold">
+                    {errorMessage}
+                  </div>
+                )}
 
-        {/* Sidebar Trust & Protocol Details */}
-        <div className="space-y-6">
-          <div className="p-6 sm:p-7 border border-[#e4e4df] bg-[#f4f4f0] space-y-4 shadow-sm">
-            <h3 className="text-xl font-serif font-semibold text-[#1a1a1a]">
-              What Happens After Submission?
-            </h3>
-            <ul className="space-y-3.5 text-xs text-neutral-600">
-              <li className="flex items-start gap-2.5">
-                <span className="text-[#2e4ff4] font-mono font-bold shrink-0">01.</span>
-                <span>Our lead systems architect reviews your software stack and webhook feasibility.</span>
-              </li>
-              <li className="flex items-start gap-2.5">
-                <span className="text-[#2e4ff4] font-mono font-bold shrink-0">02.</span>
-                <span>We draft a proposed data-flow diagram showing triggers, logic nodes, and fail-safes.</span>
-              </li>
-              <li className="flex items-start gap-2.5">
-                <span className="text-[#2e4ff4] font-mono font-bold shrink-0">03.</span>
-                <span>You receive a fixed-price proposal with no open-ended hourly billing.</span>
-              </li>
-            </ul>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  <div>
+                    <label className="block text-[10px] uppercase tracking-[0.18em] font-bold text-[#0E0E0E] mb-2">
+                      Full Name *
+                    </label>
+                    <input
+                      type="text"
+                      required
+                      value={formData.name}
+                      onChange={e => setFormData({ ...formData, name: e.target.value })}
+                      placeholder="e.g. Rahul Verma"
+                      className="w-full px-4 py-3 bg-white border border-[#CFCFCC] text-xs text-[#0E0E0E] placeholder-[#6B6B6B] focus:border-[#0E0E0E] focus:outline-none transition-colors"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-[10px] uppercase tracking-[0.18em] font-bold text-[#0E0E0E] mb-2">
+                      Company / Organization
+                    </label>
+                    <input
+                      type="text"
+                      value={formData.company}
+                      onChange={e => setFormData({ ...formData, company: e.target.value })}
+                      placeholder="e.g. Zenith Media Ltd"
+                      className="w-full px-4 py-3 bg-white border border-[#CFCFCC] text-xs text-[#0E0E0E] placeholder-[#6B6B6B] focus:border-[#0E0E0E] focus:outline-none transition-colors"
+                    />
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  <div>
+                    <label className="block text-[10px] uppercase tracking-[0.18em] font-bold text-[#0E0E0E] mb-2">
+                      Work Email *
+                    </label>
+                    <input
+                      type="email"
+                      required
+                      value={formData.email}
+                      onChange={e => setFormData({ ...formData, email: e.target.value })}
+                      placeholder="rahul@zenithmedia.com"
+                      className="w-full px-4 py-3 bg-white border border-[#CFCFCC] text-xs text-[#0E0E0E] placeholder-[#6B6B6B] focus:border-[#0E0E0E] focus:outline-none transition-colors"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-[10px] uppercase tracking-[0.18em] font-bold text-[#0E0E0E] mb-2">
+                      Phone / WhatsApp Number
+                    </label>
+                    <input
+                      type="tel"
+                      value={formData.phone}
+                      onChange={e => setFormData({ ...formData, phone: e.target.value })}
+                      placeholder="+91 98200 12345"
+                      className="w-full px-4 py-3 bg-white border border-[#CFCFCC] text-xs text-[#0E0E0E] placeholder-[#6B6B6B] focus:border-[#0E0E0E] focus:outline-none transition-colors"
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <label className="block text-[10px] uppercase tracking-[0.18em] font-bold text-[#0E0E0E] mb-2">
+                    Automation Objective / Working Title
+                  </label>
+                  <input
+                    type="text"
+                    value={formData.automation_title}
+                    onChange={e => setFormData({ ...formData, automation_title: e.target.value })}
+                    placeholder="e.g. WhatsApp Inbound Lead Sync to HubSpot & AI Email Dispatch"
+                    className="w-full px-4 py-3 bg-white border border-[#CFCFCC] text-xs text-[#0E0E0E] placeholder-[#6B6B6B] focus:border-[#0E0E0E] focus:outline-none transition-colors"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-[10px] uppercase tracking-[0.18em] font-bold text-[#0E0E0E] mb-2">
+                    Current Process Description *
+                  </label>
+                  <textarea
+                    required
+                    rows={4}
+                    value={formData.process_description}
+                    onChange={e => setFormData({ ...formData, process_description: e.target.value })}
+                    placeholder="Describe what a human does right now step-by-step: Where does data originate? What tools do you open? What do you type or copy? Where does it end up?"
+                    className="w-full px-4 py-3 bg-white border border-[#CFCFCC] text-xs text-[#0E0E0E] placeholder-[#6B6B6B] focus:border-[#0E0E0E] focus:outline-none transition-colors resize-none"
+                  />
+                </div>
+
+                {/* Tools multi-select */}
+                <div>
+                  <label className="block text-[10px] uppercase tracking-[0.18em] font-bold text-[#0E0E0E] mb-2">
+                    Tools & Platforms Currently In Use:
+                  </label>
+                  <div className="flex flex-wrap gap-2">
+                    {COMMON_TOOLS.map(tool => {
+                      const isSelected = selectedTools.includes(tool);
+                      return (
+                        <button
+                          type="button"
+                          key={tool}
+                          onClick={() => toggleTool(tool)}
+                          className={`px-3.5 py-1.5 text-xs uppercase tracking-wider font-semibold transition-colors cursor-pointer ${
+                            isSelected
+                              ? 'bg-[#0E0E0E] text-white'
+                              : 'bg-[#F6F5F3] text-[#6B6B6B] hover:text-[#0E0E0E] border border-[#CFCFCC]'
+                          }`}
+                        >
+                          {tool}
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+
+                {/* Frequency and Budget */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  <div>
+                    <label className="block text-[10px] uppercase tracking-[0.18em] font-bold text-[#0E0E0E] mb-2">
+                      Frequency of Execution
+                    </label>
+                    <select
+                      value={formData.frequency}
+                      onChange={e => setFormData({ ...formData, frequency: e.target.value })}
+                      className="w-full px-4 py-3 bg-white border border-[#CFCFCC] text-xs text-[#0E0E0E] focus:border-[#0E0E0E] focus:outline-none cursor-pointer"
+                    >
+                      <option value="Multiple times per day">Multiple times per day</option>
+                      <option value="Daily">Daily</option>
+                      <option value="Weekly">Weekly</option>
+                      <option value="Monthly">Monthly</option>
+                      <option value="Other">Other</option>
+                    </select>
+                  </div>
+
+                  <div>
+                    <label className="block text-[10px] uppercase tracking-[0.18em] font-bold text-[#0E0E0E] mb-2">
+                      Estimated Budget Allocation
+                    </label>
+                    <select
+                      value={formData.budget}
+                      onChange={e => setFormData({ ...formData, budget: e.target.value })}
+                      className="w-full px-4 py-3 bg-white border border-[#CFCFCC] text-xs text-[#0E0E0E] focus:border-[#0E0E0E] focus:outline-none cursor-pointer"
+                    >
+                      <option value="Below ₹5,000">Below ₹5,000</option>
+                      <option value="₹5,000–₹15,000">₹5,000–₹15,000</option>
+                      <option value="₹15,000–₹50,000">₹15,000–₹50,000</option>
+                      <option value="₹50,000+">₹50,000+</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div>
+                  <label className="block text-[10px] uppercase tracking-[0.18em] font-bold text-[#0E0E0E] mb-2">
+                    Additional Information (Optional)
+                  </label>
+                  <textarea
+                    rows={2}
+                    value={formData.additional_notes}
+                    onChange={e => setFormData({ ...formData, additional_notes: e.target.value })}
+                    placeholder="API constraints, hosting preferences (self-hosted vs managed), or expected launch date."
+                    className="w-full px-4 py-3 bg-white border border-[#CFCFCC] text-xs text-[#0E0E0E] placeholder-[#6B6B6B] focus:border-[#0E0E0E] focus:outline-none transition-colors resize-none"
+                  />
+                </div>
+
+                <div className="pt-4">
+                  <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="w-full btn-primary h-12"
+                  >
+                    <Send className="w-4 h-4 mr-2" />
+                    <span>{isSubmitting ? 'TRANSMITTING TO PIPELINE...' : 'SUBMIT AUTOMATION REQUEST'}</span>
+                  </button>
+                  <p className="text-[10px] uppercase tracking-[0.16em] text-[#6B6B6B] text-center mt-3 font-semibold">
+                    Confidential audit · Non-disclosure protection · 24h turnaround
+                  </p>
+                </div>
+              </form>
+            )}
           </div>
 
-          <div className="p-6 sm:p-7 border border-[#e4e4df] bg-white space-y-3.5 text-xs text-neutral-600 shadow-sm">
-            <h4 className="font-serif font-semibold text-base text-[#1a1a1a]">Direct Engineering Contact</h4>
-            <div className="flex items-center gap-2 text-neutral-700">
-              <Mail className="w-3.5 h-3.5 text-[#2e4ff4] shrink-0" />
-              <span>ops@offlo.ai</span>
+          {/* Sidebar */}
+          <div className="lg:col-span-4 space-y-8">
+            <div className="p-8 bg-white border border-[#CFCFCC] space-y-4">
+              <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-[#6B6B6B] block">
+                WHAT TO EXPECT
+              </span>
+              <h3 className="text-lg font-bold uppercase tracking-tight text-[#0E0E0E]">
+                EVALUATION PROTOCOL
+              </h3>
+              <ul className="space-y-4 text-xs text-[#6B6B6B] pt-2">
+                <li className="flex items-start gap-3">
+                  <span className="text-xs font-bold text-[#0E0E0E] shrink-0 font-mono">01.</span>
+                  <span>Systems architect audits tool API accessibility and authentication models.</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-xs font-bold text-[#0E0E0E] shrink-0 font-mono">02.</span>
+                  <span>We map a structured execution graph showing nodes, error traps, and fallbacks.</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-xs font-bold text-[#0E0E0E] shrink-0 font-mono">03.</span>
+                  <span>You receive a fixed milestone proposal with zero surprise hourly overages.</span>
+                </li>
+              </ul>
             </div>
-            <div className="flex items-center gap-2 text-neutral-700">
-              <Phone className="w-3.5 h-3.5 text-[#2e4ff4] shrink-0" />
-              <span>+91 98200 12345 (WhatsApp Available)</span>
-            </div>
-            <div className="pt-2 text-neutral-400 text-[11px] font-mono">
-              Response SLA: Sub-2 hours on business days (IST / UTC+5:30).
+
+            <div className="p-8 bg-[#0E0E0E] text-white border border-[#0E0E0E] space-y-4 text-xs">
+              <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-neutral-400 block">
+                DIRECT INTAKE
+              </span>
+              <h4 className="text-base font-bold uppercase tracking-tight text-white">Operations Desk</h4>
+              <div className="flex items-center gap-2.5 text-neutral-300">
+                <Mail className="w-4 h-4 text-white shrink-0" />
+                <span>ops@offlo.ai</span>
+              </div>
+              <div className="flex items-center gap-2.5 text-neutral-300">
+                <Phone className="w-4 h-4 text-white shrink-0" />
+                <span>+91 98200 12345 (WhatsApp Desk)</span>
+              </div>
+              <div className="pt-3 border-t border-white/15 text-[10px] uppercase tracking-wider text-neutral-400">
+                Response SLA: Sub-2 hours on business days
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      </section>
     </div>
   );
 };

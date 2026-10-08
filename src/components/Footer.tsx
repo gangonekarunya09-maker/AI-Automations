@@ -8,139 +8,146 @@ interface FooterProps {
 
 export const Footer: React.FC<FooterProps> = ({ onNavigate, onRequestCustom }) => {
   return (
-    <footer className="border-t border-[#e4e4df] bg-[#f4f4f0] text-neutral-600 text-xs">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-20">
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-10 lg:gap-12">
-          {/* Brand & Purpose Column */}
-          <div className="md:col-span-2 space-y-4">
-            <button
-              onClick={() => onNavigate('/')}
-              className="font-serif italic font-semibold text-2xl tracking-tight text-[#1a1a1a] hover:text-[#2e4ff4] transition-colors block text-left cursor-pointer"
-            >
-              Offlo Automations
-            </button>
-            <p className="text-neutral-600 text-xs sm:text-sm leading-relaxed max-w-sm">
-              We design, build, and deploy production-grade AI workflows, n8n automations, and custom integrations that eliminate repetitive manual drag with high-reliability engineering.
+    <footer className="w-full bg-[#0E0E0E] text-white border-t border-[#0E0E0E]">
+      <div className="w-full px-4 sm:px-8 py-16 lg:py-24">
+        {/* Top headline / wordmark statement */}
+        <div className="border-b border-white/15 pb-12 mb-12 flex flex-col md:flex-row md:items-end justify-between gap-6">
+          <div>
+            <span className="text-[10px] uppercase tracking-[0.24em] font-semibold text-neutral-400 block mb-2">
+              AUTOMATION STUDIO // ARCHITECTURE & SYSTEMS
+            </span>
+            <div className="text-4xl sm:text-6xl font-bold tracking-[-0.04em] uppercase text-white leading-none">
+              OFFLO STUDIO
+            </div>
+          </div>
+          <button
+            onClick={onRequestCustom}
+            className="self-start md:self-auto h-12 px-8 text-xs font-semibold uppercase tracking-[0.18em] text-[#0E0E0E] bg-white hover:bg-neutral-200 transition-colors flex items-center gap-2 cursor-pointer"
+          >
+            <span>Request Custom Architecture</span>
+            <ArrowUpRight className="w-4 h-4" />
+          </button>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 lg:gap-16">
+          {/* Column 1: Core purpose */}
+          <div className="space-y-4">
+            <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-neutral-400 block">
+              01 // PHILOSOPHY
+            </span>
+            <p className="text-neutral-400 text-xs sm:text-sm leading-relaxed max-w-xs">
+              We engineer zero-latency workflow pipelines, n8n automations, and AI agents with complete data privacy and full client code ownership.
             </p>
-            <div className="flex items-center gap-3 pt-2 text-[11px] font-mono text-neutral-500">
-              <span className="inline-flex items-center gap-1.5 text-[#2e4ff4]">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#2e4ff4] animate-pulse"></span>
-                Webhook Infrastructure Active
-              </span>
-              <span>/</span>
-              <span>API V1.2 Production</span>
+            <div className="text-[11px] uppercase tracking-[0.16em] text-neutral-400 pt-2">
+              RUNTIMES DEPLOYED GLOBALLY
             </div>
           </div>
 
-          {/* Catalog Links */}
+          {/* Column 2: Workflows */}
           <div>
-            <h4 className="font-mono uppercase tracking-[0.15em] text-[11px] text-[#1a1a1a] font-semibold mb-4">
-              Workflows
-            </h4>
-            <ul className="space-y-2.5">
+            <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-neutral-400 block mb-4">
+              02 // BLUEPRINTS
+            </span>
+            <ul className="space-y-3 text-xs uppercase tracking-[0.14em]">
               <li>
-                <button onClick={() => onNavigate('/workflows?category=Sales')} className="hover:text-[#2e4ff4] transition-colors cursor-pointer text-left">
-                  Sales & CRM Workflows
+                <button onClick={() => onNavigate('/workflows?category=Sales')} className="text-neutral-300 hover:text-white transition-colors cursor-pointer text-left">
+                  Inbound Sales & CRM
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigate('/workflows?category=Operations')} className="hover:text-[#2e4ff4] transition-colors cursor-pointer text-left">
-                  Operations & Reporting
+                <button onClick={() => onNavigate('/workflows?category=Operations')} className="text-neutral-300 hover:text-white transition-colors cursor-pointer text-left">
+                  Operations & KPI Reporting
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigate('/workflows?category=AI & Documents')} className="hover:text-[#2e4ff4] transition-colors cursor-pointer text-left">
-                  Document & OCR Pipelines
+                <button onClick={() => onNavigate('/workflows?category=AI & Documents')} className="text-neutral-300 hover:text-white transition-colors cursor-pointer text-left">
+                  Document & PDF Reconciliation
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigate('/workflows?category=Customer Support')} className="hover:text-[#2e4ff4] transition-colors cursor-pointer text-left">
-                  Customer Support Agents
+                <button onClick={() => onNavigate('/workflows?category=Customer Support')} className="text-neutral-300 hover:text-white transition-colors cursor-pointer text-left">
+                  Autonomous Triage Agents
                 </button>
               </li>
-              <li>
-                <button onClick={() => onNavigate('/workflows')} className="hover:text-[#2e4ff4] transition-colors cursor-pointer font-medium text-[#2e4ff4] text-left pt-1 block">
-                  View All Workflows →
+              <li className="pt-2">
+                <button onClick={() => onNavigate('/workflows')} className="text-white editorial-link font-semibold text-left">
+                  Explore Full Catalog →
                 </button>
               </li>
             </ul>
           </div>
 
-          {/* Solutions & Services */}
+          {/* Column 3: Services & Industries */}
           <div>
-            <h4 className="font-mono uppercase tracking-[0.15em] text-[11px] text-[#1a1a1a] font-semibold mb-4">
-              Services
-            </h4>
-            <ul className="space-y-2.5">
+            <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-neutral-400 block mb-4">
+              03 // EXPERTISE
+            </span>
+            <ul className="space-y-3 text-xs uppercase tracking-[0.14em]">
               <li>
-                <button onClick={() => onNavigate('/services')} className="hover:text-[#2e4ff4] transition-colors cursor-pointer text-left">
-                  Custom Automation Development
+                <button onClick={() => onNavigate('/services')} className="text-neutral-300 hover:text-white transition-colors cursor-pointer text-left">
+                  Custom Pipeline Development
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigate('/services')} className="hover:text-[#2e4ff4] transition-colors cursor-pointer text-left">
-                  Managed Automation Ops
+                <button onClick={() => onNavigate('/services')} className="text-neutral-300 hover:text-white transition-colors cursor-pointer text-left">
+                  Managed Cloud Orchestration
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigate('/industries')} className="hover:text-[#2e4ff4] transition-colors cursor-pointer text-left">
-                  Agencies & Studios
+                <button onClick={() => onNavigate('/industries')} className="text-neutral-300 hover:text-white transition-colors cursor-pointer text-left">
+                  B2B SaaS & Tech Teams
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigate('/industries')} className="hover:text-[#2e4ff4] transition-colors cursor-pointer text-left">
-                  E-Commerce & Retail
+                <button onClick={() => onNavigate('/industries')} className="text-neutral-300 hover:text-white transition-colors cursor-pointer text-left">
+                  Creative & Marketing Agencies
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigate('/industries')} className="hover:text-[#2e4ff4] transition-colors cursor-pointer text-left">
-                  B2B Professional Services
+                <button onClick={() => onNavigate('/industries')} className="text-neutral-300 hover:text-white transition-colors cursor-pointer text-left">
+                  Logistics & Professional Firms
                 </button>
               </li>
             </ul>
           </div>
 
-          {/* Organization & Admin */}
+          {/* Column 4: Studio & Admin */}
           <div>
-            <h4 className="font-mono uppercase tracking-[0.15em] text-[11px] text-[#1a1a1a] font-semibold mb-4">
-              Organization
-            </h4>
-            <ul className="space-y-2.5">
+            <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-neutral-400 block mb-4">
+              04 // STUDIO
+            </span>
+            <ul className="space-y-3 text-xs uppercase tracking-[0.14em]">
               <li>
-                <button onClick={() => onNavigate('/about')} className="hover:text-[#2e4ff4] transition-colors cursor-pointer text-left">
+                <button onClick={() => onNavigate('/about')} className="text-neutral-300 hover:text-white transition-colors cursor-pointer text-left">
                   About Offlo
                 </button>
               </li>
               <li>
-                <button onClick={() => onNavigate('/contact')} className="hover:text-[#2e4ff4] transition-colors cursor-pointer text-left">
-                  Submit Requirement
+                <button onClick={() => onNavigate('/contact')} className="text-neutral-300 hover:text-white transition-colors cursor-pointer text-left">
+                  Consultation & Intake
                 </button>
               </li>
-              <li>
-                <button onClick={onRequestCustom} className="hover:text-[#2e4ff4] transition-colors cursor-pointer flex items-center gap-1 text-[#2e4ff4] font-medium text-left">
-                  Request Custom Scope <ArrowUpRight className="w-3 h-3" />
-                </button>
-              </li>
-              <li className="pt-2">
-                <button onClick={() => onNavigate('/admin')} className="text-neutral-500 hover:text-[#1a1a1a] font-mono text-[11px] flex items-center gap-1.5 cursor-pointer">
-                  <Shield className="w-3 h-3 text-[#2e4ff4]" />
-                  <span>Admin System</span>
+              <li className="pt-3 border-t border-white/10">
+                <button
+                  onClick={() => onNavigate('/admin')}
+                  className="text-neutral-400 hover:text-white flex items-center gap-1.5 cursor-pointer uppercase text-[11px]"
+                >
+                  <Shield className="w-3.5 h-3.5" />
+                  <span>Admin Terminal</span>
                 </button>
               </li>
             </ul>
           </div>
         </div>
 
-        {/* Bottom divider and quiet credits */}
-        <div className="mt-16 pt-8 border-t border-[#e4e4df] flex flex-col sm:flex-row items-center justify-between gap-4 text-neutral-500 text-[11px]">
+        {/* Bottom hairline row */}
+        <div className="mt-16 pt-8 border-t border-white/15 flex flex-col sm:flex-row items-center justify-between gap-4 text-neutral-400 text-[11px] uppercase tracking-[0.16em]">
           <div>
-            © {new Date().getFullYear()} Offlo Automations. Deterministic workflow engineering powered by n8n and AI models.
+            © {new Date().getFullYear()} OFFLO AUTOMATIONS. ALL RIGHTS RESERVED.
           </div>
-          <div className="flex items-center gap-6 font-mono text-neutral-500">
-            <span>n8n · Gemini 1.5 · Webhooks · Self-Hostable</span>
-            <button onClick={() => onNavigate('/admin/settings')} className="text-neutral-500 hover:text-[#1a1a1a] cursor-pointer">
-              Settings & API
-            </button>
+          <div className="flex items-center gap-6">
+            <span>SELF-HOSTABLE RUNTIMES</span>
+            <span>DATA PRIVACY ENFORCED</span>
           </div>
         </div>
       </div>

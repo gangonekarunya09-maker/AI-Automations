@@ -1,5 +1,5 @@
-import React from 'react';
-import { ArrowUpRight, ArrowRight, Check } from 'lucide-react';
+import React, { useState } from 'react';
+import { ArrowUpRight, ArrowRight, Heart } from 'lucide-react';
 import { Workflow } from '../types';
 
 interface WorkflowCardProps {
@@ -13,120 +13,105 @@ export const WorkflowCard: React.FC<WorkflowCardProps> = ({
   onSelect,
   onRequestWorkflow,
 }) => {
+  const [isFavorite, setIsFavorite] = useState(false);
   const triggerTool = workflow.architecture_steps[0]?.tool || 'Webhook';
   const engineTool = workflow.technologies[1] || 'AI Engine';
-  const outputTool = workflow.architecture_steps[workflow.architecture_steps.length - 1]?.tool || 'Output Dispatch';
+  const outputTool = workflow.architecture_steps[workflow.architecture_steps.length - 1]?.tool || 'Dispatch';
 
   return (
-    <div className="group border border-white/[0.08] bg-[#0A0B0F] hover:border-white/25 transition-all duration-300 flex flex-col justify-between overflow-hidden">
+    <div className="group bg-[#FFFFFF] border border-[#CFCFCC] flex flex-col justify-between transition-colors duration-200">
       <div>
-        {/* Code-driven Schematic Pipeline Header (Zero Raster Images) */}
-        <div
-          onClick={() => onSelect(workflow)}
-          className="relative p-4 sm:p-5 bg-[#07080B] border-b border-white/[0.08] cursor-pointer overflow-hidden group-hover:bg-[#0C0E14] transition-colors"
-        >
-          {/* Subtle vector grid lines */}
-          <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:16px_16px] pointer-events-none opacity-60" />
+        {/* Schematic Architecture Header with Favorite Heart Icon */}
+        <div className="relative p-5 bg-[#F6F5F3] border-b border-[#CFCFCC] overflow-hidden select-none">
+          {/* Top metadata strip & Heart icon */}
+          <div className="flex items-center justify-between mb-4">
+            <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-[#6B6B6B]">
+              {workflow.category} // {workflow.id.toUpperCase()}
+            </span>
 
-          {/* Top metadata strip */}
-          <div className="relative flex items-center justify-between text-[10px] font-mono mb-4 text-neutral-400">
-            <div className="flex items-center gap-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-              <span className="text-neutral-300 uppercase tracking-wider font-semibold">{workflow.category}</span>
-            </div>
-            <div className="flex items-center gap-1.5 text-neutral-400">
-              <span>{workflow.id.toUpperCase()}</span>
-              <span className="opacity-0 group-hover:opacity-100 transition-opacity text-white ml-1">
-                <ArrowUpRight className="w-3.5 h-3.5 inline" />
-              </span>
-            </div>
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                setIsFavorite(!isFavorite);
+              }}
+              className="p-1 text-[#6B6B6B] hover:text-[#0E0E0E] transition-colors cursor-pointer"
+              title={isFavorite ? 'Remove from favorites' : 'Save to favorites'}
+              aria-label="Toggle favorite"
+            >
+              <Heart
+                className={`w-4 h-4 transition-colors ${
+                  isFavorite ? 'fill-[#0E0E0E] text-[#0E0E0E]' : 'text-[#6B6B6B]'
+                }`}
+                strokeWidth={1.5}
+              />
+            </button>
           </div>
 
-          {/* Connected Pipeline Flow Schematic */}
-          <div className="relative py-2 px-1">
-            <div className="flex items-center justify-between gap-1 text-[10px] font-mono">
-              <div className="flex-1 bg-white/[0.04] border border-white/10 p-2 text-center truncate group-hover:border-emerald-500/30 transition-colors">
-                <div className="text-[9px] text-neutral-400 uppercase tracking-widest mb-0.5">01 Trigger</div>
-                <div className="text-neutral-200 font-medium truncate">{triggerTool}</div>
+          {/* Connected Vector Pipeline Flow Schematic */}
+          <div
+            onClick={() => onSelect(workflow)}
+            className="py-3 cursor-pointer"
+          >
+            <div className="flex items-center justify-between gap-1 text-[10px]">
+              <div className="flex-1 bg-[#FFFFFF] border border-[#CFCFCC] p-2 text-center truncate">
+                <div className="text-[8px] text-[#6B6B6B] uppercase tracking-[0.2em] mb-0.5">01 Trigger</div>
+                <div className="text-[#0E0E0E] font-semibold truncate text-[10px]">{triggerTool}</div>
               </div>
 
-              <div className="flex items-center justify-center px-1 text-emerald-400 shrink-0">
-                <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M5 12h14M12 5l7 7-7 7" />
-                </svg>
+              <div className="px-1 text-[#6B6B6B] shrink-0 font-mono text-xs">→</div>
+
+              <div className="flex-1 bg-[#FFFFFF] border border-[#CFCFCC] p-2 text-center truncate">
+                <div className="text-[8px] text-[#6B6B6B] uppercase tracking-[0.2em] mb-0.5">02 Logic</div>
+                <div className="text-[#0E0E0E] font-semibold truncate text-[10px]">{engineTool}</div>
               </div>
 
-              <div className="flex-1 bg-white/[0.04] border border-white/10 p-2 text-center truncate group-hover:border-emerald-500/30 transition-colors">
-                <div className="text-[9px] text-neutral-400 uppercase tracking-widest mb-0.5">02 Logic</div>
-                <div className="text-neutral-200 font-medium truncate">{engineTool}</div>
-              </div>
+              <div className="px-1 text-[#6B6B6B] shrink-0 font-mono text-xs">→</div>
 
-              <div className="flex items-center justify-center px-1 text-emerald-400 shrink-0">
-                <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M5 12h14M12 5l7 7-7 7" />
-                </svg>
-              </div>
-
-              <div className="flex-1 bg-white/[0.04] border border-white/10 p-2 text-center truncate group-hover:border-emerald-500/30 transition-colors">
-                <div className="text-[9px] text-neutral-400 uppercase tracking-widest mb-0.5">03 Target</div>
-                <div className="text-neutral-200 font-medium truncate">{outputTool}</div>
+              <div className="flex-1 bg-[#FFFFFF] border border-[#CFCFCC] p-2 text-center truncate">
+                <div className="text-[8px] text-[#6B6B6B] uppercase tracking-[0.2em] mb-0.5">03 Target</div>
+                <div className="text-[#0E0E0E] font-semibold truncate text-[10px]">{outputTool}</div>
               </div>
             </div>
 
-            {/* Live Telemetry Ping Bar */}
-            <div className="mt-3 flex items-center justify-between text-[9px] font-mono text-neutral-400 border-t border-white/[0.06] pt-2">
-              <span className="flex items-center gap-1">
-                <span className="text-emerald-400">●</span> 100% Deterministic Run
-              </span>
-              <span>{workflow.downloads_count} Deployments</span>
+            <div className="mt-3 flex items-center justify-between text-[9px] uppercase tracking-[0.16em] text-[#6B6B6B] border-t border-[#CFCFCC] pt-2">
+              <span>● Production Certified</span>
+              <span>{workflow.downloads_count} Deploys</span>
             </div>
           </div>
         </div>
 
+        {/* Card Content Body */}
         <div className="p-6">
-          {/* Metadata row if no image, or stack kicker */}
-          <div className="flex items-center gap-2 font-mono text-[11px] text-neutral-400 uppercase tracking-wider mb-2.5">
-            <span className="text-emerald-400 font-medium">{workflow.category}</span>
-            <span aria-hidden="true" className="text-neutral-700">/</span>
-            <span className="truncate">{workflow.technologies.slice(0, 3).join(' · ')}</span>
+          <div className="text-[10px] uppercase tracking-[0.18em] font-semibold text-[#6B6B6B] mb-2">
+            {workflow.technologies.slice(0, 3).join(' · ')}
           </div>
 
-          {/* Primary Title */}
           <h3
             onClick={() => onSelect(workflow)}
-            className="text-lg sm:text-xl font-display font-bold text-white group-hover:text-emerald-300 transition-colors cursor-pointer leading-snug mb-3"
+            className="text-base sm:text-lg font-bold text-[#0E0E0E] hover:opacity-75 transition-opacity cursor-pointer leading-tight mb-2 uppercase tracking-tight"
           >
             {workflow.name}
           </h3>
 
-          {/* Short Description */}
-          <p className="text-neutral-400 text-xs sm:text-sm leading-relaxed mb-5 line-clamp-3">
+          <p className="text-[#6B6B6B] text-xs leading-relaxed mb-4 line-clamp-2">
             {workflow.short_description}
           </p>
 
-          {/* Key Benefit Highlight */}
-          <div className="p-3 bg-white/[0.02] border-l-2 border-emerald-400 border-y border-r border-white/[0.04] text-xs text-neutral-300 mb-5 flex items-start gap-2.5">
-            <Check className="w-3.5 h-3.5 text-emerald-400 shrink-0 mt-0.5" />
-            <span className="leading-snug text-neutral-300">{workflow.benefit}</span>
-          </div>
-
-          {/* Technologies connected */}
-          <div className="text-[11px] text-neutral-400 font-mono flex items-baseline gap-1.5 pt-1">
-            <span className="text-neutral-600 uppercase">Stack:</span>
-            <span className="text-neutral-400 truncate">{workflow.technologies.join(' · ')}</span>
+          <div className="border-l-2 border-[#0E0E0E] pl-3 py-1 text-xs text-[#0E0E0E] bg-[#F6F5F3] font-medium leading-snug">
+            {workflow.benefit}
           </div>
         </div>
       </div>
 
       {/* Card Footer with Price and Primary Actions */}
-      <div className="px-6 py-4 border-t border-white/[0.08] bg-black/40 flex items-center justify-between gap-3">
+      <div className="px-6 py-4 border-t border-[#CFCFCC] bg-[#F6F5F3] flex items-center justify-between gap-3">
         <div>
-          <div className="text-[10px] uppercase font-mono tracking-wider text-neutral-500">Commercial License</div>
-          <div className="flex items-baseline gap-2 mt-0.5">
-            <span className="text-base sm:text-lg font-bold font-mono text-white tabular-nums">
+          <div className="text-[9px] uppercase tracking-[0.18em] text-[#6B6B6B] font-semibold">License</div>
+          <div className="flex items-baseline gap-1.5 mt-0.5">
+            <span className="text-base font-bold text-[#0E0E0E] tracking-tight">
               ₹{workflow.price_inr.toLocaleString()}
             </span>
-            <span className="text-xs text-neutral-500 font-mono">
+            <span className="text-xs text-[#6B6B6B]">
               (${workflow.price_usd})
             </span>
           </div>
@@ -135,13 +120,13 @@ export const WorkflowCard: React.FC<WorkflowCardProps> = ({
         <div className="flex items-center gap-2">
           <button
             onClick={() => onSelect(workflow)}
-            className="px-3 py-1.5 text-xs uppercase tracking-wider font-medium text-neutral-300 hover:text-white border border-white/10 hover:border-white/30 transition-colors cursor-pointer whitespace-nowrap"
+            className="text-xs font-semibold text-[#0E0E0E] editorial-link cursor-pointer uppercase tracking-wider py-1 px-1"
           >
             Details
           </button>
           <button
             onClick={() => onRequestWorkflow(workflow)}
-            className="px-3.5 py-1.5 text-xs uppercase tracking-wider font-semibold text-black bg-white hover:bg-neutral-200 transition-all flex items-center gap-1 cursor-pointer whitespace-nowrap active:scale-[0.98]"
+            className="h-9 px-4 text-[11px] uppercase tracking-[0.16em] font-semibold text-white bg-[#0E0E0E] hover:bg-[#222222] transition-colors flex items-center gap-1.5 cursor-pointer active:scale-[0.99]"
           >
             <span>Get</span>
             <ArrowRight className="w-3 h-3" />

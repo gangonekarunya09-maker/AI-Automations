@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { X, Check, ArrowRight, Sparkles } from 'lucide-react';
-import { motion, AnimatePresence } from 'motion/react';
+import { X, Check, ArrowRight } from 'lucide-react';
 import { Storage } from '../lib/storage';
 import { dispatchWebhook } from '../lib/webhook';
 
@@ -46,7 +45,7 @@ export const RequestCustomModal: React.FC<RequestCustomModalProps> = ({
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.name || !formData.email || !formData.process_description) {
-      setErrorMessage('Please fill in required fields.');
+      setErrorMessage('Please fill in your name, email, and process description.');
       return;
     }
     setErrorMessage('');
@@ -104,69 +103,73 @@ export const RequestCustomModal: React.FC<RequestCustomModalProps> = ({
 
   const resetAndClose = () => {
     setSubmitted(false);
+    setFormData({
+      name: '',
+      company: '',
+      email: '',
+      phone: '',
+      process_description: '',
+      frequency: 'Daily',
+      budget: '₹15,000–₹50,000',
+      additional_notes: ''
+    });
     onClose();
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm overflow-y-auto">
-      <motion.div
-        initial={{ opacity: 0, scale: 0.98, y: 10 }}
-        animate={{ opacity: 1, scale: 1, y: 0 }}
-        exit={{ opacity: 0, scale: 0.98, y: 10 }}
-        transition={{ duration: 0.2 }}
-        className="relative w-full max-w-2xl bg-white border border-[#e4e4df] p-6 sm:p-8 shadow-2xl my-6 text-[#1a1a1a]"
-      >
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-none">
+      <div className="relative w-full max-w-2xl bg-white border border-[#0E0E0E] p-6 sm:p-10 max-h-[90vh] overflow-y-auto">
         <button
           onClick={resetAndClose}
-          className="absolute top-5 right-5 text-neutral-400 hover:text-black transition-colors p-1 cursor-pointer"
-          aria-label="Close dialog"
+          className="absolute top-6 right-6 p-1 text-[#0E0E0E] hover:opacity-70 transition-opacity cursor-pointer"
         >
           <X className="w-5 h-5" />
         </button>
 
         {submitted ? (
-          <div className="text-center py-8 space-y-4">
-            <div className="w-12 h-12 bg-[#1a1a1a] text-white flex items-center justify-center mx-auto mb-2">
-              <Check className="w-6 h-6 stroke-[2.5]" />
+          <div className="py-8 text-center space-y-5">
+            <div className="w-14 h-14 bg-[#0E0E0E] text-white flex items-center justify-center mx-auto mb-2">
+              <Check className="w-7 h-7 stroke-[2.5]" />
             </div>
-            <h3 className="text-2xl sm:text-3xl font-serif font-semibold text-[#1a1a1a]">
-              Requirement Received & Scoped
+            <h3 className="text-2xl font-extrabold uppercase tracking-tight text-[#0E0E0E]">
+              SCOPE INTAKE RECORDED
             </h3>
-            <p className="text-neutral-600 text-xs sm:text-sm max-w-md mx-auto leading-relaxed">
-              Your manual bottleneck has been queued for architectural review. Our systems team will review your tools ({selectedTools.join(', ')}) and contact you within 24 hours with an actionable automation proposal.
+            <p className="text-xs sm:text-sm text-[#6B6B6B] max-w-md mx-auto leading-relaxed">
+              Thank you, <span className="font-bold text-[#0E0E0E]">{formData.name}</span>. Your custom architecture requirement is logged. Our lead architect will review feasibility within 24 hours.
             </p>
             <div className="pt-2">
               <button
                 onClick={resetAndClose}
-                className="px-6 py-2.5 text-xs font-mono font-semibold uppercase tracking-wider text-white bg-[#1a1a1a] hover:bg-[#2e4ff4] transition-colors cursor-pointer shadow-sm"
+                className="btn-primary"
               >
-                Close
+                Close & Return
               </button>
             </div>
           </div>
         ) : (
-          <div>
-            <div className="flex items-center gap-2 text-[11px] font-mono text-[#2e4ff4] uppercase tracking-[0.2em] font-semibold mb-1">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#2e4ff4]"></span>
-              <span>Bespoke Engineering Intake</span>
+          <div className="space-y-6">
+            <div>
+              <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-[#6B6B6B] block mb-1">
+                ENGINEERING INTAKE // 24H FEASIBILITY REVIEW
+              </span>
+              <h3 className="text-2xl font-extrabold uppercase tracking-tight text-[#0E0E0E]">
+                REQUEST BESPOKE AUTOMATION
+              </h3>
+              <p className="text-xs text-[#6B6B6B] mt-1">
+                Describe your current manual workflow and tool stack to receive an n8n architecture proposal.
+              </p>
             </div>
-            <h3 className="text-2xl sm:text-3xl font-serif font-semibold text-[#1a1a1a] mb-2 tracking-tight">
-              Describe Your Repetitive Process
-            </h3>
-            <p className="text-neutral-600 text-xs leading-relaxed mb-6">
-              Tell us what manual tasks consume your team’s time. We will design an automation architecture and show you what can be automated.
-            </p>
 
-            <form onSubmit={handleSubmit} className="space-y-4">
+            <form onSubmit={handleSubmit} className="space-y-5">
               {errorMessage && (
-                <div className="p-3 bg-red-50 border border-red-200 text-red-600 text-xs font-mono">
+                <div className="p-3 bg-[#F6F5F3] border-l-4 border-[#0E0E0E] text-[#0E0E0E] text-xs font-bold">
                   {errorMessage}
                 </div>
               )}
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-[11px] font-mono uppercase tracking-wider text-[#1a1a1a] font-semibold mb-1">
+                  <label className="block text-[10px] uppercase tracking-[0.18em] font-bold text-[#0E0E0E] mb-1">
                     Your Name *
                   </label>
                   <input
@@ -174,74 +177,74 @@ export const RequestCustomModal: React.FC<RequestCustomModalProps> = ({
                     required
                     value={formData.name}
                     onChange={e => setFormData({ ...formData, name: e.target.value })}
-                    placeholder="e.g. Vikram Singhania"
-                    className="w-full px-3.5 py-2.5 bg-white border border-[#e4e4df] text-[#1a1a1a] text-xs focus:border-[#1a1a1a] focus:outline-none transition-colors"
+                    placeholder="e.g. Elena Rostova"
+                    className="w-full px-3.5 py-2.5 bg-white border border-[#CFCFCC] text-[#0E0E0E] text-xs focus:border-[#0E0E0E] focus:outline-none transition-colors"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-[11px] font-mono uppercase tracking-wider text-[#1a1a1a] font-semibold mb-1">
+                  <label className="block text-[10px] uppercase tracking-[0.18em] font-bold text-[#0E0E0E] mb-1">
                     Company Name
                   </label>
                   <input
                     type="text"
                     value={formData.company}
                     onChange={e => setFormData({ ...formData, company: e.target.value })}
-                    placeholder="e.g. Apex Logistics"
-                    className="w-full px-3.5 py-2.5 bg-white border border-[#e4e4df] text-[#1a1a1a] text-xs focus:border-[#1a1a1a] focus:outline-none transition-colors"
+                    placeholder="e.g. Vanguard Agency"
+                    className="w-full px-3.5 py-2.5 bg-white border border-[#CFCFCC] text-[#0E0E0E] text-xs focus:border-[#0E0E0E] focus:outline-none transition-colors"
                   />
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-[11px] font-mono uppercase tracking-wider text-[#1a1a1a] font-semibold mb-1">
-                    Email Address *
+                  <label className="block text-[10px] uppercase tracking-[0.18em] font-bold text-[#0E0E0E] mb-1">
+                    Work Email *
                   </label>
                   <input
                     type="email"
                     required
                     value={formData.email}
                     onChange={e => setFormData({ ...formData, email: e.target.value })}
-                    placeholder="vikram@company.com"
-                    className="w-full px-3.5 py-2.5 bg-white border border-[#e4e4df] text-[#1a1a1a] text-xs focus:border-[#1a1a1a] focus:outline-none transition-colors"
+                    placeholder="elena@vanguard.co"
+                    className="w-full px-3.5 py-2.5 bg-white border border-[#CFCFCC] text-[#0E0E0E] text-xs focus:border-[#0E0E0E] focus:outline-none transition-colors"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-[11px] font-mono uppercase tracking-wider text-[#1a1a1a] font-semibold mb-1">
-                    Phone / WhatsApp
+                  <label className="block text-[10px] uppercase tracking-[0.18em] font-bold text-[#0E0E0E] mb-1">
+                    Phone / WhatsApp Number
                   </label>
                   <input
                     type="tel"
                     value={formData.phone}
                     onChange={e => setFormData({ ...formData, phone: e.target.value })}
-                    placeholder="+91 98000 00000"
-                    className="w-full px-3.5 py-2.5 bg-white border border-[#e4e4df] text-[#1a1a1a] text-xs focus:border-[#1a1a1a] focus:outline-none transition-colors"
+                    placeholder="+1 415 892 3341"
+                    className="w-full px-3.5 py-2.5 bg-white border border-[#CFCFCC] text-[#0E0E0E] text-xs focus:border-[#0E0E0E] focus:outline-none transition-colors"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-[11px] font-mono uppercase tracking-wider text-[#1a1a1a] font-semibold mb-1">
-                  What manual process do you want to automate? *
+                <label className="block text-[10px] uppercase tracking-[0.18em] font-bold text-[#0E0E0E] mb-1">
+                  Step-by-Step Manual Process *
                 </label>
                 <textarea
                   required
                   rows={3}
                   value={formData.process_description}
                   onChange={e => setFormData({ ...formData, process_description: e.target.value })}
-                  placeholder="Describe what happens today: e.g. We get customer orders via WhatsApp and email, then someone manually creates invoices in Tally and sends shipping tracking links."
-                  className="w-full px-3.5 py-2.5 bg-white border border-[#e4e4df] text-[#1a1a1a] text-xs focus:border-[#1a1a1a] focus:outline-none resize-none transition-colors"
+                  placeholder="Where does data originate? What tools do you open? What repetitive actions do humans take?"
+                  className="w-full px-3.5 py-2.5 bg-white border border-[#CFCFCC] text-[#0E0E0E] text-xs focus:border-[#0E0E0E] focus:outline-none transition-colors resize-none"
                 />
               </div>
 
-              {/* Tools currently used */}
+              {/* Tools multi-select */}
               <div>
-                <label className="block text-[11px] font-mono uppercase tracking-wider text-[#1a1a1a] font-semibold mb-2">
-                  Tools & Platforms Currently In Use:
+                <label className="block text-[10px] uppercase tracking-[0.18em] font-bold text-[#0E0E0E] mb-2">
+                  Connected Platforms:
                 </label>
-                <div className="flex flex-wrap gap-1.5">
+                <div className="flex flex-wrap gap-2">
                   {COMMON_TOOLS.map(tool => {
                     const isSelected = selectedTools.includes(tool);
                     return (
@@ -249,10 +252,10 @@ export const RequestCustomModal: React.FC<RequestCustomModalProps> = ({
                         type="button"
                         key={tool}
                         onClick={() => toggleTool(tool)}
-                        className={`px-3 py-1.5 text-xs font-mono transition-all cursor-pointer ${
+                        className={`px-3 py-1.5 text-xs font-semibold uppercase tracking-wider transition-colors cursor-pointer ${
                           isSelected
-                            ? 'bg-[#1a1a1a] text-white font-semibold shadow-sm'
-                            : 'bg-white text-neutral-600 hover:text-black border border-[#e4e4df] hover:border-black'
+                            ? 'bg-[#0E0E0E] text-white'
+                            : 'bg-[#F6F5F3] text-[#6B6B6B] hover:text-[#0E0E0E] border border-[#CFCFCC]'
                         }`}
                       >
                         {tool}
@@ -262,37 +265,34 @@ export const RequestCustomModal: React.FC<RequestCustomModalProps> = ({
                 </div>
               </div>
 
-              {/* Frequency and Budget */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-[11px] font-mono uppercase tracking-wider text-[#1a1a1a] font-semibold mb-1">
-                    Frequency of this Task
+                  <label className="block text-[10px] uppercase tracking-[0.18em] font-bold text-[#0E0E0E] mb-1">
+                    Frequency
                   </label>
                   <select
                     value={formData.frequency}
                     onChange={e => setFormData({ ...formData, frequency: e.target.value })}
-                    className="w-full px-3.5 py-2.5 bg-white border border-[#e4e4df] text-[#1a1a1a] text-xs focus:border-[#1a1a1a] focus:outline-none transition-colors cursor-pointer font-mono"
+                    className="w-full px-3.5 py-2.5 bg-white border border-[#CFCFCC] text-[#0E0E0E] text-xs focus:border-[#0E0E0E] focus:outline-none cursor-pointer"
                   >
-                    <option value="Multiple times per day">Multiple times per day</option>
                     <option value="Daily">Daily</option>
+                    <option value="Multiple times per day">Multiple times per day</option>
                     <option value="Weekly">Weekly</option>
                     <option value="Monthly">Monthly</option>
-                    <option value="Other">Other</option>
                   </select>
                 </div>
 
                 <div>
-                  <label className="block text-[11px] font-mono uppercase tracking-wider text-[#1a1a1a] font-semibold mb-1">
-                    Estimated Budget Range
+                  <label className="block text-[10px] uppercase tracking-[0.18em] font-bold text-[#0E0E0E] mb-1">
+                    Target Budget
                   </label>
                   <select
                     value={formData.budget}
                     onChange={e => setFormData({ ...formData, budget: e.target.value })}
-                    className="w-full px-3.5 py-2.5 bg-white border border-[#e4e4df] text-[#1a1a1a] text-xs focus:border-[#1a1a1a] focus:outline-none transition-colors cursor-pointer font-mono"
+                    className="w-full px-3.5 py-2.5 bg-white border border-[#CFCFCC] text-[#0E0E0E] text-xs focus:border-[#0E0E0E] focus:outline-none cursor-pointer"
                   >
-                    <option value="Below ₹5,000">Below ₹5,000</option>
-                    <option value="₹5,000–₹15,000">₹5,000–₹15,000</option>
                     <option value="₹15,000–₹50,000">₹15,000–₹50,000</option>
+                    <option value="Below ₹15,000">Below ₹15,000</option>
                     <option value="₹50,000+">₹50,000+</option>
                   </select>
                 </div>
@@ -302,19 +302,16 @@ export const RequestCustomModal: React.FC<RequestCustomModalProps> = ({
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full py-3 px-4 text-xs font-mono font-semibold uppercase tracking-wider text-white bg-[#1a1a1a] hover:bg-[#2e4ff4] transition-all flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50 shadow-sm"
+                  className="w-full btn-primary h-12"
                 >
-                  <span>{isSubmitting ? 'Transmitting to Automation Pipeline...' : 'Submit Automation Request'}</span>
-                  <ArrowRight className="w-3.5 h-3.5" />
+                  <span>{isSubmitting ? 'TRANSMITTING SCOPE...' : 'SUBMIT AUTOMATION REQUEST'}</span>
+                  <ArrowRight className="w-4 h-4 ml-2" />
                 </button>
-                <div className="text-[11px] text-neutral-500 text-center mt-2 font-mono">
-                  Payload synchronized to Supabase + n8n webhook listener.
-                </div>
               </div>
             </form>
           </div>
         )}
-      </motion.div>
+      </div>
     </div>
   );
 };

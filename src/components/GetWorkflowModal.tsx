@@ -35,7 +35,7 @@ export const GetWorkflowModal: React.FC<GetWorkflowModalProps> = ({
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.name || !formData.email || !formData.company) {
-      setErrorMessage('Please fill in required fields.');
+      setErrorMessage('Please fill in your name, company, and email.');
       return;
     }
     setErrorMessage('');
@@ -101,89 +101,78 @@ export const GetWorkflowModal: React.FC<GetWorkflowModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm overflow-y-auto">
-      <motion.div
-        initial={{ opacity: 0, scale: 0.98, y: 10 }}
-        animate={{ opacity: 1, scale: 1, y: 0 }}
-        exit={{ opacity: 0, scale: 0.98, y: 10 }}
-        transition={{ duration: 0.2 }}
-        className="relative w-full max-w-xl bg-white border border-[#e4e4df] p-6 sm:p-8 shadow-2xl my-8 text-[#1a1a1a]"
-      >
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-none">
+      <div className="relative w-full max-w-2xl bg-white border border-[#0E0E0E] p-6 sm:p-10 max-h-[90vh] overflow-y-auto">
         <button
           onClick={resetAndClose}
-          className="absolute top-5 right-5 text-neutral-400 hover:text-black transition-colors p-1 cursor-pointer"
-          aria-label="Close dialog"
+          className="absolute top-6 right-6 p-1 text-[#0E0E0E] hover:opacity-70 transition-opacity cursor-pointer"
         >
           <X className="w-5 h-5" />
         </button>
 
         {submitted ? (
-          <div className="text-center py-6 space-y-4">
-            <div className="w-12 h-12 bg-[#1a1a1a] text-white flex items-center justify-center mx-auto mb-2">
-              <Check className="w-6 h-6 stroke-[2.5]" />
+          <div className="py-8 text-center space-y-5">
+            <div className="w-14 h-14 bg-[#0E0E0E] text-white flex items-center justify-center mx-auto mb-2">
+              <Check className="w-7 h-7 stroke-[2.5]" />
             </div>
-            <h3 className="text-2xl sm:text-3xl font-serif font-semibold text-[#1a1a1a]">
-              Inquiry Recorded & Dispatched
+            <h3 className="text-2xl font-extrabold uppercase tracking-tight text-[#0E0E0E]">
+              INQUIRY RECORDED
             </h3>
-            <p className="text-neutral-600 text-xs sm:text-sm max-w-md mx-auto leading-relaxed">
-              Your acquisition request for <span className="text-[#1a1a1a] font-semibold">{workflow.name}</span> has been logged in our operations pipeline and forwarded to our deployment engineers via n8n webhook.
+            <p className="text-xs sm:text-sm text-[#6B6B6B] max-w-md mx-auto leading-relaxed">
+              Thank you, <span className="font-bold text-[#0E0E0E]">{formData.name}</span>. We have generated order record <span className="font-bold text-[#0E0E0E]">#{workflow.id.toUpperCase()}</span> and notified our operations team.
             </p>
-            <div className="p-4 bg-[#f4f4f0] border border-[#e4e4df] text-left text-xs text-neutral-700 space-y-2">
-              <div className="font-mono uppercase tracking-wider text-[11px] text-[#1a1a1a] font-semibold">Next Operational Steps:</div>
-              <div className="flex items-center gap-2 text-neutral-600">
-                <span className="w-1.5 h-1.5 bg-[#2e4ff4] shrink-0"></span>
-                <span>Our lead automation engineer will verify your infrastructure credentials.</span>
-              </div>
-              <div className="flex items-center gap-2 text-neutral-600">
-                <span className="w-1.5 h-1.5 bg-[#2e4ff4] shrink-0"></span>
-                <span>You will receive the payment link and workflow manifest within 2 business hours.</span>
-              </div>
+            <div className="p-4 bg-[#F6F5F3] border border-[#CFCFCC] text-left text-xs text-[#0E0E0E] space-y-2 max-w-md mx-auto">
+              <div className="font-bold uppercase tracking-[0.16em] text-[10px]">What Happens Next:</div>
+              <div className="text-[#6B6B6B]">1. You receive the complete deployment manifest and pre-flight checklist.</div>
+              <div className="text-[#6B6B6B]">2. We issue an invoice with instant payment link and coordinate installation.</div>
             </div>
             <div className="pt-2">
               <button
                 onClick={resetAndClose}
-                className="px-6 py-2.5 text-xs font-mono font-semibold uppercase tracking-wider text-white bg-[#1a1a1a] hover:bg-[#2e4ff4] transition-colors cursor-pointer shadow-sm"
+                className="btn-primary"
               >
-                Close
+                Close & Return
               </button>
             </div>
           </div>
         ) : (
-          <div>
-            <div className="text-[11px] font-mono text-[#2e4ff4] uppercase tracking-[0.2em] mb-1 font-semibold">
-              Workflow Acquisition
+          <div className="space-y-6">
+            <div>
+              <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-[#6B6B6B] block mb-1">
+                ACQUISITION INQUIRY // {workflow.id.toUpperCase()}
+              </span>
+              <h3 className="text-2xl font-extrabold uppercase tracking-tight text-[#0E0E0E]">
+                {workflow.name}
+              </h3>
+              <p className="text-xs text-[#6B6B6B] mt-1">
+                Select your preferred delivery tier and submit your organization details.
+              </p>
             </div>
-            <h3 className="text-2xl sm:text-3xl font-serif font-semibold text-[#1a1a1a] mb-2 tracking-tight">
-              {workflow.name}
-            </h3>
-            <p className="text-neutral-600 text-xs leading-relaxed mb-6">
-              Select your preferred operational delivery model and specify your contact details.
-            </p>
 
             {/* Delivery Model Selection */}
-            <div className="mb-6 space-y-2">
-              <label className="block text-xs font-mono uppercase tracking-wider text-[#1a1a1a] font-semibold mb-2">
-                Choose Delivery & Installation Model:
+            <div>
+              <label className="block text-[10px] uppercase tracking-[0.18em] font-bold text-[#0E0E0E] mb-2">
+                Choose Delivery Tier:
               </label>
 
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                 {/* Model A */}
                 <div
                   onClick={() => setDeliveryModel('workflow_json')}
-                  className={`p-3.5 border cursor-pointer transition-all ${
+                  className={`p-4 border cursor-pointer transition-colors ${
                     deliveryModel === 'workflow_json'
-                      ? 'bg-[#1a1a1a] text-white border-[#1a1a1a] shadow-sm'
-                      : 'bg-[#f4f4f0] border-[#e4e4df] text-neutral-600 hover:border-black'
+                      ? 'bg-[#0E0E0E] text-white border-[#0E0E0E]'
+                      : 'bg-[#F6F5F3] text-[#0E0E0E] border-[#CFCFCC] hover:border-[#0E0E0E]'
                   }`}
                 >
                   <div className="flex items-center gap-2 mb-1">
-                    <FileCode className={`w-4 h-4 ${deliveryModel === 'workflow_json' ? 'text-white' : 'text-[#2e4ff4]'}`} />
-                    <span className="text-xs font-semibold uppercase tracking-wider font-mono">Workflow JSON</span>
+                    <FileCode className="w-4 h-4" />
+                    <span className="text-[11px] font-bold uppercase tracking-wider">Workflow JSON</span>
                   </div>
-                  <div className={`text-[11px] mb-2 leading-tight ${deliveryModel === 'workflow_json' ? 'text-neutral-300' : 'text-neutral-500'}`}>
-                    Self-hosted n8n template + setup guide
+                  <div className={`text-[10px] mb-3 leading-tight ${deliveryModel === 'workflow_json' ? 'text-neutral-400' : 'text-[#6B6B6B]'}`}>
+                    Self-hosted n8n template + runbook
                   </div>
-                  <div className={`text-xs font-mono font-bold ${deliveryModel === 'workflow_json' ? 'text-white' : 'text-[#1a1a1a]'}`}>
+                  <div className="text-xs font-bold tracking-tight">
                     ₹{workflow.price_inr.toLocaleString()}
                   </div>
                 </div>
@@ -191,20 +180,20 @@ export const GetWorkflowModal: React.FC<GetWorkflowModalProps> = ({
                 {/* Model C: Hybrid */}
                 <div
                   onClick={() => setDeliveryModel('hybrid')}
-                  className={`p-3.5 border cursor-pointer transition-all ${
+                  className={`p-4 border cursor-pointer transition-colors ${
                     deliveryModel === 'hybrid'
-                      ? 'bg-[#1a1a1a] text-white border-[#1a1a1a] shadow-sm'
-                      : 'bg-[#f4f4f0] border-[#e4e4df] text-neutral-600 hover:border-black'
+                      ? 'bg-[#0E0E0E] text-white border-[#0E0E0E]'
+                      : 'bg-[#F6F5F3] text-[#0E0E0E] border-[#CFCFCC] hover:border-[#0E0E0E]'
                   }`}
                 >
                   <div className="flex items-center gap-2 mb-1">
-                    <Settings2 className={`w-4 h-4 ${deliveryModel === 'hybrid' ? 'text-white' : 'text-[#2e4ff4]'}`} />
-                    <span className="text-xs font-semibold uppercase tracking-wider font-mono">Workflow + Setup</span>
+                    <Settings2 className="w-4 h-4" />
+                    <span className="text-[11px] font-bold uppercase tracking-wider">Workflow + Setup</span>
                   </div>
-                  <div className={`text-[11px] mb-2 leading-tight ${deliveryModel === 'hybrid' ? 'text-neutral-300' : 'text-neutral-500'}`}>
+                  <div className={`text-[10px] mb-3 leading-tight ${deliveryModel === 'hybrid' ? 'text-neutral-400' : 'text-[#6B6B6B]'}`}>
                     We connect credentials & test pipelines
                   </div>
-                  <div className={`text-xs font-mono font-bold ${deliveryModel === 'hybrid' ? 'text-white' : 'text-[#1a1a1a]'}`}>
+                  <div className="text-xs font-bold tracking-tight">
                     ₹{Math.round(workflow.price_inr * 1.6).toLocaleString()}
                   </div>
                 </div>
@@ -212,20 +201,20 @@ export const GetWorkflowModal: React.FC<GetWorkflowModalProps> = ({
                 {/* Model B: Managed */}
                 <div
                   onClick={() => setDeliveryModel('managed')}
-                  className={`p-3.5 border cursor-pointer transition-all ${
+                  className={`p-4 border cursor-pointer transition-colors ${
                     deliveryModel === 'managed'
-                      ? 'bg-[#1a1a1a] text-white border-[#1a1a1a] shadow-sm'
-                      : 'bg-[#f4f4f0] border-[#e4e4df] text-neutral-600 hover:border-black'
+                      ? 'bg-[#0E0E0E] text-white border-[#0E0E0E]'
+                      : 'bg-[#F6F5F3] text-[#0E0E0E] border-[#CFCFCC] hover:border-[#0E0E0E]'
                   }`}
                 >
                   <div className="flex items-center gap-2 mb-1">
-                    <Server className={`w-4 h-4 ${deliveryModel === 'managed' ? 'text-white' : 'text-[#2e4ff4]'}`} />
-                    <span className="text-xs font-semibold uppercase tracking-wider font-mono">Managed Ops</span>
+                    <Server className="w-4 h-4" />
+                    <span className="text-[11px] font-bold uppercase tracking-wider">Managed Ops</span>
                   </div>
-                  <div className={`text-[11px] mb-2 leading-tight ${deliveryModel === 'managed' ? 'text-neutral-300' : 'text-neutral-500'}`}>
-                    Full cloud hosting & SLA maintenance
+                  <div className={`text-[10px] mb-3 leading-tight ${deliveryModel === 'managed' ? 'text-neutral-400' : 'text-[#6B6B6B]'}`}>
+                    Full hosting & SLA maintenance
                   </div>
-                  <div className={`text-xs font-mono font-bold ${deliveryModel === 'managed' ? 'text-white' : 'text-[#1a1a1a]'}`}>
+                  <div className="text-xs font-bold tracking-tight">
                     ₹{Math.round(workflow.price_inr * 2.5).toLocaleString()}/mo
                   </div>
                 </div>
@@ -233,16 +222,16 @@ export const GetWorkflowModal: React.FC<GetWorkflowModalProps> = ({
             </div>
 
             {/* Form */}
-            <form onSubmit={handleSubmit} className="space-y-4">
+            <form onSubmit={handleSubmit} className="space-y-4 pt-2">
               {errorMessage && (
-                <div className="p-3 bg-red-50 border border-red-200 text-red-600 text-xs font-mono">
+                <div className="p-3 bg-[#F6F5F3] border-l-4 border-[#0E0E0E] text-[#0E0E0E] text-xs font-bold">
                   {errorMessage}
                 </div>
               )}
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-[11px] font-mono uppercase tracking-wider text-[#1a1a1a] font-semibold mb-1">
+                  <label className="block text-[10px] uppercase tracking-[0.18em] font-bold text-[#0E0E0E] mb-1">
                     Full Name *
                   </label>
                   <input
@@ -251,12 +240,12 @@ export const GetWorkflowModal: React.FC<GetWorkflowModalProps> = ({
                     value={formData.name}
                     onChange={e => setFormData({ ...formData, name: e.target.value })}
                     placeholder="e.g. Priya Sharma"
-                    className="w-full px-3.5 py-2.5 bg-white border border-[#e4e4df] text-[#1a1a1a] text-xs focus:border-[#1a1a1a] focus:outline-none transition-colors"
+                    className="w-full px-3.5 py-2.5 bg-white border border-[#CFCFCC] text-[#0E0E0E] text-xs focus:border-[#0E0E0E] focus:outline-none transition-colors"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-[11px] font-mono uppercase tracking-wider text-[#1a1a1a] font-semibold mb-1">
+                  <label className="block text-[10px] uppercase tracking-[0.18em] font-bold text-[#0E0E0E] mb-1">
                     Company Name *
                   </label>
                   <input
@@ -264,15 +253,15 @@ export const GetWorkflowModal: React.FC<GetWorkflowModalProps> = ({
                     required
                     value={formData.company}
                     onChange={e => setFormData({ ...formData, company: e.target.value })}
-                    placeholder="e.g. Vertex Systems"
-                    className="w-full px-3.5 py-2.5 bg-white border border-[#e4e4df] text-[#1a1a1a] text-xs focus:border-[#1a1a1a] focus:outline-none transition-colors"
+                    placeholder="e.g. Apex Logistics"
+                    className="w-full px-3.5 py-2.5 bg-white border border-[#CFCFCC] text-[#0E0E0E] text-xs focus:border-[#0E0E0E] focus:outline-none transition-colors"
                   />
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-[11px] font-mono uppercase tracking-wider text-[#1a1a1a] font-semibold mb-1">
+                  <label className="block text-[10px] uppercase tracking-[0.18em] font-bold text-[#0E0E0E] mb-1">
                     Work Email *
                   </label>
                   <input
@@ -280,35 +269,35 @@ export const GetWorkflowModal: React.FC<GetWorkflowModalProps> = ({
                     required
                     value={formData.email}
                     onChange={e => setFormData({ ...formData, email: e.target.value })}
-                    placeholder="priya@vertex.com"
-                    className="w-full px-3.5 py-2.5 bg-white border border-[#e4e4df] text-[#1a1a1a] text-xs focus:border-[#1a1a1a] focus:outline-none transition-colors"
+                    placeholder="priya@apexlogistics.in"
+                    className="w-full px-3.5 py-2.5 bg-white border border-[#CFCFCC] text-[#0E0E0E] text-xs focus:border-[#0E0E0E] focus:outline-none transition-colors"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-[11px] font-mono uppercase tracking-wider text-[#1a1a1a] font-semibold mb-1">
-                    Phone / WhatsApp
+                  <label className="block text-[10px] uppercase tracking-[0.18em] font-bold text-[#0E0E0E] mb-1">
+                    Phone / WhatsApp Number
                   </label>
                   <input
                     type="tel"
                     value={formData.phone}
                     onChange={e => setFormData({ ...formData, phone: e.target.value })}
-                    placeholder="+91 98000 00000"
-                    className="w-full px-3.5 py-2.5 bg-white border border-[#e4e4df] text-[#1a1a1a] text-xs focus:border-[#1a1a1a] focus:outline-none transition-colors"
+                    placeholder="+91 98201 44521"
+                    className="w-full px-3.5 py-2.5 bg-white border border-[#CFCFCC] text-[#0E0E0E] text-xs focus:border-[#0E0E0E] focus:outline-none transition-colors"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-[11px] font-mono uppercase tracking-wider text-[#1a1a1a] font-semibold mb-1">
-                  Specific Integrations or Tool Versions (Optional)
+                <label className="block text-[10px] uppercase tracking-[0.18em] font-bold text-[#0E0E0E] mb-1">
+                  Specific Requirements or Target Tool APIs (Optional)
                 </label>
                 <textarea
                   rows={2}
                   value={formData.notes}
                   onChange={e => setFormData({ ...formData, notes: e.target.value })}
-                  placeholder="e.g., We use Slack Enterprise and custom HubSpot deal pipelines."
-                  className="w-full px-3.5 py-2 bg-white border border-[#e4e4df] text-[#1a1a1a] text-xs focus:border-[#1a1a1a] focus:outline-none resize-none transition-colors"
+                  placeholder="e.g. We use self-hosted PostgreSQL and custom webhook endpoints."
+                  className="w-full px-3.5 py-2.5 bg-white border border-[#CFCFCC] text-[#0E0E0E] text-xs focus:border-[#0E0E0E] focus:outline-none transition-colors resize-none"
                 />
               </div>
 
@@ -316,19 +305,16 @@ export const GetWorkflowModal: React.FC<GetWorkflowModalProps> = ({
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full py-3 px-4 text-xs font-mono font-semibold uppercase tracking-wider text-white bg-[#1a1a1a] hover:bg-[#2e4ff4] transition-all flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50 shadow-sm"
+                  className="w-full btn-primary h-12"
                 >
-                  <span>{isSubmitting ? 'Dispatching Request...' : 'Proceed with Workflow Request'}</span>
-                  <ArrowRight className="w-3.5 h-3.5" />
+                  <span>{isSubmitting ? 'RECORDING INQUIRY...' : 'SUBMIT WORKFLOW ACQUISITION INQUIRY'}</span>
+                  <ArrowRight className="w-4 h-4 ml-2" />
                 </button>
-                <p className="text-[11px] text-neutral-500 text-center mt-2 font-mono">
-                  No automated card charge today · Compatibility review and invoice link dispatched directly.
-                </p>
               </div>
             </form>
           </div>
         )}
-      </motion.div>
+      </div>
     </div>
   );
 };

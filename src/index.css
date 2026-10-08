@@ -1,72 +1,127 @@
 @import "tailwindcss";
 
 @theme {
-  --font-serif: 'Cormorant Garamond', Georgia, serif;
-  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  --font-mono: 'JetBrains Mono', monospace;
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-display: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 
 :root {
-  --bg: #fbfbf9;
-  --paper: #f4f4f0;
-  --ink: #1a1a1a;
-  --ink-muted: rgba(26, 26, 26, 0.55);
-  --accent: #2e4ff4;
-  --border: #e4e4df;
-  --border-subtle: #ecece7;
   color-scheme: light;
+  --bg-primary: #E4E3E0;
+  --bg-secondary: #F6F5F3;
+  --bg-dark: #0E0E0E;
+  --bg-mid: #BEBEBE;
+  --bg-mid-dark: #A9A9A9;
+  --text-primary: #0E0E0E;
+  --text-on-dark: #FFFFFF;
+  --text-secondary: #6B6B6B;
+  --hairline: #CFCFCC;
+}
+
+/* Strict Zero Corner Radius & Zero Shadow Rule */
+*, ::before, ::after {
+  border-radius: 0 !important;
+  box-shadow: none !important;
 }
 
 body {
-  font-family: var(--font-sans);
-  background-color: var(--bg);
-  color: var(--ink);
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background-color: #E4E3E0;
+  color: #0E0E0E;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-.font-serif {
-  font-family: 'Cormorant Garamond', Georgia, serif;
+/* Editorial display typography: tight tracking & tight line-height */
+.display-title {
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  letter-spacing: -0.035em;
+  line-height: 0.95;
+  font-weight: 800;
 }
 
-.font-mono {
-  font-family: 'JetBrains Mono', monospace;
+/* UI labels: 11-12px, uppercase, wide letter-spacing (+12% to +20%) */
+.ui-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-weight: 600;
 }
 
-/* Subtle Editorial Grid Lines & Accents */
-.editorial-grid {
-  background-size: 40px 40px;
-  background-image: 
-    linear-gradient(to right, rgba(26, 26, 26, 0.035) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(26, 26, 26, 0.035) 1px, transparent 1px);
+/* Hairline utilities */
+.hairline-b {
+  border-bottom: 1px solid #CFCFCC;
 }
 
-.hairline-border {
-  border-color: #e4e4df;
+.hairline-t {
+  border-top: 1px solid #CFCFCC;
 }
 
-.hairline-divider {
-  border-color: #ecece7;
+.hairline-x {
+  border-left: 1px solid #CFCFCC;
+  border-right: 1px solid #CFCFCC;
 }
 
-/* Custom scrollbar matching paper aesthetic */
+.hairline-all {
+  border: 1px solid #CFCFCC;
+}
+
+/* Underline link with offset */
+.editorial-link {
+  text-decoration: underline;
+  text-underline-offset: 6px;
+  text-decoration-thickness: 1px;
+  transition: all 180ms ease;
+}
+
+.editorial-link:hover {
+  text-decoration-thickness: 2px;
+}
+
+/* Primary Button token */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #0E0E0E;
+  color: #FFFFFF;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  font-weight: 600;
+  height: 48px;
+  padding-left: 32px;
+  padding-right: 32px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 180ms ease, transform 120ms ease;
+}
+
+.btn-primary:hover {
+  background-color: #222222;
+}
+
+.btn-primary:active {
+  transform: scale(0.99);
+}
+
+/* Custom scrollbar in monochrome */
 ::-webkit-scrollbar {
-  width: 5px;
-  height: 5px;
+  width: 6px;
+  height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #fbfbf9;
+  background: #E4E3E0;
 }
 ::-webkit-scrollbar-thumb {
-  background: #d8d8d2;
-  border-radius: 2px;
+  background: #A9A9A9;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #b8b8b0;
+  background: #6B6B6B;
 }
 
-/* Reduced motion support */
+/* Subtle motion transitions only */
 @media (prefers-reduced-motion: reduce) {
   *, ::before, ::after {
     animation-duration: 0.01ms !important;
@@ -75,4 +130,3 @@ body {
     scroll-behavior: auto !important;
   }
 }
-

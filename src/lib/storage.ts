@@ -1,4 +1,10 @@
 import { Workflow, Lead, CustomRequest, Order, AppSettings, WebhookLog } from '../types';
+import {
+  syncLeadToSupabase,
+  syncCustomRequestToSupabase,
+  syncOrderToSupabase,
+  syncWebhookLogToSupabase
+} from './supabase';
 
 // Pre-seeded high-impact workflows
 export const INITIAL_WORKFLOWS: Workflow[] = [
@@ -391,6 +397,8 @@ export const INITIAL_SETTINGS: AppSettings = {
   webhook_secret: 'whsec_offlo_prod_99f381c0',
   admin_notification_email: 'ops@offlo.ai',
   company_phone: '+91 98200 12345',
+  supabase_url: ((import.meta.env.VITE_SUPABASE_URL as string) || '').trim(),
+  supabase_anon_key: ((import.meta.env.VITE_SUPABASE_ANON_KEY as string) || '').trim(),
   enable_webhook_dispatch: true
 };
 
@@ -453,6 +461,7 @@ export const Storage = {
     };
     leads.unshift(newLead);
     localStorage.setItem(STORAGE_KEYS.LEADS, JSON.stringify(leads));
+    syncLeadToSupabase(newLead).catch(() => {});
     return newLead;
   },
 
@@ -497,6 +506,7 @@ export const Storage = {
     };
     requests.unshift(newReq);
     localStorage.setItem(STORAGE_KEYS.CUSTOM_REQUESTS, JSON.stringify(requests));
+    syncCustomRequestToSupabase(newReq).catch(() => {});
     return newReq;
   },
 
@@ -527,6 +537,7 @@ export const Storage = {
     };
     orders.unshift(newOrder);
     localStorage.setItem(STORAGE_KEYS.ORDERS, JSON.stringify(orders));
+    syncOrderToSupabase(newOrder).catch(() => {});
     return newOrder;
   },
 
@@ -580,5 +591,30 @@ export const Storage = {
     logs.unshift(newLog);
     // Keep last 30 logs
     localStorage.setItem(STORAGE_KEYS.WEBHOOK_LOGS, JSON.stringify(logs.slice(0, 30)));
+    syncWebhookLogToSupabase(newLog).catch(() => {});
+  },
+
+  async syncAllToSupabase(): Promise<{ leads: number; requests: number; orders: number }> {
+    const leads = this.getLeads();
+    const requests = this.getCustomRequests();
+    const orders = this.getOrders();
+    let lCount = 0;
+    let rCount = 0;
+    let oCount = 0;
+
+    for (const lead of leads) {
+      const ok = await syncLeadToSupabase(lead);
+      if (ok) lCount++;
+    }
+    for (const req of requests) {
+      const ok = await syncCustomRequestToSupabase(req);
+      if (ok) rCount++;
+    }
+    for (const ord of orders) {
+      const ok = await syncOrderToSupabase(ord);
+      if (ok) oCount++;
+    }
+
+    return { leads: lCount, requests: rCount, orders: oCount };
   }
 };

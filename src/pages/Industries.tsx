@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowRight, Building2, Store, Briefcase, Home as HomeIcon, TrendingUp, Users } from 'lucide-react';
+import { ArrowRight, Briefcase, Store, TrendingUp, Building2, Home as HomeIcon, Users } from 'lucide-react';
 
 interface IndustriesProps {
   onNavigate: (path: string) => void;
@@ -11,34 +11,34 @@ export const Industries: React.FC<IndustriesProps> = ({ onNavigate, onRequestCus
     {
       id: 'agencies',
       icon: Briefcase,
-      title: 'Marketing & Creative Agencies',
+      title: 'MARKETING & CREATIVE AGENCIES',
       summary: 'Replace manual monthly client reporting, social trend scraping, and onboarding friction with autonomous pipelines.',
-      before: 'Account managers spend 8 hours at month-end screenshotting Meta Ads, Google Analytics, and Shopify to manually assemble PDF client slide decks.',
-      after: 'n8n triggers on the 1st of each month, compiles multi-channel metrics, prompts Gemini to write executive insights, and drafts email reports for review.',
+      before: 'Account managers spend 8 hours at month-end screenshotting ad portals and Shopify to manually assemble slide decks.',
+      after: 'n8n triggers on the 1st of each month, compiles multi-channel metrics, prompts Gemini to write executive insights, and drafts reports.',
       workflowsRecommended: ['AI Meeting Summarizer', 'Weekly Executive Reporting Agent', 'Social Content Automation']
     },
     {
       id: 'ecommerce',
       icon: Store,
-      title: 'E-Commerce Brands & D2C Retailers',
+      title: 'E-COMMERCE BRANDS & D2C RETAILERS',
       summary: 'Synchronize inventory between storefronts, route supplier orders, and automate return-refund validations.',
-      before: 'Warehouse teams reconcile Shopify vs. Amazon stock on Excel sheets, resulting in overselling during flash promotions and delayed vendor orders.',
+      before: 'Warehouse teams reconcile Shopify vs. Amazon stock on Excel sheets, resulting in overselling and delayed vendor orders.',
       after: 'Inventory levels sync across all sales channels within 3 seconds of purchase; low-stock alerts trigger automated purchase draft orders.',
       workflowsRecommended: ['E-Commerce Inventory Sync', 'PDF Invoice & Expense Reconciliation']
     },
     {
       id: 'sales-teams',
       icon: TrendingUp,
-      title: 'High-Velocity B2B Sales Teams',
+      title: 'HIGH-VELOCITY B2B SALES TEAMS',
       summary: 'Instant inbound enrichment, ICP scoring, deal alerts, and objection-handling drafts.',
       before: 'Inbound demo requests sit in an unmonitored mailbox for 6 hours; SDRs manually research LinkedIn before booking a call.',
-      after: 'Leads are enriched with revenue and headcount via Apollo API, scored by AI, and sent to the sales rep on Slack with a pre-drafted calendar invite under 45s.',
+      after: 'Leads are enriched with revenue and headcount via Apollo API, scored by AI, and sent to the sales rep on Slack under 45s.',
       workflowsRecommended: ['Inbound Lead Qualifier', 'Email Follow-up Automation']
     },
     {
       id: 'professional-services',
       icon: Building2,
-      title: 'Legal, Accounting & Advisory Firms',
+      title: 'LEGAL, ACCOUNTING & ADVISORY FIRMS',
       summary: 'Process client receipts, parse engagement contracts, and automate recurring audit paperwork.',
       before: 'Associates spend hours typing vendor invoice line items, case numbers from court PDF listings, and tracking billable milestones.',
       after: 'Multimodal vision models ingest scanned documents, extract required ledger rows, verify totals, and stage them in accounting software.',
@@ -47,16 +47,16 @@ export const Industries: React.FC<IndustriesProps> = ({ onNavigate, onRequestCus
     {
       id: 'real-estate',
       icon: HomeIcon,
-      title: 'Real Estate & Property Management',
+      title: 'REAL ESTATE & PROPERTY MANAGEMENT',
       summary: 'Instant tenant inquiry replies on WhatsApp, maintenance dispatch, and lead screening.',
-      before: 'Brokers miss high-intent rental inquiries received on weekends; maintenance requests get lost in personal WhatsApp threads.',
+      before: 'Brokers miss high-intent rental inquiries received on weekends; maintenance requests get lost in personal messaging threads.',
       after: 'Automated WhatsApp bot verifies tenant budget and move-in date, schedules site visits on Google Calendar, and logs service tickets.',
       workflowsRecommended: ['Customer Support Automation', 'Inbound Lead Qualifier']
     },
     {
       id: 'startups',
       icon: Users,
-      title: 'Early-Stage Startups & Solo Founders',
+      title: 'EARLY-STAGE STARTUPS & SOLO FOUNDERS',
       summary: 'Operate like a 10-person operations team without premature payroll expansion.',
       before: 'Founders wear five hats, manually checking stripe alerts, writing meeting minutes, and copying bugs to task boards.',
       after: 'Autonomous workflows connect Stripe, GitHub, Notion, and Slack to handle routine data routing with zero human overhead.',
@@ -65,89 +65,108 @@ export const Industries: React.FC<IndustriesProps> = ({ onNavigate, onRequestCus
   ];
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 lg:py-20 space-y-16">
-      <div className="max-w-3xl space-y-4">
-        <div className="text-[11px] font-mono text-[#2e4ff4] uppercase tracking-[0.2em] font-semibold">
-          Target Verticals
+    <div className="w-full bg-[#E4E3E0] min-h-screen">
+      {/* Industries Header */}
+      <section className="w-full px-4 sm:px-8 py-16 sm:py-24 border-b border-[#CFCFCC]">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row md:items-end justify-between gap-8">
+          <div>
+            <span className="text-[10px] uppercase tracking-[0.24em] font-bold text-[#6B6B6B] block mb-2">
+              SECTOR PRACTICE // TARGET VERTICALS
+            </span>
+            <h1 className="text-4xl sm:text-6xl md:text-7xl font-extrabold uppercase tracking-tight text-[#0E0E0E] leading-none">
+              INDUSTRY ARCHITECTURES
+            </h1>
+            <p className="text-xs sm:text-sm text-[#6B6B6B] mt-4 max-w-xl leading-relaxed">
+              Every vertical experiences distinct operational bottlenecks. We engineer deterministic data pipelines that eliminate repetitive friction and save measurable hours.
+            </p>
+          </div>
+
+          <button
+            onClick={onRequestCustom}
+            className="self-start md:self-auto btn-primary"
+          >
+            <span>DISCUSS YOUR VERTICAL</span>
+            <ArrowRight className="w-4 h-4 ml-2" />
+          </button>
         </div>
-        <h1 className="text-4xl sm:text-6xl lg:text-7xl font-serif font-semibold text-[#1a1a1a] tracking-tight leading-[0.95]">
-          Automations Tailored To Your Industry
-        </h1>
-        <p className="text-base sm:text-lg text-neutral-600 leading-relaxed">
-          Every industry has unique operational friction points. We focus on specific manual drags where automated data flows deliver immediate, measurable hours saved.
-        </p>
-      </div>
+      </section>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {industriesList.map(ind => {
-          const Icon = ind.icon;
-          return (
-            <div
-              key={ind.id}
-              className="p-6 sm:p-8 border border-[#e4e4df] bg-white space-y-6 flex flex-col justify-between hover:border-[#1a1a1a] transition-colors shadow-sm"
-            >
-              <div className="space-y-4">
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 bg-[#f4f4f0] border border-[#e4e4df] flex items-center justify-center text-[#2e4ff4]">
-                    <Icon className="w-5 h-5" />
+      {/* Grid of Sector Cards */}
+      <section className="w-full px-4 sm:px-8 py-16 sm:py-24 bg-[#E4E3E0]">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+          {industriesList.map(ind => {
+            const Icon = ind.icon;
+            return (
+              <div
+                key={ind.id}
+                className="p-8 sm:p-10 bg-white border border-[#CFCFCC] space-y-6 flex flex-col justify-between"
+              >
+                <div className="space-y-5">
+                  <div className="flex items-center gap-4">
+                    <div className="w-12 h-12 bg-[#0E0E0E] text-white flex items-center justify-center shrink-0">
+                      <Icon className="w-6 h-6" strokeWidth={1.5} />
+                    </div>
+                    <div>
+                      <h2 className="text-lg sm:text-xl font-bold uppercase tracking-tight text-[#0E0E0E]">
+                        {ind.title}
+                      </h2>
+                    </div>
                   </div>
-                  <div>
-                    <h2 className="text-2xl font-serif font-semibold text-[#1a1a1a] tracking-tight">
-                      {ind.title}
-                    </h2>
-                  </div>
-                </div>
 
-                <p className="text-neutral-600 text-xs sm:text-sm leading-relaxed">
-                  {ind.summary}
-                </p>
+                  <p className="text-xs sm:text-sm text-[#6B6B6B] leading-relaxed">
+                    {ind.summary}
+                  </p>
 
-                {/* Before vs After comparison */}
-                <div className="grid grid-cols-1 gap-2.5 pt-2 text-xs">
-                  <div className="p-3.5 bg-red-50/50 border-l-2 border-red-500 border-y border-r border-red-100 text-neutral-700">
-                    <span className="font-mono uppercase tracking-wider text-[11px] text-red-600 block mb-1 font-semibold">Manual Friction:</span>
-                    {ind.before}
-                  </div>
-                  <div className="p-3.5 bg-[#2e4ff4]/5 border-l-2 border-[#2e4ff4] border-y border-r border-[#2e4ff4]/10 text-neutral-700">
-                    <span className="font-mono uppercase tracking-wider text-[11px] text-[#2e4ff4] block mb-1 font-semibold">Autonomous Execution:</span>
-                    {ind.after}
-                  </div>
-                </div>
-
-                {/* Recommended workflows */}
-                <div className="pt-2">
-                  <span className="text-[10px] font-mono text-neutral-500 uppercase tracking-wider block mb-1.5">
-                    Recommended Workflows:
-                  </span>
-                  <div className="flex flex-wrap gap-1.5 text-xs text-neutral-700">
-                    {ind.workflowsRecommended.map((wf, idx) => (
-                      <span key={idx} className="px-2.5 py-1 bg-[#f4f4f0] border border-[#e4e4df] text-[11px] font-mono">
-                        {wf}
+                  {/* Contrast comparison */}
+                  <div className="grid grid-cols-1 gap-3 pt-2 text-xs">
+                    <div className="p-4 bg-[#F6F5F3] border-l-2 border-[#6B6B6B] border-y border-r border-[#CFCFCC] text-[#6B6B6B]">
+                      <span className="uppercase tracking-[0.16em] text-[10px] font-bold text-[#0E0E0E] block mb-1">
+                        Manual Drag:
                       </span>
-                    ))}
+                      {ind.before}
+                    </div>
+                    <div className="p-4 bg-[#F6F5F3] border-l-2 border-[#0E0E0E] border-y border-r border-[#CFCFCC] text-[#0E0E0E]">
+                      <span className="uppercase tracking-[0.16em] text-[10px] font-bold text-[#0E0E0E] block mb-1">
+                        Automated Resolution:
+                      </span>
+                      {ind.after}
+                    </div>
+                  </div>
+
+                  {/* Recommended blueprints */}
+                  <div className="pt-2">
+                    <span className="text-[10px] uppercase tracking-[0.18em] font-bold text-[#6B6B6B] block mb-2">
+                      RECOMMENDED BLUEPRINTS:
+                    </span>
+                    <div className="flex flex-wrap gap-2 text-xs">
+                      {ind.workflowsRecommended.map((wf, idx) => (
+                        <span key={idx} className="px-3 py-1 bg-[#F6F5F3] border border-[#CFCFCC] text-[11px] font-medium text-[#0E0E0E]">
+                          {wf}
+                        </span>
+                      ))}
+                    </div>
                   </div>
                 </div>
-              </div>
 
-              <div className="pt-4 border-t border-[#e4e4df] flex items-center justify-between">
-                <button
-                  onClick={() => onNavigate('/workflows')}
-                  className="text-xs uppercase tracking-wider font-mono text-neutral-500 hover:text-[#1a1a1a] transition-colors cursor-pointer"
-                >
-                  View Workflows
-                </button>
-                <button
-                  onClick={onRequestCustom}
-                  className="text-xs font-mono uppercase tracking-wider font-semibold text-[#1a1a1a] hover:text-[#2e4ff4] flex items-center gap-1.5 transition-colors cursor-pointer"
-                >
-                  <span>Request Custom Setup</span>
-                  <ArrowRight className="w-3.5 h-3.5 text-[#2e4ff4]" />
-                </button>
+                <div className="pt-6 border-t border-[#CFCFCC] flex items-center justify-between">
+                  <button
+                    onClick={() => onNavigate('/workflows')}
+                    className="text-xs uppercase tracking-[0.16em] font-semibold text-[#0E0E0E] editorial-link cursor-pointer"
+                  >
+                    View Catalog →
+                  </button>
+                  <button
+                    onClick={onRequestCustom}
+                    className="h-10 px-5 text-xs uppercase tracking-[0.16em] font-semibold text-white bg-[#0E0E0E] hover:bg-[#222222] transition-colors cursor-pointer"
+                  >
+                    Request Setup
+                  </button>
+                </div>
               </div>
-            </div>
-          );
-        })}
-      </div>
+            );
+          })}
+        </div>
+      </section>
     </div>
   );
 };

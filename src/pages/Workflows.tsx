@@ -77,165 +77,176 @@ export const Workflows: React.FC<WorkflowsProps> = ({
   }, [workflows, selectedCategory, selectedTech, searchQuery, sortBy]);
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 lg:py-20 space-y-12">
-      {/* Catalog Header */}
-      <div className="flex flex-col md:flex-row items-start md:items-end justify-between gap-6 pb-8 border-b border-[#e4e4df]">
-        <div className="max-w-2xl">
-          <div className="text-[11px] font-mono text-[#2e4ff4] uppercase tracking-[0.2em] mb-2 font-semibold">
-            Production Catalog ({filteredWorkflows.length} Available)
+    <div className="w-full bg-[#E4E3E0] min-h-screen">
+      {/* Top Header Banner */}
+      <section className="w-full px-4 sm:px-8 py-16 sm:py-24 border-b border-[#CFCFCC]">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row md:items-end justify-between gap-8">
+          <div>
+            <span className="text-[10px] uppercase tracking-[0.24em] font-bold text-[#6B6B6B] block mb-2">
+              CATALOG INDEX // {filteredWorkflows.length} AVAILABLE BLUEPRINTS
+            </span>
+            <h1 className="text-4xl sm:text-6xl md:text-7xl font-extrabold uppercase tracking-tight text-[#0E0E0E] leading-none">
+              WORKFLOW CATALOG
+            </h1>
+            <p className="text-xs sm:text-sm text-[#6B6B6B] mt-4 max-w-xl leading-relaxed">
+              Tested, production-certified automation architectures. Purchase source JSON files with complete credential runbooks or order end-to-end setup.
+            </p>
           </div>
-          <h1 className="text-4xl sm:text-6xl font-serif font-semibold text-[#1a1a1a] tracking-tight">
-            Automation Workflows
-          </h1>
-          <p className="text-neutral-600 text-sm mt-3 leading-relaxed">
-            Ready-made n8n workflows and AI-driven business engines. Purchase the source blueprint or choose full-service installation and ongoing managed operations.
-          </p>
+
+          <button
+            onClick={onRequestCustom}
+            className="self-start md:self-auto btn-primary"
+          >
+            <span>REQUEST CUSTOM BUILD</span>
+            <ArrowRight className="w-4 h-4 ml-2" />
+          </button>
         </div>
+      </section>
 
-        <button
-          onClick={onRequestCustom}
-          className="px-5 py-2.5 text-xs font-mono font-semibold uppercase tracking-wider text-[#1a1a1a] hover:text-[#2e4ff4] bg-white hover:bg-neutral-50 border border-[#e4e4df] hover:border-[#1a1a1a] transition-colors flex items-center gap-2 cursor-pointer whitespace-nowrap shadow-sm"
-        >
-          <span>Need a Custom Pipeline?</span>
-          <ArrowRight className="w-3.5 h-3.5 text-[#2e4ff4]" />
-        </button>
-      </div>
-
-      {/* Search & Filter Toolbar */}
-      <div className="space-y-4">
-        <div className="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3">
-          {/* Search Input */}
-          <div className="relative flex-1 max-w-md">
-            <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-neutral-400" />
-            <input
-              type="text"
-              value={searchQuery}
-              onChange={e => setSearchQuery(e.target.value)}
-              placeholder="Search by workflow name, integration, or tool..."
-              className="w-full pl-10 pr-4 py-2.5 bg-white border border-[#e4e4df] text-xs sm:text-sm text-[#1a1a1a] placeholder-neutral-400 focus:border-[#1a1a1a] focus:outline-none transition-colors shadow-sm"
-            />
-            {searchQuery && (
-              <button
-                onClick={() => setSearchQuery('')}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-neutral-400 hover:text-black cursor-pointer font-mono"
-              >
-                Clear
-              </button>
-            )}
-          </div>
-
-          {/* Sort & Tech Selector */}
-          <div className="flex items-center gap-2 text-xs">
-            <div className="flex items-center gap-1.5 text-neutral-600 whitespace-nowrap font-mono text-[11px]">
-              <span className="uppercase text-neutral-400">Stack:</span>
-              <select
-                value={selectedTech}
-                onChange={e => setSelectedTech(e.target.value)}
-                className="px-3 py-2 bg-white border border-[#e4e4df] text-[#1a1a1a] text-xs focus:border-[#1a1a1a] focus:outline-none cursor-pointer shadow-sm font-mono"
-              >
-                {allTechs.slice(0, 12).map(t => (
-                  <option key={t} value={t}>{t}</option>
-                ))}
-              </select>
+      {/* Filter and Search Bar */}
+      <section className="w-full px-4 sm:px-8 py-6 bg-[#F6F5F3] border-b border-[#CFCFCC]">
+        <div className="max-w-7xl mx-auto space-y-4">
+          <div className="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4">
+            {/* Search Input */}
+            <div className="relative flex-1 max-w-md">
+              <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-[#6B6B6B]" />
+              <input
+                type="text"
+                value={searchQuery}
+                onChange={e => setSearchQuery(e.target.value)}
+                placeholder="Search workflows, tools, or integrations..."
+                className="w-full pl-10 pr-4 py-2.5 bg-white border border-[#CFCFCC] text-xs text-[#0E0E0E] placeholder-[#6B6B6B] focus:border-[#0E0E0E] focus:outline-none transition-colors"
+              />
+              {searchQuery && (
+                <button
+                  onClick={() => setSearchQuery('')}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-[#6B6B6B] hover:text-[#0E0E0E] cursor-pointer"
+                >
+                  Clear
+                </button>
+              )}
             </div>
 
-            <div className="flex items-center gap-1.5 text-neutral-600 whitespace-nowrap font-mono text-[11px]">
-              <span className="uppercase text-neutral-400">Sort:</span>
-              <select
-                value={sortBy}
-                onChange={e => setSortBy(e.target.value as any)}
-                className="px-3 py-2 bg-white border border-[#e4e4df] text-[#1a1a1a] text-xs focus:border-[#1a1a1a] focus:outline-none cursor-pointer shadow-sm font-mono"
-              >
-                <option value="featured">Featured First</option>
-                <option value="popular">Most Popular</option>
-                <option value="price-asc">Price: Low to High</option>
-                <option value="price-desc">Price: High to Low</option>
-              </select>
+            {/* Dropdowns */}
+            <div className="flex items-center gap-3 text-xs">
+              <div className="flex items-center gap-1.5 text-[#6B6B6B] uppercase text-[11px] font-semibold tracking-wider">
+                <span>Stack:</span>
+                <select
+                  value={selectedTech}
+                  onChange={e => setSelectedTech(e.target.value)}
+                  className="px-3 py-2 bg-white border border-[#CFCFCC] text-[#0E0E0E] text-xs focus:border-[#0E0E0E] focus:outline-none cursor-pointer"
+                >
+                  {allTechs.slice(0, 12).map(t => (
+                    <option key={t} value={t}>{t}</option>
+                  ))}
+                </select>
+              </div>
+
+              <div className="flex items-center gap-1.5 text-[#6B6B6B] uppercase text-[11px] font-semibold tracking-wider">
+                <span>Sort:</span>
+                <select
+                  value={sortBy}
+                  onChange={e => setSortBy(e.target.value as any)}
+                  className="px-3 py-2 bg-white border border-[#CFCFCC] text-[#0E0E0E] text-xs focus:border-[#0E0E0E] focus:outline-none cursor-pointer"
+                >
+                  <option value="featured">Featured</option>
+                  <option value="popular">Popularity</option>
+                  <option value="price-asc">Price: Low to High</option>
+                  <option value="price-desc">Price: High to Low</option>
+                </select>
+              </div>
             </div>
           </div>
-        </div>
 
-        {/* Category Segmented Filter Controls as Flow Pills */}
-        <div className="flex items-center gap-1.5 overflow-x-auto pb-2 scrollbar-none">
-          {CATEGORIES.map(cat => {
-            const isActive = selectedCategory === cat;
-            return (
-              <button
-                key={cat}
-                onClick={() => setSelectedCategory(cat)}
-                className={`px-3.5 py-1.5 text-xs font-mono uppercase tracking-wider transition-all cursor-pointer whitespace-nowrap ${
-                  isActive
-                    ? 'bg-[#1a1a1a] text-white font-semibold shadow-sm'
-                    : 'text-neutral-600 hover:text-[#1a1a1a] bg-white hover:bg-neutral-50 border border-[#e4e4df]'
-                }`}
-              >
-                {cat}
-              </button>
-            );
-          })}
+          {/* Category Tabs */}
+          <div className="flex items-center gap-2 overflow-x-auto pb-1">
+            {CATEGORIES.map(cat => {
+              const isActive = selectedCategory === cat;
+              return (
+                <button
+                  key={cat}
+                  onClick={() => setSelectedCategory(cat)}
+                  className={`px-4 py-2 text-xs uppercase tracking-[0.16em] font-semibold transition-colors cursor-pointer whitespace-nowrap ${
+                    isActive
+                      ? 'bg-[#0E0E0E] text-white'
+                      : 'bg-white text-[#6B6B6B] hover:text-[#0E0E0E] border border-[#CFCFCC]'
+                  }`}
+                >
+                  {cat}
+                </button>
+              );
+            })}
+          </div>
         </div>
-      </div>
+      </section>
 
-      {/* Workflows Grid */}
-      {filteredWorkflows.length === 0 ? (
-        <div className="py-20 text-center border border-[#e4e4df] bg-white p-8 space-y-3 shadow-sm">
-          <Layers className="w-8 h-8 text-neutral-400 mx-auto mb-2" />
-          <h3 className="text-xl font-serif font-semibold text-[#1a1a1a]">
-            No workflows match your criteria
-          </h3>
-          <p className="text-neutral-600 text-xs max-w-sm mx-auto mb-6">
-            Try adjusting your search terms or view all available categories. Alternatively, describe your custom manual process.
-          </p>
-          <div className="flex items-center justify-center gap-3">
-            <button
-              onClick={() => {
-                setSearchQuery('');
-                setSelectedCategory('All');
-                setSelectedTech('All');
-              }}
-              className="px-4 py-2 text-xs font-mono uppercase tracking-wider text-neutral-700 bg-[#f4f4f0] hover:bg-neutral-200 border border-[#e4e4df] transition-colors cursor-pointer"
-            >
-              Reset Filters
-            </button>
+      {/* Workflows Grid Area */}
+      <section className="w-full px-4 sm:px-8 py-16 sm:py-24 bg-[#E4E3E0]">
+        <div className="max-w-7xl mx-auto">
+          {filteredWorkflows.length === 0 ? (
+            <div className="py-24 text-center bg-white border border-[#CFCFCC] p-8 space-y-4 max-w-xl mx-auto">
+              <Layers className="w-10 h-10 text-[#6B6B6B] mx-auto" strokeWidth={1.5} />
+              <h3 className="text-base font-bold uppercase tracking-tight text-[#0E0E0E]">
+                No blueprints match your criteria
+              </h3>
+              <p className="text-xs text-[#6B6B6B] leading-relaxed">
+                Try resetting your filters or describe your custom workflow needs.
+              </p>
+              <div className="pt-2 flex justify-center gap-3">
+                <button
+                  onClick={() => {
+                    setSearchQuery('');
+                    setSelectedCategory('All');
+                    setSelectedTech('All');
+                  }}
+                  className="px-4 py-2 text-xs uppercase tracking-[0.14em] font-semibold text-[#0E0E0E] border border-[#0E0E0E] cursor-pointer"
+                >
+                  Reset Filters
+                </button>
+                <button
+                  onClick={onRequestCustom}
+                  className="btn-primary"
+                >
+                  Request Custom Build
+                </button>
+              </div>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {filteredWorkflows.map(workflow => (
+                <WorkflowCard
+                  key={workflow.id}
+                  workflow={workflow}
+                  onSelect={onSelectWorkflow}
+                  onRequestWorkflow={onRequestWorkflow}
+                />
+              ))}
+            </div>
+          )}
+
+          {/* Bottom Banner */}
+          <div className="mt-16 bg-[#0E0E0E] text-white p-8 sm:p-12 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+            <div>
+              <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-neutral-400 block mb-1">
+                ENTERPRISE BESPOKE ARCHITECTURE
+              </span>
+              <h3 className="text-xl sm:text-2xl font-bold uppercase tracking-tight text-white">
+                Require a custom webhook pipe or internal API bridge?
+              </h3>
+              <p className="text-xs text-neutral-400 mt-1 max-w-xl">
+                We develop resilient n8n pipelines for custom ERPs, proprietary databases, and internal enterprise tools.
+              </p>
+            </div>
+
             <button
               onClick={onRequestCustom}
-              className="px-4 py-2 text-xs font-mono font-semibold uppercase tracking-wider text-white bg-[#1a1a1a] hover:bg-[#2e4ff4] transition-colors cursor-pointer"
+              className="h-11 px-6 text-xs font-semibold uppercase tracking-[0.18em] text-[#0E0E0E] bg-white hover:bg-neutral-200 transition-colors whitespace-nowrap cursor-pointer shrink-0"
             >
-              Request Custom Automation
+              Request Custom Build
             </button>
           </div>
         </div>
-      ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredWorkflows.map(workflow => (
-            <WorkflowCard
-              key={workflow.id}
-              workflow={workflow}
-              onSelect={onSelectWorkflow}
-              onRequestWorkflow={onRequestWorkflow}
-            />
-          ))}
-        </div>
-      )}
-
-      {/* Catalog Bottom Banner */}
-      <div className="p-6 sm:p-8 border border-[#e4e4df] bg-[#f4f4f0] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 shadow-sm">
-        <div>
-          <div className="text-base font-serif font-semibold text-[#1a1a1a] mb-1">
-            Looking for an integration or platform not listed here?
-          </div>
-          <div className="text-xs text-neutral-600 max-w-xl">
-            We build custom workflows connecting internal databases, legacy ERPs, WhatsApp Cloud API, and proprietary webhook systems.
-          </div>
-        </div>
-
-        <button
-          onClick={onRequestCustom}
-          className="px-5 py-2.5 text-xs font-mono uppercase tracking-wider font-semibold text-white bg-[#1a1a1a] hover:bg-[#2e4ff4] transition-colors whitespace-nowrap cursor-pointer shrink-0"
-        >
-          Request Custom Build
-        </button>
-      </div>
+      </section>
     </div>
   );
 };

@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { ArrowRight, ArrowUpRight, Check, Clock, Layers, GitMerge, FileSpreadsheet, Mail, Headphones, FileText, Terminal, Activity, ShieldCheck, Cpu, Zap } from 'lucide-react';
+import React, { useState } from 'react';
+import { ArrowRight, ArrowUpRight, Check, Clock, Layers, GitMerge, FileSpreadsheet, Mail, Headphones, FileText, ShieldCheck, Zap, Cpu, Terminal, ArrowDown } from 'lucide-react';
 import { motion } from 'motion/react';
 import { Workflow } from '../types';
 import { WorkflowCard } from '../components/WorkflowCard';
@@ -20,534 +20,534 @@ export const Home: React.FC<HomeProps> = ({
   onRequestWorkflow,
   onRequestCustom
 }) => {
-  const featuredWorkflows = workflows.filter(w => w.featured).slice(0, 4);
+  const catalogWorkflows = workflows.slice(0, 4);
 
-  const manualProblems = [
+  const benefits = [
     {
+      title: '100% CODE OWNERSHIP',
+      subline: 'Full JSON blueprints & credential runbooks supplied.',
+      icon: Terminal
+    },
+    {
+      title: 'ZERO SILENT FAILURES',
+      subline: 'Deterministic error catching and instant alert routes.',
+      icon: ShieldCheck
+    },
+    {
+      title: '48-HOUR LAUNCH VELOCITY',
+      subline: 'Fast turnarounds from scope approval to live runtime.',
+      icon: Zap
+    },
+    {
+      title: 'MANAGED RUNTIME SLA',
+      subline: 'Optional cloud hosting & continuous API maintenance.',
+      icon: Cpu
+    }
+  ];
+
+  const categories = [
+    {
+      id: 'Sales',
+      title: 'SALES & INBOUND ENRICHMENT',
+      description: 'Capture inbound inquiries, enrich firmographics via AI, and alert reps in under 45 seconds.',
       icon: Mail,
-      title: 'Manually Copying & Qualifying Inbound Leads',
-      impact: '5–8 hrs/week lost',
-      description: 'Copy-pasting form submissions into CRM, looking up company size on LinkedIn, and typing manual intro emails.'
+      tag: '01'
     },
     {
-      icon: Clock,
-      title: 'Writing Meeting Summaries & Action Items',
-      impact: '4–6 hrs/week lost',
-      description: 'Listening back to calls, drafting notes, and reminding team members about commitments over Slack.'
-    },
-    {
-      icon: FileText,
-      title: 'Transcribing PDF Invoices & Receipts',
-      impact: '6–10 hrs/week lost',
-      description: 'Manually keying vendor invoice line items, dates, and bank details into Excel, QuickBooks, or Tally.'
-    },
-    {
-      icon: Headphones,
-      title: 'Answering Tier-1 Customer Support Tickets',
-      impact: '10–15 hrs/week lost',
-      description: 'Typing the same answers repeatedly regarding delivery status, pricing, login issues, and return policies.'
-    },
-    {
+      id: 'Operations',
+      title: 'OPERATIONS & RECONCILIATION',
+      description: 'Parse PDF invoices, extract line items with OCR, and balance cross-platform financials.',
       icon: FileSpreadsheet,
-      title: 'Updating & Reconciling Cross-Platform Sheets',
-      impact: '4–7 hrs/week lost',
-      description: 'Exporting CSV files from Shopify or Stripe to match inventory, bank deposits, and order statuses.'
+      tag: '02'
     },
     {
-      icon: GitMerge,
-      title: 'Chasing Forgotten Follow-up Emails',
-      impact: '3–5 hrs/week lost',
-      description: 'Remembering when to email a prospect after silence, without accidentally sending double-messages.'
+      id: 'Customer Support',
+      title: 'TRIAGE & AUTONOMOUS DISPATCH',
+      description: 'Transcribe meetings, isolate blockers, and triage support tickets with zero human latency.',
+      icon: Headphones,
+      tag: '03'
     }
   ];
 
   const steps = [
     {
       number: '01',
-      title: 'Choose a Workflow or Describe Your Problem',
-      description: 'Browse our catalog of pre-engineered n8n automation blueprints or tell us about your manual operational bottleneck.'
+      title: 'CHOOSE BLUEPRINT OR DEFINE BOTTLENECK',
+      description: 'Select an off-the-shelf n8n architecture or outline your company manual process.'
     },
     {
       number: '02',
-      title: 'Architecture & Tool Credentialing',
-      description: 'We map the precise data contracts, error fallbacks, and authentication keys needed for your software stack.'
+      title: 'CREDENTIAL & DATA CONTRACT SCOPING',
+      description: 'We audit your tool stack, error handlers, and security tokens with zero plain-text leaks.'
     },
     {
       number: '03',
-      title: 'Pipeline Engineering & Testing',
-      description: 'We configure and stress-test the automation with synthetic and edge-case data before any production deployment.'
+      title: 'PIPELINE STRESS TESTING',
+      description: 'Every webhook route undergoes synthetic payload tests and rate-limit verification.'
     },
     {
       number: '04',
-      title: 'Production Launch & Handover',
-      description: 'The workflow goes live. You receive full ownership files (JSON), documentation, and credential runbooks.'
+      title: 'PRODUCTION HANDOVER',
+      description: 'Your runtime goes live with full ownership files, runbooks, and direct API endpoints.'
     },
     {
       number: '05',
-      title: 'Ongoing Monitoring & Optimization',
-      description: 'Optional managed hosting and SLA maintenance to ensure your automation never silently fails when APIs update.'
+      title: 'CONTINUOUS SLA MONITORING',
+      description: 'Optional managed oversight to ensure downstream schema changes never interrupt workflows.'
     }
   ];
 
-  const industries = [
+  const bottlenecks = [
     {
-      name: 'B2B Sales Teams',
-      focus: 'Lead enrichment, instant response, pipeline stage sync, deal alerts',
-      metric: 'Under 45s lead response latency'
+      icon: Mail,
+      title: 'Inbound Lead Qualification',
+      loss: '6–8 HRS/WEEK',
+      desc: 'Copy-pasting form submissions into CRM, looking up revenue on Apollo, and drafting introductory emails.'
     },
     {
-      name: 'Creative & Marketing Agencies',
-      focus: 'Client reporting, content drafting, meeting digests, proposal intake',
-      metric: '18+ hours saved per account director'
+      icon: Clock,
+      title: 'Meeting Summaries & Actions',
+      loss: '4–6 HRS/WEEK',
+      desc: 'Re-listening to call recordings, manually compiling action items, and pinging teammates on Slack.'
     },
     {
-      name: 'E-Commerce Brands',
-      focus: 'Multi-store inventory sync, supplier order routing, tracking alerts',
-      metric: 'Zero overselling incidents across channels'
+      icon: FileText,
+      title: 'Invoice & Expense Extraction',
+      loss: '7–10 HRS/WEEK',
+      desc: 'Typing vendor invoice amounts, tax IDs, and bank details into spreadsheets or accounting software.'
     },
     {
-      name: 'Professional Services & Legal',
-      focus: 'Document classification, client intake forms, billing reconciliation',
-      metric: '90% faster document extraction'
+      icon: Headphones,
+      title: 'Tier-1 Customer Support Triage',
+      loss: '10–14 HRS/WEEK',
+      desc: 'Repeatedly answering identical questions regarding delivery schedules, pricing, and account verification.'
     }
   ];
 
   return (
-    <div className="space-y-28 sm:space-y-36 pb-28">
-      {/* 1. HERO SECTION */}
-      <section className="relative pt-16 sm:pt-24 lg:pt-32 overflow-hidden">
-        {/* Subtle background ambient mesh */}
-        <div className="absolute inset-0 editorial-grid opacity-30 pointer-events-none" />
+    <div className="w-full flex flex-col bg-[#E4E3E0]">
+      {/* ========================================================================= */}
+      {/* 1. HERO SECTION: Generous spacing, oversized typography, sharp geometry */}
+      {/* ========================================================================= */}
+      <section className="relative w-full px-4 sm:px-8 pt-20 sm:pt-28 pb-20 sm:pb-32 bg-[#E4E3E0] overflow-hidden">
+        <div className="w-full max-w-7xl mx-auto flex flex-col justify-between min-h-[580px] sm:min-h-[640px]">
+          {/* Top-Left: Eyebrow tagline (3 short uppercase lines with a short underline) */}
+          <div className="mb-10 sm:mb-14">
+            <div className="text-[11px] sm:text-xs uppercase tracking-[0.2em] font-bold text-[#0E0E0E] space-y-1">
+              <div>ENGINEERED AUTONOMY</div>
+              <div>PRODUCTION-GRADE N8N BLUEPRINTS</div>
+              <div className="text-[#6B6B6B]">ZERO BOTTLENECK OPERATIONS</div>
+            </div>
+            <div className="w-16 h-[1.5px] bg-[#0E0E0E] mt-3" />
+          </div>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="max-w-4xl mx-auto text-center space-y-7">
-            {/* Unboxed natural editorial kicker */}
-            <motion.div
-              initial={{ opacity: 0, y: -6 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.3 }}
-              className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-wider text-emerald-400"
-            >
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-              <span>Intelligent Business Process Engineering</span>
-              <span aria-hidden="true" className="text-neutral-700">/</span>
-              <span>n8n Workflows & AI Systems</span>
-            </motion.div>
+          {/* Center Graphic + Giant Display Wordmark */}
+          <div className="relative my-auto py-8">
+            {/* Giant Display Headline */}
+            <h1 className="text-6xl sm:text-8xl md:text-9xl lg:text-[11rem] xl:text-[13rem] font-extrabold uppercase text-[#0E0E0E] display-title select-none tracking-[-0.04em]">
+              OFFLO
+            </h1>
 
-            {/* Display Headline */}
-            <motion.h1
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, delay: 0.1 }}
-              className="text-4xl sm:text-6xl lg:text-7xl font-display font-extrabold text-white tracking-tight leading-[1.06] text-balance"
-            >
-              Automate Your Business Without Hiring Another Person.
-            </motion.h1>
+            {/* Sharp Architectural Schematic Cutout sitting over the wordmark */}
+            <div className="mt-4 sm:-mt-8 lg:-mt-12 bg-[#0E0E0E] text-white p-5 sm:p-7 max-w-2xl border border-[#0E0E0E]">
+              <div className="flex items-center justify-between text-[10px] uppercase tracking-[0.2em] font-semibold text-neutral-400 mb-3 pb-2 border-b border-white/15">
+                <span>RUNTIME SCHEMA // PIPELINE V1.4</span>
+                <span className="text-white">● ACTIVE CLUSTER</span>
+              </div>
+              <div className="grid grid-cols-3 gap-2 text-center text-xs">
+                <div className="bg-white/10 p-2.5">
+                  <span className="text-[9px] uppercase tracking-[0.16em] text-neutral-400 block mb-0.5">INPUT</span>
+                  <span className="font-bold text-white text-[11px]">WEBHOOK / OCR</span>
+                </div>
+                <div className="bg-white/10 p-2.5">
+                  <span className="text-[9px] uppercase tracking-[0.16em] text-neutral-400 block mb-0.5">LOGIC</span>
+                  <span className="font-bold text-white text-[11px]">LLM + N8N ENGINE</span>
+                </div>
+                <div className="bg-white/10 p-2.5">
+                  <span className="text-[9px] uppercase tracking-[0.16em] text-neutral-400 block mb-0.5">TARGET</span>
+                  <span className="font-bold text-white text-[11px]">CRM / ERP SYNC</span>
+                </div>
+              </div>
+              <p className="text-xs text-neutral-300 mt-3 leading-relaxed">
+                Autonomous orchestration for modern enterprises. Zero fragile Zapier chains. Fully self-hostable with guaranteed deterministic outputs.
+              </p>
+            </div>
+          </div>
 
-            {/* Supporting Value Proposition */}
-            <motion.p
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, delay: 0.2 }}
-              className="text-base sm:text-lg text-neutral-400 leading-relaxed max-w-2xl mx-auto"
-            >
-              AI-powered workflows and business automations that eliminate repetitive manual work, connect your tools seamlessly, and help your team operate faster.
-            </motion.p>
-
-            {/* Action CTAs (Strict single-line labels, rectangular editorial design) */}
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, delay: 0.3 }}
-              className="pt-3 flex flex-col sm:flex-row items-center justify-center gap-3.5"
-            >
+          {/* Bottom Row: Actions (Left) and Metadata Stack (Right) */}
+          <div className="pt-12 sm:pt-16 border-t border-[#CFCFCC] flex flex-col sm:flex-row sm:items-end justify-between gap-6">
+            {/* Bottom-left: One solid black button plus one text link with a thin underline */}
+            <div className="flex flex-wrap items-center gap-6">
               <button
                 onClick={() => onNavigate('/workflows')}
-                className="w-full sm:w-auto px-7 py-3.5 text-xs font-semibold uppercase tracking-wider text-black bg-white hover:bg-neutral-200 transition-all flex items-center justify-center gap-2 cursor-pointer whitespace-nowrap active:scale-[0.98]"
+                className="btn-primary"
               >
-                <span>Explore Workflows</span>
-                <ArrowRight className="w-3.5 h-3.5" />
+                <span>EXPLORE WORKFLOWS</span>
+                <ArrowRight className="w-4 h-4 ml-2" />
               </button>
 
               <button
                 onClick={onRequestCustom}
-                className="w-full sm:w-auto px-7 py-3.5 text-xs font-semibold uppercase tracking-wider text-neutral-300 hover:text-white bg-white/[0.03] hover:bg-white/[0.08] border border-white/10 hover:border-white/25 transition-all flex items-center justify-center gap-2 cursor-pointer whitespace-nowrap active:scale-[0.98]"
+                className="text-xs uppercase tracking-[0.16em] font-bold text-[#0E0E0E] editorial-link cursor-pointer py-2"
               >
-                <span>Request Custom Automation</span>
-                <ArrowUpRight className="w-3.5 h-3.5 text-neutral-400" />
+                REQUEST CUSTOM ARCHITECTURE →
               </button>
-            </motion.div>
+            </div>
 
-            {/* Claim-to-Proof Adjacency Grid */}
-            <div className="pt-10 border-t border-white/[0.08] grid grid-cols-1 sm:grid-cols-3 gap-6 text-xs text-neutral-400">
-              <div className="p-3 bg-white/[0.01] border border-white/[0.04]">
-                <div className="font-mono font-bold text-white text-sm sm:text-base tabular-nums">48-Hour</div>
-                <div className="text-neutral-500 text-[11px] uppercase tracking-wider mt-0.5">Standard Workflow Turnaround</div>
+            {/* Bottom-right: Small uppercase label stack with a short underline */}
+            <div className="text-left sm:text-right">
+              <div className="text-[11px] uppercase tracking-[0.2em] font-semibold text-[#0E0E0E] space-y-0.5">
+                <div>EDITION 2026 // V1.4 PRODUCTION</div>
+                <div className="text-[#6B6B6B]">DEPLOYED TO PRIVATE CLUSTERS</div>
               </div>
-              <div className="p-3 bg-white/[0.01] border border-white/[0.04]">
-                <div className="font-mono font-bold text-white text-sm sm:text-base tabular-nums">100%</div>
-                <div className="text-neutral-500 text-[11px] uppercase tracking-wider mt-0.5">Self-Hostable n8n Architecture</div>
-              </div>
-              <div className="p-3 bg-white/[0.01] border border-white/[0.04]">
-                <div className="font-mono font-bold text-white text-sm sm:text-base tabular-nums">Zero</div>
-                <div className="text-neutral-500 text-[11px] uppercase tracking-wider mt-0.5">Proprietary Lock-In</div>
-              </div>
+              <div className="w-12 h-[1.5px] bg-[#0E0E0E] mt-2 sm:ml-auto" />
             </div>
           </div>
-
-          {/* Hero Visual Showcase Carrier: 100% Image-Free Live Studio Architecture Console */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.35 }}
-            className="mt-14 sm:mt-18 border border-white/[0.12] bg-[#07080B] shadow-2xl relative overflow-hidden"
-          >
-            {/* Terminal Window Header Bar */}
-            <div className="px-4 py-3 bg-[#0B0C10] border-b border-white/[0.08] flex items-center justify-between text-xs font-mono">
-              <div className="flex items-center gap-2">
-                <div className="flex items-center gap-1.5 mr-2">
-                  <span className="w-2.5 h-2.5 rounded-full bg-rose-500/80 inline-block"></span>
-                  <span className="w-2.5 h-2.5 rounded-full bg-amber-500/80 inline-block"></span>
-                  <span className="w-2.5 h-2.5 rounded-full bg-emerald-500/80 inline-block"></span>
-                </div>
-                <span className="text-neutral-400 text-[11px] hidden sm:inline">flux-runtime // session-node: production • n8n orchestrator</span>
-                <span className="text-neutral-400 text-[11px] sm:hidden">flux-runtime // prod</span>
-              </div>
-
-              <div className="flex items-center gap-3 text-[10px]">
-                <div className="flex items-center gap-1.5 text-emerald-400">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-                  <span className="uppercase tracking-wider">Active Run: 100% Deterministic</span>
-                </div>
-                <span className="text-neutral-600 hidden md:inline">|</span>
-                <span className="text-neutral-500 font-mono hidden md:inline">uptime 99.98%</span>
-              </div>
-            </div>
-
-            {/* Architecture Node Pipeline Diagram */}
-            <div className="p-5 sm:p-7 lg:p-8 bg-[#07080B] relative">
-              {/* Subtle vector grid lines */}
-              <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none opacity-50" />
-
-              <div className="relative space-y-6">
-                {/* Visual Pipeline Flow Track */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 lg:gap-4 relative">
-                  {/* Node 1 */}
-                  <div className="p-4 bg-white/[0.02] border border-white/[0.1] hover:border-emerald-500/40 transition-colors relative group">
-                    <div className="flex items-center justify-between mb-2 font-mono text-[10px]">
-                      <span className="text-emerald-400 uppercase tracking-widest font-semibold">01 // INGESTION</span>
-                      <span className="px-1.5 py-0.5 bg-emerald-500/10 text-emerald-300 border border-emerald-500/20">200 OK</span>
-                    </div>
-                    <div className="text-sm font-semibold text-white mb-1">Webhook Listener</div>
-                    <div className="text-xs text-neutral-400 font-mono mb-3">POST /v1/inbound-lead</div>
-                    <div className="text-[11px] text-neutral-500 font-mono bg-black/40 p-2 border border-white/[0.05]">
-                      payload: <span className="text-neutral-300">&#123;company: &quot;Acme&quot;, intent: &quot;high&quot;&#125;</span>
-                    </div>
-                  </div>
-
-                  {/* Node 2 */}
-                  <div className="p-4 bg-white/[0.02] border border-white/[0.1] hover:border-emerald-500/40 transition-colors relative group">
-                    <div className="flex items-center justify-between mb-2 font-mono text-[10px]">
-                      <span className="text-emerald-400 uppercase tracking-widest font-semibold">02 // ENRICH</span>
-                      <span className="text-neutral-500 font-mono">42ms</span>
-                    </div>
-                    <div className="text-sm font-semibold text-white mb-1">Firmographic Lookup</div>
-                    <div className="text-xs text-neutral-400 font-mono mb-3">Apollo & Clearbit APIs</div>
-                    <div className="text-[11px] text-neutral-500 font-mono bg-black/40 p-2 border border-white/[0.05]">
-                      matched: <span className="text-neutral-300">ARR $14M • 120 FTE • Tech stack</span>
-                    </div>
-                  </div>
-
-                  {/* Node 3 */}
-                  <div className="p-4 bg-white/[0.02] border border-white/[0.1] hover:border-emerald-500/40 transition-colors relative group">
-                    <div className="flex items-center justify-between mb-2 font-mono text-[10px]">
-                      <span className="text-emerald-400 uppercase tracking-widest font-semibold">03 // AI REASON</span>
-                      <span className="text-emerald-400 font-mono">Flash 1.5</span>
-                    </div>
-                    <div className="text-sm font-semibold text-white mb-1">Autonomous Scorer</div>
-                    <div className="text-xs text-neutral-400 font-mono mb-3">Deterministic Rubric</div>
-                    <div className="text-[11px] text-neutral-500 font-mono bg-black/40 p-2 border border-white/[0.05]">
-                      score: <span className="text-emerald-300">ICP Tier-A (Confidence 0.98)</span>
-                    </div>
-                  </div>
-
-                  {/* Node 4 */}
-                  <div className="p-4 bg-white/[0.02] border border-white/[0.1] hover:border-emerald-500/40 transition-colors relative group">
-                    <div className="flex items-center justify-between mb-2 font-mono text-[10px]">
-                      <span className="text-emerald-400 uppercase tracking-widest font-semibold">04 // DISPATCH</span>
-                      <span className="text-neutral-500 font-mono">Synced</span>
-                    </div>
-                    <div className="text-sm font-semibold text-white mb-1">CRM + Slack Route</div>
-                    <div className="text-xs text-neutral-400 font-mono mb-3">HubSpot & Slack API</div>
-                    <div className="text-[11px] text-neutral-500 font-mono bg-black/40 p-2 border border-white/[0.05]">
-                      action: <span className="text-neutral-300">Deal created + AE pinged in 38s</span>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Execution Telemetry Log Stream */}
-                <div className="p-4 sm:p-5 bg-black/60 border border-white/[0.08] font-mono text-xs text-neutral-300 space-y-1.5">
-                  <div className="flex items-center justify-between text-[10px] text-neutral-500 border-b border-white/[0.06] pb-2 mb-2 uppercase tracking-wider">
-                    <div className="flex items-center gap-2">
-                      <Terminal className="w-3 h-3 text-emerald-400" />
-                      <span>Live Engine Execution Stream</span>
-                    </div>
-                    <span>Cluster Asia-01 • Zero Failures</span>
-                  </div>
-                  <div className="flex items-start gap-2 text-neutral-400 text-[11px]">
-                    <span className="text-neutral-600">[00:00:01]</span>
-                    <span className="text-emerald-400 font-semibold">[TRIGGER]</span>
-                    <span>Inbound HTTP POST /v1/lead received (4.2 KB) from primary website form</span>
-                  </div>
-                  <div className="flex items-start gap-2 text-neutral-400 text-[11px]">
-                    <span className="text-neutral-600">[00:00:02]</span>
-                    <span className="text-cyan-400 font-semibold">[ENRICH]</span>
-                    <span>Firmographic data verified via Apollo API — 120 employees, SaaS vertical</span>
-                  </div>
-                  <div className="flex items-start gap-2 text-neutral-400 text-[11px]">
-                    <span className="text-neutral-600">[00:00:03]</span>
-                    <span className="text-purple-400 font-semibold">[AI-AGENT]</span>
-                    <span>Gemini 1.5 Flash evaluated criteria — lead categorized as ICP_TIER_A (Urgent)</span>
-                  </div>
-                  <div className="flex items-start gap-2 text-neutral-400 text-[11px]">
-                    <span className="text-neutral-600">[00:00:04]</span>
-                    <span className="text-emerald-400 font-semibold">[SUCCESS]</span>
-                    <span className="text-neutral-300">HubSpot deal staged & priority Slack notification dispatched to Account Executive</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Live Operational Status Bar */}
-            <div className="px-5 py-4 bg-[#0A0B0F] border-t border-white/[0.1] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs">
-              <div className="flex flex-wrap items-center gap-4 text-xs font-mono">
-                <div className="flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-                  <span className="text-white font-medium">Production Engine Online</span>
-                </div>
-                <span className="text-neutral-700 hidden sm:inline">/</span>
-                <span className="text-neutral-400 font-mono text-[11px]">n8n + AI + API Orchestration</span>
-                <span className="text-neutral-700 hidden sm:inline">/</span>
-                <span className="text-neutral-400 font-mono text-[11px]">&lt; 420ms Latency</span>
-              </div>
-              <button
-                onClick={() => onNavigate('/services')}
-                className="text-white hover:text-emerald-400 uppercase tracking-wider font-semibold text-[11px] flex items-center gap-1.5 cursor-pointer transition-colors"
-              >
-                <span>Explore Capabilities</span>
-                <ArrowRight className="w-3.5 h-3.5" />
-              </button>
-            </div>
-          </motion.div>
         </div>
       </section>
 
-      {/* 2. PROBLEM SECTION: The Manual Bottlenecks */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-2xl mb-12">
-          <div className="text-[11px] font-mono text-emerald-400 uppercase tracking-wider mb-2">
-            The Operational Drain
+      {/* ========================================================================= */}
+      {/* 2. CATEGORY BAND: Full-width black section, 3 equal columns */}
+      {/* ========================================================================= */}
+      <section className="w-full bg-[#0E0E0E] text-white py-16 sm:py-24 px-4 sm:px-8 border-y border-[#0E0E0E]">
+        <div className="w-full max-w-7xl mx-auto">
+          <div className="text-[10px] uppercase tracking-[0.24em] font-semibold text-neutral-400 mb-10 pb-4 border-b border-white/15">
+            01 // CORE AUTOMATION CAPABILITIES
           </div>
-          <h2 className="text-2xl sm:text-4xl lg:text-5xl font-display font-bold text-white tracking-tight leading-tight">
-            Where Your Team Loses 20+ Hours Every Week
-          </h2>
-          <p className="text-neutral-400 text-sm mt-3 leading-relaxed">
-            Most businesses do not need another full-time employee. They need to stop paying skilled humans to perform repetitive mechanical copying, pasting, and checking.
-          </p>
-        </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-white/[0.08] border border-white/[0.08]">
-          {manualProblems.map((prob, idx) => {
-            const Icon = prob.icon;
-            return (
-              <div
-                key={idx}
-                className="p-6 sm:p-7 bg-[#090A0E] hover:bg-[#0E0F14] transition-colors duration-200 flex flex-col justify-between"
-              >
-                <div>
-                  <div className="flex items-center justify-between mb-4">
-                    <div className="w-8 h-8 bg-white/[0.04] border border-white/10 flex items-center justify-center text-neutral-300">
-                      <Icon className="w-4 h-4" />
-                    </div>
-                    <span className="text-xs font-mono text-amber-400 font-medium">
-                      {prob.impact}
-                    </span>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-12 divide-y md:divide-y-0 md:divide-x divide-white/15">
+            {categories.map((cat, idx) => {
+              const Icon = cat.icon;
+              return (
+                <div key={cat.id} className={`${idx !== 0 ? 'pt-8 md:pt-0 md:pl-10' : ''} flex gap-5 items-start`}>
+                  {/* Small square thumbnail on the left */}
+                  <div className="w-14 h-14 bg-white/10 flex items-center justify-center shrink-0 border border-white/15">
+                    <Icon className="w-6 h-6 text-white" strokeWidth={1.5} />
                   </div>
-                  <h3 className="text-base font-semibold text-white mb-2 leading-snug">
-                    {prob.title}
-                  </h3>
+
+                  {/* Title, description, and link on the right */}
+                  <div className="space-y-2">
+                    <span className="text-[9px] uppercase tracking-[0.2em] text-neutral-400 block font-semibold">
+                      ARCH-CLASS {cat.tag}
+                    </span>
+                    <h3 className="text-sm sm:text-base font-bold uppercase tracking-tight text-white leading-tight">
+                      {cat.title}
+                    </h3>
+                    <p className="text-xs text-neutral-400 leading-relaxed line-clamp-2">
+                      {cat.description}
+                    </p>
+                    <div className="pt-2">
+                      <button
+                        onClick={() => onNavigate(`/workflows?category=${encodeURIComponent(cat.id)}`)}
+                        className="text-xs uppercase tracking-[0.16em] font-semibold text-white editorial-link cursor-pointer"
+                      >
+                        Explore Category →
+                      </button>
+                    </div>
+                  </div>
                 </div>
-                <p className="text-neutral-400 text-xs leading-relaxed mt-2">
-                  {prob.description}
-                </p>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* ========================================================================= */}
+      {/* 3. FEATURE BANNER: Full-bleed mid-gray section (#BEBEBE -> #A9A9A9) */}
+      {/* ========================================================================= */}
+      <section className="w-full bg-[#BEBEBE] text-[#0E0E0E] py-20 sm:py-32 px-4 sm:px-8 border-b border-[#CFCFCC]">
+        <div className="w-full max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 sm:gap-16 items-center">
+          {/* Left: Small spaced eyebrow, big bold 2-line headline, short desc, 1 solid black button */}
+          <div className="lg:col-span-7 space-y-6">
+            <span className="text-[11px] uppercase tracking-[0.22em] font-bold text-[#0E0E0E] block">
+              BESPOKE PROCESS ARCHITECTURE
+            </span>
+
+            <h2 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold uppercase tracking-[-0.03em] leading-[0.95] text-[#0E0E0E]">
+              ELIMINATE MANUAL BOTTLENECKS
+              <br />
+              AT ENTERPRISE VELOCITY
+            </h2>
+
+            <p className="text-sm sm:text-base text-[#333333] max-w-xl leading-relaxed">
+              When generic SaaS subscriptions fail to match your proprietary operational rules, our studio designs high-throughput, self-healing pipelines tailored precisely to your internal schema.
+            </p>
+
+            <div className="pt-4 flex flex-wrap items-center gap-6">
+              <button
+                onClick={onRequestCustom}
+                className="btn-primary"
+              >
+                <span>BOOK PRIVATE CONSULTATION</span>
+                <ArrowRight className="w-4 h-4 ml-2" />
+              </button>
+
+              <button
+                onClick={() => onNavigate('/services')}
+                className="text-xs uppercase tracking-[0.16em] font-bold text-[#0E0E0E] editorial-link cursor-pointer"
+              >
+                VIEW SERVICE SPECS →
+              </button>
+            </div>
+          </div>
+
+          {/* Right: Technical process diagram / high-contrast blueprint */}
+          <div className="lg:col-span-5 bg-[#0E0E0E] text-white p-7 sm:p-9 border border-[#0E0E0E] space-y-5">
+            <div className="flex items-center justify-between text-[10px] uppercase tracking-[0.2em] font-bold text-neutral-400 pb-3 border-b border-white/15">
+              <span>ARCHITECTURE SPEC</span>
+              <span>GUARANTEED 99.9% UPTIME</span>
+            </div>
+
+            <div className="space-y-3 text-xs">
+              <div className="flex items-center justify-between p-3 bg-white/5 border border-white/10">
+                <span className="text-neutral-400 uppercase tracking-wider text-[10px]">INGESTION LATENCY</span>
+                <span className="font-bold text-white">&lt; 350ms</span>
+              </div>
+              <div className="flex items-center justify-between p-3 bg-white/5 border border-white/10">
+                <span className="text-neutral-400 uppercase tracking-wider text-[10px]">DATA STORAGE</span>
+                <span className="font-bold text-white">SUPABASE POSTGRESQL</span>
+              </div>
+              <div className="flex items-center justify-between p-3 bg-white/5 border border-white/10">
+                <span className="text-neutral-400 uppercase tracking-wider text-[10px]">AUTH & SIGNATURE</span>
+                <span className="font-bold text-white">HMAC SHA-256</span>
+              </div>
+              <div className="flex items-center justify-between p-3 bg-white/5 border border-white/10">
+                <span className="text-neutral-400 uppercase tracking-wider text-[10px]">CODE HANDOVER</span>
+                <span className="font-bold text-white">100% UNRESTRICTED JSON</span>
+              </div>
+            </div>
+
+            <div className="text-[11px] text-neutral-400 pt-2 border-t border-white/15 flex items-center justify-between">
+              <span>ZERO VENDOR LOCK-IN</span>
+              <span>SELF-HOST ON DOCKER / CLOUD</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ========================================================================= */}
+      {/* 4. TRUST / BENEFITS STRIP: Soft gray background, 4 equal items in a row */}
+      {/* ========================================================================= */}
+      <section className="w-full bg-[#E4E3E0] py-14 px-4 sm:px-8 border-b border-[#CFCFCC]">
+        <div className="w-full max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10">
+          {benefits.map((b, idx) => {
+            const Icon = b.icon;
+            return (
+              <div key={idx} className="flex items-start gap-4">
+                <div className="p-2.5 bg-[#0E0E0E] text-white shrink-0">
+                  <Icon className="w-5 h-5" strokeWidth={1.5} />
+                </div>
+                <div>
+                  <h4 className="text-xs font-bold uppercase tracking-[0.16em] text-[#0E0E0E] mb-1">
+                    {b.title}
+                  </h4>
+                  <p className="text-xs text-[#6B6B6B] leading-relaxed">
+                    {b.subline}
+                  </p>
+                </div>
               </div>
             );
           })}
         </div>
-
-        <div className="mt-8 p-4 bg-white/[0.02] border border-white/[0.08] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs">
-          <span className="text-neutral-300">
-            Recognize any of these manual processes in your business?
-          </span>
-          <button
-            onClick={onRequestCustom}
-            className="text-white hover:text-emerald-400 font-semibold uppercase tracking-wider text-[11px] flex items-center gap-1.5 cursor-pointer whitespace-nowrap transition-colors"
-          >
-            <span>Tell us what you do manually</span>
-            <ArrowRight className="w-3.5 h-3.5" />
-          </button>
-        </div>
       </section>
 
-      {/* 3. SOLUTION SECTION: Interactive Visual Architecture */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-2xl mb-8">
-          <div className="text-[11px] font-mono text-emerald-400 uppercase tracking-wider mb-2">
-            The Automation Mechanics
-          </div>
-          <h2 className="text-2xl sm:text-4xl lg:text-5xl font-display font-bold text-white tracking-tight leading-tight">
-            From Manual Drag to Sub-Second Autonomous Execution
-          </h2>
-          <p className="text-neutral-400 text-sm mt-3 leading-relaxed">
-            Every automation connects a business trigger, cleans the data, applies deterministic AI intelligence, and executes direct actions across your existing tool stack.
-          </p>
-        </div>
-
-        <InteractiveFlowVisualizer />
-      </section>
-
-      {/* 4. FEATURED READY-MADE WORKFLOWS */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-4 mb-10 pb-6 border-b border-white/[0.08]">
-          <div>
-            <div className="text-[11px] font-mono text-emerald-400 uppercase tracking-wider mb-2">
-              Production Catalog
+      {/* ========================================================================= */}
+      {/* 5. CONTENT GRID SECTION: Near-white background, 4-column grid */}
+      {/* ========================================================================= */}
+      <section className="w-full bg-[#F6F5F3] py-20 sm:py-28 px-4 sm:px-8 border-b border-[#CFCFCC]">
+        <div className="w-full max-w-7xl mx-auto">
+          {/* Header row: uppercase section title on left, "View all" underlined link on right */}
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-8 mb-10 border-b border-[#CFCFCC]">
+            <div>
+              <span className="text-[10px] uppercase tracking-[0.24em] font-semibold text-[#6B6B6B] block mb-1">
+                CATALOG // PRODUCTION RELEASES
+              </span>
+              <h2 className="text-2xl sm:text-4xl font-extrabold uppercase tracking-tight text-[#0E0E0E]">
+                READY-TO-DEPLOY BLUEPRINTS
+              </h2>
             </div>
-            <h2 className="text-2xl sm:text-4xl lg:text-5xl font-display font-bold text-white tracking-tight leading-tight">
-              Featured Ready-Made Workflows
+
+            <button
+              onClick={() => onNavigate('/workflows')}
+              className="text-xs uppercase tracking-[0.18em] font-bold text-[#0E0E0E] editorial-link cursor-pointer self-start sm:self-auto"
+            >
+              VIEW ALL WORKFLOWS ({workflows.length}) →
+            </button>
+          </div>
+
+          {/* 4-Column Grid of Sharp-cornered tiles */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {catalogWorkflows.map((workflow) => (
+              <WorkflowCard
+                key={workflow.id}
+                workflow={workflow}
+                onSelect={onSelectWorkflow}
+                onRequestWorkflow={onRequestWorkflow}
+              />
+            ))}
+          </div>
+
+          <div className="mt-12 text-center">
+            <button
+              onClick={() => onNavigate('/workflows')}
+              className="btn-primary"
+            >
+              <span>EXPLORE ALL {workflows.length} WORKFLOWS</span>
+              <ArrowRight className="w-4 h-4 ml-2" />
+            </button>
+          </div>
+        </div>
+      </section>
+
+      {/* ========================================================================= */}
+      {/* 6. INTERACTIVE FLOW VISUALIZER: Reskinned in monochrome editorial style */}
+      {/* ========================================================================= */}
+      <section className="w-full bg-[#E4E3E0] py-20 sm:py-28 px-4 sm:px-8 border-b border-[#CFCFCC]">
+        <div className="w-full max-w-7xl mx-auto">
+          <div className="text-center max-w-3xl mx-auto mb-12">
+            <span className="text-[10px] uppercase tracking-[0.24em] font-bold text-[#6B6B6B] block mb-2">
+              REAL-TIME ORCHESTRATION ENGINE
+            </span>
+            <h2 className="text-2xl sm:text-4xl font-extrabold uppercase tracking-tight text-[#0E0E0E]">
+              EXPERIENCE A LIVE AUTOMATION PIPELINE
             </h2>
-            <p className="text-neutral-400 text-sm mt-2">
-              Battle-tested n8n workflows ready to deploy in under 48 hours.
+            <p className="text-xs sm:text-sm text-[#6B6B6B] mt-3 leading-relaxed">
+              Toggle live nodes below to inspect how payloads parse, enrich, and dispatch without humans in the loop.
             </p>
           </div>
 
-          <button
-            onClick={() => onNavigate('/workflows')}
-            className="text-xs uppercase tracking-wider font-semibold text-white hover:text-emerald-400 flex items-center gap-1 transition-colors cursor-pointer whitespace-nowrap"
-          >
-            <span>Browse All {workflows.length} Workflows</span>
-            <ArrowRight className="w-3.5 h-3.5" />
-          </button>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {featuredWorkflows.map(workflow => (
-            <WorkflowCard
-              key={workflow.id}
-              workflow={workflow}
-              onSelect={onSelectWorkflow}
-              onRequestWorkflow={onRequestWorkflow}
-            />
-          ))}
+          <div className="bg-[#FFFFFF] border border-[#CFCFCC] p-4 sm:p-8">
+            <InteractiveFlowVisualizer />
+          </div>
         </div>
       </section>
 
-      {/* 5. HOW IT WORKS */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-2xl mb-12">
-          <div className="text-[11px] font-mono text-emerald-400 uppercase tracking-wider mb-2">
-            Execution Roadmap
+      {/* ========================================================================= */}
+      {/* 7. BOTTLENECKS SECTION: Manual drag eliminated */}
+      {/* ========================================================================= */}
+      <section className="w-full bg-[#F6F5F3] py-20 sm:py-28 px-4 sm:px-8 border-b border-[#CFCFCC]">
+        <div className="w-full max-w-7xl mx-auto">
+          <div className="mb-12 pb-6 border-b border-[#CFCFCC]">
+            <span className="text-[10px] uppercase tracking-[0.24em] font-semibold text-[#6B6B6B] block mb-1">
+              THE COST OF MANUAL PROCESSES
+            </span>
+            <h2 className="text-2xl sm:text-4xl font-extrabold uppercase tracking-tight text-[#0E0E0E]">
+              RECLAIM 20+ HOURS EVERY WEEK
+            </h2>
           </div>
-          <h2 className="text-2xl sm:text-4xl lg:text-5xl font-display font-bold text-white tracking-tight leading-tight">
-            How An Offlo Automation Goes Live
-          </h2>
-          <p className="text-neutral-400 text-sm mt-3 leading-relaxed">
-            From initial identification to production reliability in five clear stages.
-          </p>
-        </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-3">
-          {steps.map(step => (
-            <div
-              key={step.number}
-              className="p-5 border border-white/[0.08] bg-[#0A0B0F] hover:border-white/20 transition-colors flex flex-col justify-between"
-            >
-              <div>
-                <div className="text-2xl font-display font-bold text-white font-mono mb-3">
-                  {step.number}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {bottlenecks.map((item, idx) => {
+              const Icon = item.icon;
+              return (
+                <div key={idx} className="bg-[#FFFFFF] p-6 border border-[#CFCFCC] flex flex-col justify-between">
+                  <div>
+                    <div className="flex items-center justify-between mb-4">
+                      <div className="p-2 bg-[#F6F5F3] text-[#0E0E0E]">
+                        <Icon className="w-5 h-5" strokeWidth={1.5} />
+                      </div>
+                      <span className="text-[10px] uppercase tracking-[0.16em] font-bold text-[#0E0E0E] bg-[#E4E3E0] px-2 py-0.5">
+                        {item.loss}
+                      </span>
+                    </div>
+
+                    <h3 className="text-sm font-bold uppercase text-[#0E0E0E] mb-2 leading-tight">
+                      {item.title}
+                    </h3>
+                    <p className="text-xs text-[#6B6B6B] leading-relaxed">
+                      {item.desc}
+                    </p>
+                  </div>
+
+                  <div className="pt-6 border-t border-[#CFCFCC] mt-6">
+                    <button
+                      onClick={onRequestCustom}
+                      className="text-xs uppercase tracking-[0.14em] font-bold text-[#0E0E0E] editorial-link cursor-pointer"
+                    >
+                      Automate This →
+                    </button>
+                  </div>
                 </div>
-                <h3 className="text-sm font-semibold text-white mb-2 leading-snug">
-                  {step.title}
-                </h3>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* ========================================================================= */}
+      {/* 8. 5-STEP METHODOLOGY: Sharp horizontal cards with hairlines */}
+      {/* ========================================================================= */}
+      <section className="w-full bg-[#E4E3E0] py-20 sm:py-28 px-4 sm:px-8 border-b border-[#CFCFCC]">
+        <div className="w-full max-w-7xl mx-auto">
+          <div className="mb-12 pb-6 border-b border-[#CFCFCC] flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+            <div>
+              <span className="text-[10px] uppercase tracking-[0.24em] font-semibold text-[#6B6B6B] block mb-1">
+                ENGINEERING PROTOCOL
+              </span>
+              <h2 className="text-2xl sm:text-4xl font-extrabold uppercase tracking-tight text-[#0E0E0E]">
+                HOW WE DEPLOY AUTOMATIONS
+              </h2>
+            </div>
+            <div className="text-xs uppercase tracking-[0.16em] font-bold text-[#6B6B6B]">
+              5 PHASES // 100% RELIABILITY
+            </div>
+          </div>
+
+          <div className="space-y-4">
+            {steps.map((st) => (
+              <div
+                key={st.number}
+                className="bg-[#FFFFFF] border border-[#CFCFCC] p-6 sm:p-8 flex flex-col sm:flex-row sm:items-center justify-between gap-6"
+              >
+                <div className="flex items-start sm:items-center gap-6">
+                  <span className="text-2xl sm:text-4xl font-black text-[#0E0E0E] tracking-tight shrink-0 font-mono">
+                    {st.number}
+                  </span>
+                  <div>
+                    <h3 className="text-sm sm:text-base font-bold uppercase tracking-tight text-[#0E0E0E] mb-1">
+                      {st.title}
+                    </h3>
+                    <p className="text-xs sm:text-sm text-[#6B6B6B] leading-relaxed max-w-2xl">
+                      {st.description}
+                    </p>
+                  </div>
+                </div>
+
+                <div className="sm:shrink-0">
+                  <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-[#0E0E0E] px-3 py-1 bg-[#F6F5F3] border border-[#CFCFCC]">
+                    CERTIFIED
+                  </span>
+                </div>
               </div>
-              <p className="text-neutral-400 text-xs leading-relaxed mt-4">
-                {step.description}
+            ))}
+          </div>
+
+          {/* Bottom Callout in Home */}
+          <div className="mt-16 bg-[#0E0E0E] text-white p-8 sm:p-14 flex flex-col lg:flex-row items-center justify-between gap-8 text-center lg:text-left">
+            <div>
+              <span className="text-[10px] uppercase tracking-[0.24em] font-bold text-neutral-400 block mb-2">
+                READY TO SCALE YOUR CAPACITY?
+              </span>
+              <h3 className="text-2xl sm:text-4xl font-bold uppercase tracking-tight leading-tight">
+                LET'S MAP YOUR AUTOMATION PIPELINE
+              </h3>
+              <p className="text-xs sm:text-sm text-neutral-400 mt-2 max-w-xl">
+                Submit your manual process bottlenecks or select a production workflow. We deliver blueprints with full ownership runbooks.
               </p>
             </div>
-          ))}
-        </div>
-      </section>
 
-      {/* 6. INDUSTRIES & USE CASES */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-2xl mb-10">
-          <div className="text-[11px] font-mono text-emerald-400 uppercase tracking-wider mb-2">
-            Domain Focus
-          </div>
-          <h2 className="text-2xl sm:text-4xl lg:text-5xl font-display font-bold text-white tracking-tight leading-tight">
-            Automations Tailored To Your Industry
-          </h2>
-          <p className="text-neutral-400 text-sm mt-3 leading-relaxed">
-            We engineer workflows around specific operational bottlenecks, not theoretical concepts.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          {industries.map((ind, idx) => (
-            <div
-              key={idx}
-              className="p-6 border border-white/[0.08] bg-[#0A0B0F] hover:border-white/20 transition-colors flex flex-col justify-between"
-            >
-              <div>
-                <h3 className="text-base font-semibold text-white mb-2">{ind.name}</h3>
-                <p className="text-neutral-400 text-xs leading-relaxed mb-6">
-                  {ind.focus}
-                </p>
-              </div>
-              <div className="pt-4 border-t border-white/[0.06] text-xs font-mono text-emerald-400">
-                {ind.metric}
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* 7. FINAL HIGH-CONVERSION CTA */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="border border-white/[0.12] bg-[#0A0B0E] p-8 sm:p-14 lg:p-18 text-center max-w-4xl mx-auto relative overflow-hidden shadow-2xl">
-          <div className="max-w-2xl mx-auto space-y-5">
-            <div className="text-[11px] font-mono text-emerald-400 uppercase tracking-wider">
-              Get Started In 48 Hours
-            </div>
-            <h2 className="text-2xl sm:text-4xl lg:text-5xl font-display font-bold text-white tracking-tight">
-              Have A Repetitive Manual Bottleneck?
-            </h2>
-            <p className="text-neutral-400 text-sm leading-relaxed">
-              Tell us what you or your team are doing manually today. We will review your process and tell you exactly what can be automated with n8n and AI within 24 hours.
-            </p>
-            <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-3">
+            <div className="flex flex-wrap gap-4 justify-center">
               <button
                 onClick={onRequestCustom}
-                className="w-full sm:w-auto px-7 py-3.5 text-xs font-semibold uppercase tracking-wider text-black bg-white hover:bg-neutral-200 transition-all flex items-center justify-center gap-2 cursor-pointer whitespace-nowrap active:scale-[0.98]"
+                className="h-12 px-8 text-xs font-semibold uppercase tracking-[0.18em] text-[#0E0E0E] bg-white hover:bg-neutral-200 transition-colors cursor-pointer"
               >
-                <span>Request Custom Automation</span>
-                <ArrowRight className="w-3.5 h-3.5" />
+                <span>REQUEST CUSTOM SCOPE</span>
               </button>
               <button
                 onClick={() => onNavigate('/workflows')}
-                className="w-full sm:w-auto px-7 py-3.5 text-xs font-semibold uppercase tracking-wider text-neutral-300 hover:text-white bg-white/[0.03] hover:bg-white/[0.08] border border-white/10 transition-all cursor-pointer whitespace-nowrap"
+                className="h-12 px-6 text-xs font-semibold uppercase tracking-[0.18em] text-white border border-white/30 hover:border-white transition-colors cursor-pointer"
               >
-                <span>Browse Catalog First</span>
+                <span>BROWSE WORKFLOWS</span>
               </button>
             </div>
           </div>

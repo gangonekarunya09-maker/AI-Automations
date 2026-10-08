@@ -31,3 +31,16 @@ This directory contains the central data persistence engine and external integra
   - `test_ping`: Triggered from the Admin Settings diagnostic console.
 - **Security**: Embeds the configured signing secret in the `X-Offlo-Signature` (and `X-Operon-Signature`) header and identifies the event via `X-Offlo-Event`.
 - **Diagnostic Tool**: Includes `generateCurlExample(url, secret)` which produces ready-to-run shell cURL commands for manual testing or importing into n8n Webhook Nodes.
+
+### 3. `supabase.ts` — Supabase Cloud Database & API Integration
+- **Responsibility**: Manages the connection to Supabase PostgreSQL database via `@supabase/supabase-js`.
+- **Environment Variables**:
+  - `VITE_SUPABASE_URL`: Your Supabase Project URL (`https://your-project.supabase.co`).
+  - `VITE_SUPABASE_ANON_KEY`: Your Supabase public anonymous API key (`eyJ...`).
+- **Dynamic Configuration**: Keys can be supplied either via `.env` (or environment variables) OR directly configured and saved live in the Admin Settings panel (`/admin` -> Settings).
+- **Features**:
+  - `getSupabaseConfig()`: Resolves active credentials with fallback support.
+  - `getSupabaseClient()`: Singleton client instance with automatic session management.
+  - `testSupabaseConnection()`: Verifies connectivity and reports status.
+  - Automatic synchronization helpers for `leads`, `custom_requests`, `orders`, and `webhook_logs`.
+  - `SUPABASE_SQL_SCHEMA`: Production DDL migration script with Row Level Security (RLS) policies.

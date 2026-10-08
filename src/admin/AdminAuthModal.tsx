@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { ShieldCheck, Lock, KeyRound } from 'lucide-react';
-import { motion } from 'motion/react';
 
 interface AdminAuthModalProps {
   isOpen: boolean;
@@ -20,7 +19,6 @@ export const AdminAuthModal: React.FC<AdminAuthModalProps> = ({
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Default passkeys
     if (passphrase === 'offlo2026' || passphrase === 'operon2026' || passphrase === 'admin' || passphrase.length >= 4) {
       sessionStorage.setItem('offlo_admin_authenticated', 'true');
       sessionStorage.setItem('operon_admin_authenticated', 'true');
@@ -37,36 +35,33 @@ export const AdminAuthModal: React.FC<AdminAuthModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md">
-      <motion.div
-        initial={{ opacity: 0, scale: 0.98, y: 10 }}
-        animate={{ opacity: 1, scale: 1, y: 0 }}
-        exit={{ opacity: 0, scale: 0.98, y: 10 }}
-        transition={{ duration: 0.2 }}
-        className="bg-[#090A0E] border border-white/[0.12] p-6 sm:p-8 max-w-md w-full shadow-2xl space-y-6"
-      >
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-none">
+      <div className="bg-white border border-[#0E0E0E] p-8 max-w-md w-full space-y-6">
         <div className="text-center space-y-2">
-          <div className="w-12 h-12 bg-white text-black flex items-center justify-center mx-auto mb-3">
+          <div className="w-12 h-12 bg-[#0E0E0E] text-white flex items-center justify-center mx-auto mb-3">
             <Lock className="w-5 h-5 stroke-[2.5]" />
           </div>
-          <h2 className="text-xl sm:text-2xl font-display font-bold text-white tracking-tight">
-            Admin Portal Access
+          <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-[#6B6B6B] block">
+            SECURITY VERIFICATION
+          </span>
+          <h2 className="text-2xl font-extrabold uppercase tracking-tight text-[#0E0E0E]">
+            ADMIN CONSOLE
           </h2>
-          <p className="text-xs text-neutral-400 leading-relaxed">
-            Enter administrative credentials to access leads, custom requests, catalog controls, and n8n webhooks.
+          <p className="text-xs text-[#6B6B6B] leading-relaxed">
+            Enter administrative credentials to access leads, custom requests, catalog controls, and Supabase integration.
           </p>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-4">
           {error && (
-            <div className="p-2.5 bg-red-950/40 border border-red-800 text-red-300 text-xs text-center font-mono">
+            <div className="p-2.5 bg-[#F6F5F3] border-l-4 border-[#0E0E0E] text-[#0E0E0E] text-xs font-bold text-center">
               Incorrect key. (Default: offlo2026)
             </div>
           )}
 
           <div>
-            <label className="block text-[11px] font-mono uppercase tracking-wider text-neutral-300 mb-1.5">
-              Admin Access Key / PIN:
+            <label className="block text-[10px] uppercase tracking-[0.18em] font-bold text-[#0E0E0E] mb-1.5">
+              Access Key / PIN:
             </label>
             <input
               type="password"
@@ -76,39 +71,39 @@ export const AdminAuthModal: React.FC<AdminAuthModalProps> = ({
                 setError(false);
               }}
               placeholder="e.g. offlo2026"
-              className="w-full px-3.5 py-2.5 bg-white/[0.03] border border-white/10 text-white font-mono text-sm focus:border-white focus:outline-none transition-colors"
+              className="w-full px-4 py-2.5 bg-white border border-[#CFCFCC] text-[#0E0E0E] text-sm focus:border-[#0E0E0E] focus:outline-none transition-colors"
               autoFocus
             />
           </div>
 
           <button
             type="submit"
-            className="w-full py-3 px-4 text-xs font-semibold uppercase tracking-wider text-black bg-white hover:bg-neutral-200 transition-all flex items-center justify-center gap-2 cursor-pointer active:scale-[0.98]"
+            className="w-full btn-primary h-12"
           >
-            <ShieldCheck className="w-4 h-4" />
-            <span>Verify & Enter Console</span>
+            <ShieldCheck className="w-4 h-4 mr-2" />
+            <span>ENTER SYSTEM CONSOLE</span>
           </button>
         </form>
 
-        <div className="pt-2 border-t border-white/[0.08] flex flex-col gap-2">
+        <div className="pt-2 border-t border-[#CFCFCC] flex flex-col gap-2">
           <button
             type="button"
             onClick={handleQuickDemoAccess}
-            className="w-full py-2.5 px-3 text-xs font-mono uppercase tracking-wider text-emerald-300 hover:text-emerald-200 bg-emerald-950/30 hover:bg-emerald-950/60 border border-emerald-800/60 transition-colors flex items-center justify-center gap-1.5 cursor-pointer"
+            className="w-full py-2.5 px-3 text-xs uppercase tracking-[0.16em] font-bold text-[#0E0E0E] bg-[#F6F5F3] hover:bg-[#E4E3E0] border border-[#CFCFCC] transition-colors flex items-center justify-center gap-2 cursor-pointer"
           >
             <KeyRound className="w-3.5 h-3.5" />
-            <span>Quick Reviewer Access (1-Click)</span>
+            <span>1-Click Demo Reviewer Access</span>
           </button>
 
           <button
             type="button"
             onClick={onCancel}
-            className="w-full text-center text-xs font-mono uppercase tracking-wider text-neutral-500 hover:text-neutral-300 py-1 transition-colors cursor-pointer"
+            className="w-full text-center text-xs uppercase tracking-[0.16em] font-semibold text-[#6B6B6B] hover:text-[#0E0E0E] py-1 transition-colors cursor-pointer"
           >
             Cancel & Return
           </button>
         </div>
-      </motion.div>
+      </div>
     </div>
   );
 };

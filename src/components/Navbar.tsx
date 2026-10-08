@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Menu, X, ArrowUpRight, Shield } from 'lucide-react';
+import { Menu, X, ArrowUpRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 
 interface NavbarProps {
@@ -24,92 +24,85 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate, onReque
     setMobileMenuOpen(false);
   };
 
-  const isAdmin = currentPath.startsWith('/admin');
-
   return (
-    <header className="sticky top-0 z-40 w-full bg-[#fbfbf9]/95 backdrop-blur-md border-b border-[#e4e4df] transition-colors">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 flex items-center justify-between">
-        {/* Zone 1: Brand wordmark as single text element */}
-        <div className="flex items-center gap-3">
+    <header className="sticky top-0 z-40 w-full bg-[#E4E3E0] hairline-b transition-colors">
+      {/* 1. Announcement Bar: Thin black strip, white 11px uppercase text */}
+      <div className="bg-[#0E0E0E] text-white text-[11px] uppercase tracking-[0.18em] font-medium py-2 px-4 sm:px-8 flex items-center justify-between">
+        <div className="flex items-center gap-2 truncate">
+          <span className="w-1.5 h-1.5 bg-white shrink-0"></span>
+          <span className="truncate">OFFLO AUTOMATION STUDIO — PRODUCTION-READY n8n & ENTERPRISE PIPELINES</span>
+        </div>
+        <div className="hidden sm:flex items-center divide-x divide-white/20 text-[10px] tracking-[0.16em] text-neutral-300">
+          <span className="px-3">STATUS: ALL RUNTIMES OPTIMAL</span>
+          <span className="px-3">V1.4 BLUEPRINTS</span>
           <button
-            onClick={() => handleLinkClick('/')}
-            className="text-left font-serif italic font-semibold text-2xl tracking-tight text-[#1a1a1a] hover:text-[#2e4ff4] transition-colors whitespace-nowrap cursor-pointer flex items-center gap-2 group"
+            onClick={() => handleLinkClick('/admin')}
+            className="px-3 hover:text-white transition-colors cursor-pointer uppercase"
           >
-            <span>Offlo</span>
-            <span className="text-xs font-mono font-normal not-italic uppercase tracking-widest text-neutral-400 pl-1 border-l border-[#e4e4df]">
-              Automations
-            </span>
+            SYS CONSOLE
           </button>
         </div>
+      </div>
 
-        {/* Zone 2: Clean text navigation links */}
-        <nav className="hidden md:flex items-center gap-8 text-[11px] font-mono uppercase tracking-[0.15em] text-[#1a1a1a]/60">
+      {/* 2. Main Header: Three zones on page-colored warm-neutral background */}
+      <div className="w-full px-4 sm:px-8 h-20 flex items-center justify-between">
+        {/* Zone 1 (Left): Primary navigation links (uppercase, small, wide tracking) */}
+        <nav className="hidden lg:flex items-center gap-7 text-[11px] uppercase tracking-[0.18em] font-semibold text-[#0E0E0E]">
           {navLinks.map((link) => {
             const isActive = currentPath === link.path;
             return (
               <button
                 key={link.path}
                 onClick={() => handleLinkClick(link.path)}
-                className={`transition-colors cursor-pointer relative py-2 hover:text-[#1a1a1a] ${
-                  isActive ? 'text-[#1a1a1a] font-semibold' : 'text-[#1a1a1a]/60'
+                className={`transition-colors cursor-pointer py-1 relative group ${
+                  isActive ? 'text-[#0E0E0E]' : 'text-[#6B6B6B] hover:text-[#0E0E0E]'
                 }`}
               >
                 <span>{link.label}</span>
-                {isActive && (
-                  <motion.span
-                    layoutId="navbar-active-indicator"
-                    className="absolute -bottom-[1px] left-0 right-0 h-[2px] bg-[#2e4ff4]"
-                    transition={{ type: 'spring', stiffness: 400, damping: 30 }}
-                  />
-                )}
+                <span
+                  className={`block h-[1px] bg-[#0E0E0E] transition-all duration-200 mt-0.5 ${
+                    isActive ? 'w-full' : 'w-0 group-hover:w-full'
+                  }`}
+                />
               </button>
             );
           })}
         </nav>
 
-        {/* Zone 3: 1-2 primary actions */}
-        <div className="hidden sm:flex items-center gap-3.5">
+        {/* Zone 2 (Center): Logo or app name (Oversized, bold geometric sans-serif) */}
+        <div className="flex items-center">
           <button
-            onClick={() => handleLinkClick('/admin')}
-            className={`text-[11px] font-mono px-3 py-1.5 border transition-all flex items-center gap-1.5 cursor-pointer ${
-              isAdmin
-                ? 'border-[#2e4ff4] bg-[#2e4ff4]/10 text-[#2e4ff4]'
-                : 'border-[#e4e4df] text-neutral-600 hover:text-[#1a1a1a] hover:border-neutral-400 bg-white'
-            }`}
-            title="Open Admin Console"
+            onClick={() => handleLinkClick('/')}
+            className="text-left font-bold text-2xl sm:text-3xl tracking-[-0.04em] text-[#0E0E0E] hover:opacity-80 transition-opacity cursor-pointer uppercase select-none"
           >
-            <Shield className="w-3 h-3 text-[#2e4ff4]" />
-            <span>Admin</span>
-          </button>
-
-          <button
-            onClick={onRequestCustom}
-            className="group px-4 py-2 text-[11px] font-mono uppercase tracking-wider font-semibold text-white bg-[#1a1a1a] hover:bg-[#2e4ff4] transition-all duration-200 flex items-center gap-1.5 whitespace-nowrap cursor-pointer shadow-sm active:scale-[0.98]"
-          >
-            <span>Request Automation</span>
-            <ArrowUpRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            OFFLO
           </button>
         </div>
 
-        {/* Mobile menu trigger button */}
-        <div className="flex sm:hidden items-center gap-2">
+        {/* Zone 3 (Right): Utility actions as icon + tiny label */}
+        <div className="hidden sm:flex items-center gap-4">
           <button
-            onClick={() => handleLinkClick('/admin')}
-            className="text-[11px] font-mono px-2 py-1 text-neutral-600 border border-[#e4e4df] bg-white"
+            onClick={onRequestCustom}
+            className="h-10 px-5 text-[11px] font-semibold uppercase tracking-[0.18em] text-white bg-[#0E0E0E] hover:bg-[#222222] transition-colors flex items-center gap-2 cursor-pointer active:scale-[0.99]"
           >
-            Admin
+            <span>Request Build</span>
+            <ArrowUpRight className="w-3.5 h-3.5" />
           </button>
+        </div>
+
+        {/* Mobile menu trigger */}
+        <div className="flex lg:hidden items-center gap-2">
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="p-2 text-neutral-700 hover:text-[#1a1a1a] focus:outline-none cursor-pointer"
+            className="p-2 text-[#0E0E0E] focus:outline-none cursor-pointer"
             aria-label="Toggle navigation menu"
           >
-            {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
         </div>
       </div>
 
-      {/* Mobile menu drawer with Motion */}
+      {/* Mobile menu drawer */}
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
@@ -117,17 +110,15 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate, onReque
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.2 }}
-            className="sm:hidden border-b border-[#e4e4df] bg-[#fbfbf9] px-4 pt-3 pb-6 space-y-3 overflow-hidden"
+            className="lg:hidden border-t border-[#CFCFCC] bg-[#E4E3E0] px-6 pt-4 pb-8 space-y-4 overflow-hidden"
           >
-            <div className="space-y-1">
+            <div className="space-y-2">
               {navLinks.map((link) => (
                 <button
                   key={link.path}
                   onClick={() => handleLinkClick(link.path)}
-                  className={`block w-full text-left py-2.5 px-3 text-xs font-mono uppercase tracking-wider transition-colors ${
-                    currentPath === link.path
-                      ? 'bg-[#1a1a1a] text-white font-semibold'
-                      : 'text-neutral-700 hover:bg-neutral-100'
+                  className={`block w-full text-left py-3 text-xs uppercase tracking-[0.18em] font-bold border-b border-[#CFCFCC] transition-colors ${
+                    currentPath === link.path ? 'text-[#0E0E0E]' : 'text-[#6B6B6B] hover:text-[#0E0E0E]'
                   }`}
                 >
                   {link.label}
@@ -135,15 +126,16 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate, onReque
               ))}
             </div>
 
-            <div className="pt-2">
+            <div className="pt-3">
               <button
                 onClick={() => {
                   onRequestCustom();
                   setMobileMenuOpen(false);
                 }}
-                className="w-full text-center py-3 text-xs font-mono font-semibold uppercase tracking-wider text-white bg-[#1a1a1a] hover:bg-[#2e4ff4] transition-colors cursor-pointer"
+                className="w-full h-12 text-center text-xs font-semibold uppercase tracking-[0.18em] text-white bg-[#0E0E0E] hover:bg-[#222222] transition-colors cursor-pointer flex items-center justify-center gap-2"
               >
-                Request Custom Automation
+                <span>Request Custom Automation</span>
+                <ArrowUpRight className="w-4 h-4" />
               </button>
             </div>
           </motion.div>
