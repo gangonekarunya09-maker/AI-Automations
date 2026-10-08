@@ -108,14 +108,14 @@ export const AdminSettings: React.FC<AdminSettingsProps> = ({ onRefresh }) => {
         {/* Settings Form & Config Cards */}
         <div className="lg:col-span-2 space-y-8">
           {/* 1. n8n Automation Webhook Bridge Form */}
-          <form onSubmit={handleSave} className="p-6 sm:p-8 border border-[#CFCFCC] bg-white space-y-6 text-xs">
+          <form onSubmit={handleSave} className="p-6 sm:p-8 border border-[#CFCFCC] bg-white rounded-2xl shadow-sm space-y-6 text-xs">
             <div className="flex items-center justify-between pb-4 border-b border-[#CFCFCC]">
               <div className="flex items-center gap-2">
                 <Webhook className="w-4 h-4 text-[#0E0E0E]" strokeWidth={1.5} />
                 <h3 className="text-sm font-bold uppercase tracking-wider text-[#0E0E0E]">n8n Automation Webhook Bridge</h3>
               </div>
               {savedSuccess && (
-                <span className="text-[#0E0E0E] text-[11px] font-bold uppercase tracking-wider flex items-center gap-1 bg-[#F6F5F3] px-2.5 py-1 border border-[#CFCFCC]">
+                <span className="text-[#0E0E0E] text-[11px] font-bold uppercase tracking-wider flex items-center gap-1 bg-[#F6F5F3] px-2.5 py-1 rounded-full border border-[#CFCFCC]">
                   <Check className="w-3.5 h-3.5" /> Saved
                 </span>
               )}
@@ -131,7 +131,7 @@ export const AdminSettings: React.FC<AdminSettingsProps> = ({ onRefresh }) => {
                 value={settings.n8n_webhook_url}
                 onChange={e => setSettings({ ...settings, n8n_webhook_url: e.target.value })}
                 placeholder="https://your-n8n.instance/webhook/v1/lead"
-                className="w-full px-3.5 py-2.5 bg-white border border-[#CFCFCC] text-[#0E0E0E] text-xs focus:outline-none focus:border-[#0E0E0E] transition-colors"
+                className="w-full px-3.5 py-2.5 bg-white border border-[#CFCFCC] rounded-xl text-[#0E0E0E] text-xs focus:outline-none focus:border-[#0E0E0E] transition-colors"
               />
               <p className="text-[11px] text-[#6B6B6B] mt-1">
                 Receives automated POST payloads whenever a lead submits a requirement or acquires a blueprint.
@@ -146,7 +146,7 @@ export const AdminSettings: React.FC<AdminSettingsProps> = ({ onRefresh }) => {
                 type="text"
                 value={settings.webhook_secret}
                 onChange={e => setSettings({ ...settings, webhook_secret: e.target.value })}
-                className="w-full px-3.5 py-2.5 bg-white border border-[#CFCFCC] text-[#0E0E0E] text-xs focus:outline-none focus:border-[#0E0E0E] transition-colors"
+                className="w-full px-3.5 py-2.5 bg-white border border-[#CFCFCC] rounded-xl text-[#0E0E0E] text-xs focus:outline-none focus:border-[#0E0E0E] transition-colors"
               />
             </div>
 
@@ -159,7 +159,7 @@ export const AdminSettings: React.FC<AdminSettingsProps> = ({ onRefresh }) => {
                   type="email"
                   value={settings.admin_notification_email}
                   onChange={e => setSettings({ ...settings, admin_notification_email: e.target.value })}
-                  className="w-full px-3.5 py-2.5 bg-white border border-[#CFCFCC] text-[#0E0E0E] text-xs focus:outline-none focus:border-[#0E0E0E] transition-colors"
+                  className="w-full px-3.5 py-2.5 bg-white border border-[#CFCFCC] rounded-xl text-[#0E0E0E] text-xs focus:outline-none focus:border-[#0E0E0E] transition-colors"
                 />
               </div>
 
@@ -171,7 +171,7 @@ export const AdminSettings: React.FC<AdminSettingsProps> = ({ onRefresh }) => {
                   type="tel"
                   value={settings.company_phone}
                   onChange={e => setSettings({ ...settings, company_phone: e.target.value })}
-                  className="w-full px-3.5 py-2.5 bg-white border border-[#CFCFCC] text-[#0E0E0E] text-xs focus:outline-none focus:border-[#0E0E0E] transition-colors"
+                  className="w-full px-3.5 py-2.5 bg-white border border-[#CFCFCC] rounded-xl text-[#0E0E0E] text-xs focus:outline-none focus:border-[#0E0E0E] transition-colors"
                 />
               </div>
             </div>
@@ -189,7 +189,7 @@ export const AdminSettings: React.FC<AdminSettingsProps> = ({ onRefresh }) => {
 
               <button
                 type="submit"
-                className="btn-primary h-11 text-xs"
+                className="btn-primary h-11 text-xs rounded-xl"
               >
                 Save Settings
               </button>
@@ -197,7 +197,7 @@ export const AdminSettings: React.FC<AdminSettingsProps> = ({ onRefresh }) => {
           </form>
 
           {/* 2. Supabase Cloud API & Database Configuration */}
-          <div className="p-6 sm:p-8 border border-[#CFCFCC] bg-white space-y-6 text-xs">
+          <div className="p-6 sm:p-8 border border-[#CFCFCC] bg-white rounded-2xl shadow-sm space-y-6 text-xs">
             <div className="flex items-center justify-between pb-4 border-b border-[#CFCFCC]">
               <div className="flex items-center gap-2">
                 <Database className="w-4 h-4 text-[#0E0E0E]" strokeWidth={1.5} />
@@ -207,12 +207,12 @@ export const AdminSettings: React.FC<AdminSettingsProps> = ({ onRefresh }) => {
               </div>
               <div className="flex items-center gap-2">
                 {supabaseConfig.isConfigured ? (
-                  <span className="px-2.5 py-1 text-[10px] uppercase tracking-wider font-bold bg-[#0E0E0E] text-white flex items-center gap-1.5">
-                    <span className="w-1.5 h-1.5 bg-white" />
+                  <span className="px-2.5 py-1 text-[10px] uppercase tracking-wider font-bold bg-[#0E0E0E] text-white rounded-full flex items-center gap-1.5">
+                    <span className="w-1.5 h-1.5 bg-white rounded-full" />
                     Connected ({supabaseConfig.source === 'env' ? '.env' : 'Live Settings'})
                   </span>
                 ) : (
-                  <span className="px-2.5 py-1 text-[10px] uppercase tracking-wider font-bold bg-[#F6F5F3] text-[#0E0E0E] border border-[#CFCFCC] flex items-center gap-1.5">
+                  <span className="px-2.5 py-1 text-[10px] uppercase tracking-wider font-bold bg-[#F6F5F3] text-[#0E0E0E] border border-[#CFCFCC] rounded-full flex items-center gap-1.5">
                     <AlertCircle className="w-3.5 h-3.5" />
                     Pending API Keys
                   </span>
@@ -234,7 +234,7 @@ export const AdminSettings: React.FC<AdminSettingsProps> = ({ onRefresh }) => {
                   value={settings.supabase_url || ''}
                   onChange={e => setSettings({ ...settings, supabase_url: e.target.value })}
                   placeholder="https://your-project-id.supabase.co"
-                  className="w-full px-3.5 py-2.5 bg-white border border-[#CFCFCC] text-[#0E0E0E] text-xs focus:outline-none focus:border-[#0E0E0E] transition-colors"
+                  className="w-full px-3.5 py-2.5 bg-white border border-[#CFCFCC] rounded-xl text-[#0E0E0E] text-xs focus:outline-none focus:border-[#0E0E0E] transition-colors"
                 />
                 <p className="text-[11px] text-[#6B6B6B] mt-1">
                   From Supabase Dashboard → Project Settings → API → Project URL
@@ -250,7 +250,7 @@ export const AdminSettings: React.FC<AdminSettingsProps> = ({ onRefresh }) => {
                   value={settings.supabase_anon_key || ''}
                   onChange={e => setSettings({ ...settings, supabase_anon_key: e.target.value })}
                   placeholder="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
-                  className="w-full px-3.5 py-2.5 bg-white border border-[#CFCFCC] text-[#0E0E0E] text-xs focus:outline-none focus:border-[#0E0E0E] transition-colors"
+                  className="w-full px-3.5 py-2.5 bg-white border border-[#CFCFCC] rounded-xl text-[#0E0E0E] text-xs focus:outline-none focus:border-[#0E0E0E] transition-colors"
                 />
                 <p className="text-[11px] text-[#6B6B6B] mt-1">
                   From Supabase Dashboard → Project Settings → API → Project API Keys → anon (public)
@@ -261,7 +261,7 @@ export const AdminSettings: React.FC<AdminSettingsProps> = ({ onRefresh }) => {
             {/* Test result message */}
             {supabaseTestResult && (
               <div
-                className={`p-3.5 border text-xs flex items-start gap-2.5 font-medium ${
+                className={`p-3.5 border rounded-xl text-xs flex items-start gap-2.5 font-medium ${
                   supabaseTestResult.success
                     ? 'bg-[#F6F5F3] border-[#0E0E0E] text-[#0E0E0E]'
                     : 'bg-[#F6F5F3] border-red-500 text-red-700'
@@ -278,7 +278,7 @@ export const AdminSettings: React.FC<AdminSettingsProps> = ({ onRefresh }) => {
 
             {/* Sync result message */}
             {supabaseSyncResult && (
-              <div className="p-3.5 bg-[#F6F5F3] border border-[#0E0E0E] text-xs text-[#0E0E0E] flex items-start gap-2.5 font-medium">
+              <div className="p-3.5 bg-[#F6F5F3] border border-[#0E0E0E] rounded-xl text-xs text-[#0E0E0E] flex items-start gap-2.5 font-medium">
                 <Check className="w-4 h-4 text-[#0E0E0E] shrink-0 mt-0.5" />
                 <span>{supabaseSyncResult}</span>
               </div>
@@ -290,7 +290,7 @@ export const AdminSettings: React.FC<AdminSettingsProps> = ({ onRefresh }) => {
                 type="button"
                 onClick={handleTestSupabase}
                 disabled={isTestingSupabase}
-                className="btn-primary h-10 px-5 text-xs disabled:opacity-50"
+                className="btn-primary h-10 px-5 text-xs rounded-xl disabled:opacity-50"
               >
                 <Server className="w-3.5 h-3.5 mr-2" />
                 <span>{isTestingSupabase ? 'Testing...' : 'Test Supabase Connection'}</span>
@@ -300,7 +300,7 @@ export const AdminSettings: React.FC<AdminSettingsProps> = ({ onRefresh }) => {
                 type="button"
                 onClick={handleSyncToSupabase}
                 disabled={isSyncingSupabase || (!settings.supabase_url && !supabaseConfig.url)}
-                className="h-10 px-4 text-xs uppercase tracking-[0.16em] font-semibold text-[#0E0E0E] bg-[#F6F5F3] hover:bg-[#E4E3E0] border border-[#CFCFCC] transition-colors flex items-center gap-2 cursor-pointer disabled:opacity-40"
+                className="h-10 px-4 text-xs uppercase tracking-[0.16em] font-semibold text-[#0E0E0E] bg-[#F6F5F3] hover:bg-[#E4E3E0] border border-[#CFCFCC] rounded-xl transition-colors flex items-center gap-2 cursor-pointer disabled:opacity-40"
               >
                 <RefreshCw className={`w-3.5 h-3.5 ${isSyncingSupabase ? 'animate-spin' : ''}`} />
                 <span>{isSyncingSupabase ? 'Syncing...' : 'Sync Local Data to Supabase'}</span>
@@ -309,7 +309,7 @@ export const AdminSettings: React.FC<AdminSettingsProps> = ({ onRefresh }) => {
               <button
                 type="button"
                 onClick={handleCopySql}
-                className="h-10 px-4 text-xs uppercase tracking-[0.16em] font-semibold text-[#0E0E0E] bg-white hover:bg-[#F6F5F3] border border-[#CFCFCC] transition-colors flex items-center gap-2 cursor-pointer"
+                className="h-10 px-4 text-xs uppercase tracking-[0.16em] font-semibold text-[#0E0E0E] bg-white hover:bg-[#F6F5F3] border border-[#CFCFCC] rounded-xl transition-colors flex items-center gap-2 cursor-pointer"
               >
                 <Copy className="w-3.5 h-3.5" />
                 <span>{copiedSql ? 'SQL Copied!' : 'Copy SQL Schema'}</span>
@@ -318,7 +318,7 @@ export const AdminSettings: React.FC<AdminSettingsProps> = ({ onRefresh }) => {
               <button
                 type="button"
                 onClick={() => setShowSqlModal(true)}
-                className="h-10 px-4 text-xs uppercase tracking-[0.16em] font-semibold text-[#0E0E0E] bg-white hover:bg-[#F6F5F3] border border-[#CFCFCC] transition-colors flex items-center gap-2 cursor-pointer"
+                className="h-10 px-4 text-xs uppercase tracking-[0.16em] font-semibold text-[#0E0E0E] bg-white hover:bg-[#F6F5F3] border border-[#CFCFCC] rounded-xl transition-colors flex items-center gap-2 cursor-pointer"
               >
                 <ExternalLink className="w-3.5 h-3.5" />
                 <span>View Schema</span>
@@ -327,7 +327,7 @@ export const AdminSettings: React.FC<AdminSettingsProps> = ({ onRefresh }) => {
           </div>
 
           {/* 3. Live Diagnostic Ping Box */}
-          <div className="p-6 sm:p-8 border border-[#CFCFCC] bg-white space-y-4">
+          <div className="p-6 sm:p-8 border border-[#CFCFCC] bg-white rounded-2xl shadow-sm space-y-4">
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
               <div>
                 <h4 className="text-sm font-bold uppercase tracking-wider text-[#0E0E0E]">Live n8n Webhook Test Dispatch</h4>
@@ -339,7 +339,7 @@ export const AdminSettings: React.FC<AdminSettingsProps> = ({ onRefresh }) => {
               <button
                 onClick={handleTestPing}
                 disabled={isPinging}
-                className="btn-primary h-10 px-5 text-xs whitespace-nowrap self-start sm:self-auto disabled:opacity-50"
+                className="btn-primary h-10 px-5 text-xs whitespace-nowrap self-start sm:self-auto rounded-xl disabled:opacity-50"
               >
                 <Play className="w-3.5 h-3.5 mr-2 fill-current" />
                 <span>{isPinging ? 'Pinging...' : 'Trigger Ping'}</span>
@@ -347,7 +347,7 @@ export const AdminSettings: React.FC<AdminSettingsProps> = ({ onRefresh }) => {
             </div>
 
             {pingResult && (
-              <div className="p-3.5 bg-[#F6F5F3] border border-[#0E0E0E] text-xs text-[#0E0E0E] flex items-start gap-2.5 font-medium">
+              <div className="p-3.5 bg-[#F6F5F3] border border-[#0E0E0E] rounded-xl text-xs text-[#0E0E0E] flex items-start gap-2.5 font-medium">
                 <Check className="w-4 h-4 text-[#0E0E0E] shrink-0 mt-0.5" />
                 <span>{pingResult}</span>
               </div>
@@ -355,7 +355,7 @@ export const AdminSettings: React.FC<AdminSettingsProps> = ({ onRefresh }) => {
           </div>
 
           {/* 4. cURL Command Generator */}
-          <div className="p-6 sm:p-8 border border-[#CFCFCC] bg-white space-y-3 text-xs">
+          <div className="p-6 sm:p-8 border border-[#CFCFCC] bg-white rounded-2xl shadow-sm space-y-3 text-xs">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
                 <Terminal className="w-4 h-4 text-[#0E0E0E]" strokeWidth={1.5} />
@@ -363,13 +363,13 @@ export const AdminSettings: React.FC<AdminSettingsProps> = ({ onRefresh }) => {
               </div>
               <button
                 onClick={handleCopyCurl}
-                className="flex items-center gap-1.5 text-[11px] uppercase tracking-wider font-semibold text-[#0E0E0E] px-3 py-1.5 bg-[#F6F5F3] hover:bg-[#E4E3E0] border border-[#CFCFCC] cursor-pointer transition-colors"
+                className="flex items-center gap-1.5 text-[11px] uppercase tracking-wider font-semibold text-[#0E0E0E] px-3 py-1.5 bg-[#F6F5F3] hover:bg-[#E4E3E0] border border-[#CFCFCC] rounded-lg cursor-pointer transition-colors"
               >
                 <Copy className="w-3.5 h-3.5" />
                 <span>{copiedCurl ? 'Copied' : 'Copy cURL'}</span>
               </button>
             </div>
-            <pre className="p-4 bg-[#F6F5F3] border border-[#CFCFCC] text-[#0E0E0E] overflow-x-auto text-[11px] leading-relaxed">
+            <pre className="p-4 bg-[#F6F5F3] border border-[#CFCFCC] rounded-xl text-[#0E0E0E] overflow-x-auto text-[11px] leading-relaxed">
               {curlCommand}
             </pre>
           </div>
@@ -377,7 +377,7 @@ export const AdminSettings: React.FC<AdminSettingsProps> = ({ onRefresh }) => {
 
         {/* Database & Architecture Info Sidebar */}
         <div className="space-y-6 text-xs">
-          <div className="p-6 sm:p-7 border border-[#CFCFCC] bg-white space-y-4">
+          <div className="p-6 sm:p-7 border border-[#CFCFCC] bg-white rounded-2xl shadow-sm space-y-4">
             <div className="flex items-center gap-2 text-[#0E0E0E] font-bold uppercase tracking-wider">
               <Database className="w-4 h-4 text-[#0E0E0E]" strokeWidth={1.5} />
               <span>Database Architecture</span>
@@ -385,7 +385,7 @@ export const AdminSettings: React.FC<AdminSettingsProps> = ({ onRefresh }) => {
             <p className="text-[#6B6B6B] leading-relaxed">
               Dual-layer persistence engine: writes instantly to resilient client storage while auto-syncing to Supabase PostgreSQL and emitting n8n webhook signals.
             </p>
-            <div className="p-4 bg-[#F6F5F3] border border-[#CFCFCC] space-y-2 text-[11px] font-semibold text-[#0E0E0E]">
+            <div className="p-4 bg-[#F6F5F3] border border-[#CFCFCC] rounded-xl space-y-2 text-[11px] font-semibold text-[#0E0E0E]">
               <div>✓ Resilient Storage Active</div>
               {supabaseConfig.isConfigured ? (
                 <div className="flex items-center gap-1.5">
@@ -401,7 +401,7 @@ export const AdminSettings: React.FC<AdminSettingsProps> = ({ onRefresh }) => {
             <div className="pt-2">
               <button
                 onClick={() => setShowSqlModal(true)}
-                className="w-full py-2.5 px-3 border border-[#CFCFCC] hover:border-[#0E0E0E] bg-[#F6F5F3] hover:bg-[#E4E3E0] text-[#0E0E0E] text-[11px] uppercase tracking-wider font-bold flex items-center justify-center gap-2 cursor-pointer transition-colors"
+                className="w-full py-2.5 px-3 border border-[#CFCFCC] hover:border-[#0E0E0E] bg-[#F6F5F3] hover:bg-[#E4E3E0] text-[#0E0E0E] text-[11px] uppercase tracking-wider font-bold rounded-xl flex items-center justify-center gap-2 cursor-pointer transition-colors"
               >
                 <Database className="w-3.5 h-3.5 text-[#0E0E0E]" strokeWidth={1.5} />
                 <span>Supabase SQL Migration</span>
@@ -409,7 +409,7 @@ export const AdminSettings: React.FC<AdminSettingsProps> = ({ onRefresh }) => {
             </div>
           </div>
 
-          <div className="p-6 sm:p-7 border border-[#CFCFCC] bg-white space-y-4">
+          <div className="p-6 sm:p-7 border border-[#CFCFCC] bg-white rounded-2xl shadow-sm space-y-4">
             <div className="flex items-center gap-2 text-[#0E0E0E] font-bold uppercase tracking-wider">
               <Shield className="w-4 h-4 text-[#0E0E0E]" strokeWidth={1.5} />
               <span>Security Protocols</span>
@@ -433,7 +433,7 @@ export const AdminSettings: React.FC<AdminSettingsProps> = ({ onRefresh }) => {
           <span className="text-xs text-[#6B6B6B] font-semibold uppercase tracking-wider">{logs.length} logged events</span>
         </div>
 
-        <div className="border border-[#CFCFCC] bg-white overflow-hidden">
+        <div className="border border-[#CFCFCC] bg-white rounded-2xl overflow-hidden shadow-sm">
           {logs.length === 0 ? (
             <div className="p-12 text-center text-[#6B6B6B] text-xs">
               No webhook events logged yet. Trigger a test ping or submit a contact inquiry to see live event logs.
@@ -455,7 +455,7 @@ export const AdminSettings: React.FC<AdminSettingsProps> = ({ onRefresh }) => {
                     <tr key={log.id} className="hover:bg-[#F6F5F3] transition-colors">
                       <td className="py-3.5 px-4 text-[#0E0E0E] font-bold uppercase">{log.event}</td>
                       <td className="py-3.5 px-4">
-                        <span className={`px-2 py-0.5 text-[10px] uppercase tracking-wider font-bold border ${
+                        <span className={`px-2.5 py-0.5 text-[10px] uppercase tracking-wider font-bold border rounded-full ${
                           log.status === 'success'
                             ? 'bg-[#0E0E0E] text-white border-[#0E0E0E]'
                             : 'bg-white text-red-600 border-red-300'
@@ -487,20 +487,20 @@ export const AdminSettings: React.FC<AdminSettingsProps> = ({ onRefresh }) => {
       {/* Payload Modal */}
       {selectedLog && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-none">
-          <div className="bg-white border border-[#0E0E0E] p-8 max-w-xl w-full space-y-4">
+          <div className="bg-white border border-[#0E0E0E] rounded-2xl shadow-2xl p-8 max-w-xl w-full space-y-4">
             <div className="flex items-center justify-between pb-3 border-b border-[#CFCFCC]">
               <h4 className="text-sm font-bold text-[#0E0E0E] uppercase tracking-wider">Payload: {selectedLog.event}</h4>
-              <button onClick={() => setSelectedLog(null)} className="text-[#0E0E0E] hover:opacity-70 cursor-pointer">
+              <button onClick={() => setSelectedLog(null)} className="text-[#0E0E0E] hover:opacity-70 rounded-full hover:bg-[#F6F5F3] p-1 cursor-pointer transition-colors">
                 <X className="w-5 h-5" />
               </button>
             </div>
-            <pre className="p-4 bg-[#F6F5F3] border border-[#CFCFCC] text-[#0E0E0E] text-[11px] overflow-x-auto max-h-96 leading-relaxed">
+            <pre className="p-4 bg-[#F6F5F3] border border-[#CFCFCC] rounded-xl text-[#0E0E0E] text-[11px] overflow-x-auto max-h-96 leading-relaxed">
               {JSON.stringify(selectedLog.payload, null, 2)}
             </pre>
             <div className="pt-2 flex justify-end">
               <button
                 onClick={() => setSelectedLog(null)}
-                className="btn-primary h-10 px-5 text-xs"
+                className="btn-primary h-10 px-5 text-xs rounded-xl"
               >
                 Close
               </button>
@@ -512,7 +512,7 @@ export const AdminSettings: React.FC<AdminSettingsProps> = ({ onRefresh }) => {
       {/* Supabase SQL Migration Modal */}
       {showSqlModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-none">
-          <div className="bg-white border border-[#0E0E0E] p-6 sm:p-8 max-w-3xl w-full space-y-4 max-h-[90vh] flex flex-col">
+          <div className="bg-white border border-[#0E0E0E] rounded-2xl shadow-2xl p-6 sm:p-8 max-w-3xl w-full space-y-4 max-h-[90vh] flex flex-col">
             <div className="flex items-center justify-between pb-4 border-b border-[#CFCFCC]">
               <div className="flex items-center gap-2">
                 <Database className="w-5 h-5 text-[#0E0E0E]" strokeWidth={1.5} />
@@ -522,7 +522,7 @@ export const AdminSettings: React.FC<AdminSettingsProps> = ({ onRefresh }) => {
               </div>
               <button
                 onClick={() => setShowSqlModal(false)}
-                className="text-[#0E0E0E] hover:opacity-70 cursor-pointer p-1"
+                className="text-[#0E0E0E] hover:opacity-70 rounded-full hover:bg-[#F6F5F3] cursor-pointer p-1.5 transition-colors"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -532,7 +532,7 @@ export const AdminSettings: React.FC<AdminSettingsProps> = ({ onRefresh }) => {
               Run this SQL script in your Supabase Dashboard (<span className="text-[#0E0E0E] font-semibold">SQL Editor → New Query</span>) to create all production tables and Row Level Security (RLS) policies.
             </p>
 
-            <pre className="p-4 bg-[#F6F5F3] border border-[#CFCFCC] text-[#0E0E0E] text-[11px] overflow-x-auto overflow-y-auto flex-1 leading-relaxed">
+            <pre className="p-4 bg-[#F6F5F3] border border-[#CFCFCC] rounded-xl text-[#0E0E0E] text-[11px] overflow-x-auto overflow-y-auto flex-1 leading-relaxed">
               {SUPABASE_SQL_SCHEMA}
             </pre>
 
@@ -544,7 +544,7 @@ export const AdminSettings: React.FC<AdminSettingsProps> = ({ onRefresh }) => {
                 <button
                   type="button"
                   onClick={handleCopySql}
-                  className="btn-primary h-10 px-5 text-xs flex items-center gap-2"
+                  className="btn-primary h-10 px-5 text-xs rounded-xl flex items-center gap-2"
                 >
                   <Copy className="w-3.5 h-3.5" />
                   <span>{copiedSql ? 'Copied to Clipboard!' : 'Copy SQL Script'}</span>
@@ -552,7 +552,7 @@ export const AdminSettings: React.FC<AdminSettingsProps> = ({ onRefresh }) => {
                 <button
                   type="button"
                   onClick={() => setShowSqlModal(false)}
-                  className="h-10 px-4 text-xs uppercase tracking-wider font-semibold text-[#0E0E0E] bg-[#F6F5F3] hover:bg-[#E4E3E0] border border-[#CFCFCC] cursor-pointer"
+                  className="h-10 px-4 text-xs uppercase tracking-wider font-semibold text-[#0E0E0E] bg-[#F6F5F3] hover:bg-[#E4E3E0] border border-[#CFCFCC] rounded-xl cursor-pointer transition-colors"
                 >
                   Close
                 </button>

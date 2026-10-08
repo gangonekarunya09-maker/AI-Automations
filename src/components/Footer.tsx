@@ -22,7 +22,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onRequestCustom }) =
           </div>
           <button
             onClick={onRequestCustom}
-            className="self-start md:self-auto h-12 px-8 text-xs font-semibold uppercase tracking-[0.18em] text-[#0E0E0E] bg-white hover:bg-neutral-200 transition-colors flex items-center gap-2 cursor-pointer"
+            className="self-start md:self-auto h-12 px-8 rounded-xl text-xs font-semibold uppercase tracking-[0.18em] text-[#0E0E0E] bg-white hover:bg-neutral-200 transition-colors flex items-center gap-2 cursor-pointer active:scale-[0.99]"
           >
             <span>Request Custom Architecture</span>
             <ArrowUpRight className="w-4 h-4" />

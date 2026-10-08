@@ -45,7 +45,7 @@ export const AdminCustomRequests: React.FC<AdminCustomRequestsProps> = ({
         {/* Requests List */}
         <div className="lg:col-span-2 space-y-4">
           {customRequests.length === 0 ? (
-            <div className="p-12 text-center bg-white border border-[#CFCFCC] text-xs text-[#6B6B6B]">
+            <div className="p-12 text-center bg-white border border-[#CFCFCC] rounded-2xl text-xs text-[#6B6B6B] shadow-sm">
               No custom architecture requests received yet.
             </div>
           ) : (
@@ -55,7 +55,7 @@ export const AdminCustomRequests: React.FC<AdminCustomRequestsProps> = ({
                 <div
                   key={req.id}
                   onClick={() => setSelectedReq(req)}
-                  className={`p-6 bg-white border cursor-pointer transition-all ${
+                  className={`p-6 bg-white border rounded-2xl cursor-pointer transition-all shadow-sm hover:shadow-md ${
                     isSelected ? 'border-[#0E0E0E] bg-[#F6F5F3]' : 'border-[#CFCFCC] hover:border-[#0E0E0E]'
                   }`}
                 >
@@ -65,10 +65,10 @@ export const AdminCustomRequests: React.FC<AdminCustomRequestsProps> = ({
                       <div className="text-xs text-[#6B6B6B]">{req.company}</div>
                     </div>
                     <div className="flex items-center gap-2">
-                      <span className="text-xs font-bold text-[#0E0E0E] bg-[#F6F5F3] px-2.5 py-1 border border-[#CFCFCC]">
+                      <span className="text-xs font-bold text-[#0E0E0E] bg-[#F6F5F3] px-2.5 py-1 rounded-full border border-[#CFCFCC]">
                         {req.budget}
                       </span>
-                      <span className="px-2.5 py-1 text-[10px] uppercase tracking-wider font-bold bg-[#0E0E0E] text-white">
+                      <span className="px-2.5 py-1 text-[10px] uppercase tracking-wider font-bold bg-[#0E0E0E] text-white rounded-full">
                         {req.status}
                       </span>
                     </div>
@@ -81,7 +81,7 @@ export const AdminCustomRequests: React.FC<AdminCustomRequestsProps> = ({
                   <div className="flex flex-wrap items-center gap-2 text-[11px] text-[#6B6B6B] pt-3 border-t border-[#CFCFCC]">
                     <span className="text-[10px] uppercase tracking-wider font-semibold text-[#0E0E0E]">Stack:</span>
                     {req.tools_used.map(tool => (
-                      <span key={tool} className="px-2 py-0.5 bg-[#F6F5F3] border border-[#CFCFCC] text-[#0E0E0E] text-[10px] font-medium">
+                      <span key={tool} className="px-2.5 py-0.5 bg-[#F6F5F3] border border-[#CFCFCC] rounded-lg text-[#0E0E0E] text-[10px] font-medium">
                         {tool}
                       </span>
                     ))}
@@ -96,7 +96,7 @@ export const AdminCustomRequests: React.FC<AdminCustomRequestsProps> = ({
         </div>
 
         {/* Detail Panel */}
-        <div className="p-6 sm:p-7 border border-[#CFCFCC] bg-white space-y-6 text-xs">
+        <div className="p-6 sm:p-7 border border-[#CFCFCC] bg-white rounded-2xl shadow-sm space-y-6 text-xs">
           {selectedReq ? (
             <div className="space-y-5">
               <div className="pb-4 border-b border-[#CFCFCC]">
@@ -120,7 +120,7 @@ export const AdminCustomRequests: React.FC<AdminCustomRequestsProps> = ({
                     <button
                       key={st}
                       onClick={() => handleUpdateStatus(selectedReq.id, st)}
-                      className={`py-2 px-1.5 text-[10px] uppercase tracking-wider font-semibold transition-colors cursor-pointer ${
+                      className={`py-2 px-1.5 text-[10px] uppercase tracking-wider font-semibold rounded-lg transition-colors cursor-pointer ${
                         selectedReq.status === st
                           ? 'bg-[#0E0E0E] text-white'
                           : 'bg-[#F6F5F3] text-[#6B6B6B] hover:text-[#0E0E0E] border border-[#CFCFCC]'
@@ -133,7 +133,7 @@ export const AdminCustomRequests: React.FC<AdminCustomRequestsProps> = ({
               </div>
 
               {/* Contact info */}
-              <div className="p-4 bg-[#F6F5F3] border border-[#CFCFCC] space-y-2">
+              <div className="p-4 bg-[#F6F5F3] border border-[#CFCFCC] rounded-xl space-y-2">
                 <div className="flex items-center gap-2.5 text-[#0E0E0E]">
                   <Mail className="w-4 h-4 text-[#0E0E0E] shrink-0" strokeWidth={1.5} />
                   <a href={`mailto:${selectedReq.email}`} className="editorial-link font-medium text-xs">
@@ -158,7 +158,7 @@ export const AdminCustomRequests: React.FC<AdminCustomRequestsProps> = ({
                 <div className="text-[#0E0E0E] text-[10px] uppercase tracking-[0.18em] font-bold mb-1.5">
                   Current Manual Workflow Bottleneck:
                 </div>
-                <div className="p-4 bg-[#F6F5F3] border border-[#CFCFCC] text-[#0E0E0E] leading-relaxed whitespace-pre-wrap text-xs">
+                <div className="p-4 bg-[#F6F5F3] border border-[#CFCFCC] rounded-xl text-[#0E0E0E] leading-relaxed whitespace-pre-wrap text-xs">
                   {selectedReq.process_description}
                 </div>
               </div>
@@ -168,7 +168,7 @@ export const AdminCustomRequests: React.FC<AdminCustomRequestsProps> = ({
                   <div className="text-[#0E0E0E] text-[10px] uppercase tracking-[0.18em] font-bold mb-1.5">
                     Customer Additional Notes:
                   </div>
-                  <div className="p-3 bg-[#F6F5F3] border border-[#CFCFCC] text-[#6B6B6B] text-xs">
+                  <div className="p-3 bg-[#F6F5F3] border border-[#CFCFCC] rounded-xl text-[#6B6B6B] text-xs">
                     {selectedReq.additional_notes}
                   </div>
                 </div>
@@ -181,7 +181,7 @@ export const AdminCustomRequests: React.FC<AdminCustomRequestsProps> = ({
                 </div>
                 <div className="flex flex-wrap gap-1.5">
                   {selectedReq.tools_used.map(tool => (
-                    <span key={tool} className="px-2.5 py-1 bg-white border border-[#CFCFCC] text-[#0E0E0E] text-[11px] font-medium">
+                    <span key={tool} className="px-2.5 py-1 bg-white border border-[#CFCFCC] rounded-lg text-[#0E0E0E] text-[11px] font-medium">
                       {tool}
                     </span>
                   ))}

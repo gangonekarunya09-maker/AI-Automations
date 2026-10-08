@@ -36,9 +36,9 @@ export const AdminAuthModal: React.FC<AdminAuthModalProps> = ({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-none">
-      <div className="bg-white border border-[#0E0E0E] p-8 max-w-md w-full space-y-6">
+      <div className="bg-white border border-[#0E0E0E] rounded-2xl shadow-2xl p-8 max-w-md w-full space-y-6">
         <div className="text-center space-y-2">
-          <div className="w-12 h-12 bg-[#0E0E0E] text-white flex items-center justify-center mx-auto mb-3">
+          <div className="w-12 h-12 bg-[#0E0E0E] text-white rounded-xl flex items-center justify-center mx-auto mb-3 shadow-sm">
             <Lock className="w-5 h-5 stroke-[2.5]" />
           </div>
           <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-[#6B6B6B] block">
@@ -54,7 +54,7 @@ export const AdminAuthModal: React.FC<AdminAuthModalProps> = ({
 
         <form onSubmit={handleSubmit} className="space-y-4">
           {error && (
-            <div className="p-2.5 bg-[#F6F5F3] border-l-4 border-[#0E0E0E] text-[#0E0E0E] text-xs font-bold text-center">
+            <div className="p-2.5 bg-[#F6F5F3] border-l-4 border-[#0E0E0E] rounded-xl text-[#0E0E0E] text-xs font-bold text-center">
               Incorrect key. (Default: offlo2026)
             </div>
           )}
@@ -71,14 +71,14 @@ export const AdminAuthModal: React.FC<AdminAuthModalProps> = ({
                 setError(false);
               }}
               placeholder="e.g. offlo2026"
-              className="w-full px-4 py-2.5 bg-white border border-[#CFCFCC] text-[#0E0E0E] text-sm focus:border-[#0E0E0E] focus:outline-none transition-colors"
+              className="w-full px-4 py-2.5 bg-white border border-[#CFCFCC] rounded-xl text-[#0E0E0E] text-sm focus:border-[#0E0E0E] focus:outline-none transition-colors"
               autoFocus
             />
           </div>
 
           <button
             type="submit"
-            className="w-full btn-primary h-12"
+            className="w-full btn-primary h-12 rounded-xl"
           >
             <ShieldCheck className="w-4 h-4 mr-2" />
             <span>ENTER SYSTEM CONSOLE</span>
@@ -89,7 +89,7 @@ export const AdminAuthModal: React.FC<AdminAuthModalProps> = ({
           <button
             type="button"
             onClick={handleQuickDemoAccess}
-            className="w-full py-2.5 px-3 text-xs uppercase tracking-[0.16em] font-bold text-[#0E0E0E] bg-[#F6F5F3] hover:bg-[#E4E3E0] border border-[#CFCFCC] transition-colors flex items-center justify-center gap-2 cursor-pointer"
+            className="w-full py-2.5 px-3 text-xs uppercase tracking-[0.16em] font-bold text-[#0E0E0E] bg-[#F6F5F3] hover:bg-[#E4E3E0] border border-[#CFCFCC] rounded-xl transition-colors flex items-center justify-center gap-2 cursor-pointer"
           >
             <KeyRound className="w-3.5 h-3.5" />
             <span>1-Click Demo Reviewer Access</span>
@@ -98,7 +98,7 @@ export const AdminAuthModal: React.FC<AdminAuthModalProps> = ({
           <button
             type="button"
             onClick={onCancel}
-            className="w-full text-center text-xs uppercase tracking-[0.16em] font-semibold text-[#6B6B6B] hover:text-[#0E0E0E] py-1 transition-colors cursor-pointer"
+            className="w-full text-center text-xs uppercase tracking-[0.16em] font-semibold text-[#6B6B6B] hover:text-[#0E0E0E] py-1 rounded-lg transition-colors cursor-pointer"
           >
             Cancel & Return
           </button>

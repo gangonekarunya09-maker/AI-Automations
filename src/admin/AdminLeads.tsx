@@ -78,10 +78,10 @@ export const AdminLeads: React.FC<AdminLeadsProps> = ({ leads, onRefresh }) => {
         </div>
 
         {/* Status Filter */}
-        <div className="flex items-center gap-1.5 p-1 bg-white border border-[#CFCFCC] text-xs overflow-x-auto">
+        <div className="flex items-center gap-1.5 p-1 bg-white border border-[#CFCFCC] rounded-xl shadow-sm text-xs overflow-x-auto">
           <button
             onClick={() => setFilterStatus('All')}
-            className={`px-3 py-1.5 uppercase tracking-[0.14em] text-[11px] font-semibold transition-colors cursor-pointer ${
+            className={`px-3 py-1.5 uppercase tracking-[0.14em] text-[11px] font-semibold rounded-lg transition-colors cursor-pointer ${
               filterStatus === 'All' ? 'bg-[#0E0E0E] text-white' : 'text-[#6B6B6B] hover:text-[#0E0E0E]'
             }`}
           >
@@ -93,7 +93,7 @@ export const AdminLeads: React.FC<AdminLeadsProps> = ({ leads, onRefresh }) => {
               <button
                 key={st}
                 onClick={() => setFilterStatus(st)}
-                className={`px-3 py-1.5 uppercase tracking-[0.14em] text-[11px] font-semibold transition-colors cursor-pointer whitespace-nowrap ${
+                className={`px-3 py-1.5 uppercase tracking-[0.14em] text-[11px] font-semibold rounded-lg transition-colors cursor-pointer whitespace-nowrap ${
                   filterStatus === st ? 'bg-[#0E0E0E] text-white' : 'text-[#6B6B6B] hover:text-[#0E0E0E]'
                 }`}
               >
@@ -106,7 +106,7 @@ export const AdminLeads: React.FC<AdminLeadsProps> = ({ leads, onRefresh }) => {
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* Leads Table */}
-        <div className="lg:col-span-2 border border-[#CFCFCC] bg-white overflow-hidden">
+        <div className="lg:col-span-2 border border-[#CFCFCC] bg-white rounded-2xl overflow-hidden shadow-sm">
           <div className="overflow-x-auto">
             <table className="w-full text-left text-xs">
               <thead className="bg-[#F6F5F3] border-b border-[#CFCFCC] text-[#6B6B6B] uppercase text-[10px] tracking-[0.16em] font-semibold">
@@ -155,7 +155,7 @@ export const AdminLeads: React.FC<AdminLeadsProps> = ({ leads, onRefresh }) => {
                         </td>
 
                         <td className="py-4 px-4">
-                          <span className={`px-2 py-0.5 text-[10px] uppercase tracking-wider border font-bold ${getStatusBadge(lead.status)}`}>
+                          <span className={`px-2.5 py-0.5 text-[10px] uppercase tracking-wider border font-bold rounded-full ${getStatusBadge(lead.status)}`}>
                             {lead.status}
                           </span>
                         </td>
@@ -173,7 +173,7 @@ export const AdminLeads: React.FC<AdminLeadsProps> = ({ leads, onRefresh }) => {
         </div>
 
         {/* Selected Lead Inspector Panel */}
-        <div className="p-6 sm:p-7 border border-[#CFCFCC] bg-white space-y-6">
+        <div className="p-6 sm:p-7 border border-[#CFCFCC] bg-white rounded-2xl shadow-sm space-y-6">
           {selectedLead ? (
             <div className="space-y-6 text-xs">
               <div className="flex items-start justify-between pb-4 border-b border-[#CFCFCC]">
@@ -186,7 +186,7 @@ export const AdminLeads: React.FC<AdminLeadsProps> = ({ leads, onRefresh }) => {
                 </div>
                 <button
                   onClick={() => handleDeleteLead(selectedLead.id)}
-                  className="p-2 text-[#6B6B6B] hover:text-[#0E0E0E] hover:bg-[#F6F5F3] transition-colors cursor-pointer"
+                  className="p-2 text-[#6B6B6B] hover:text-[#0E0E0E] hover:bg-[#F6F5F3] rounded-lg transition-colors cursor-pointer"
                   title="Delete Lead Record"
                 >
                   <Trash2 className="w-4 h-4" />
@@ -203,7 +203,7 @@ export const AdminLeads: React.FC<AdminLeadsProps> = ({ leads, onRefresh }) => {
                     <button
                       key={st}
                       onClick={() => handleUpdateStatus(selectedLead.id, st)}
-                      className={`py-2 px-2 text-[10px] uppercase tracking-wider font-semibold transition-colors cursor-pointer ${
+                      className={`py-2 px-2 text-[10px] uppercase tracking-wider font-semibold rounded-lg transition-colors cursor-pointer ${
                         selectedLead.status === st
                           ? 'bg-[#0E0E0E] text-white'
                           : 'bg-[#F6F5F3] text-[#6B6B6B] hover:text-[#0E0E0E] border border-[#CFCFCC]'
@@ -216,7 +216,7 @@ export const AdminLeads: React.FC<AdminLeadsProps> = ({ leads, onRefresh }) => {
               </div>
 
               {/* Contact details */}
-              <div className="space-y-2.5 p-4 bg-[#F6F5F3] border border-[#CFCFCC]">
+              <div className="space-y-2.5 p-4 bg-[#F6F5F3] border border-[#CFCFCC] rounded-xl">
                 <div className="flex items-center gap-2.5 text-[#0E0E0E]">
                   <Mail className="w-4 h-4 text-[#0E0E0E] shrink-0" strokeWidth={1.5} />
                   <a href={`mailto:${selectedLead.email}`} className="editorial-link font-medium text-xs">
@@ -241,7 +241,7 @@ export const AdminLeads: React.FC<AdminLeadsProps> = ({ leads, onRefresh }) => {
                 <div className="text-[#0E0E0E] text-[10px] uppercase tracking-[0.18em] font-bold mb-1.5">
                   Inquiry Brief:
                 </div>
-                <div className="p-4 bg-[#F6F5F3] border border-[#CFCFCC] text-[#0E0E0E] leading-relaxed text-xs">
+                <div className="p-4 bg-[#F6F5F3] border border-[#CFCFCC] text-[#0E0E0E] leading-relaxed text-xs rounded-xl">
                   {selectedLead.message}
                 </div>
               </div>
@@ -256,11 +256,11 @@ export const AdminLeads: React.FC<AdminLeadsProps> = ({ leads, onRefresh }) => {
                   value={noteDraft}
                   onChange={e => setNoteDraft(e.target.value)}
                   placeholder="Record customer constraints, proposal links, or technical notes..."
-                  className="w-full p-3 bg-white border border-[#CFCFCC] text-[#0E0E0E] text-xs focus:outline-none focus:border-[#0E0E0E] resize-none transition-colors"
+                  className="w-full p-3 bg-white border border-[#CFCFCC] rounded-xl text-[#0E0E0E] text-xs focus:outline-none focus:border-[#0E0E0E] resize-none transition-colors"
                 />
                 <button
                   onClick={() => handleSaveNotes(selectedLead.id)}
-                  className="mt-2.5 w-full btn-primary h-10 text-[11px]"
+                  className="mt-2.5 w-full btn-primary h-10 text-[11px] rounded-xl"
                 >
                   Save Internal Notes
                 </button>

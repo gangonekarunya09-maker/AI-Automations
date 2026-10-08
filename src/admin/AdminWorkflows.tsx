@@ -176,7 +176,7 @@ export const AdminWorkflows: React.FC<AdminWorkflowsProps> = ({
 
         <button
           onClick={handleOpenAdd}
-          className="btn-primary h-11 text-xs"
+          className="btn-primary h-11 text-xs rounded-xl shadow-sm"
         >
           <Plus className="w-4 h-4 mr-2" />
           <span>CREATE NEW WORKFLOW</span>
@@ -184,7 +184,7 @@ export const AdminWorkflows: React.FC<AdminWorkflowsProps> = ({
       </div>
 
       {/* Workflows Table */}
-      <div className="border border-[#CFCFCC] bg-white overflow-hidden">
+      <div className="border border-[#CFCFCC] bg-white rounded-2xl overflow-hidden shadow-sm">
         <div className="overflow-x-auto">
           <table className="w-full text-left text-xs">
             <thead className="bg-[#F6F5F3] border-b border-[#CFCFCC] text-[#6B6B6B] uppercase text-[10px] tracking-[0.16em] font-semibold">
@@ -206,7 +206,7 @@ export const AdminWorkflows: React.FC<AdminWorkflowsProps> = ({
                       <span>·</span>
                       <span>/{wf.slug}</span>
                       {wf.featured && (
-                        <span className="text-[10px] uppercase font-bold text-[#0E0E0E] bg-[#E4E3E0] px-1.5 py-0.2">
+                        <span className="text-[10px] uppercase font-bold text-[#0E0E0E] bg-[#E4E3E0] px-2 py-0.5 rounded-full">
                           ★ Featured
                         </span>
                       )}
@@ -225,7 +225,7 @@ export const AdminWorkflows: React.FC<AdminWorkflowsProps> = ({
                   <td className="py-4 px-4">
                     <button
                       onClick={() => handleTogglePublish(wf.id)}
-                      className={`px-3 py-1 text-[10px] uppercase tracking-wider font-bold flex items-center gap-1.5 cursor-pointer transition-colors border ${
+                      className={`px-3 py-1 text-[10px] uppercase tracking-wider font-bold rounded-lg flex items-center gap-1.5 cursor-pointer transition-colors border ${
                         wf.status === 'published'
                           ? 'bg-[#0E0E0E] text-white border-[#0E0E0E]'
                           : 'bg-[#F6F5F3] text-[#6B6B6B] border-[#CFCFCC]'
@@ -250,21 +250,21 @@ export const AdminWorkflows: React.FC<AdminWorkflowsProps> = ({
                       <button
                         onClick={() => onPreviewWorkflow(wf)}
                         title="Preview Public Page"
-                        className="p-1.5 text-[#6B6B6B] hover:text-[#0E0E0E] hover:bg-[#F6F5F3] transition-colors cursor-pointer"
+                        className="p-1.5 text-[#6B6B6B] hover:text-[#0E0E0E] hover:bg-[#F6F5F3] rounded-lg transition-colors cursor-pointer"
                       >
                         <ExternalLink className="w-4 h-4" />
                       </button>
                       <button
                         onClick={() => handleOpenEdit(wf)}
                         title="Edit Workflow"
-                        className="p-1.5 text-[#6B6B6B] hover:text-[#0E0E0E] hover:bg-[#F6F5F3] transition-colors cursor-pointer"
+                        className="p-1.5 text-[#6B6B6B] hover:text-[#0E0E0E] hover:bg-[#F6F5F3] rounded-lg transition-colors cursor-pointer"
                       >
                         <Edit className="w-4 h-4" />
                       </button>
                       <button
                         onClick={() => setDeleteConfirmId(wf.id)}
                         title="Delete Workflow"
-                        className="p-1.5 text-[#6B6B6B] hover:text-[#0E0E0E] hover:bg-[#F6F5F3] transition-colors cursor-pointer"
+                        className="p-1.5 text-[#6B6B6B] hover:text-[#0E0E0E] hover:bg-[#F6F5F3] rounded-lg transition-colors cursor-pointer"
                       >
                         <Trash2 className="w-4 h-4" />
                       </button>
@@ -280,7 +280,7 @@ export const AdminWorkflows: React.FC<AdminWorkflowsProps> = ({
       {/* Delete Confirmation Modal */}
       {deleteConfirmId && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-none">
-          <div className="bg-white border border-[#0E0E0E] p-8 max-w-sm w-full space-y-4">
+          <div className="bg-white border border-[#0E0E0E] rounded-2xl shadow-2xl p-8 max-w-sm w-full space-y-4">
             <h3 className="text-lg font-bold uppercase tracking-tight text-[#0E0E0E]">Delete Workflow?</h3>
             <p className="text-xs text-[#6B6B6B] leading-relaxed">
               Are you sure you want to remove this workflow blueprint from the catalog? This action cannot be undone.
@@ -288,13 +288,13 @@ export const AdminWorkflows: React.FC<AdminWorkflowsProps> = ({
             <div className="flex items-center justify-end gap-3 pt-3 border-t border-[#CFCFCC]">
               <button
                 onClick={() => setDeleteConfirmId(null)}
-                className="px-4 py-2 text-xs uppercase tracking-wider font-semibold text-[#0E0E0E] bg-[#F6F5F3] hover:bg-[#E4E3E0] border border-[#CFCFCC] cursor-pointer"
+                className="px-4 py-2 text-xs uppercase tracking-wider font-semibold text-[#0E0E0E] bg-[#F6F5F3] hover:bg-[#E4E3E0] border border-[#CFCFCC] rounded-xl cursor-pointer"
               >
                 Cancel
               </button>
               <button
                 onClick={() => handleDelete(deleteConfirmId)}
-                className="px-4 py-2 text-xs uppercase tracking-wider font-bold text-white bg-[#0E0E0E] hover:bg-[#222222] cursor-pointer"
+                className="px-4 py-2 text-xs uppercase tracking-wider font-bold text-white bg-[#0E0E0E] hover:bg-[#222222] rounded-xl cursor-pointer"
               >
                 Delete
               </button>
@@ -306,7 +306,7 @@ export const AdminWorkflows: React.FC<AdminWorkflowsProps> = ({
       {/* Create / Edit Modal */}
       {isModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-none overflow-y-auto">
-          <div className="bg-white border border-[#0E0E0E] p-6 sm:p-10 max-w-2xl w-full my-8 space-y-6 max-h-[90vh] overflow-y-auto">
+          <div className="bg-white border border-[#0E0E0E] rounded-2xl shadow-2xl p-6 sm:p-10 max-w-2xl w-full my-8 space-y-6 max-h-[90vh] overflow-y-auto">
             <div className="flex items-center justify-between pb-4 border-b border-[#CFCFCC]">
               <div>
                 <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-[#6B6B6B] block">
@@ -316,7 +316,7 @@ export const AdminWorkflows: React.FC<AdminWorkflowsProps> = ({
                   {editingWorkflow ? 'Edit Blueprint' : 'Create New Blueprint'}
                 </h3>
               </div>
-              <button onClick={() => setIsModalOpen(false)} className="text-[#0E0E0E] hover:opacity-70 cursor-pointer p-1">
+              <button onClick={() => setIsModalOpen(false)} className="text-[#0E0E0E] hover:opacity-70 rounded-full hover:bg-[#F6F5F3] cursor-pointer p-1.5 transition-colors">
                 <X className="w-5 h-5" />
               </button>
             </div>
@@ -332,7 +332,7 @@ export const AdminWorkflows: React.FC<AdminWorkflowsProps> = ({
                     required
                     value={formData.name}
                     onChange={e => setFormData({ ...formData, name: e.target.value })}
-                    className="w-full px-3.5 py-2.5 bg-white border border-[#CFCFCC] text-[#0E0E0E] focus:outline-none focus:border-[#0E0E0E] transition-colors"
+                    className="w-full px-3.5 py-2.5 bg-white border border-[#CFCFCC] rounded-xl text-[#0E0E0E] focus:outline-none focus:border-[#0E0E0E] transition-colors"
                   />
                 </div>
 
@@ -345,7 +345,7 @@ export const AdminWorkflows: React.FC<AdminWorkflowsProps> = ({
                     value={formData.slug}
                     onChange={e => setFormData({ ...formData, slug: e.target.value })}
                     placeholder="e.g. ai-lead-qualifier"
-                    className="w-full px-3.5 py-2.5 bg-white border border-[#CFCFCC] text-[#0E0E0E] focus:outline-none focus:border-[#0E0E0E] transition-colors"
+                    className="w-full px-3.5 py-2.5 bg-white border border-[#CFCFCC] rounded-xl text-[#0E0E0E] focus:outline-none focus:border-[#0E0E0E] transition-colors"
                   />
                 </div>
               </div>
@@ -358,7 +358,7 @@ export const AdminWorkflows: React.FC<AdminWorkflowsProps> = ({
                   <select
                     value={formData.category}
                     onChange={e => setFormData({ ...formData, category: e.target.value as any })}
-                    className="w-full px-3.5 py-2.5 bg-white border border-[#CFCFCC] text-[#0E0E0E] focus:outline-none focus:border-[#0E0E0E] transition-colors cursor-pointer"
+                    className="w-full px-3.5 py-2.5 bg-white border border-[#CFCFCC] rounded-xl text-[#0E0E0E] focus:outline-none focus:border-[#0E0E0E] transition-colors cursor-pointer"
                   >
                     <option value="Sales">Sales</option>
                     <option value="Marketing">Marketing</option>
@@ -378,7 +378,7 @@ export const AdminWorkflows: React.FC<AdminWorkflowsProps> = ({
                     required
                     value={formData.price_inr}
                     onChange={e => setFormData({ ...formData, price_inr: Number(e.target.value) })}
-                    className="w-full px-3.5 py-2.5 bg-white border border-[#CFCFCC] text-[#0E0E0E] focus:outline-none focus:border-[#0E0E0E] tabular-nums transition-colors"
+                    className="w-full px-3.5 py-2.5 bg-white border border-[#CFCFCC] rounded-xl text-[#0E0E0E] focus:outline-none focus:border-[#0E0E0E] tabular-nums transition-colors"
                   />
                 </div>
 
@@ -391,7 +391,7 @@ export const AdminWorkflows: React.FC<AdminWorkflowsProps> = ({
                     required
                     value={formData.price_usd}
                     onChange={e => setFormData({ ...formData, price_usd: Number(e.target.value) })}
-                    className="w-full px-3.5 py-2.5 bg-white border border-[#CFCFCC] text-[#0E0E0E] focus:outline-none focus:border-[#0E0E0E] tabular-nums transition-colors"
+                    className="w-full px-3.5 py-2.5 bg-white border border-[#CFCFCC] rounded-xl text-[#0E0E0E] focus:outline-none focus:border-[#0E0E0E] tabular-nums transition-colors"
                   />
                 </div>
               </div>
@@ -406,7 +406,7 @@ export const AdminWorkflows: React.FC<AdminWorkflowsProps> = ({
                   value={formData.short_description}
                   onChange={e => setFormData({ ...formData, short_description: e.target.value })}
                   placeholder="One sentence summarizing the mechanism and result."
-                  className="w-full px-3.5 py-2.5 bg-white border border-[#CFCFCC] text-[#0E0E0E] focus:outline-none focus:border-[#0E0E0E] transition-colors"
+                  className="w-full px-3.5 py-2.5 bg-white border border-[#CFCFCC] rounded-xl text-[#0E0E0E] focus:outline-none focus:border-[#0E0E0E] transition-colors"
                 />
               </div>
 
@@ -420,7 +420,7 @@ export const AdminWorkflows: React.FC<AdminWorkflowsProps> = ({
                   value={formData.benefit}
                   onChange={e => setFormData({ ...formData, benefit: e.target.value })}
                   placeholder="e.g. Cuts lead response latency from 6 hours to under 45 seconds."
-                  className="w-full px-3.5 py-2.5 bg-white border border-[#CFCFCC] text-[#0E0E0E] focus:outline-none focus:border-[#0E0E0E] transition-colors"
+                  className="w-full px-3.5 py-2.5 bg-white border border-[#CFCFCC] rounded-xl text-[#0E0E0E] focus:outline-none focus:border-[#0E0E0E] transition-colors"
                 />
               </div>
 
@@ -432,7 +432,7 @@ export const AdminWorkflows: React.FC<AdminWorkflowsProps> = ({
                   rows={3}
                   value={formData.long_description}
                   onChange={e => setFormData({ ...formData, long_description: e.target.value })}
-                  className="w-full p-3.5 bg-white border border-[#CFCFCC] text-[#0E0E0E] focus:outline-none focus:border-[#0E0E0E] resize-none transition-colors"
+                  className="w-full p-3.5 bg-white border border-[#CFCFCC] rounded-xl text-[#0E0E0E] focus:outline-none focus:border-[#0E0E0E] resize-none transition-colors"
                 />
               </div>
 
@@ -445,7 +445,7 @@ export const AdminWorkflows: React.FC<AdminWorkflowsProps> = ({
                   value={formData.technologies}
                   onChange={e => setFormData({ ...formData, technologies: e.target.value })}
                   placeholder="n8n, Gemini 1.5, Slack, HubSpot"
-                  className="w-full px-3.5 py-2.5 bg-white border border-[#CFCFCC] text-[#0E0E0E] focus:outline-none focus:border-[#0E0E0E] transition-colors"
+                  className="w-full px-3.5 py-2.5 bg-white border border-[#CFCFCC] rounded-xl text-[#0E0E0E] focus:outline-none focus:border-[#0E0E0E] transition-colors"
                 />
               </div>
 
@@ -457,7 +457,7 @@ export const AdminWorkflows: React.FC<AdminWorkflowsProps> = ({
                   rows={3}
                   value={formData.features}
                   onChange={e => setFormData({ ...formData, features: e.target.value })}
-                  className="w-full p-3.5 bg-white border border-[#CFCFCC] text-[#0E0E0E] focus:outline-none focus:border-[#0E0E0E] resize-none transition-colors"
+                  className="w-full p-3.5 bg-white border border-[#CFCFCC] rounded-xl text-[#0E0E0E] focus:outline-none focus:border-[#0E0E0E] resize-none transition-colors"
                 />
               </div>
 
@@ -487,13 +487,13 @@ export const AdminWorkflows: React.FC<AdminWorkflowsProps> = ({
                 <button
                   type="button"
                   onClick={() => setIsModalOpen(false)}
-                  className="px-5 py-2.5 uppercase tracking-wider text-xs font-semibold text-[#0E0E0E] bg-[#F6F5F3] hover:bg-[#E4E3E0] border border-[#CFCFCC] cursor-pointer"
+                  className="px-5 py-2.5 uppercase tracking-wider text-xs font-semibold text-[#0E0E0E] bg-[#F6F5F3] hover:bg-[#E4E3E0] border border-[#CFCFCC] rounded-xl cursor-pointer transition-colors"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
-                  className="btn-primary h-11 text-xs"
+                  className="btn-primary h-11 text-xs rounded-xl"
                 >
                   Save Blueprint
                 </button>

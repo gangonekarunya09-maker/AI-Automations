@@ -30,10 +30,6 @@
 }
 
 /* Subtle modern box shadows and round corner rules */
-*, ::before, ::after {
-  box-shadow: none;
-}
-
 /* Base button and input roundness */
 button, input, textarea, select {
   border-radius: 8px;

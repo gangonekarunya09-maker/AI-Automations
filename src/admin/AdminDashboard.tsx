@@ -38,13 +38,13 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
         <div className="flex items-center gap-3">
           <button
             onClick={() => onNavigateTab('workflows')}
-            className="btn-primary h-10 px-5 text-xs"
+            className="btn-primary h-10 px-5 text-xs rounded-xl"
           >
             + ADD WORKFLOW
           </button>
           <button
             onClick={() => onNavigateTab('settings')}
-            className="h-10 px-4 text-xs uppercase tracking-[0.16em] font-semibold text-[#0E0E0E] bg-white border border-[#CFCFCC] hover:bg-[#F6F5F3] transition-colors flex items-center gap-2 cursor-pointer"
+            className="h-10 px-4 text-xs uppercase tracking-[0.16em] font-semibold text-[#0E0E0E] bg-white border border-[#CFCFCC] hover:bg-[#F6F5F3] rounded-xl transition-colors flex items-center gap-2 cursor-pointer shadow-sm"
           >
             <Webhook className="w-3.5 h-3.5 text-[#0E0E0E]" />
             <span>CONFIG & SUPABASE</span>
@@ -57,7 +57,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
         {/* Total & New Leads */}
         <div
           onClick={() => onNavigateTab('leads')}
-          className="p-6 bg-white border border-[#CFCFCC] hover:border-[#0E0E0E] transition-colors cursor-pointer group"
+          className="p-6 bg-white border border-[#CFCFCC] hover:border-[#0E0E0E] rounded-2xl shadow-sm hover:shadow-md transition-all cursor-pointer group"
         >
           <div className="flex items-center justify-between text-[#6B6B6B] mb-3">
             <span className="text-[10px] uppercase tracking-[0.18em] font-bold">Inbound Leads</span>
@@ -82,7 +82,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
         {/* Custom Automation Requests */}
         <div
           onClick={() => onNavigateTab('custom-requests')}
-          className="p-6 bg-white border border-[#CFCFCC] hover:border-[#0E0E0E] transition-colors cursor-pointer group"
+          className="p-6 bg-white border border-[#CFCFCC] hover:border-[#0E0E0E] rounded-2xl shadow-sm hover:shadow-md transition-all cursor-pointer group"
         >
           <div className="flex items-center justify-between text-[#6B6B6B] mb-3">
             <span className="text-[10px] uppercase tracking-[0.18em] font-bold">Custom Scopes</span>
@@ -107,7 +107,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
         {/* Total Orders */}
         <div
           onClick={() => onNavigateTab('orders')}
-          className="p-6 bg-white border border-[#CFCFCC] hover:border-[#0E0E0E] transition-colors cursor-pointer group"
+          className="p-6 bg-white border border-[#CFCFCC] hover:border-[#0E0E0E] rounded-2xl shadow-sm hover:shadow-md transition-all cursor-pointer group"
         >
           <div className="flex items-center justify-between text-[#6B6B6B] mb-3">
             <span className="text-[10px] uppercase tracking-[0.18em] font-bold">Blueprint Orders</span>
@@ -130,7 +130,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
         </div>
 
         {/* Settled Revenue */}
-        <div className="p-6 bg-[#0E0E0E] text-white border border-[#0E0E0E]">
+        <div className="p-6 bg-[#0E0E0E] text-white border border-[#0E0E0E] rounded-2xl shadow-sm">
           <div className="flex items-center justify-between text-neutral-400 mb-3">
             <span className="text-[10px] uppercase tracking-[0.18em] font-bold">Settled Revenue</span>
             <TrendingUp className="w-4 h-4 text-white" strokeWidth={1.5} />
@@ -147,7 +147,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
       {/* Two Column Section: Recent Leads & Recent Custom Requests */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         {/* Recent Inbound Leads */}
-        <div className="p-8 bg-white border border-[#CFCFCC] space-y-4">
+        <div className="p-8 bg-white border border-[#CFCFCC] rounded-2xl shadow-sm space-y-4">
           <div className="flex items-center justify-between pb-4 border-b border-[#CFCFCC]">
             <h3 className="text-sm font-bold uppercase tracking-wider text-[#0E0E0E]">Recent Inbound Leads</h3>
             <button
@@ -162,11 +162,11 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
             {leads.slice(0, 4).map(lead => (
               <div
                 key={lead.id}
-                className="p-4 bg-[#F6F5F3] border border-[#CFCFCC] text-xs space-y-1"
+                className="p-4 bg-[#F6F5F3] border border-[#CFCFCC] rounded-xl text-xs space-y-1 hover:border-[#0E0E0E] transition-colors"
               >
                 <div className="flex items-center justify-between">
                   <span className="font-bold uppercase text-[#0E0E0E]">{lead.name}</span>
-                  <span className="px-2 py-0.5 text-[9px] uppercase tracking-wider font-bold bg-[#0E0E0E] text-white">
+                  <span className="px-2.5 py-0.5 text-[9px] uppercase tracking-wider font-bold bg-[#0E0E0E] text-white rounded-full">
                     {lead.status}
                   </span>
                 </div>
@@ -182,7 +182,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
         </div>
 
         {/* Recent Custom Automation Inquiries */}
-        <div className="p-8 bg-white border border-[#CFCFCC] space-y-4">
+        <div className="p-8 bg-white border border-[#CFCFCC] rounded-2xl shadow-sm space-y-4">
           <div className="flex items-center justify-between pb-4 border-b border-[#CFCFCC]">
             <h3 className="text-sm font-bold uppercase tracking-wider text-[#0E0E0E]">Custom Requirements Queue</h3>
             <button
@@ -197,11 +197,11 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({
             {customRequests.slice(0, 4).map(req => (
               <div
                 key={req.id}
-                className="p-4 bg-[#F6F5F3] border border-[#CFCFCC] text-xs space-y-1"
+                className="p-4 bg-[#F6F5F3] border border-[#CFCFCC] rounded-xl text-xs space-y-1 hover:border-[#0E0E0E] transition-colors"
               >
                 <div className="flex items-center justify-between">
                   <span className="font-bold uppercase text-[#0E0E0E]">{req.name} ({req.company})</span>
-                  <span className="text-[10px] uppercase font-bold text-[#6B6B6B]">
+                  <span className="text-[10px] uppercase font-bold text-[#6B6B6B] bg-white px-2 py-0.5 rounded-full border border-[#CFCFCC]">
                     {req.budget}
                   </span>
                 </div>

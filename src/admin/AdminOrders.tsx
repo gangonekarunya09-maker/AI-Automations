@@ -43,12 +43,12 @@ export const AdminOrders: React.FC<AdminOrdersProps> = ({ orders, onRefresh }) =
         </div>
 
         {/* Model Filter */}
-        <div className="flex items-center gap-1.5 p-1 bg-white border border-[#CFCFCC] text-xs">
+        <div className="flex items-center gap-1.5 p-1 bg-white border border-[#CFCFCC] rounded-xl shadow-sm text-xs">
           {['All', 'workflow_json', 'hybrid', 'managed'].map(model => (
             <button
               key={model}
               onClick={() => setFilterModel(model)}
-              className={`px-3 py-1.5 uppercase tracking-[0.14em] text-[11px] font-semibold transition-colors cursor-pointer ${
+              className={`px-3 py-1.5 uppercase tracking-[0.14em] text-[11px] font-semibold rounded-lg transition-colors cursor-pointer ${
                 filterModel === model ? 'bg-[#0E0E0E] text-white' : 'text-[#6B6B6B] hover:text-[#0E0E0E]'
               }`}
             >
@@ -58,7 +58,7 @@ export const AdminOrders: React.FC<AdminOrdersProps> = ({ orders, onRefresh }) =
         </div>
       </div>
 
-      <div className="border border-[#CFCFCC] bg-white overflow-hidden">
+      <div className="border border-[#CFCFCC] bg-white rounded-2xl overflow-hidden shadow-sm">
         <div className="overflow-x-auto">
           <table className="w-full text-left text-xs">
             <thead className="bg-[#F6F5F3] border-b border-[#CFCFCC] text-[#6B6B6B] uppercase text-[10px] tracking-[0.16em] font-semibold">
@@ -93,7 +93,7 @@ export const AdminOrders: React.FC<AdminOrdersProps> = ({ orders, onRefresh }) =
                     </td>
 
                     <td className="py-4 px-4">
-                      <span className="inline-flex items-center gap-1.5 px-2.5 py-1 text-[10px] uppercase tracking-wider font-semibold bg-[#F6F5F3] border border-[#CFCFCC] text-[#0E0E0E]">
+                      <span className="inline-flex items-center gap-1.5 px-2.5 py-1 text-[10px] uppercase tracking-wider font-semibold bg-[#F6F5F3] border border-[#CFCFCC] text-[#0E0E0E] rounded-full">
                         {order.delivery_model === 'workflow_json' && <FileCode className="w-3.5 h-3.5 text-[#0E0E0E]" strokeWidth={1.5} />}
                         {order.delivery_model === 'hybrid' && <Settings2 className="w-3.5 h-3.5 text-[#0E0E0E]" strokeWidth={1.5} />}
                         {order.delivery_model === 'managed' && <Server className="w-3.5 h-3.5 text-[#0E0E0E]" strokeWidth={1.5} />}
@@ -109,7 +109,7 @@ export const AdminOrders: React.FC<AdminOrdersProps> = ({ orders, onRefresh }) =
                       <select
                         value={order.payment_status}
                         onChange={e => handleUpdatePayment(order.id, e.target.value as any)}
-                        className={`px-2.5 py-1 text-[11px] uppercase tracking-wider font-semibold border focus:outline-none cursor-pointer ${
+                        className={`px-2.5 py-1 text-[11px] uppercase tracking-wider font-semibold border rounded-lg focus:outline-none cursor-pointer ${
                           order.payment_status === 'Paid'
                             ? 'bg-[#0E0E0E] text-white border-[#0E0E0E]'
                             : order.payment_status === 'Invoice Sent'
@@ -127,7 +127,7 @@ export const AdminOrders: React.FC<AdminOrdersProps> = ({ orders, onRefresh }) =
                       <select
                         value={order.delivery_status}
                         onChange={e => handleUpdateDelivery(order.id, e.target.value as any)}
-                        className={`px-2.5 py-1 text-[11px] uppercase tracking-wider font-semibold border focus:outline-none cursor-pointer ${
+                        className={`px-2.5 py-1 text-[11px] uppercase tracking-wider font-semibold border rounded-lg focus:outline-none cursor-pointer ${
                           order.delivery_status === 'Delivered'
                             ? 'bg-[#0E0E0E] text-white border-[#0E0E0E]'
                             : order.delivery_status === 'In Progress'

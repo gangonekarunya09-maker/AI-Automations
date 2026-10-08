@@ -34,7 +34,7 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({
         <div className="flex items-center gap-4">
           <button
             onClick={onExitAdmin}
-            className="flex items-center gap-1.5 text-xs uppercase tracking-[0.16em] font-semibold text-neutral-300 hover:text-white transition-colors cursor-pointer"
+            className="flex items-center gap-1.5 text-xs uppercase tracking-[0.16em] font-semibold text-neutral-300 hover:text-white px-2.5 py-1 rounded-lg hover:bg-white/10 transition-colors cursor-pointer"
           >
             <ArrowLeft className="w-3.5 h-3.5" />
             <span>Return to Site</span>
@@ -45,7 +45,7 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({
             <span className="font-extrabold uppercase tracking-tight text-sm text-white">
               OFFLO ADMIN CONSOLE
             </span>
-            <span className="text-[10px] uppercase tracking-wider px-2 py-0.5 bg-white/10 text-white font-semibold">
+            <span className="text-[10px] uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-white/10 text-white font-semibold">
               V1.4 PROD
             </span>
           </div>
@@ -57,7 +57,7 @@ export const AdminLayout: React.FC<AdminLayoutProps> = ({
           </div>
           <button
             onClick={onExitAdmin}
-            className="text-xs uppercase tracking-[0.16em] font-semibold text-neutral-400 hover:text-white flex items-center gap-1.5 transition-colors cursor-pointer"
+            className="text-xs uppercase tracking-[0.16em] font-semibold text-neutral-400 hover:text-white px-2.5 py-1 rounded-lg hover:bg-white/10 flex items-center gap-1.5 transition-colors cursor-pointer"
           >
             <LogOut className="w-3.5 h-3.5" />
             <span className="hidden sm:inline">Sign Out</span>
