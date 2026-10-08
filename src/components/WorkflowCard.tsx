@@ -13,37 +13,75 @@ export const WorkflowCard: React.FC<WorkflowCardProps> = ({
   onSelect,
   onRequestWorkflow,
 }) => {
+  const triggerTool = workflow.architecture_steps[0]?.tool || 'Webhook';
+  const engineTool = workflow.technologies[1] || 'AI Engine';
+  const outputTool = workflow.architecture_steps[workflow.architecture_steps.length - 1]?.tool || 'Output Dispatch';
+
   return (
     <div className="group border border-white/[0.08] bg-[#0A0B0F] hover:border-white/25 transition-all duration-300 flex flex-col justify-between overflow-hidden">
       <div>
-        {/* Card Visual Header if image available */}
-        {workflow.image && (
-          <div
-            onClick={() => onSelect(workflow)}
-            className="relative aspect-[16/9] w-full overflow-hidden bg-neutral-950 border-b border-white/[0.08] cursor-pointer"
-          >
-            <img
-              src={workflow.image}
-              alt={workflow.name}
-              className="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
-              referrerPolicy="no-referrer"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#0A0B0F] via-transparent to-transparent opacity-80" />
+        {/* Code-driven Schematic Pipeline Header (Zero Raster Images) */}
+        <div
+          onClick={() => onSelect(workflow)}
+          className="relative p-4 sm:p-5 bg-[#07080B] border-b border-white/[0.08] cursor-pointer overflow-hidden group-hover:bg-[#0C0E14] transition-colors"
+        >
+          {/* Subtle vector grid lines */}
+          <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:16px_16px] pointer-events-none opacity-60" />
 
-            {/* Corner Badge */}
-            <div className="absolute top-3 left-3">
-              <span className="font-mono text-[10px] uppercase tracking-wider bg-black/80 backdrop-blur-sm text-neutral-300 px-2.5 py-1 border border-white/10">
-                {workflow.category}
-              </span>
+          {/* Top metadata strip */}
+          <div className="relative flex items-center justify-between text-[10px] font-mono mb-4 text-neutral-400">
+            <div className="flex items-center gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+              <span className="text-neutral-300 uppercase tracking-wider font-semibold">{workflow.category}</span>
             </div>
-
-            <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-              <span className="w-7 h-7 flex items-center justify-center bg-white text-black rounded-none">
-                <ArrowUpRight className="w-3.5 h-3.5" />
+            <div className="flex items-center gap-1.5 text-neutral-400">
+              <span>{workflow.id.toUpperCase()}</span>
+              <span className="opacity-0 group-hover:opacity-100 transition-opacity text-white ml-1">
+                <ArrowUpRight className="w-3.5 h-3.5 inline" />
               </span>
             </div>
           </div>
-        )}
+
+          {/* Connected Pipeline Flow Schematic */}
+          <div className="relative py-2 px-1">
+            <div className="flex items-center justify-between gap-1 text-[10px] font-mono">
+              <div className="flex-1 bg-white/[0.04] border border-white/10 p-2 text-center truncate group-hover:border-emerald-500/30 transition-colors">
+                <div className="text-[9px] text-neutral-400 uppercase tracking-widest mb-0.5">01 Trigger</div>
+                <div className="text-neutral-200 font-medium truncate">{triggerTool}</div>
+              </div>
+
+              <div className="flex items-center justify-center px-1 text-emerald-400 shrink-0">
+                <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+              </div>
+
+              <div className="flex-1 bg-white/[0.04] border border-white/10 p-2 text-center truncate group-hover:border-emerald-500/30 transition-colors">
+                <div className="text-[9px] text-neutral-400 uppercase tracking-widest mb-0.5">02 Logic</div>
+                <div className="text-neutral-200 font-medium truncate">{engineTool}</div>
+              </div>
+
+              <div className="flex items-center justify-center px-1 text-emerald-400 shrink-0">
+                <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M5 12h14M12 5l7 7-7 7" />
+                </svg>
+              </div>
+
+              <div className="flex-1 bg-white/[0.04] border border-white/10 p-2 text-center truncate group-hover:border-emerald-500/30 transition-colors">
+                <div className="text-[9px] text-neutral-400 uppercase tracking-widest mb-0.5">03 Target</div>
+                <div className="text-neutral-200 font-medium truncate">{outputTool}</div>
+              </div>
+            </div>
+
+            {/* Live Telemetry Ping Bar */}
+            <div className="mt-3 flex items-center justify-between text-[9px] font-mono text-neutral-400 border-t border-white/[0.06] pt-2">
+              <span className="flex items-center gap-1">
+                <span className="text-emerald-400">●</span> 100% Deterministic Run
+              </span>
+              <span>{workflow.downloads_count} Deployments</span>
+            </div>
+          </div>
+        </div>
 
         <div className="p-6">
           {/* Metadata row if no image, or stack kicker */}

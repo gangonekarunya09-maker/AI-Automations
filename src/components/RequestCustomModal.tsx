@@ -108,17 +108,17 @@ export const RequestCustomModal: React.FC<RequestCustomModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-sm overflow-y-auto">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm overflow-y-auto">
       <motion.div
         initial={{ opacity: 0, scale: 0.98, y: 10 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
         exit={{ opacity: 0, scale: 0.98, y: 10 }}
         transition={{ duration: 0.2 }}
-        className="relative w-full max-w-2xl bg-[#090A0E] border border-white/[0.12] p-6 sm:p-8 shadow-2xl my-6"
+        className="relative w-full max-w-2xl bg-white border border-[#e4e4df] p-6 sm:p-8 shadow-2xl my-6 text-[#1a1a1a]"
       >
         <button
           onClick={resetAndClose}
-          className="absolute top-5 right-5 text-neutral-400 hover:text-white transition-colors p-1 cursor-pointer"
+          className="absolute top-5 right-5 text-neutral-400 hover:text-black transition-colors p-1 cursor-pointer"
           aria-label="Close dialog"
         >
           <X className="w-5 h-5" />
@@ -126,19 +126,19 @@ export const RequestCustomModal: React.FC<RequestCustomModalProps> = ({
 
         {submitted ? (
           <div className="text-center py-8 space-y-4">
-            <div className="w-12 h-12 bg-white text-black flex items-center justify-center mx-auto mb-2">
+            <div className="w-12 h-12 bg-[#1a1a1a] text-white flex items-center justify-center mx-auto mb-2">
               <Check className="w-6 h-6 stroke-[2.5]" />
             </div>
-            <h3 className="text-xl sm:text-2xl font-display font-bold text-white">
+            <h3 className="text-2xl sm:text-3xl font-serif font-semibold text-[#1a1a1a]">
               Requirement Received & Scoped
             </h3>
-            <p className="text-neutral-400 text-xs sm:text-sm max-w-md mx-auto leading-relaxed">
+            <p className="text-neutral-600 text-xs sm:text-sm max-w-md mx-auto leading-relaxed">
               Your manual bottleneck has been queued for architectural review. Our systems team will review your tools ({selectedTools.join(', ')}) and contact you within 24 hours with an actionable automation proposal.
             </p>
             <div className="pt-2">
               <button
                 onClick={resetAndClose}
-                className="px-6 py-2.5 text-xs font-semibold uppercase tracking-wider text-black bg-white hover:bg-neutral-200 transition-colors cursor-pointer"
+                className="px-6 py-2.5 text-xs font-mono font-semibold uppercase tracking-wider text-white bg-[#1a1a1a] hover:bg-[#2e4ff4] transition-colors cursor-pointer shadow-sm"
               >
                 Close
               </button>
@@ -146,27 +146,27 @@ export const RequestCustomModal: React.FC<RequestCustomModalProps> = ({
           </div>
         ) : (
           <div>
-            <div className="flex items-center gap-2 text-[11px] font-mono text-emerald-400 uppercase tracking-wider mb-1">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+            <div className="flex items-center gap-2 text-[11px] font-mono text-[#2e4ff4] uppercase tracking-[0.2em] font-semibold mb-1">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#2e4ff4]"></span>
               <span>Bespoke Engineering Intake</span>
             </div>
-            <h3 className="text-xl sm:text-2xl font-display font-bold text-white mb-2 tracking-tight">
+            <h3 className="text-2xl sm:text-3xl font-serif font-semibold text-[#1a1a1a] mb-2 tracking-tight">
               Describe Your Repetitive Process
             </h3>
-            <p className="text-neutral-400 text-xs leading-relaxed mb-6">
+            <p className="text-neutral-600 text-xs leading-relaxed mb-6">
               Tell us what manual tasks consume your team’s time. We will design an automation architecture and show you what can be automated.
             </p>
 
             <form onSubmit={handleSubmit} className="space-y-4">
               {errorMessage && (
-                <div className="p-3 bg-red-950/40 border border-red-800 text-red-300 text-xs">
+                <div className="p-3 bg-red-50 border border-red-200 text-red-600 text-xs font-mono">
                   {errorMessage}
                 </div>
               )}
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
-                  <label className="block text-[11px] font-mono uppercase tracking-wider text-neutral-300 mb-1">
+                  <label className="block text-[11px] font-mono uppercase tracking-wider text-[#1a1a1a] font-semibold mb-1">
                     Your Name *
                   </label>
                   <input
@@ -175,12 +175,12 @@ export const RequestCustomModal: React.FC<RequestCustomModalProps> = ({
                     value={formData.name}
                     onChange={e => setFormData({ ...formData, name: e.target.value })}
                     placeholder="e.g. Vikram Singhania"
-                    className="w-full px-3.5 py-2.5 bg-white/[0.03] border border-white/10 text-white text-xs focus:border-white focus:outline-none transition-colors"
+                    className="w-full px-3.5 py-2.5 bg-white border border-[#e4e4df] text-[#1a1a1a] text-xs focus:border-[#1a1a1a] focus:outline-none transition-colors"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-[11px] font-mono uppercase tracking-wider text-neutral-300 mb-1">
+                  <label className="block text-[11px] font-mono uppercase tracking-wider text-[#1a1a1a] font-semibold mb-1">
                     Company Name
                   </label>
                   <input
@@ -188,14 +188,14 @@ export const RequestCustomModal: React.FC<RequestCustomModalProps> = ({
                     value={formData.company}
                     onChange={e => setFormData({ ...formData, company: e.target.value })}
                     placeholder="e.g. Apex Logistics"
-                    className="w-full px-3.5 py-2.5 bg-white/[0.03] border border-white/10 text-white text-xs focus:border-white focus:outline-none transition-colors"
+                    className="w-full px-3.5 py-2.5 bg-white border border-[#e4e4df] text-[#1a1a1a] text-xs focus:border-[#1a1a1a] focus:outline-none transition-colors"
                   />
                 </div>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
-                  <label className="block text-[11px] font-mono uppercase tracking-wider text-neutral-300 mb-1">
+                  <label className="block text-[11px] font-mono uppercase tracking-wider text-[#1a1a1a] font-semibold mb-1">
                     Email Address *
                   </label>
                   <input
@@ -204,12 +204,12 @@ export const RequestCustomModal: React.FC<RequestCustomModalProps> = ({
                     value={formData.email}
                     onChange={e => setFormData({ ...formData, email: e.target.value })}
                     placeholder="vikram@company.com"
-                    className="w-full px-3.5 py-2.5 bg-white/[0.03] border border-white/10 text-white text-xs focus:border-white focus:outline-none transition-colors"
+                    className="w-full px-3.5 py-2.5 bg-white border border-[#e4e4df] text-[#1a1a1a] text-xs focus:border-[#1a1a1a] focus:outline-none transition-colors"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-[11px] font-mono uppercase tracking-wider text-neutral-300 mb-1">
+                  <label className="block text-[11px] font-mono uppercase tracking-wider text-[#1a1a1a] font-semibold mb-1">
                     Phone / WhatsApp
                   </label>
                   <input
@@ -217,13 +217,13 @@ export const RequestCustomModal: React.FC<RequestCustomModalProps> = ({
                     value={formData.phone}
                     onChange={e => setFormData({ ...formData, phone: e.target.value })}
                     placeholder="+91 98000 00000"
-                    className="w-full px-3.5 py-2.5 bg-white/[0.03] border border-white/10 text-white text-xs focus:border-white focus:outline-none transition-colors"
+                    className="w-full px-3.5 py-2.5 bg-white border border-[#e4e4df] text-[#1a1a1a] text-xs focus:border-[#1a1a1a] focus:outline-none transition-colors"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-[11px] font-mono uppercase tracking-wider text-neutral-300 mb-1">
+                <label className="block text-[11px] font-mono uppercase tracking-wider text-[#1a1a1a] font-semibold mb-1">
                   What manual process do you want to automate? *
                 </label>
                 <textarea
@@ -232,13 +232,13 @@ export const RequestCustomModal: React.FC<RequestCustomModalProps> = ({
                   value={formData.process_description}
                   onChange={e => setFormData({ ...formData, process_description: e.target.value })}
                   placeholder="Describe what happens today: e.g. We get customer orders via WhatsApp and email, then someone manually creates invoices in Tally and sends shipping tracking links."
-                  className="w-full px-3.5 py-2.5 bg-white/[0.03] border border-white/10 text-white text-xs focus:border-white focus:outline-none resize-none transition-colors"
+                  className="w-full px-3.5 py-2.5 bg-white border border-[#e4e4df] text-[#1a1a1a] text-xs focus:border-[#1a1a1a] focus:outline-none resize-none transition-colors"
                 />
               </div>
 
               {/* Tools currently used */}
               <div>
-                <label className="block text-[11px] font-mono uppercase tracking-wider text-neutral-300 mb-2">
+                <label className="block text-[11px] font-mono uppercase tracking-wider text-[#1a1a1a] font-semibold mb-2">
                   Tools & Platforms Currently In Use:
                 </label>
                 <div className="flex flex-wrap gap-1.5">
@@ -251,8 +251,8 @@ export const RequestCustomModal: React.FC<RequestCustomModalProps> = ({
                         onClick={() => toggleTool(tool)}
                         className={`px-3 py-1.5 text-xs font-mono transition-all cursor-pointer ${
                           isSelected
-                            ? 'bg-white text-black font-semibold'
-                            : 'bg-white/[0.02] text-neutral-400 hover:text-white border border-white/10 hover:border-white/20'
+                            ? 'bg-[#1a1a1a] text-white font-semibold shadow-sm'
+                            : 'bg-white text-neutral-600 hover:text-black border border-[#e4e4df] hover:border-black'
                         }`}
                       >
                         {tool}
@@ -265,13 +265,13 @@ export const RequestCustomModal: React.FC<RequestCustomModalProps> = ({
               {/* Frequency and Budget */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div>
-                  <label className="block text-[11px] font-mono uppercase tracking-wider text-neutral-300 mb-1">
+                  <label className="block text-[11px] font-mono uppercase tracking-wider text-[#1a1a1a] font-semibold mb-1">
                     Frequency of this Task
                   </label>
                   <select
                     value={formData.frequency}
                     onChange={e => setFormData({ ...formData, frequency: e.target.value })}
-                    className="w-full px-3.5 py-2.5 bg-[#090A0E] border border-white/10 text-white text-xs focus:border-white focus:outline-none transition-colors cursor-pointer"
+                    className="w-full px-3.5 py-2.5 bg-white border border-[#e4e4df] text-[#1a1a1a] text-xs focus:border-[#1a1a1a] focus:outline-none transition-colors cursor-pointer font-mono"
                   >
                     <option value="Multiple times per day">Multiple times per day</option>
                     <option value="Daily">Daily</option>
@@ -282,13 +282,13 @@ export const RequestCustomModal: React.FC<RequestCustomModalProps> = ({
                 </div>
 
                 <div>
-                  <label className="block text-[11px] font-mono uppercase tracking-wider text-neutral-300 mb-1">
+                  <label className="block text-[11px] font-mono uppercase tracking-wider text-[#1a1a1a] font-semibold mb-1">
                     Estimated Budget Range
                   </label>
                   <select
                     value={formData.budget}
                     onChange={e => setFormData({ ...formData, budget: e.target.value })}
-                    className="w-full px-3.5 py-2.5 bg-[#090A0E] border border-white/10 text-white text-xs focus:border-white focus:outline-none transition-colors cursor-pointer"
+                    className="w-full px-3.5 py-2.5 bg-white border border-[#e4e4df] text-[#1a1a1a] text-xs focus:border-[#1a1a1a] focus:outline-none transition-colors cursor-pointer font-mono"
                   >
                     <option value="Below ₹5,000">Below ₹5,000</option>
                     <option value="₹5,000–₹15,000">₹5,000–₹15,000</option>
@@ -302,7 +302,7 @@ export const RequestCustomModal: React.FC<RequestCustomModalProps> = ({
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full py-3 px-4 text-xs font-semibold uppercase tracking-wider text-black bg-white hover:bg-neutral-200 transition-all flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
+                  className="w-full py-3 px-4 text-xs font-mono font-semibold uppercase tracking-wider text-white bg-[#1a1a1a] hover:bg-[#2e4ff4] transition-all flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50 shadow-sm"
                 >
                   <span>{isSubmitting ? 'Transmitting to Automation Pipeline...' : 'Submit Automation Request'}</span>
                   <ArrowRight className="w-3.5 h-3.5" />

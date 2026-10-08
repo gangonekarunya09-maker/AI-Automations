@@ -27,36 +27,38 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate, onReque
   const isAdmin = currentPath.startsWith('/admin');
 
   return (
-    <header className="sticky top-0 z-40 w-full bg-[#07080B]/92 backdrop-blur-md border-b border-white/[0.08] transition-colors">
+    <header className="sticky top-0 z-40 w-full bg-[#fbfbf9]/95 backdrop-blur-md border-b border-[#e4e4df] transition-colors">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 flex items-center justify-between">
         {/* Zone 1: Brand wordmark as single text element */}
         <div className="flex items-center gap-3">
           <button
             onClick={() => handleLinkClick('/')}
-            className="text-left font-display font-bold text-lg sm:text-xl tracking-tight text-white hover:text-emerald-400 transition-colors whitespace-nowrap cursor-pointer flex items-center gap-2 group"
+            className="text-left font-serif italic font-semibold text-2xl tracking-tight text-[#1a1a1a] hover:text-[#2e4ff4] transition-colors whitespace-nowrap cursor-pointer flex items-center gap-2 group"
           >
-            <span>Offlo Automations</span>
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 opacity-80 group-hover:opacity-100 group-hover:scale-125 transition-all"></span>
+            <span>Offlo</span>
+            <span className="text-xs font-mono font-normal not-italic uppercase tracking-widest text-neutral-400 pl-1 border-l border-[#e4e4df]">
+              Automations
+            </span>
           </button>
         </div>
 
-        {/* Zone 2: Clean text navigation links (4-6 single-line links) */}
-        <nav className="hidden md:flex items-center gap-8 text-xs uppercase tracking-wider font-medium text-neutral-400">
+        {/* Zone 2: Clean text navigation links */}
+        <nav className="hidden md:flex items-center gap-8 text-[11px] font-mono uppercase tracking-[0.15em] text-[#1a1a1a]/60">
           {navLinks.map((link) => {
             const isActive = currentPath === link.path;
             return (
               <button
                 key={link.path}
                 onClick={() => handleLinkClick(link.path)}
-                className={`transition-colors cursor-pointer relative py-2 hover:text-white ${
-                  isActive ? 'text-white font-semibold' : 'text-neutral-400'
+                className={`transition-colors cursor-pointer relative py-2 hover:text-[#1a1a1a] ${
+                  isActive ? 'text-[#1a1a1a] font-semibold' : 'text-[#1a1a1a]/60'
                 }`}
               >
                 <span>{link.label}</span>
                 {isActive && (
                   <motion.span
                     layoutId="navbar-active-indicator"
-                    className="absolute -bottom-[1px] left-0 right-0 h-[2px] bg-white"
+                    className="absolute -bottom-[1px] left-0 right-0 h-[2px] bg-[#2e4ff4]"
                     transition={{ type: 'spring', stiffness: 400, damping: 30 }}
                   />
                 )}
@@ -71,18 +73,18 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate, onReque
             onClick={() => handleLinkClick('/admin')}
             className={`text-[11px] font-mono px-3 py-1.5 border transition-all flex items-center gap-1.5 cursor-pointer ${
               isAdmin
-                ? 'border-emerald-500/60 bg-emerald-500/10 text-emerald-300'
-                : 'border-white/[0.1] text-neutral-400 hover:text-white hover:border-white/30 bg-white/[0.02]'
+                ? 'border-[#2e4ff4] bg-[#2e4ff4]/10 text-[#2e4ff4]'
+                : 'border-[#e4e4df] text-neutral-600 hover:text-[#1a1a1a] hover:border-neutral-400 bg-white'
             }`}
             title="Open Admin Console"
           >
-            <Shield className="w-3 h-3 text-emerald-400" />
+            <Shield className="w-3 h-3 text-[#2e4ff4]" />
             <span>Admin</span>
           </button>
 
           <button
             onClick={onRequestCustom}
-            className="group px-4 py-2 text-xs font-semibold uppercase tracking-wider text-black bg-white hover:bg-neutral-200 transition-all duration-200 flex items-center gap-1.5 whitespace-nowrap cursor-pointer shadow-sm active:scale-[0.98]"
+            className="group px-4 py-2 text-[11px] font-mono uppercase tracking-wider font-semibold text-white bg-[#1a1a1a] hover:bg-[#2e4ff4] transition-all duration-200 flex items-center gap-1.5 whitespace-nowrap cursor-pointer shadow-sm active:scale-[0.98]"
           >
             <span>Request Automation</span>
             <ArrowUpRight className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
@@ -93,13 +95,13 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate, onReque
         <div className="flex sm:hidden items-center gap-2">
           <button
             onClick={() => handleLinkClick('/admin')}
-            className="text-[11px] font-mono px-2 py-1 text-neutral-400 border border-white/10"
+            className="text-[11px] font-mono px-2 py-1 text-neutral-600 border border-[#e4e4df] bg-white"
           >
             Admin
           </button>
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="p-2 text-neutral-300 hover:text-white focus:outline-none cursor-pointer"
+            className="p-2 text-neutral-700 hover:text-[#1a1a1a] focus:outline-none cursor-pointer"
             aria-label="Toggle navigation menu"
           >
             {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -115,17 +117,17 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate, onReque
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.2 }}
-            className="sm:hidden border-b border-white/[0.08] bg-[#07080B] px-4 pt-3 pb-6 space-y-3 overflow-hidden"
+            className="sm:hidden border-b border-[#e4e4df] bg-[#fbfbf9] px-4 pt-3 pb-6 space-y-3 overflow-hidden"
           >
             <div className="space-y-1">
               {navLinks.map((link) => (
                 <button
                   key={link.path}
                   onClick={() => handleLinkClick(link.path)}
-                  className={`block w-full text-left py-2.5 px-3 text-xs uppercase tracking-wider font-medium transition-colors ${
+                  className={`block w-full text-left py-2.5 px-3 text-xs font-mono uppercase tracking-wider transition-colors ${
                     currentPath === link.path
-                      ? 'bg-white/10 text-white font-semibold'
-                      : 'text-neutral-300 hover:bg-white/5'
+                      ? 'bg-[#1a1a1a] text-white font-semibold'
+                      : 'text-neutral-700 hover:bg-neutral-100'
                   }`}
                 >
                   {link.label}
@@ -139,7 +141,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentPath, onNavigate, onReque
                   onRequestCustom();
                   setMobileMenuOpen(false);
                 }}
-                className="w-full text-center py-3 text-xs font-semibold uppercase tracking-wider text-black bg-white hover:bg-neutral-200 transition-colors cursor-pointer"
+                className="w-full text-center py-3 text-xs font-mono font-semibold uppercase tracking-wider text-white bg-[#1a1a1a] hover:bg-[#2e4ff4] transition-colors cursor-pointer"
               >
                 Request Custom Automation
               </button>

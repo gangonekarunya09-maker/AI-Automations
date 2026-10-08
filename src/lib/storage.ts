@@ -29,7 +29,6 @@ export const INITIAL_WORKFLOWS: Workflow[] = [
       { step: 4, title: 'Multi-Channel Dispatch', tool: 'Slack & Gmail', description: 'Posts formatted summary to project channel and sends action lists to participants.' }
     ],
     delivery_models: ['workflow_json', 'managed', 'hybrid'],
-    image: '/src/assets/images/workflow_diagram_abstract_1791448298969.jpg',
     status: 'published',
     featured: true,
     downloads_count: 142,
@@ -62,7 +61,6 @@ export const INITIAL_WORKFLOWS: Workflow[] = [
       { step: 4, title: 'CRM Sync & Rep Alert', tool: 'HubSpot & Slack', description: 'Creates deal record and notifies sales rep with pre-written outreach draft.' }
     ],
     delivery_models: ['workflow_json', 'managed', 'hybrid'],
-    image: '/src/assets/images/operations_command_center_1791448327737.jpg',
     status: 'published',
     featured: true,
     downloads_count: 218,
@@ -95,7 +93,6 @@ export const INITIAL_WORKFLOWS: Workflow[] = [
       { step: 4, title: 'Ledger Synchronization', tool: 'Google Sheets / QuickBooks', description: 'Appends clean records and archives PDF to structured Google Drive folder.' }
     ],
     delivery_models: ['workflow_json', 'managed', 'hybrid'],
-    image: '/src/assets/images/workflow_diagram_abstract_1791448298969.jpg',
     status: 'published',
     featured: true,
     downloads_count: 184,
@@ -128,7 +125,6 @@ export const INITIAL_WORKFLOWS: Workflow[] = [
       { step: 4, title: 'Dispatch or Human Review', tool: 'Support Desk Platform', description: 'Replies directly or stages draft in agent queue if sentiment is frustrated.' }
     ],
     delivery_models: ['workflow_json', 'managed', 'hybrid'],
-    image: '/src/assets/images/hero_automation_studio_1791448255075.jpg',
     status: 'published',
     featured: true,
     downloads_count: 165,
@@ -160,7 +156,6 @@ export const INITIAL_WORKFLOWS: Workflow[] = [
       { step: 4, title: 'Rep Playbook Notification', tool: 'Slack & CRM', description: 'Alerts sales rep with suggested rebuttal and one-click calendar invitation.' }
     ],
     delivery_models: ['workflow_json', 'managed', 'hybrid'],
-    image: '/src/assets/images/operations_command_center_1791448327737.jpg',
     status: 'published',
     featured: false,
     downloads_count: 94,
@@ -191,7 +186,6 @@ export const INITIAL_WORKFLOWS: Workflow[] = [
       { step: 4, title: 'Reorder Threshold Alert', tool: 'Slack / Procurement Email', description: 'Fires restock notification if quantity dips below safety buffers.' }
     ],
     delivery_models: ['workflow_json', 'managed', 'hybrid'],
-    image: '/src/assets/images/workflow_diagram_abstract_1791448298969.jpg',
     status: 'published',
     featured: false,
     downloads_count: 112,
@@ -222,7 +216,6 @@ export const INITIAL_WORKFLOWS: Workflow[] = [
       { step: 4, title: 'Notion Board Export', tool: 'Notion API', description: 'Publishes cards to "Needs Review" column with hook score and tags.' }
     ],
     delivery_models: ['workflow_json', 'managed', 'hybrid'],
-    image: '/src/assets/images/hero_automation_studio_1791448255075.jpg',
     status: 'published',
     featured: false,
     downloads_count: 88,
@@ -253,7 +246,6 @@ export const INITIAL_WORKFLOWS: Workflow[] = [
       { step: 4, title: 'Executive Email Delivery', tool: 'SendGrid / Gmail API', description: 'Sends structured HTML report to founders, board, and department leads.' }
     ],
     delivery_models: ['workflow_json', 'managed', 'hybrid'],
-    image: '/src/assets/images/operations_command_center_1791448327737.jpg',
     status: 'published',
     featured: true,
     downloads_count: 176,
@@ -420,7 +412,12 @@ export const Storage = {
         localStorage.setItem(STORAGE_KEYS.WORKFLOWS, JSON.stringify(INITIAL_WORKFLOWS));
         return INITIAL_WORKFLOWS;
       }
-      return JSON.parse(data);
+      const parsed: Workflow[] = JSON.parse(data);
+      // Ensure all images are stripped per image-free technical architecture
+      return parsed.map(wf => {
+        const { image: _unused, ...rest } = wf;
+        return rest;
+      });
     } catch {
       return INITIAL_WORKFLOWS;
     }

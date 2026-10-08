@@ -102,39 +102,39 @@ export const Contact: React.FC<ContactProps> = ({ onSuccess }) => {
   return (
     <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-14 lg:py-20 space-y-14">
       <div className="max-w-2xl space-y-3">
-        <div className="text-[11px] font-mono text-emerald-400 uppercase tracking-wider">
+        <div className="text-[11px] font-mono text-[#2e4ff4] uppercase tracking-[0.2em] font-semibold">
           Direct Lead Scoping
         </div>
-        <h1 className="text-3xl sm:text-5xl lg:text-6xl font-display font-bold text-white tracking-tight">
+        <h1 className="text-4xl sm:text-6xl lg:text-7xl font-serif font-semibold text-[#1a1a1a] tracking-tight leading-[0.95]">
           Request An Automation
         </h1>
-        <p className="text-neutral-400 text-sm sm:text-base leading-relaxed">
+        <p className="text-neutral-600 text-sm sm:text-base leading-relaxed">
           Tell us what you or your team are doing manually. Our automation engineers will review your software stack and propose an n8n architecture within 24 hours.
         </p>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* Main Lead Form */}
-        <div className="lg:col-span-2 p-6 sm:p-8 border border-white/[0.08] bg-[#0A0B0F]">
+        <div className="lg:col-span-2 p-6 sm:p-8 border border-[#e4e4df] bg-white shadow-sm">
           {submitted ? (
             <div className="py-12 text-center space-y-4">
-              <div className="w-12 h-12 bg-white text-black flex items-center justify-center mx-auto mb-2">
+              <div className="w-12 h-12 bg-[#1a1a1a] text-white flex items-center justify-center mx-auto mb-2">
                 <Check className="w-6 h-6 stroke-[2.5]" />
               </div>
-              <h2 className="text-2xl font-display font-bold text-white">
+              <h2 className="text-3xl font-serif font-semibold text-[#1a1a1a]">
                 Automation Requirement Logged
               </h2>
-              <p className="text-neutral-400 text-xs sm:text-sm max-w-md mx-auto leading-relaxed">
-                Thank you, <span className="text-white font-medium">{formData.name}</span>. Your requirement has been captured in our operations database and sent to our n8n automation pipeline.
+              <p className="text-neutral-600 text-xs sm:text-sm max-w-md mx-auto leading-relaxed">
+                Thank you, <span className="text-[#1a1a1a] font-semibold">{formData.name}</span>. Your requirement has been captured in our operations database and sent to our n8n automation pipeline.
               </p>
-              <div className="p-4 bg-white/[0.02] border border-white/[0.08] text-left text-xs text-neutral-300 space-y-2 max-w-md mx-auto">
-                <div className="font-mono uppercase tracking-wider text-[11px] text-white">What Happens Next:</div>
-                <div className="flex items-center gap-2 text-neutral-400">
-                  <span className="w-1.5 h-1.5 bg-emerald-400 shrink-0"></span>
+              <div className="p-4 bg-[#f4f4f0] border border-[#e4e4df] text-left text-xs text-neutral-700 space-y-2 max-w-md mx-auto">
+                <div className="font-mono uppercase tracking-wider text-[11px] text-[#1a1a1a] font-semibold">What Happens Next:</div>
+                <div className="flex items-center gap-2 text-neutral-600">
+                  <span className="w-1.5 h-1.5 bg-[#2e4ff4] shrink-0"></span>
                   <span>We map your data contract and verify tool API accessibility.</span>
                 </div>
-                <div className="flex items-center gap-2 text-neutral-400">
-                  <span className="w-1.5 h-1.5 bg-emerald-400 shrink-0"></span>
+                <div className="flex items-center gap-2 text-neutral-600">
+                  <span className="w-1.5 h-1.5 bg-[#2e4ff4] shrink-0"></span>
                   <span>We reply with a structured scope, fixed quote, and feasibility timeline.</span>
                 </div>
               </div>
@@ -154,7 +154,7 @@ export const Contact: React.FC<ContactProps> = ({ onSuccess }) => {
                       additional_notes: ''
                     });
                   }}
-                  className="px-6 py-2.5 text-xs font-semibold uppercase tracking-wider text-black bg-white hover:bg-neutral-200 transition-colors cursor-pointer"
+                  className="px-6 py-2.5 text-xs font-mono font-semibold uppercase tracking-wider text-white bg-[#1a1a1a] hover:bg-[#2e4ff4] transition-colors cursor-pointer shadow-sm"
                 >
                   Submit Another Requirement
                 </button>
@@ -163,14 +163,14 @@ export const Contact: React.FC<ContactProps> = ({ onSuccess }) => {
           ) : (
             <form onSubmit={handleSubmit} className="space-y-5">
               {errorMessage && (
-                <div className="p-3 bg-red-950/40 border border-red-800 text-red-300 text-xs">
+                <div className="p-3 bg-red-50 border border-red-200 text-red-600 text-xs font-mono">
                   {errorMessage}
                 </div>
               )}
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-[11px] font-mono uppercase tracking-wider text-neutral-300 mb-1">
+                  <label className="block text-[11px] font-mono uppercase tracking-wider text-[#1a1a1a] font-semibold mb-1">
                     Your Name *
                   </label>
                   <input
@@ -179,12 +179,12 @@ export const Contact: React.FC<ContactProps> = ({ onSuccess }) => {
                     value={formData.name}
                     onChange={e => setFormData({ ...formData, name: e.target.value })}
                     placeholder="e.g. Rahul Verma"
-                    className="w-full px-3.5 py-2.5 bg-white/[0.03] border border-white/10 text-white text-xs sm:text-sm focus:border-white focus:outline-none transition-colors"
+                    className="w-full px-3.5 py-2.5 bg-white border border-[#e4e4df] text-[#1a1a1a] text-xs sm:text-sm focus:border-[#1a1a1a] focus:outline-none transition-colors"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-[11px] font-mono uppercase tracking-wider text-neutral-300 mb-1">
+                  <label className="block text-[11px] font-mono uppercase tracking-wider text-[#1a1a1a] font-semibold mb-1">
                     Company / Organization
                   </label>
                   <input
@@ -192,14 +192,14 @@ export const Contact: React.FC<ContactProps> = ({ onSuccess }) => {
                     value={formData.company}
                     onChange={e => setFormData({ ...formData, company: e.target.value })}
                     placeholder="e.g. Zenith Media Ltd"
-                    className="w-full px-3.5 py-2.5 bg-white/[0.03] border border-white/10 text-white text-xs sm:text-sm focus:border-white focus:outline-none transition-colors"
+                    className="w-full px-3.5 py-2.5 bg-white border border-[#e4e4df] text-[#1a1a1a] text-xs sm:text-sm focus:border-[#1a1a1a] focus:outline-none transition-colors"
                   />
                 </div>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-[11px] font-mono uppercase tracking-wider text-neutral-300 mb-1">
+                  <label className="block text-[11px] font-mono uppercase tracking-wider text-[#1a1a1a] font-semibold mb-1">
                     Work Email *
                   </label>
                   <input
@@ -208,12 +208,12 @@ export const Contact: React.FC<ContactProps> = ({ onSuccess }) => {
                     value={formData.email}
                     onChange={e => setFormData({ ...formData, email: e.target.value })}
                     placeholder="rahul@zenithmedia.com"
-                    className="w-full px-3.5 py-2.5 bg-white/[0.03] border border-white/10 text-white text-xs sm:text-sm focus:border-white focus:outline-none transition-colors"
+                    className="w-full px-3.5 py-2.5 bg-white border border-[#e4e4df] text-[#1a1a1a] text-xs sm:text-sm focus:border-[#1a1a1a] focus:outline-none transition-colors"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-[11px] font-mono uppercase tracking-wider text-neutral-300 mb-1">
+                  <label className="block text-[11px] font-mono uppercase tracking-wider text-[#1a1a1a] font-semibold mb-1">
                     Phone / WhatsApp Number
                   </label>
                   <input
@@ -221,13 +221,13 @@ export const Contact: React.FC<ContactProps> = ({ onSuccess }) => {
                     value={formData.phone}
                     onChange={e => setFormData({ ...formData, phone: e.target.value })}
                     placeholder="+91 98200 12345"
-                    className="w-full px-3.5 py-2.5 bg-white/[0.03] border border-white/10 text-white text-xs sm:text-sm focus:border-white focus:outline-none transition-colors"
+                    className="w-full px-3.5 py-2.5 bg-white border border-[#e4e4df] text-[#1a1a1a] text-xs sm:text-sm focus:border-[#1a1a1a] focus:outline-none transition-colors"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-[11px] font-mono uppercase tracking-wider text-neutral-300 mb-1">
+                <label className="block text-[11px] font-mono uppercase tracking-wider text-[#1a1a1a] font-semibold mb-1">
                   What do you want to automate? (Short title)
                 </label>
                 <input
@@ -235,12 +235,12 @@ export const Contact: React.FC<ContactProps> = ({ onSuccess }) => {
                   value={formData.automation_title}
                   onChange={e => setFormData({ ...formData, automation_title: e.target.value })}
                   placeholder="e.g. Sync WhatsApp lead messages directly to HubSpot CRM and send welcome email"
-                  className="w-full px-3.5 py-2.5 bg-white/[0.03] border border-white/10 text-white text-xs sm:text-sm focus:border-white focus:outline-none transition-colors"
+                  className="w-full px-3.5 py-2.5 bg-white border border-[#e4e4df] text-[#1a1a1a] text-xs sm:text-sm focus:border-[#1a1a1a] focus:outline-none transition-colors"
                 />
               </div>
 
               <div>
-                <label className="block text-[11px] font-mono uppercase tracking-wider text-neutral-300 mb-1">
+                <label className="block text-[11px] font-mono uppercase tracking-wider text-[#1a1a1a] font-semibold mb-1">
                   Current Process Description *
                 </label>
                 <textarea
@@ -249,13 +249,13 @@ export const Contact: React.FC<ContactProps> = ({ onSuccess }) => {
                   value={formData.process_description}
                   onChange={e => setFormData({ ...formData, process_description: e.target.value })}
                   placeholder="Describe what a human does right now step-by-step: Where does data originate? What tools do you open? What do you type or copy? Where does it end up?"
-                  className="w-full px-3.5 py-2.5 bg-white/[0.03] border border-white/10 text-white text-xs sm:text-sm focus:border-white focus:outline-none transition-colors resize-none"
+                  className="w-full px-3.5 py-2.5 bg-white border border-[#e4e4df] text-[#1a1a1a] text-xs sm:text-sm focus:border-[#1a1a1a] focus:outline-none transition-colors resize-none"
                 />
               </div>
 
               {/* Tools multi-select */}
               <div>
-                <label className="block text-[11px] font-mono uppercase tracking-wider text-neutral-300 mb-2">
+                <label className="block text-[11px] font-mono uppercase tracking-wider text-[#1a1a1a] font-semibold mb-2">
                   Tools & Platforms Currently In Use:
                 </label>
                 <div className="flex flex-wrap gap-1.5">
@@ -268,8 +268,8 @@ export const Contact: React.FC<ContactProps> = ({ onSuccess }) => {
                         onClick={() => toggleTool(tool)}
                         className={`px-3 py-1.5 text-xs font-mono transition-all cursor-pointer ${
                           isSelected
-                            ? 'bg-white text-black font-semibold'
-                            : 'bg-white/[0.02] text-neutral-400 hover:text-white border border-white/10 hover:border-white/20'
+                            ? 'bg-[#1a1a1a] text-white font-semibold shadow-sm'
+                            : 'bg-white text-neutral-600 hover:text-black border border-[#e4e4df] hover:border-black'
                         }`}
                       >
                         {tool}
@@ -282,13 +282,13 @@ export const Contact: React.FC<ContactProps> = ({ onSuccess }) => {
               {/* Frequency and Budget */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-[11px] font-mono uppercase tracking-wider text-neutral-300 mb-1">
+                  <label className="block text-[11px] font-mono uppercase tracking-wider text-[#1a1a1a] font-semibold mb-1">
                     Frequency of Execution
                   </label>
                   <select
                     value={formData.frequency}
                     onChange={e => setFormData({ ...formData, frequency: e.target.value })}
-                    className="w-full px-3.5 py-2.5 bg-[#090A0E] border border-white/10 text-white text-xs sm:text-sm focus:border-white focus:outline-none cursor-pointer"
+                    className="w-full px-3.5 py-2.5 bg-white border border-[#e4e4df] text-[#1a1a1a] text-xs sm:text-sm focus:border-[#1a1a1a] focus:outline-none cursor-pointer font-mono"
                   >
                     <option value="Multiple times per day">Multiple times per day</option>
                     <option value="Daily">Daily</option>
@@ -299,13 +299,13 @@ export const Contact: React.FC<ContactProps> = ({ onSuccess }) => {
                 </div>
 
                 <div>
-                  <label className="block text-[11px] font-mono uppercase tracking-wider text-neutral-300 mb-1">
+                  <label className="block text-[11px] font-mono uppercase tracking-wider text-[#1a1a1a] font-semibold mb-1">
                     Estimated Budget Allocation
                   </label>
                   <select
                     value={formData.budget}
                     onChange={e => setFormData({ ...formData, budget: e.target.value })}
-                    className="w-full px-3.5 py-2.5 bg-[#090A0E] border border-white/10 text-white text-xs sm:text-sm focus:border-white focus:outline-none cursor-pointer"
+                    className="w-full px-3.5 py-2.5 bg-white border border-[#e4e4df] text-[#1a1a1a] text-xs sm:text-sm focus:border-[#1a1a1a] focus:outline-none cursor-pointer font-mono"
                   >
                     <option value="Below ₹5,000">Below ₹5,000</option>
                     <option value="₹5,000–₹15,000">₹5,000–₹15,000</option>
@@ -316,7 +316,7 @@ export const Contact: React.FC<ContactProps> = ({ onSuccess }) => {
               </div>
 
               <div>
-                <label className="block text-[11px] font-mono uppercase tracking-wider text-neutral-300 mb-1">
+                <label className="block text-[11px] font-mono uppercase tracking-wider text-[#1a1a1a] font-semibold mb-1">
                   Additional Information (Optional)
                 </label>
                 <textarea
@@ -324,7 +324,7 @@ export const Contact: React.FC<ContactProps> = ({ onSuccess }) => {
                   value={formData.additional_notes}
                   onChange={e => setFormData({ ...formData, additional_notes: e.target.value })}
                   placeholder="Any specific API constraints, hosting preferences (self-hosted vs managed), or expected deadline."
-                  className="w-full px-3.5 py-2.5 bg-white/[0.03] border border-white/10 text-white text-xs sm:text-sm focus:border-white focus:outline-none transition-colors resize-none"
+                  className="w-full px-3.5 py-2.5 bg-white border border-[#e4e4df] text-[#1a1a1a] text-xs sm:text-sm focus:border-[#1a1a1a] focus:outline-none transition-colors resize-none"
                 />
               </div>
 
@@ -332,7 +332,7 @@ export const Contact: React.FC<ContactProps> = ({ onSuccess }) => {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full py-3.5 px-4 text-xs sm:text-sm font-semibold uppercase tracking-wider text-black bg-white hover:bg-neutral-200 transition-all flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50 active:scale-[0.98]"
+                  className="w-full py-3.5 px-4 text-xs sm:text-sm font-mono font-semibold uppercase tracking-wider text-white bg-[#1a1a1a] hover:bg-[#2e4ff4] transition-all flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50 active:scale-[0.98] shadow-sm"
                 >
                   <Send className="w-4 h-4" />
                   <span>{isSubmitting ? 'Transmitting to Automation Pipeline...' : 'Submit Automation Request'}</span>
@@ -347,37 +347,37 @@ export const Contact: React.FC<ContactProps> = ({ onSuccess }) => {
 
         {/* Sidebar Trust & Protocol Details */}
         <div className="space-y-6">
-          <div className="p-6 sm:p-7 border border-white/[0.08] bg-[#0A0B0F] space-y-4">
-            <h3 className="text-base font-semibold text-white">
+          <div className="p-6 sm:p-7 border border-[#e4e4df] bg-[#f4f4f0] space-y-4 shadow-sm">
+            <h3 className="text-xl font-serif font-semibold text-[#1a1a1a]">
               What Happens After Submission?
             </h3>
-            <ul className="space-y-3.5 text-xs text-neutral-400">
+            <ul className="space-y-3.5 text-xs text-neutral-600">
               <li className="flex items-start gap-2.5">
-                <span className="text-emerald-400 font-mono font-bold shrink-0">01.</span>
+                <span className="text-[#2e4ff4] font-mono font-bold shrink-0">01.</span>
                 <span>Our lead systems architect reviews your software stack and webhook feasibility.</span>
               </li>
               <li className="flex items-start gap-2.5">
-                <span className="text-emerald-400 font-mono font-bold shrink-0">02.</span>
+                <span className="text-[#2e4ff4] font-mono font-bold shrink-0">02.</span>
                 <span>We draft a proposed data-flow diagram showing triggers, logic nodes, and fail-safes.</span>
               </li>
               <li className="flex items-start gap-2.5">
-                <span className="text-emerald-400 font-mono font-bold shrink-0">03.</span>
+                <span className="text-[#2e4ff4] font-mono font-bold shrink-0">03.</span>
                 <span>You receive a fixed-price proposal with no open-ended hourly billing.</span>
               </li>
             </ul>
           </div>
 
-          <div className="p-6 sm:p-7 border border-white/[0.08] bg-[#0A0B0F] space-y-3.5 text-xs text-neutral-400">
-            <h4 className="font-semibold text-white">Direct Engineering Contact</h4>
-            <div className="flex items-center gap-2 text-neutral-300">
-              <Mail className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+          <div className="p-6 sm:p-7 border border-[#e4e4df] bg-white space-y-3.5 text-xs text-neutral-600 shadow-sm">
+            <h4 className="font-serif font-semibold text-base text-[#1a1a1a]">Direct Engineering Contact</h4>
+            <div className="flex items-center gap-2 text-neutral-700">
+              <Mail className="w-3.5 h-3.5 text-[#2e4ff4] shrink-0" />
               <span>ops@offlo.ai</span>
             </div>
-            <div className="flex items-center gap-2 text-neutral-300">
-              <Phone className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+            <div className="flex items-center gap-2 text-neutral-700">
+              <Phone className="w-3.5 h-3.5 text-[#2e4ff4] shrink-0" />
               <span>+91 98200 12345 (WhatsApp Available)</span>
             </div>
-            <div className="pt-2 text-neutral-500 text-[11px] font-mono">
+            <div className="pt-2 text-neutral-400 text-[11px] font-mono">
               Response SLA: Sub-2 hours on business days (IST / UTC+5:30).
             </div>
           </div>

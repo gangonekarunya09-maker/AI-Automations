@@ -1,22 +1,10 @@
-# Images Directory (`/src/assets/images`)
+# Asset Directory Architecture
 
-This folder contains high-resolution marketing and technical visualization images created using deterministic prompt recipes tailored for Offlo Automations.
+Offlo Automations utilizes an entirely **image-free, code-driven visual architecture** inspired by the technical studio reference (*Fluxwork*).
 
----
+### Design Philosophy
+- **Zero Static Raster Images**: No external JPGs, PNGs, or third-party stock photos.
+- **Code-Driven Data Flow Diagrams**: Real-time interactive pipeline topologies, SVG node paths, live telemetry monitors, and clean monospace metadata badges.
+- **Superior Performance & Zero CLS**: Instant rendering with 100% vector precision on high-DPI displays.
+- **Deterministic Aesthetics**: System status indicators, live webhook simulation consoles, and mathematical typography gridlines.
 
-## 🖼️ Included Image Assets
-
-### 1. `hero_automation_studio_1791448255075.jpg`
-- **Aspect Ratio**: `16:9` (Cinematic wide-angle)
-- **Usage**: Main Hero Section visual carrier on the homepage (`/`) and marketing spotlight.
-- **Description**: Ultra-modern minimalist automation laboratory with dark architectural aesthetic, subtle glowing fiber-optic conduits, and smoked glass work surfaces.
-
-### 2. `workflow_diagram_abstract_1791448298969.jpg`
-- **Aspect Ratio**: `4:3` (Editorial card geometry)
-- **Usage**: Workflow detail views and technical pipeline diagrams.
-- **Description**: Isometric visualization of intelligent data pipelines with interconnected luminous logic nodes and clean geometric gridlines.
-
-### 3. `operations_command_center_1791448327737.jpg`
-- **Aspect Ratio**: `4:3` (Editorial card geometry)
-- **Usage**: Inbound lead qualifier showcases, executive dashboard previews, and KPI monitoring features.
-- **Description**: High-contrast operations command center display with ambient rim lighting and professional engineering aesthetics.

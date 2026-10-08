@@ -1,58 +1,69 @@
 @import "tailwindcss";
 
 @theme {
-  --font-display: 'Syne', sans-serif;
-  --font-sans: 'Plus Jakarta Sans', sans-serif;
+  --font-serif: 'Cormorant Garamond', Georgia, serif;
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
 }
 
 :root {
-  color-scheme: dark;
+  --bg: #fbfbf9;
+  --paper: #f4f4f0;
+  --ink: #1a1a1a;
+  --ink-muted: rgba(26, 26, 26, 0.55);
+  --accent: #2e4ff4;
+  --border: #e4e4df;
+  --border-subtle: #ecece7;
+  color-scheme: light;
 }
 
 body {
-  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  background-color: #07080B;
-  color: #ECEFF4;
+  font-family: var(--font-sans);
+  background-color: var(--bg);
+  color: var(--ink);
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-.font-display {
-  font-family: 'Syne', sans-serif;
+.font-serif {
+  font-family: 'Cormorant Garamond', Georgia, serif;
 }
 
-/* Editorial Grid Lines & Accents */
+.font-mono {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* Subtle Editorial Grid Lines & Accents */
 .editorial-grid {
   background-size: 40px 40px;
   background-image: 
-    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    linear-gradient(to right, rgba(26, 26, 26, 0.035) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(26, 26, 26, 0.035) 1px, transparent 1px);
 }
 
 .hairline-border {
-  border-color: rgba(255, 255, 255, 0.08);
+  border-color: #e4e4df;
 }
 
 .hairline-divider {
-  border-color: rgba(255, 255, 255, 0.06);
+  border-color: #ecece7;
 }
 
-/* Custom scrollbar */
+/* Custom scrollbar matching paper aesthetic */
 ::-webkit-scrollbar {
   width: 5px;
   height: 5px;
 }
 ::-webkit-scrollbar-track {
-  background: #07080b;
+  background: #fbfbf9;
 }
 ::-webkit-scrollbar-thumb {
-  background: #222329;
+  background: #d8d8d2;
   border-radius: 2px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #33353e;
+  background: #b8b8b0;
 }
 
 /* Reduced motion support */
@@ -64,3 +75,4 @@ body {
     scroll-behavior: auto !important;
   }
 }
+

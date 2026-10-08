@@ -67,13 +67,13 @@ export const Industries: React.FC<IndustriesProps> = ({ onNavigate, onRequestCus
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 lg:py-20 space-y-16">
       <div className="max-w-3xl space-y-4">
-        <div className="text-[11px] font-mono text-emerald-400 uppercase tracking-wider">
+        <div className="text-[11px] font-mono text-[#2e4ff4] uppercase tracking-[0.2em] font-semibold">
           Target Verticals
         </div>
-        <h1 className="text-3xl sm:text-5xl lg:text-6xl font-display font-bold text-white tracking-tight">
+        <h1 className="text-4xl sm:text-6xl lg:text-7xl font-serif font-semibold text-[#1a1a1a] tracking-tight leading-[0.95]">
           Automations Tailored To Your Industry
         </h1>
-        <p className="text-base sm:text-lg text-neutral-400 leading-relaxed">
+        <p className="text-base sm:text-lg text-neutral-600 leading-relaxed">
           Every industry has unique operational friction points. We focus on specific manual drags where automated data flows deliver immediate, measurable hours saved.
         </p>
       </div>
@@ -84,32 +84,32 @@ export const Industries: React.FC<IndustriesProps> = ({ onNavigate, onRequestCus
           return (
             <div
               key={ind.id}
-              className="p-6 sm:p-8 border border-white/[0.08] bg-[#0A0B0F] space-y-6 flex flex-col justify-between hover:border-white/20 transition-colors"
+              className="p-6 sm:p-8 border border-[#e4e4df] bg-white space-y-6 flex flex-col justify-between hover:border-[#1a1a1a] transition-colors shadow-sm"
             >
               <div className="space-y-4">
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 bg-white/[0.04] border border-white/10 flex items-center justify-center text-emerald-400">
+                  <div className="w-10 h-10 bg-[#f4f4f0] border border-[#e4e4df] flex items-center justify-center text-[#2e4ff4]">
                     <Icon className="w-5 h-5" />
                   </div>
                   <div>
-                    <h2 className="text-xl font-display font-bold text-white tracking-tight">
+                    <h2 className="text-2xl font-serif font-semibold text-[#1a1a1a] tracking-tight">
                       {ind.title}
                     </h2>
                   </div>
                 </div>
 
-                <p className="text-neutral-300 text-xs sm:text-sm leading-relaxed">
+                <p className="text-neutral-600 text-xs sm:text-sm leading-relaxed">
                   {ind.summary}
                 </p>
 
                 {/* Before vs After comparison */}
                 <div className="grid grid-cols-1 gap-2.5 pt-2 text-xs">
-                  <div className="p-3.5 bg-red-950/20 border-l-2 border-red-500 border-y border-r border-red-900/30 text-neutral-300">
-                    <span className="font-mono uppercase tracking-wider text-[11px] text-red-400 block mb-1">Manual Friction:</span>
+                  <div className="p-3.5 bg-red-50/50 border-l-2 border-red-500 border-y border-r border-red-100 text-neutral-700">
+                    <span className="font-mono uppercase tracking-wider text-[11px] text-red-600 block mb-1 font-semibold">Manual Friction:</span>
                     {ind.before}
                   </div>
-                  <div className="p-3.5 bg-emerald-950/20 border-l-2 border-emerald-500 border-y border-r border-emerald-900/30 text-neutral-300">
-                    <span className="font-mono uppercase tracking-wider text-[11px] text-emerald-400 block mb-1">Autonomous Execution:</span>
+                  <div className="p-3.5 bg-[#2e4ff4]/5 border-l-2 border-[#2e4ff4] border-y border-r border-[#2e4ff4]/10 text-neutral-700">
+                    <span className="font-mono uppercase tracking-wider text-[11px] text-[#2e4ff4] block mb-1 font-semibold">Autonomous Execution:</span>
                     {ind.after}
                   </div>
                 </div>
@@ -119,9 +119,9 @@ export const Industries: React.FC<IndustriesProps> = ({ onNavigate, onRequestCus
                   <span className="text-[10px] font-mono text-neutral-500 uppercase tracking-wider block mb-1.5">
                     Recommended Workflows:
                   </span>
-                  <div className="flex flex-wrap gap-1.5 text-xs text-neutral-300">
+                  <div className="flex flex-wrap gap-1.5 text-xs text-neutral-700">
                     {ind.workflowsRecommended.map((wf, idx) => (
-                      <span key={idx} className="px-2.5 py-1 bg-white/[0.02] border border-white/10 text-[11px] font-mono">
+                      <span key={idx} className="px-2.5 py-1 bg-[#f4f4f0] border border-[#e4e4df] text-[11px] font-mono">
                         {wf}
                       </span>
                     ))}
@@ -129,19 +129,19 @@ export const Industries: React.FC<IndustriesProps> = ({ onNavigate, onRequestCus
                 </div>
               </div>
 
-              <div className="pt-4 border-t border-white/[0.06] flex items-center justify-between">
+              <div className="pt-4 border-t border-[#e4e4df] flex items-center justify-between">
                 <button
                   onClick={() => onNavigate('/workflows')}
-                  className="text-xs uppercase tracking-wider font-mono text-neutral-400 hover:text-white transition-colors cursor-pointer"
+                  className="text-xs uppercase tracking-wider font-mono text-neutral-500 hover:text-[#1a1a1a] transition-colors cursor-pointer"
                 >
                   View Workflows
                 </button>
                 <button
                   onClick={onRequestCustom}
-                  className="text-xs uppercase tracking-wider font-semibold text-white hover:text-emerald-400 flex items-center gap-1.5 transition-colors cursor-pointer"
+                  className="text-xs font-mono uppercase tracking-wider font-semibold text-[#1a1a1a] hover:text-[#2e4ff4] flex items-center gap-1.5 transition-colors cursor-pointer"
                 >
                   <span>Request Custom Setup</span>
-                  <ArrowRight className="w-3.5 h-3.5" />
+                  <ArrowRight className="w-3.5 h-3.5 text-[#2e4ff4]" />
                 </button>
               </div>
             </div>

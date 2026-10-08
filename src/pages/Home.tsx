@@ -1,5 +1,5 @@
-import React from 'react';
-import { ArrowRight, ArrowUpRight, Check, Clock, Layers, GitMerge, FileSpreadsheet, Mail, Headphones, FileText } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { ArrowRight, ArrowUpRight, Check, Clock, Layers, GitMerge, FileSpreadsheet, Mail, Headphones, FileText, Terminal, Activity, ShieldCheck, Cpu, Zap } from 'lucide-react';
 import { motion } from 'motion/react';
 import { Workflow } from '../types';
 import { WorkflowCard } from '../components/WorkflowCard';
@@ -195,38 +195,148 @@ export const Home: React.FC<HomeProps> = ({
             </div>
           </div>
 
-          {/* Hero Visual Showcase Carrier */}
+          {/* Hero Visual Showcase Carrier: 100% Image-Free Live Studio Architecture Console */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.35 }}
-            className="mt-14 sm:mt-18 border border-white/[0.1] bg-[#0A0B0F] p-2 sm:p-3 relative group"
+            className="mt-14 sm:mt-18 border border-white/[0.12] bg-[#07080B] shadow-2xl relative overflow-hidden"
           >
-            <div className="relative aspect-[16/9] w-full overflow-hidden bg-neutral-950">
-              <img
-                src="/src/assets/images/hero_automation_studio_1791448255075.jpg"
-                alt="Offlo intelligent automation control facility"
-                className="w-full h-full object-cover opacity-85 transition-transform duration-700 group-hover:scale-[1.02]"
-                referrerPolicy="no-referrer"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#07080B] via-transparent to-transparent opacity-90" />
-
-              {/* Live overlay banner */}
-              <div className="absolute bottom-4 left-4 right-4 sm:bottom-6 sm:left-6 sm:right-6 p-4 sm:p-5 bg-black/80 backdrop-blur-md border border-white/[0.1] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs">
-                <div className="flex items-center gap-3">
-                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-                  <span className="text-white font-medium">Production Automation Engine</span>
-                  <span className="text-neutral-600">/</span>
-                  <span className="text-neutral-400 font-mono text-[11px]">n8n + AI + API Orchestration</span>
+            {/* Terminal Window Header Bar */}
+            <div className="px-4 py-3 bg-[#0B0C10] border-b border-white/[0.08] flex items-center justify-between text-xs font-mono">
+              <div className="flex items-center gap-2">
+                <div className="flex items-center gap-1.5 mr-2">
+                  <span className="w-2.5 h-2.5 rounded-full bg-rose-500/80 inline-block"></span>
+                  <span className="w-2.5 h-2.5 rounded-full bg-amber-500/80 inline-block"></span>
+                  <span className="w-2.5 h-2.5 rounded-full bg-emerald-500/80 inline-block"></span>
                 </div>
-                <button
-                  onClick={() => onNavigate('/services')}
-                  className="text-white hover:text-emerald-400 uppercase tracking-wider font-semibold text-[11px] flex items-center gap-1.5 cursor-pointer transition-colors"
-                >
-                  <span>Explore Capabilities</span>
-                  <ArrowRight className="w-3.5 h-3.5" />
-                </button>
+                <span className="text-neutral-400 text-[11px] hidden sm:inline">flux-runtime // session-node: production • n8n orchestrator</span>
+                <span className="text-neutral-400 text-[11px] sm:hidden">flux-runtime // prod</span>
               </div>
+
+              <div className="flex items-center gap-3 text-[10px]">
+                <div className="flex items-center gap-1.5 text-emerald-400">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                  <span className="uppercase tracking-wider">Active Run: 100% Deterministic</span>
+                </div>
+                <span className="text-neutral-600 hidden md:inline">|</span>
+                <span className="text-neutral-500 font-mono hidden md:inline">uptime 99.98%</span>
+              </div>
+            </div>
+
+            {/* Architecture Node Pipeline Diagram */}
+            <div className="p-5 sm:p-7 lg:p-8 bg-[#07080B] relative">
+              {/* Subtle vector grid lines */}
+              <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none opacity-50" />
+
+              <div className="relative space-y-6">
+                {/* Visual Pipeline Flow Track */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 lg:gap-4 relative">
+                  {/* Node 1 */}
+                  <div className="p-4 bg-white/[0.02] border border-white/[0.1] hover:border-emerald-500/40 transition-colors relative group">
+                    <div className="flex items-center justify-between mb-2 font-mono text-[10px]">
+                      <span className="text-emerald-400 uppercase tracking-widest font-semibold">01 // INGESTION</span>
+                      <span className="px-1.5 py-0.5 bg-emerald-500/10 text-emerald-300 border border-emerald-500/20">200 OK</span>
+                    </div>
+                    <div className="text-sm font-semibold text-white mb-1">Webhook Listener</div>
+                    <div className="text-xs text-neutral-400 font-mono mb-3">POST /v1/inbound-lead</div>
+                    <div className="text-[11px] text-neutral-500 font-mono bg-black/40 p-2 border border-white/[0.05]">
+                      payload: <span className="text-neutral-300">&#123;company: &quot;Acme&quot;, intent: &quot;high&quot;&#125;</span>
+                    </div>
+                  </div>
+
+                  {/* Node 2 */}
+                  <div className="p-4 bg-white/[0.02] border border-white/[0.1] hover:border-emerald-500/40 transition-colors relative group">
+                    <div className="flex items-center justify-between mb-2 font-mono text-[10px]">
+                      <span className="text-emerald-400 uppercase tracking-widest font-semibold">02 // ENRICH</span>
+                      <span className="text-neutral-500 font-mono">42ms</span>
+                    </div>
+                    <div className="text-sm font-semibold text-white mb-1">Firmographic Lookup</div>
+                    <div className="text-xs text-neutral-400 font-mono mb-3">Apollo & Clearbit APIs</div>
+                    <div className="text-[11px] text-neutral-500 font-mono bg-black/40 p-2 border border-white/[0.05]">
+                      matched: <span className="text-neutral-300">ARR $14M • 120 FTE • Tech stack</span>
+                    </div>
+                  </div>
+
+                  {/* Node 3 */}
+                  <div className="p-4 bg-white/[0.02] border border-white/[0.1] hover:border-emerald-500/40 transition-colors relative group">
+                    <div className="flex items-center justify-between mb-2 font-mono text-[10px]">
+                      <span className="text-emerald-400 uppercase tracking-widest font-semibold">03 // AI REASON</span>
+                      <span className="text-emerald-400 font-mono">Flash 1.5</span>
+                    </div>
+                    <div className="text-sm font-semibold text-white mb-1">Autonomous Scorer</div>
+                    <div className="text-xs text-neutral-400 font-mono mb-3">Deterministic Rubric</div>
+                    <div className="text-[11px] text-neutral-500 font-mono bg-black/40 p-2 border border-white/[0.05]">
+                      score: <span className="text-emerald-300">ICP Tier-A (Confidence 0.98)</span>
+                    </div>
+                  </div>
+
+                  {/* Node 4 */}
+                  <div className="p-4 bg-white/[0.02] border border-white/[0.1] hover:border-emerald-500/40 transition-colors relative group">
+                    <div className="flex items-center justify-between mb-2 font-mono text-[10px]">
+                      <span className="text-emerald-400 uppercase tracking-widest font-semibold">04 // DISPATCH</span>
+                      <span className="text-neutral-500 font-mono">Synced</span>
+                    </div>
+                    <div className="text-sm font-semibold text-white mb-1">CRM + Slack Route</div>
+                    <div className="text-xs text-neutral-400 font-mono mb-3">HubSpot & Slack API</div>
+                    <div className="text-[11px] text-neutral-500 font-mono bg-black/40 p-2 border border-white/[0.05]">
+                      action: <span className="text-neutral-300">Deal created + AE pinged in 38s</span>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Execution Telemetry Log Stream */}
+                <div className="p-4 sm:p-5 bg-black/60 border border-white/[0.08] font-mono text-xs text-neutral-300 space-y-1.5">
+                  <div className="flex items-center justify-between text-[10px] text-neutral-500 border-b border-white/[0.06] pb-2 mb-2 uppercase tracking-wider">
+                    <div className="flex items-center gap-2">
+                      <Terminal className="w-3 h-3 text-emerald-400" />
+                      <span>Live Engine Execution Stream</span>
+                    </div>
+                    <span>Cluster Asia-01 • Zero Failures</span>
+                  </div>
+                  <div className="flex items-start gap-2 text-neutral-400 text-[11px]">
+                    <span className="text-neutral-600">[00:00:01]</span>
+                    <span className="text-emerald-400 font-semibold">[TRIGGER]</span>
+                    <span>Inbound HTTP POST /v1/lead received (4.2 KB) from primary website form</span>
+                  </div>
+                  <div className="flex items-start gap-2 text-neutral-400 text-[11px]">
+                    <span className="text-neutral-600">[00:00:02]</span>
+                    <span className="text-cyan-400 font-semibold">[ENRICH]</span>
+                    <span>Firmographic data verified via Apollo API — 120 employees, SaaS vertical</span>
+                  </div>
+                  <div className="flex items-start gap-2 text-neutral-400 text-[11px]">
+                    <span className="text-neutral-600">[00:00:03]</span>
+                    <span className="text-purple-400 font-semibold">[AI-AGENT]</span>
+                    <span>Gemini 1.5 Flash evaluated criteria — lead categorized as ICP_TIER_A (Urgent)</span>
+                  </div>
+                  <div className="flex items-start gap-2 text-neutral-400 text-[11px]">
+                    <span className="text-neutral-600">[00:00:04]</span>
+                    <span className="text-emerald-400 font-semibold">[SUCCESS]</span>
+                    <span className="text-neutral-300">HubSpot deal staged & priority Slack notification dispatched to Account Executive</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Live Operational Status Bar */}
+            <div className="px-5 py-4 bg-[#0A0B0F] border-t border-white/[0.1] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs">
+              <div className="flex flex-wrap items-center gap-4 text-xs font-mono">
+                <div className="flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                  <span className="text-white font-medium">Production Engine Online</span>
+                </div>
+                <span className="text-neutral-700 hidden sm:inline">/</span>
+                <span className="text-neutral-400 font-mono text-[11px]">n8n + AI + API Orchestration</span>
+                <span className="text-neutral-700 hidden sm:inline">/</span>
+                <span className="text-neutral-400 font-mono text-[11px]">&lt; 420ms Latency</span>
+              </div>
+              <button
+                onClick={() => onNavigate('/services')}
+                className="text-white hover:text-emerald-400 uppercase tracking-wider font-semibold text-[11px] flex items-center gap-1.5 cursor-pointer transition-colors"
+              >
+                <span>Explore Capabilities</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </button>
             </div>
           </motion.div>
         </div>

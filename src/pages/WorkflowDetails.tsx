@@ -21,7 +21,7 @@ export const WorkflowDetails: React.FC<WorkflowDetailsProps> = ({
       <div>
         <button
           onClick={onBack}
-          className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-neutral-400 hover:text-white transition-colors cursor-pointer py-1"
+          className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-neutral-500 hover:text-[#1a1a1a] transition-colors cursor-pointer py-1"
         >
           <ArrowLeft className="w-3.5 h-3.5" />
           <span>Back to Workflow Catalog</span>
@@ -30,49 +30,49 @@ export const WorkflowDetails: React.FC<WorkflowDetailsProps> = ({
 
       {/* Hero Block */}
       <div className="space-y-7">
-        <div className="flex items-center gap-2 text-xs font-mono text-emerald-400 uppercase tracking-wider">
-          <span className="font-semibold">{workflow.category}</span>
-          <span className="text-neutral-700">/</span>
-          <span className="text-neutral-400">Blueprint #{workflow.id}</span>
-          <span className="text-neutral-700">/</span>
-          <span className="text-neutral-400">{workflow.downloads_count} Deployments</span>
+        <div className="flex items-center gap-2 text-xs font-mono text-[#2e4ff4] uppercase tracking-[0.15em] font-semibold">
+          <span>{workflow.category}</span>
+          <span className="text-neutral-300">/</span>
+          <span className="text-neutral-500 font-normal">Blueprint #{workflow.id}</span>
+          <span className="text-neutral-300">/</span>
+          <span className="text-neutral-500 font-normal">{workflow.downloads_count} Deployments</span>
         </div>
 
-        <h1 className="text-3xl sm:text-5xl lg:text-6xl font-display font-bold text-white tracking-tight leading-tight">
+        <h1 className="text-4xl sm:text-6xl lg:text-7xl font-serif font-semibold text-[#1a1a1a] tracking-tight leading-[0.95]">
           {workflow.name}
         </h1>
 
-        <p className="text-base sm:text-lg text-neutral-300 leading-relaxed max-w-3xl">
+        <p className="text-base sm:text-lg text-neutral-600 leading-relaxed max-w-3xl">
           {workflow.long_description}
         </p>
 
         {/* Quantified Benefit Callout */}
-        <div className="p-4 bg-white/[0.02] border-l-2 border-emerald-400 border-y border-r border-white/[0.06] text-sm text-neutral-200 flex items-start gap-3 max-w-2xl">
-          <Check className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+        <div className="p-4 bg-[#f4f4f0] border-l-2 border-[#2e4ff4] text-sm text-[#1a1a1a] flex items-start gap-3 max-w-2xl">
+          <Check className="w-4 h-4 text-[#2e4ff4] shrink-0 mt-0.5" />
           <div>
-            <span className="font-semibold text-white">Direct Business Impact: </span>
-            <span className="text-neutral-300">{workflow.benefit}</span>
+            <span className="font-semibold text-[#1a1a1a]">Direct Business Impact: </span>
+            <span className="text-neutral-700">{workflow.benefit}</span>
           </div>
         </div>
 
         {/* Pricing & Acquisition Bar */}
-        <div className="pt-2 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 p-6 sm:p-7 border border-white/[0.12] bg-[#0A0B0E]">
+        <div className="pt-2 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 p-6 sm:p-7 border border-[#e4e4df] bg-white shadow-sm">
           <div>
-            <div className="text-[11px] uppercase font-mono tracking-wider text-neutral-500">Commercial License</div>
+            <div className="text-[10px] uppercase font-mono tracking-wider text-neutral-500">Commercial License</div>
             <div className="flex items-baseline gap-2.5 mt-1">
-              <span className="text-2xl sm:text-3xl font-display font-bold font-mono text-white tabular-nums">
+              <span className="text-3xl font-serif font-bold text-[#1a1a1a] tabular-nums">
                 ₹{workflow.price_inr.toLocaleString()}
               </span>
-              <span className="text-sm font-mono text-neutral-400">
+              <span className="text-sm font-mono text-neutral-500">
                 (${workflow.price_usd} USD)
               </span>
               {workflow.original_price_inr && (
-                <span className="text-xs font-mono text-neutral-600 line-through tabular-nums ml-2">
+                <span className="text-xs font-mono text-neutral-400 line-through tabular-nums ml-2">
                   ₹{workflow.original_price_inr.toLocaleString()}
                 </span>
               )}
             </div>
-            <div className="text-[11px] text-neutral-400 mt-1">
+            <div className="text-[11px] text-neutral-500 mt-1 font-mono">
               Includes full source n8n workflow file, test suites, and 30 days setup guidance.
             </div>
           </div>
@@ -80,7 +80,7 @@ export const WorkflowDetails: React.FC<WorkflowDetailsProps> = ({
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full sm:w-auto">
             <button
               onClick={() => onRequestWorkflow(workflow)}
-              className="px-7 py-3 text-xs font-semibold uppercase tracking-wider text-black bg-white hover:bg-neutral-200 transition-all flex items-center justify-center gap-2 cursor-pointer whitespace-nowrap active:scale-[0.98]"
+              className="px-7 py-3 text-xs font-mono font-semibold uppercase tracking-wider text-white bg-[#1a1a1a] hover:bg-[#2e4ff4] transition-all flex items-center justify-center gap-2 cursor-pointer whitespace-nowrap active:scale-[0.98] shadow-sm"
             >
               <span>Get This Workflow</span>
               <ArrowRight className="w-3.5 h-3.5" />
@@ -88,25 +88,25 @@ export const WorkflowDetails: React.FC<WorkflowDetailsProps> = ({
 
             <button
               onClick={onRequestCustom}
-              className="px-5 py-3 text-xs font-semibold uppercase tracking-wider text-neutral-300 hover:text-white bg-white/[0.03] hover:bg-white/[0.08] border border-white/10 transition-colors flex items-center justify-center gap-1.5 cursor-pointer whitespace-nowrap"
+              className="px-5 py-3 text-xs font-mono font-semibold uppercase tracking-wider text-[#1a1a1a] hover:text-[#2e4ff4] bg-white hover:bg-neutral-50 border border-[#e4e4df] transition-colors flex items-center justify-center gap-1.5 cursor-pointer whitespace-nowrap"
             >
               <span>Request Custom Variation</span>
-              <ArrowUpRight className="w-3.5 h-3.5 text-neutral-400" />
+              <ArrowUpRight className="w-3.5 h-3.5 text-neutral-500" />
             </button>
           </div>
         </div>
       </div>
 
       {/* HOW IT WORKS: Step-by-Step Architecture Pipeline */}
-      <div className="space-y-7 pt-8 border-t border-white/[0.08]">
+      <div className="space-y-7 pt-8 border-t border-[#e4e4df]">
         <div>
-          <div className="text-[11px] font-mono text-emerald-400 uppercase tracking-wider mb-1">
+          <div className="text-[11px] font-mono text-[#2e4ff4] uppercase tracking-[0.15em] mb-1 font-semibold">
             System Pipeline
           </div>
-          <h2 className="text-2xl sm:text-3xl font-display font-bold text-white tracking-tight">
+          <h2 className="text-3xl font-serif font-semibold text-[#1a1a1a] tracking-tight">
             How This Automation Works
           </h2>
-          <p className="text-neutral-400 text-xs sm:text-sm mt-1">
+          <p className="text-neutral-600 text-xs sm:text-sm mt-1">
             Deterministic step-by-step sequence executed by n8n.
           </p>
         </div>
@@ -115,18 +115,18 @@ export const WorkflowDetails: React.FC<WorkflowDetailsProps> = ({
           {workflow.architecture_steps.map((st) => (
             <div
               key={st.step}
-              className="p-5 sm:p-6 border border-white/[0.08] bg-[#0A0B0F] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4"
+              className="p-5 sm:p-6 border border-[#e4e4df] bg-white flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 shadow-sm"
             >
               <div className="flex items-start gap-4">
-                <div className="w-8 h-8 bg-white/[0.04] border border-white/10 text-emerald-400 font-mono text-xs font-bold flex items-center justify-center shrink-0">
+                <div className="w-8 h-8 bg-[#f4f4f0] border border-[#e4e4df] text-[#2e4ff4] font-mono text-xs font-bold flex items-center justify-center shrink-0">
                   0{st.step}
                 </div>
                 <div>
                   <div className="flex items-center gap-2 mb-1">
-                    <h3 className="text-sm font-semibold text-white">{st.title}</h3>
+                    <h3 className="text-sm font-semibold text-[#1a1a1a]">{st.title}</h3>
                     <span className="text-[11px] font-mono text-neutral-500">via {st.tool}</span>
                   </div>
-                  <p className="text-neutral-400 text-xs leading-relaxed max-w-2xl">
+                  <p className="text-neutral-600 text-xs leading-relaxed max-w-2xl">
                     {st.description}
                   </p>
                 </div>
@@ -137,15 +137,15 @@ export const WorkflowDetails: React.FC<WorkflowDetailsProps> = ({
       </div>
 
       {/* TECHNOLOGIES USED */}
-      <div className="space-y-4 pt-8 border-t border-white/[0.08]">
+      <div className="space-y-4 pt-8 border-t border-[#e4e4df]">
         <div>
-          <div className="text-[11px] font-mono text-emerald-400 uppercase tracking-wider mb-1">
+          <div className="text-[11px] font-mono text-[#2e4ff4] uppercase tracking-[0.15em] mb-1 font-semibold">
             Tech Stack
           </div>
-          <h2 className="text-2xl font-display font-bold text-white tracking-tight">
+          <h2 className="text-3xl font-serif font-semibold text-[#1a1a1a] tracking-tight">
             Connected Software & Services
           </h2>
-          <p className="text-neutral-400 text-xs mt-1">
+          <p className="text-neutral-600 text-xs mt-1">
             All endpoints connect via official REST/GraphQL APIs or secure OAuth2 credentials.
           </p>
         </div>
@@ -154,7 +154,7 @@ export const WorkflowDetails: React.FC<WorkflowDetailsProps> = ({
           {workflow.technologies.map(tech => (
             <div
               key={tech}
-              className="px-3 py-1.5 bg-white/[0.02] border border-white/10 text-xs text-neutral-300 font-mono"
+              className="px-3.5 py-1.5 bg-white border border-[#e4e4df] text-xs text-[#1a1a1a] font-mono shadow-sm"
             >
               {tech}
             </div>
@@ -163,15 +163,15 @@ export const WorkflowDetails: React.FC<WorkflowDetailsProps> = ({
       </div>
 
       {/* WHAT YOU RECEIVE */}
-      <div className="space-y-4 pt-8 border-t border-white/[0.08]">
+      <div className="space-y-4 pt-8 border-t border-[#e4e4df]">
         <div>
-          <div className="text-[11px] font-mono text-emerald-400 uppercase tracking-wider mb-1">
+          <div className="text-[11px] font-mono text-[#2e4ff4] uppercase tracking-[0.15em] mb-1 font-semibold">
             Deliverables
           </div>
-          <h2 className="text-2xl font-display font-bold text-white tracking-tight">
+          <h2 className="text-3xl font-serif font-semibold text-[#1a1a1a] tracking-tight">
             What You Receive
           </h2>
-          <p className="text-neutral-400 text-xs mt-1">
+          <p className="text-neutral-600 text-xs mt-1">
             Everything needed to install in your own self-hosted n8n instance or have us manage it.
           </p>
         </div>
@@ -180,9 +180,9 @@ export const WorkflowDetails: React.FC<WorkflowDetailsProps> = ({
           {workflow.features.map((feat, idx) => (
             <div
               key={idx}
-              className="p-4 bg-[#0A0B0F] border border-white/[0.08] flex items-start gap-3 text-xs text-neutral-300"
+              className="p-4 bg-white border border-[#e4e4df] flex items-start gap-3 text-xs text-neutral-700 shadow-sm"
             >
-              <Check className="w-3.5 h-3.5 text-emerald-400 shrink-0 mt-0.5" />
+              <Check className="w-3.5 h-3.5 text-[#2e4ff4] shrink-0 mt-0.5" />
               <span className="leading-relaxed">{feat}</span>
             </div>
           ))}
@@ -190,49 +190,49 @@ export const WorkflowDetails: React.FC<WorkflowDetailsProps> = ({
       </div>
 
       {/* THREE DELIVERY TIERS EXPLAINED */}
-      <div className="space-y-6 pt-8 border-t border-white/[0.08]">
+      <div className="space-y-6 pt-8 border-t border-[#e4e4df]">
         <div>
-          <div className="text-[11px] font-mono text-emerald-400 uppercase tracking-wider mb-1">
+          <div className="text-[11px] font-mono text-[#2e4ff4] uppercase tracking-[0.15em] mb-1 font-semibold">
             Acquisition Options
           </div>
-          <h2 className="text-2xl font-display font-bold text-white tracking-tight">
+          <h2 className="text-3xl font-serif font-semibold text-[#1a1a1a] tracking-tight">
             Flexible Delivery Models
           </h2>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <div className="p-6 border border-white/[0.08] bg-[#0A0B0F] flex flex-col justify-between">
+          <div className="p-6 border border-[#e4e4df] bg-white flex flex-col justify-between shadow-sm">
             <div>
-              <div className="text-xs uppercase font-mono tracking-wider font-semibold text-white mb-2">Model A — Workflow JSON</div>
-              <p className="text-neutral-400 text-xs leading-relaxed mb-4">
+              <div className="text-xs uppercase font-mono tracking-wider font-semibold text-[#1a1a1a] mb-2">Model A — Workflow JSON</div>
+              <p className="text-neutral-600 text-xs leading-relaxed mb-4">
                 You import the JSON into your own n8n instance, paste your API keys, and run it. Best for technical teams.
               </p>
             </div>
-            <div className="pt-4 border-t border-white/[0.06] text-xs font-mono text-white font-bold">
+            <div className="pt-4 border-t border-[#e4e4df] text-xs font-mono text-[#1a1a1a] font-bold">
               ₹{workflow.price_inr.toLocaleString()} one-time
             </div>
           </div>
 
-          <div className="p-6 border border-white/20 bg-white/[0.03] flex flex-col justify-between">
+          <div className="p-6 border border-[#1a1a1a] bg-[#f4f4f0] flex flex-col justify-between shadow-sm">
             <div>
-              <div className="text-xs uppercase font-mono tracking-wider font-semibold text-white mb-2">Model C — Hybrid Setup</div>
-              <p className="text-neutral-400 text-xs leading-relaxed mb-4">
+              <div className="text-xs uppercase font-mono tracking-wider font-semibold text-[#1a1a1a] mb-2">Model C — Hybrid Setup</div>
+              <p className="text-neutral-600 text-xs leading-relaxed mb-4">
                 We configure the workflow, connect your tool credentials, conduct synthetic test runs, and verify error traps with your team.
               </p>
             </div>
-            <div className="pt-4 border-t border-white/[0.06] text-xs font-mono text-white font-bold">
+            <div className="pt-4 border-t border-[#e4e4df] text-xs font-mono text-[#2e4ff4] font-bold">
               ₹{Math.round(workflow.price_inr * 1.6).toLocaleString()} one-time
             </div>
           </div>
 
-          <div className="p-6 border border-white/[0.08] bg-[#0A0B0F] flex flex-col justify-between">
+          <div className="p-6 border border-[#e4e4df] bg-white flex flex-col justify-between shadow-sm">
             <div>
-              <div className="text-xs uppercase font-mono tracking-wider font-semibold text-white mb-2">Model B — Managed Ops</div>
-              <p className="text-neutral-400 text-xs leading-relaxed mb-4">
+              <div className="text-xs uppercase font-mono tracking-wider font-semibold text-[#1a1a1a] mb-2">Model B — Managed Ops</div>
+              <p className="text-neutral-600 text-xs leading-relaxed mb-4">
                 We host, monitor, and maintain the automation 24/7 on dedicated cloud infrastructure with proactive error resolution.
               </p>
             </div>
-            <div className="pt-4 border-t border-white/[0.06] text-xs font-mono text-white font-bold">
+            <div className="pt-4 border-t border-[#e4e4df] text-xs font-mono text-[#1a1a1a] font-bold">
               ₹{Math.round(workflow.price_inr * 2.5).toLocaleString()} / month
             </div>
           </div>
@@ -240,19 +240,19 @@ export const WorkflowDetails: React.FC<WorkflowDetailsProps> = ({
       </div>
 
       {/* Bottom CTA */}
-      <div className="p-8 border border-white/[0.12] bg-[#0A0B0E] flex flex-col sm:flex-row items-center justify-between gap-6">
+      <div className="p-8 border border-[#e4e4df] bg-[#f4f4f0] flex flex-col sm:flex-row items-center justify-between gap-6 shadow-sm">
         <div>
-          <h3 className="text-xl font-bold text-white mb-1">
+          <h3 className="text-2xl font-serif font-semibold text-[#1a1a1a] mb-1">
             Ready to deploy {workflow.name}?
           </h3>
-          <p className="text-neutral-400 text-xs">
+          <p className="text-neutral-600 text-xs">
             Submit your inquiry to receive the deployment manifest and compatibility review.
           </p>
         </div>
 
         <button
           onClick={() => onRequestWorkflow(workflow)}
-          className="px-6 py-3 text-xs font-semibold uppercase tracking-wider text-black bg-white hover:bg-neutral-200 transition-colors cursor-pointer whitespace-nowrap active:scale-[0.98]"
+          className="px-6 py-3 text-xs font-mono font-semibold uppercase tracking-wider text-white bg-[#1a1a1a] hover:bg-[#2e4ff4] transition-colors cursor-pointer whitespace-nowrap active:scale-[0.98] shadow-sm"
         >
           Request Workflow Now
         </button>

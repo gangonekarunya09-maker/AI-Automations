@@ -54,13 +54,13 @@ export const Services: React.FC<ServicesProps> = ({ onNavigate, onRequestCustom 
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 lg:py-20 space-y-20">
       {/* Services Header */}
       <div className="max-w-3xl space-y-4">
-        <div className="text-[11px] font-mono text-emerald-400 uppercase tracking-wider">
+        <div className="text-[11px] font-mono text-[#2e4ff4] uppercase tracking-[0.2em] font-semibold">
           Engineering Capabilities
         </div>
-        <h1 className="text-3xl sm:text-5xl lg:text-6xl font-display font-bold text-white tracking-tight">
+        <h1 className="text-4xl sm:text-6xl lg:text-7xl font-serif font-semibold text-[#1a1a1a] tracking-tight leading-[0.95]">
           Custom Automation Development
         </h1>
-        <p className="text-base sm:text-lg text-neutral-400 leading-relaxed">
+        <p className="text-base sm:text-lg text-neutral-600 leading-relaxed">
           We engineer robust, deterministic automation systems designed around business outcomes—not technical jargon. We connect your existing software stack using n8n, modern APIs, and reliable AI models.
         </p>
       </div>
@@ -70,23 +70,23 @@ export const Services: React.FC<ServicesProps> = ({ onNavigate, onRequestCustom 
         {servicesList.map((srv, idx) => (
           <div
             key={srv.id}
-            className="p-6 sm:p-10 border border-white/[0.08] bg-[#0A0B0F] space-y-8 hover:border-white/20 transition-colors"
+            className="p-6 sm:p-10 border border-[#e4e4df] bg-white space-y-8 hover:border-[#1a1a1a] transition-colors shadow-sm"
           >
-            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 border-b border-white/[0.08]">
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 border-b border-[#e4e4df]">
               <div>
-                <div className="text-xs font-mono text-emerald-400 mb-1.5 uppercase tracking-wider">
+                <div className="text-xs font-mono text-[#2e4ff4] mb-1.5 uppercase tracking-wider font-semibold">
                   Capability 0{idx + 1}
                 </div>
-                <h2 className="text-xl sm:text-3xl font-display font-bold text-white tracking-tight">
+                <h2 className="text-2xl sm:text-4xl font-serif font-semibold text-[#1a1a1a] tracking-tight">
                   {srv.title}
                 </h2>
               </div>
-              <div className="text-xs font-mono text-neutral-400 bg-white/[0.03] px-3.5 py-1.5 border border-white/10 self-start md:self-auto">
+              <div className="text-xs font-mono text-neutral-600 bg-[#f4f4f0] px-3.5 py-1.5 border border-[#e4e4df] self-start md:self-auto font-medium">
                 {srv.headline}
               </div>
             </div>
 
-            <p className="text-neutral-300 text-sm sm:text-base leading-relaxed max-w-4xl">
+            <p className="text-neutral-600 text-sm sm:text-base leading-relaxed max-w-4xl">
               {srv.description}
             </p>
 
@@ -98,11 +98,11 @@ export const Services: React.FC<ServicesProps> = ({ onNavigate, onRequestCustom 
               <div className="flex flex-wrap items-center gap-2">
                 {srv.flow.map((step, sIdx) => (
                   <React.Fragment key={sIdx}>
-                    <div className="px-3.5 py-1.5 bg-black/60 border border-white/10 text-xs text-neutral-200 font-mono">
+                    <div className="px-3.5 py-1.5 bg-[#f4f4f0] border border-[#e4e4df] text-xs text-[#1a1a1a] font-mono">
                       {step}
                     </div>
                     {sIdx < srv.flow.length - 1 && (
-                      <span className="text-neutral-600 text-xs font-mono">→</span>
+                      <span className="text-neutral-400 text-xs font-mono">→</span>
                     )}
                   </React.Fragment>
                 ))}
@@ -116,18 +116,18 @@ export const Services: React.FC<ServicesProps> = ({ onNavigate, onRequestCustom 
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2.5">
                 {srv.deliverables.map((del, dIdx) => (
-                  <div key={dIdx} className="p-3 bg-white/[0.02] border border-white/[0.06] text-xs text-neutral-300 flex items-center gap-2.5">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+                  <div key={dIdx} className="p-3 bg-[#fbfbf9] border border-[#e4e4df] text-xs text-neutral-700 flex items-center gap-2.5">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-[#2e4ff4] shrink-0" />
                     <span>{del}</span>
                   </div>
                 ))}
               </div>
             </div>
 
-            <div className="pt-4 flex items-center justify-end border-t border-white/[0.06]">
+            <div className="pt-4 flex items-center justify-end border-t border-[#e4e4df]">
               <button
                 onClick={onRequestCustom}
-                className="px-5 py-2.5 text-xs font-semibold uppercase tracking-wider text-black bg-white hover:bg-neutral-200 transition-colors flex items-center gap-2 cursor-pointer whitespace-nowrap active:scale-[0.98]"
+                className="px-5 py-2.5 text-xs font-mono font-semibold uppercase tracking-wider text-white bg-[#1a1a1a] hover:bg-[#2e4ff4] transition-colors flex items-center gap-2 cursor-pointer whitespace-nowrap active:scale-[0.98] shadow-sm"
               >
                 <span>Request Scope For This Service</span>
                 <ArrowRight className="w-3.5 h-3.5" />
@@ -138,54 +138,60 @@ export const Services: React.FC<ServicesProps> = ({ onNavigate, onRequestCustom 
       </div>
 
       {/* Engagement Comparison Table */}
-      <div className="p-8 sm:p-10 border border-white/[0.08] bg-[#0A0B0E] space-y-8">
+      <div className="p-8 sm:p-10 border border-[#e4e4df] bg-[#f4f4f0] space-y-8 shadow-sm">
         <div>
-          <h3 className="text-2xl font-display font-bold text-white mb-2 tracking-tight">
+          <h3 className="text-3xl font-serif font-semibold text-[#1a1a1a] mb-2 tracking-tight">
             How Businesses Partner With Us
           </h3>
-          <p className="text-neutral-400 text-xs sm:text-sm">
+          <p className="text-neutral-600 text-xs sm:text-sm">
             Whether you want source code ownership or managed white-glove operations.
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div className="p-6 border border-white/[0.08] bg-[#07080B]">
-            <h4 className="text-base font-semibold text-white mb-2">Ready-Made Blueprints</h4>
-            <p className="text-neutral-400 text-xs leading-relaxed mb-4">
-              Instant access to production-tested n8n workflow files. Ideal if you have internal technical capacity to connect your own credentials.
-            </p>
-            <div className="text-xs font-mono text-emerald-400 pt-2 border-t border-white/[0.06]">Fixed one-time price (from ₹4,999)</div>
+          <div className="p-6 border border-[#e4e4df] bg-white shadow-sm flex flex-col justify-between">
+            <div>
+              <h4 className="text-lg font-serif font-semibold text-[#1a1a1a] mb-2">Ready-Made Blueprints</h4>
+              <p className="text-neutral-600 text-xs leading-relaxed mb-4">
+                Instant access to production-tested n8n workflow files. Ideal if you have internal technical capacity to connect your own credentials.
+              </p>
+            </div>
+            <div className="text-xs font-mono text-[#2e4ff4] pt-2 border-t border-[#e4e4df] font-semibold">Fixed one-time price (from ₹4,999)</div>
           </div>
 
-          <div className="p-6 border border-white/20 bg-white/[0.02]">
-            <h4 className="text-base font-semibold text-white mb-2">Bespoke Project Engineering</h4>
-            <p className="text-neutral-400 text-xs leading-relaxed mb-4">
-              We design, test, and deploy a custom automation pipeline specifically tailored to your team’s proprietary workflows and edge cases.
-            </p>
-            <div className="text-xs font-mono text-emerald-400 pt-2 border-t border-white/[0.06]">Milestone based (₹15,000–₹50,000+)</div>
+          <div className="p-6 border border-[#1a1a1a] bg-white shadow-md flex flex-col justify-between">
+            <div>
+              <h4 className="text-lg font-serif font-semibold text-[#1a1a1a] mb-2">Bespoke Project Engineering</h4>
+              <p className="text-neutral-600 text-xs leading-relaxed mb-4">
+                We design, test, and deploy a custom automation pipeline specifically tailored to your team’s proprietary workflows and edge cases.
+              </p>
+            </div>
+            <div className="text-xs font-mono text-[#2e4ff4] pt-2 border-t border-[#e4e4df] font-semibold">Milestone based (₹15,000–₹50,000+)</div>
           </div>
 
-          <div className="p-6 border border-white/[0.08] bg-[#07080B]">
-            <h4 className="text-base font-semibold text-white mb-2">Managed Automation Ops</h4>
-            <p className="text-neutral-400 text-xs leading-relaxed mb-4">
-              Ongoing cloud hosting, API version migration, error debugging, and quarterly workflow enhancements on an ongoing retainer.
-            </p>
-            <div className="text-xs font-mono text-emerald-400 pt-2 border-t border-white/[0.06]">Monthly retainer (from ₹12,999/mo)</div>
+          <div className="p-6 border border-[#e4e4df] bg-white shadow-sm flex flex-col justify-between">
+            <div>
+              <h4 className="text-lg font-serif font-semibold text-[#1a1a1a] mb-2">Managed Automation Ops</h4>
+              <p className="text-neutral-600 text-xs leading-relaxed mb-4">
+                Ongoing cloud hosting, API version migration, error debugging, and quarterly workflow enhancements on an ongoing retainer.
+              </p>
+            </div>
+            <div className="text-xs font-mono text-[#2e4ff4] pt-2 border-t border-[#e4e4df] font-semibold">Monthly retainer (from ₹12,999/mo)</div>
           </div>
         </div>
       </div>
 
       {/* Bottom CTA */}
       <div className="text-center py-6">
-        <h3 className="text-2xl sm:text-3xl font-display font-bold text-white mb-3 tracking-tight">
+        <h3 className="text-3xl sm:text-4xl font-serif font-semibold text-[#1a1a1a] mb-3 tracking-tight">
           Have a process you want automated?
         </h3>
-        <p className="text-neutral-400 text-xs sm:text-sm max-w-md mx-auto mb-6">
+        <p className="text-neutral-600 text-xs sm:text-sm max-w-md mx-auto mb-6">
           Describe the repetitive manual clicks your team performs. We will tell you exactly what can be automated within 24 hours.
         </p>
         <button
           onClick={onRequestCustom}
-          className="px-7 py-3 text-xs font-semibold uppercase tracking-wider text-black bg-white hover:bg-neutral-200 transition-all inline-flex items-center gap-2 cursor-pointer active:scale-[0.98]"
+          className="px-7 py-3 text-xs font-mono font-semibold uppercase tracking-wider text-white bg-[#1a1a1a] hover:bg-[#2e4ff4] transition-all inline-flex items-center gap-2 cursor-pointer active:scale-[0.98] shadow-sm"
         >
           <span>Submit Custom Automation Requirement</span>
           <ArrowRight className="w-3.5 h-3.5" />
