@@ -1,0 +1,6 @@
+{
+  "name": "Operon Automations - AI & Business Process Automation Systems",
+  "description": "Deploy ready-made automation workflows, intelligent AI agents, and custom enterprise automations that eliminate manual tasks and streamline operations.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
