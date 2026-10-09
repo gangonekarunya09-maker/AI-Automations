@@ -74,8 +74,8 @@ export const WorkflowCard: React.FC<WorkflowCardProps> = ({
             </div>
 
             <div className="mt-3 flex items-center justify-between text-[9px] uppercase tracking-[0.16em] text-[#6B6B6B] border-t border-[#CFCFCC] pt-2">
-              <span>● Production Certified</span>
-              <span>{workflow.downloads_count} Deploys</span>
+              <span>● Production Ready</span>
+              <span>Self-Hostable n8n</span>
             </div>
           </div>
         </div>

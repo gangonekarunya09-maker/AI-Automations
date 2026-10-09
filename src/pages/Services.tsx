@@ -19,7 +19,7 @@ export const Services: React.FC<ServicesProps> = ({ onNavigate, onRequestCustom 
     {
       id: 'customer-support',
       title: 'AUTONOMOUS AI CUSTOMER SUPPORT AGENTS',
-      headline: '24/7 GROUNDED RESOLUTIONS WITH ZERO HALLUCINATIONS',
+      headline: '24/7 GROUNDED RESOLUTIONS WITH KNOWLEDGE-BASE VERIFICATION',
       description: 'Deploy AI agents trained specifically on your company FAQs, Notion docs, warranty terms, and refund policies. The agent answers common questions instantly across WhatsApp, Zendesk, or email, with built-in sentiment guards that automatically escalate frustrated customers to human managers.',
       flow: ['Customer Ticket Received', 'Vector Search in Docs', 'Grounded LLM Response', 'Confidence Check', 'Automated Reply or Triage'],
       deliverables: ['Knowledge Base Pipeline', 'Multi-Channel Connectors', 'Escalation Safeguards', 'Weekly Resolution Analytics']
@@ -46,7 +46,7 @@ export const Services: React.FC<ServicesProps> = ({ onNavigate, onRequestCustom 
       headline: 'YOU EXPLAIN THE BOTTLENECK; WE BUILD THE ENGINE',
       description: 'Every business has idiosyncratic operational glue—data moved manually between legacy software, daily Excel reconciliations, or repetitive status notifications. You describe the step-by-step human clicks, and we engineer an autonomous n8n pipeline that executes it automatically.',
       flow: ['Discovery & Mapping', 'Data Contract Architecture', 'n8n Logic & Fallbacks', 'Synthetic Stress Testing', 'Production Launch & Handover'],
-      deliverables: ['End-to-End Blueprint', 'Source n8n JSON Files', 'Credentials Runbook', '30-Day Guarantee']
+      deliverables: ['End-to-End Blueprint', 'Source n8n JSON Files', 'Credentials Runbook', '30-Day Handover Support']
     }
   ];
 

@@ -12,6 +12,8 @@ import { Services } from './pages/Services';
 import { Industries } from './pages/Industries';
 import { About } from './pages/About';
 import { Contact } from './pages/Contact';
+import { Terms } from './pages/Terms';
+import { Privacy } from './pages/Privacy';
 
 // Modals
 import { GetWorkflowModal } from './components/GetWorkflowModal';
@@ -281,6 +283,20 @@ export default function App() {
             onSuccess={() => {
               refreshData();
             }}
+          />
+        )}
+
+        {/* Route: /terms */}
+        {currentPath === '/terms' && (
+          <Terms
+            onNavigate={navigateTo}
+          />
+        )}
+
+        {/* Route: /privacy */}
+        {currentPath === '/privacy' && (
+          <Privacy
+            onNavigate={navigateTo}
           />
         )}
       </main>

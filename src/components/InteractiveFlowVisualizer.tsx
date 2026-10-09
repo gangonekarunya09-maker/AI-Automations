@@ -90,7 +90,7 @@ const PRESETS: PipelinePreset[] = [
       result: 'Staged in QuickBooks as "Awaiting Payment" + finance manager pinged'
     },
     businessResult: {
-      metric: '100% Extraction Accuracy',
+      metric: 'Automated Math Verification',
       description: 'Zero manual data entry from messy PDF invoices.'
     }
   }
@@ -228,7 +228,7 @@ export const InteractiveFlowVisualizer: React.FC = () => {
       </div>
 
       {/* Live Payload Inspector Box */}
-      <div className="p-6 bg-[#0E0E0E] text-white border border-[#0E0E0E] space-y-4">
+      <div className="p-6 bg-[#0E0E0E]/60 backdrop-blur-md text-white border border-white/10 rounded-2xl space-y-4 shadow-xl">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-white/15 gap-3">
           <div className="flex items-center gap-3">
             <span className="w-2 h-2 bg-white animate-pulse"></span>

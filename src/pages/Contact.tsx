@@ -375,21 +375,21 @@ export const Contact: React.FC<ContactProps> = ({ onSuccess }) => {
               </ul>
             </div>
 
-            <div className="p-8 bg-[#0E0E0E] text-white border border-[#0E0E0E] rounded-2xl space-y-4 text-xs">
+            <div className="p-8 bg-[#0E0E0E]/60 backdrop-blur-md text-white border border-white/10 rounded-2xl space-y-4 text-xs shadow-xl">
               <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-neutral-400 block">
                 DIRECT INTAKE
               </span>
               <h4 className="text-base font-bold uppercase tracking-tight text-white">Operations Desk</h4>
               <div className="flex items-center gap-2.5 text-neutral-300">
                 <Mail className="w-4 h-4 text-white shrink-0" />
-                <span>ops@offlo.ai</span>
+                <span>gangonekarunya09@gmail.com</span>
               </div>
               <div className="flex items-center gap-2.5 text-neutral-300">
                 <Phone className="w-4 h-4 text-white shrink-0" />
-                <span>+91 98200 12345 (WhatsApp Desk)</span>
+                <span>Direct Consultation via Intake Form</span>
               </div>
               <div className="pt-3 border-t border-white/15 text-[10px] uppercase tracking-wider text-neutral-400">
-                Response SLA: Sub-2 hours on business days
+                Estimated Response: Within 24 business hours
               </div>
             </div>
           </div>

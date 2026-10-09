@@ -29,7 +29,7 @@ export const Home: React.FC<HomeProps> = ({
       icon: Terminal
     },
     {
-      title: 'ZERO SILENT FAILURES',
+      title: 'STRUCTURED ERROR HANDLING',
       subline: 'Deterministic error catching and instant alert routes.',
       icon: ShieldCheck
     },
@@ -149,7 +149,7 @@ export const Home: React.FC<HomeProps> = ({
             </h1>
 
             {/* Architectural Schematic Cutout sitting over the wordmark */}
-            <div className="mt-4 sm:-mt-8 lg:-mt-12 bg-[#0E0E0E] text-white p-5 sm:p-7 max-w-2xl border border-[#0E0E0E] rounded-2xl">
+            <div className="mt-4 sm:-mt-8 lg:-mt-12 bg-[#0E0E0E]/60 backdrop-blur-md text-white p-5 sm:p-7 max-w-2xl border border-white/10 shadow-xl rounded-2xl">
               <div className="flex items-center justify-between text-[10px] uppercase tracking-[0.2em] font-semibold text-neutral-400 mb-3 pb-2 border-b border-white/15">
                 <span>RUNTIME SCHEMA // PIPELINE V1.4</span>
                 <span className="text-white">● ACTIVE CLUSTER</span>
@@ -292,10 +292,10 @@ export const Home: React.FC<HomeProps> = ({
           </div>
 
           {/* Right: Technical process diagram / high-contrast blueprint */}
-          <div className="lg:col-span-5 bg-[#0E0E0E] text-white p-7 sm:p-9 border border-[#0E0E0E] rounded-2xl space-y-5">
+          <div className="lg:col-span-5 bg-[#0E0E0E]/60 backdrop-blur-md text-white p-7 sm:p-9 border border-white/10 rounded-2xl space-y-5 shadow-xl">
             <div className="flex items-center justify-between text-[10px] uppercase tracking-[0.2em] font-bold text-neutral-400 pb-3 border-b border-white/15">
               <span>ARCHITECTURE SPEC</span>
-              <span>GUARANTEED 99.9% UPTIME</span>
+              <span>HIGH-AVAILABILITY CLUSTERS</span>
             </div>
 
             <div className="space-y-3 text-xs">
@@ -489,7 +489,7 @@ export const Home: React.FC<HomeProps> = ({
               </h2>
             </div>
             <div className="text-xs uppercase tracking-[0.16em] font-bold text-[#6B6B6B]">
-              5 PHASES // 100% RELIABILITY
+              5 PHASES // SYSTEMATIC DEPLOYMENT
             </div>
           </div>
 
@@ -515,7 +515,7 @@ export const Home: React.FC<HomeProps> = ({
 
                 <div className="sm:shrink-0">
                   <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-[#0E0E0E] px-3 py-1 bg-[#F6F5F3] border border-[#CFCFCC] rounded-full">
-                    CERTIFIED
+                    PHASE GATE
                   </span>
                 </div>
               </div>
@@ -523,7 +523,7 @@ export const Home: React.FC<HomeProps> = ({
           </div>
 
           {/* Bottom Callout in Home */}
-          <div className="mt-16 bg-[#0E0E0E] text-white p-8 sm:p-14 rounded-3xl flex flex-col lg:flex-row items-center justify-between gap-8 text-center lg:text-left">
+          <div className="mt-16 bg-[#0E0E0E]/60 backdrop-blur-md text-white p-8 sm:p-14 rounded-3xl flex flex-col lg:flex-row items-center justify-between gap-8 text-center lg:text-left border border-white/10 shadow-xl">
             <div>
               <span className="text-[10px] uppercase tracking-[0.24em] font-bold text-neutral-400 block mb-2">
                 READY TO SCALE YOUR CAPACITY?

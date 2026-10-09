@@ -38,7 +38,7 @@ export const WorkflowDetails: React.FC<WorkflowDetailsProps> = ({
         {/* Title Header */}
         <div className="space-y-6">
           <div className="text-[11px] uppercase tracking-[0.22em] font-bold text-[#6B6B6B]">
-            BLUEPRINT #{workflow.id.toUpperCase()} // {workflow.downloads_count} ACTIVE RUNTIMES
+            BLUEPRINT #{workflow.id.toUpperCase()} // PRODUCTION ARCHITECTURE
           </div>
 
           <h1 className="text-4xl sm:text-6xl font-extrabold uppercase tracking-tight text-[#0E0E0E] leading-none">
@@ -54,7 +54,7 @@ export const WorkflowDetails: React.FC<WorkflowDetailsProps> = ({
             <Check className="w-5 h-5 text-[#0E0E0E] shrink-0 mt-0.5" />
             <div>
               <span className="text-xs uppercase tracking-[0.14em] font-bold text-[#0E0E0E] block mb-0.5">
-                VERIFIED OPERATIONAL IMPACT
+                TARGET OPERATIONAL BENEFIT
               </span>
               <span className="text-xs sm:text-sm text-[#0E0E0E] font-medium leading-relaxed">
                 {workflow.benefit}
@@ -63,7 +63,7 @@ export const WorkflowDetails: React.FC<WorkflowDetailsProps> = ({
           </div>
 
           {/* Acquisition Strip */}
-          <div className="pt-4 p-8 bg-[#0E0E0E] text-white rounded-2xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 border border-[#0E0E0E]">
+          <div className="pt-4 p-8 bg-[#0E0E0E]/60 backdrop-blur-md text-white rounded-2xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 border border-white/10 shadow-xl">
             <div>
               <div className="text-[10px] uppercase tracking-[0.2em] font-semibold text-neutral-400">
                 COMMERCIAL LICENSE
@@ -215,7 +215,7 @@ export const WorkflowDetails: React.FC<WorkflowDetailsProps> = ({
               </div>
             </div>
 
-            <div className="p-6 bg-[#0E0E0E] text-white border border-[#0E0E0E] rounded-2xl flex flex-col justify-between">
+            <div className="p-6 bg-[#0E0E0E]/60 backdrop-blur-md text-white border border-white/10 rounded-2xl flex flex-col justify-between shadow-xl">
               <div>
                 <span className="text-xs uppercase tracking-[0.16em] font-bold text-white block mb-2">
                   MODEL C // HYBRID SETUP
@@ -246,7 +246,7 @@ export const WorkflowDetails: React.FC<WorkflowDetailsProps> = ({
         </div>
 
         {/* Bottom CTA */}
-        <div className="p-8 sm:p-12 bg-[#0E0E0E] text-white rounded-2xl flex flex-col sm:flex-row items-center justify-between gap-6">
+        <div className="p-8 sm:p-12 bg-[#0E0E0E]/60 backdrop-blur-md text-white rounded-2xl flex flex-col sm:flex-row items-center justify-between gap-6 border border-white/10 shadow-xl">
           <div>
             <h3 className="text-xl sm:text-2xl font-bold uppercase tracking-tight text-white mb-1">
               READY TO DEPLOY THIS BLUEPRINT?

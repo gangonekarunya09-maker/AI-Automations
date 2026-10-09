@@ -127,6 +127,16 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onRequestCustom }) =
                   Consultation & Intake
                 </button>
               </li>
+              <li>
+                <button onClick={() => onNavigate('/terms')} className="text-neutral-300 hover:text-white transition-colors cursor-pointer text-left">
+                  Terms & Conditions
+                </button>
+              </li>
+              <li>
+                <button onClick={() => onNavigate('/privacy')} className="text-neutral-300 hover:text-white transition-colors cursor-pointer text-left">
+                  Privacy Policy
+                </button>
+              </li>
               <li className="pt-3 border-t border-white/10">
                 <button
                   onClick={() => onNavigate('/admin')}
@@ -145,7 +155,19 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onRequestCustom }) =
           <div>
             © {new Date().getFullYear()} OFFLO AUTOMATIONS. ALL RIGHTS RESERVED.
           </div>
-          <div className="flex items-center gap-6">
+          <div className="flex flex-wrap items-center gap-6">
+            <button
+              onClick={() => onNavigate('/terms')}
+              className="hover:text-white transition-colors cursor-pointer"
+            >
+              TERMS & CONDITIONS
+            </button>
+            <button
+              onClick={() => onNavigate('/privacy')}
+              className="hover:text-white transition-colors cursor-pointer"
+            >
+              PRIVACY POLICY
+            </button>
             <span>SELF-HOSTABLE RUNTIMES</span>
             <span>DATA PRIVACY ENFORCED</span>
           </div>

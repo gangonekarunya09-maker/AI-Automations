@@ -225,7 +225,7 @@ export const Workflows: React.FC<WorkflowsProps> = ({
           )}
 
           {/* Bottom Banner */}
-          <div className="mt-16 bg-[#0E0E0E] text-white p-8 sm:p-12 rounded-2xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+          <div className="mt-16 bg-[#0E0E0E]/60 backdrop-blur-md text-white p-8 sm:p-12 rounded-2xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 border border-white/10 shadow-xl">
             <div>
               <span className="text-[10px] uppercase tracking-[0.2em] font-bold text-neutral-400 block mb-1">
                 ENTERPRISE BESPOKE ARCHITECTURE
